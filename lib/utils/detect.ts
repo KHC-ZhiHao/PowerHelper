@@ -1,9 +1,12 @@
+const getNavigator = () => typeof window === 'undefined' ? null : window.navigator
+
 /**
  * 是否正在 Line、Messenger 等 in app browser 裡面執行
  * @description 並不嚴謹，僅供參考使用
  */
 
 export const inAppBrowser = () => {
+    let navigator = getNavigator()
     if (navigator == null) {
         return false
     }
@@ -28,10 +31,11 @@ export const inMobile = () => {
  */
 
 export const inIOS = () => {
+    let navigator = getNavigator()
     if (navigator == null) {
         return false
     }
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) || /iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    return /iPad|iPhone|iPod/.test(navigator.userAgent)
 }
 
 /**
@@ -39,6 +43,7 @@ export const inIOS = () => {
  */
 
 export const inAndroid = () => {
+    let navigator = getNavigator()
     if (navigator == null) {
         return false
     }
@@ -51,6 +56,7 @@ export const inAndroid = () => {
  */
 
 export const inSafari = () => {
+    let navigator = getNavigator()
     if (navigator == null) {
         return false
     }
@@ -63,7 +69,7 @@ export const inSafari = () => {
         let webkit = !!ua.match(/WebKit/i)
         result = webkit && hasSafariInUa && noOtherBrowsersInUa
     // @ts-ignore
-    } else if (window.safari !== undefined) {
+    } else if (typeof window !== 'undefined' && window.safari !== undefined) {
         result = true
     } else {
         result = hasSafariInUa && noOtherBrowsersInUa

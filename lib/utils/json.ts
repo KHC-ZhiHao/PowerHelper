@@ -2,7 +2,7 @@
  * 如果 Parse 發生錯誤則回傳 {}
  */
 
-export const notStrictJSONParse = (data: string) => {
+export const nonStrictJSONParse = (data: string) => {
     try {
         if (typeof data === 'string') {
             return JSON.parse(data)
@@ -18,7 +18,7 @@ export const notStrictJSONParse = (data: string) => {
  * 如果 Stringify 發生錯誤則回傳 '{}'
  */
 
-export const notStrictJSONStringify = (data: Record<string, any>) => {
+export const nonStrictJSONStringify = (data: Record<string, any>) => {
     try {
         return JSON.stringify(data)
     } catch (error) {

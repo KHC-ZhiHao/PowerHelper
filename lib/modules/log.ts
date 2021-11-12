@@ -1,25 +1,21 @@
 import { Event } from './event'
 
-type Color = 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white'
+type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white'
 type ImportantLevel = 0 | 1 | 2 | 3
-type Message = {
-    time: string
-    color: Color
-    content: string
-    importantLevel: ImportantLevel
-}
 type Channels = {
     print: {
         time: string
         name: string
         data: any
+        step: number
         color: string
+        message: string
         importantLevel: ImportantLevel
     }
 }
 
-let defaultColor: Color = 'white'
 let nodeColors: Record<Color, string> = {
+    default: '',
     red: '\x1b[31m',
     blue: '\x1b[34m',
     cyan: '\x1b[36m',
@@ -32,17 +28,17 @@ let nodeColors: Record<Color, string> = {
 export class Log extends Event<Channels> {
     private step = 0
     private name
-    private messages: Message[] = []
-    private isSilence: boolean
-
-    constructor(name: string, silence = false) {
+    private isSilence: boolean = false
+    constructor(name: string, options?: {
+        silence?: boolean
+    }) {
         super()
         this.name = name
-        this.isSilence = silence
-    }
-
-    static setDefaultColor(color: Color) {
-        defaultColor = color
+        if (options) {
+            if (options.silence != null) {
+                this.silence(options.silence)
+            }
+        }
     }
 
     private getNow() {
@@ -53,48 +49,38 @@ export class Log extends Event<Channels> {
         return `[${time}][${this.name}] ${this.step}: ${content}`
     }
 
-    silence(silence: boolean) {
-        this.isSilence = silence
+    silence(active = true) {
+        this.isSilence = active
     }
 
     print(data: any, options: {
         color?: Color
         importantLevel?: ImportantLevel
     } = {}) {
-        let now = this.getNow()
-        let color: Color = options.color || defaultColor
-        let importantLevel: ImportantLevel = options.importantLevel || 0
         this.step += 1
-        this.emit('print', {
+        let now = this.getNow()
+        let color: Color = options.color || 'default'
+        let importantLevel: ImportantLevel = options.importantLevel || 0
+        let message = this.toPrintString(now, data)
+        let output = {
             time: now,
             name: this.name,
+            step: this.step,
             data,
             color,
+            message,
             importantLevel
-        })
-        if (this.messages.length >= 1000) {
-            this.messages.shift()
         }
-        this.messages.push({
-            time: now,
-            color,
-            content: data,
-            importantLevel
-        })
+        this.emit('print', output)
         if (this.isSilence === false) {
-            if (typeof window === 'undefined') {
-                console.log(`${nodeColors[color]}${this.toPrintString(now, data)}\x1b[0m`)
+            if (color === 'default') {
+                console.log(message)
+            } else if (typeof window === 'undefined') {
+                console.log(`${nodeColors[color]}${message}\x1b[0m`)
             } else {
-                console.log(`%c ${this.toPrintString(now, data)}`, `color: ${color}`)
+                console.log(`%c ${message}`, `color: ${color}`)
             }
         }
-    }
-
-    export() {
-        return this.messages.map(e => this.toPrintString(e.time, e.content))
-    }
-
-    exportDetail() {
-        return this.messages.slice()
+        return output
     }
 }

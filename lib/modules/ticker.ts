@@ -8,11 +8,15 @@ export class Ticker extends Event<{
     private int: ReturnType<typeof setInterval>
     private isStop = false
     private delta = 0
-    constructor(ms = 1000, autoPlay = true) {
+    constructor(ms: number, options?: {
+        autoPlay?: boolean
+    }) {
         super()
         this.int = setInterval(() => this.run(), ms)
-        if (autoPlay) {
-            this.play()
+        if (options) {
+            if (options.autoPlay === false) {
+                this.stop()
+            }
         }
     }
 

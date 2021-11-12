@@ -1,36 +1,43 @@
 import { Base } from '../module-base'
 
-let globalLocalStorage = typeof window === 'undefined' ? null : window.localStorage
+let globalLocalStorage: Storage | null = null
 
 export class LocalStorage<T extends Record<string, any>> extends Base {
     private namespaces: string
-    constructor(namespaces: string, dafaultColumns?: Partial<T>) {
+    private storage = globalLocalStorage ? globalLocalStorage : typeof window === 'undefined' ? null : window.localStorage
+    constructor(namespaces: string, options?: {
+        dafaultColumns?: Partial<T>
+    }) {
         super('LocalStorage')
         this.namespaces = namespaces
-        if (dafaultColumns) {
-            for (let key in dafaultColumns) {
-                if (this.get(key) == null) {
-                    this.set(key, dafaultColumns[key] as any)
+        if (options) {
+            if (options.dafaultColumns) {
+                for (let key in options.dafaultColumns) {
+                    if (this.get(key) == null) {
+                        this.set(key, options.dafaultColumns[key] as any)
+                    }
                 }
             }
         }
     }
+
     static setGlobalLocalStorage(storage: any) {
         globalLocalStorage = storage
     }
+
     private _genName(name: string | number | symbol) {
-        return `_super_${this.namespaces}/${name.toString()}`
+        return `_power_${this.namespaces}/${name.toString()}`
     }
 
     set<K extends keyof T>(name: K, data: T[K]) {
-        if (globalLocalStorage) {
-            globalLocalStorage.setItem(this._genName(name), JSON.stringify(data))
+        if (this.storage) {
+            this.storage.setItem(this._genName(name), JSON.stringify(data))
         }
     }
 
     get<K extends keyof T>(name: K): T[K] | undefined {
-        if (globalLocalStorage) {
-            let data = globalLocalStorage.getItem(this._genName(name))
+        if (this.storage) {
+            let data = this.storage.getItem(this._genName(name))
             if (data != null) {
                 return JSON.parse(data)
             }
@@ -38,20 +45,20 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
     }
 
     clear() {
-        if (globalLocalStorage) {
+        if (this.storage) {
             let name = `_power_${this.namespaces}/`
-            let items = Object.keys(globalLocalStorage)
+            let items = Object.keys(this.storage)
             for (let key of items) {
                 if (key.length >= name.length && key.slice(0, name.length) === name) {
-                    this.remove(key)
+                    this.remove(key.slice(name.length))
                 }
             }
         }
     }
 
     remove<K extends keyof T>(name: K) {
-        if (globalLocalStorage) {
-            globalLocalStorage.removeItem(this._genName(name))
+        if (this.storage) {
+            this.storage.removeItem(this._genName(name))
         }
     }
 }

@@ -29,6 +29,8 @@ export class Cache<T> extends Base {
         this.keepAlive = params.keepAlive == null ? 60 * 1000 * 5 : params.keepAlive
     }
 
+    /** 獲取所有的 Cache 鍵值 */
+
     keys() {
         return Array.from(this.items.keys())
     }

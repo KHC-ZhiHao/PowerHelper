@@ -37,7 +37,7 @@ class Listener<T> {
 }
 
 export class Event<T extends Record<string, Record<string, any>>> extends Base {
-    listeners: Map<string, Listener<any>[]> = new Map()
+    private listeners: Map<string, Listener<any>[]> = new Map()
     constructor() {
         super('Event')
     }
@@ -74,10 +74,7 @@ export class Event<T extends Record<string, Record<string, any>>> extends Base {
         if (this.listeners.has(key) === false) {
             this.listeners.set(key, [])
         }
-        let listeners = this.listeners.get(key)
-        if (listeners) {
-            listeners.push(listener)
-        }
+        (this.listeners.get(key) as any).push(listener)
         return listener
     }
 
