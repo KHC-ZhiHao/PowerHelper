@@ -7,7 +7,9 @@ export declare class Ticker extends Event<{
     private int;
     private isStop;
     private delta;
-    constructor(ms?: number, autoPlay?: boolean);
+    constructor(ms: number, options?: {
+        autoPlay?: boolean;
+    });
     private run;
     stop(): void;
     play(): void;

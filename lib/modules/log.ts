@@ -1,7 +1,7 @@
 import { Event } from './event'
 
 type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white'
-type ImportantLevel = 0 | 1 | 2 | 3
+type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo'
 type Channels = {
     print: {
         time: string
@@ -10,11 +10,11 @@ type Channels = {
         step: number
         color: string
         message: string
-        importantLevel: ImportantLevel
+        logType: LogType
     }
 }
 
-let nodeColors: Record<Color, string> = {
+const nodeColors: Record<Color, string> = {
     default: '',
     red: '\x1b[31m',
     blue: '\x1b[34m',
@@ -29,14 +29,19 @@ export class Log extends Event<Channels> {
     private step = 0
     private name
     private isSilence: boolean = false
+    private defaultLogType: LogType = 'normal'
     constructor(name: string, options?: {
         silence?: boolean
+        defaultLogType?: LogType
     }) {
         super()
         this.name = name
         if (options) {
             if (options.silence != null) {
                 this.silence(options.silence)
+            }
+            if (options.defaultLogType != null) {
+                this.defaultLogType = options.defaultLogType
             }
         }
     }
@@ -45,8 +50,8 @@ export class Log extends Event<Channels> {
         return (new Date()).toISOString().split(/T|\./).slice(0, 2).join(' ')
     }
 
-    private toPrintString(time: string, content: string) {
-        return `[${time}][${this.name}] ${this.step}: ${content}`
+    private toPrintString(time: string, logType:LogType, content: string) {
+        return `[${time}][${this.name}][${logType}] ${this.step}: ${content}`
     }
 
     silence(active = true) {
@@ -55,13 +60,13 @@ export class Log extends Event<Channels> {
 
     print(data: any, options: {
         color?: Color
-        importantLevel?: ImportantLevel
+        logType?: LogType
     } = {}) {
         this.step += 1
         let now = this.getNow()
         let color: Color = options.color || 'default'
-        let importantLevel: ImportantLevel = options.importantLevel || 0
-        let message = this.toPrintString(now, data)
+        let logType = options.logType || this.defaultLogType
+        let message = this.toPrintString(now, logType, data)
         let output = {
             time: now,
             name: this.name,
@@ -69,7 +74,7 @@ export class Log extends Event<Channels> {
             data,
             color,
             message,
-            importantLevel
+            logType
         }
         this.emit('print', output)
         if (this.isSilence === false) {

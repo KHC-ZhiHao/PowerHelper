@@ -1,14 +1,14 @@
 import { Base } from '../module-base'
 
-let globalLocalStorage: Storage | null = null
-
 export class LocalStorage<T extends Record<string, any>> extends Base {
+    private storage: Storage | null
     private namespaces: string
-    private storage = globalLocalStorage ? globalLocalStorage : typeof window === 'undefined' ? null : window.localStorage
     constructor(namespaces: string, options?: {
+        storageSystem?: Storage
         dafaultColumns?: Partial<T>
     }) {
         super('LocalStorage')
+        this.storage = typeof window === 'undefined' ? null : window.localStorage
         this.namespaces = namespaces
         if (options) {
             if (options.dafaultColumns) {
@@ -18,11 +18,10 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
                     }
                 }
             }
+            if (options.storageSystem) {
+                this.storage = options.storageSystem
+            }
         }
-    }
-
-    static setGlobalLocalStorage(storage: any) {
-        globalLocalStorage = storage
     }
 
     private _genName(name: string | number | symbol) {

@@ -8,6 +8,7 @@ export declare class Cache<T> extends Base {
         pick: (key: string) => Promise<T>;
         keepAlive?: number;
     });
+    /** 獲取所有的 Cache 鍵值 */
     keys(): string[];
     clear(): void;
     remove(key: string): void;

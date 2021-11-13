@@ -4,6 +4,7 @@ export declare class Timer extends Ticker {
     private positive;
     constructor();
     setPositive(positive: boolean): this;
+    getTime(): number;
     setTime(ms: number): this;
     addTime(ms: number): this;
     subtractTime(ms: number): this;

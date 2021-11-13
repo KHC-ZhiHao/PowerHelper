@@ -13,7 +13,7 @@ describe('Log', () => {
             data: any
             color: string
             message: string
-            importantLevel: number
+            logType: string
         }
         let log = new Log('new-log')
         log.on('print', ({ data }) => {
@@ -25,7 +25,7 @@ describe('Log', () => {
         expect(result.data).to.equal('hello')
         expect(result.name).to.equal('new-log')
         expect(result.color).to.equal('red')
-        expect(result.importantLevel).to.equal(0)
+        expect(result.logType).to.equal('normal')
         expect(typeof result.time).to.equal('string')
     })
     it('silence', function() {
@@ -59,7 +59,7 @@ describe('Log', () => {
         let log = new Log('new-log')
         log.print('hello', {})
         log.print('hello', {
-            importantLevel: 1
+            logType: 'normal'
         })
     })
 })

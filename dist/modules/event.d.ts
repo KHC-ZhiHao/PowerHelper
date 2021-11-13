@@ -17,7 +17,7 @@ declare class Listener<T> {
     off(): void;
 }
 export declare class Event<T extends Record<string, Record<string, any>>> extends Base {
-    listeners: Map<string, Listener<any>[]>;
+    private listeners;
     constructor();
     getChannelListenerSize<K extends keyof T>(channel: K): number;
     emit<K extends keyof T>(channel: K, data: T[K]): void;

@@ -4,6 +4,7 @@ import './types/string-params'
 
 import * as flow from './utils/flow'
 import * as json from './utils/json'
+import * as array from './utils/array'
 import * as detect from './utils/detect'
 import { Log } from './modules/log'
 import { Event } from './modules/event'
@@ -14,20 +15,17 @@ import { Schedule } from './modules/schedule'
 import { LocalStorage } from './modules/local-storage'
 
 export const PowerHelper = {
-    utils: {
-        flow,
-        json,
-        detect
-    },
-    modules: {
-        Log,
-        Event,
-        Cache,
-        Timer,
-        Ticker,
-        Schedule,
-        LocalStorage
-    }
+    flow,
+    json,
+    array,
+    detect,
+    Log,
+    Event,
+    Cache,
+    Timer,
+    Ticker,
+    Schedule,
+    LocalStorage
 }
 
 module.exports = PowerHelper

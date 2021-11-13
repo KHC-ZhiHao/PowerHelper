@@ -4,7 +4,7 @@ declare type DayUnit = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
  * 表達 YYYY 的格式
  * @example '2021'
  */
-export declare type YearFormat = `${Unit}${Unit}${Unit}${Unit}`;
+export declare type YearFormat = Exclude<`${Unit}${Unit}${Unit}${Unit}`, '0000'>;
 /**
  * 表達 MM 的格式
  * @example '10'

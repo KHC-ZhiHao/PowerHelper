@@ -19,7 +19,7 @@ declare type GetParameter<S extends string> = RemoveTail<RemoveTail<RemoveTail<R
  * 從 SQL 字串中獲取:開頭的變數
  * @example
  * const sql = `SELECT * FROM mytable WHERE name = :name AND card = :card;`
- * const data: RouteParameters<typeof sql> = {
+ * const data: SqlParameters<typeof sql> = {
  *  user: '123',
  *  card: '123'
  * }

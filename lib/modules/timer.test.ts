@@ -38,4 +38,13 @@ describe('Time', () => {
         expect(timer.getTime() <= 1000).to.equal(true)
         timer.close()
     })
+    it('computed time', async function() {
+        let timer = new Timer()
+        timer.setTime(0)
+        timer.addTime(4786 * 1002)
+        expect(timer.getTimeString('hh-mm-ss-ff')).to.equal('01-19-55-57')
+        timer.subtractTime(4786 * 1002)
+        expect(timer.getTimeString('hh-mm-ss-ff')).to.equal('00-00-00-00')
+        timer.close()
+    })
 })
