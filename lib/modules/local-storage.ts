@@ -3,12 +3,29 @@ import { Base } from '../module-base'
 // LocalStorage Size 問題
 // 檢驗資料正確的 function
 
-export class LocalStorage<T extends Record<string, any>> extends Base {
+type Intercept<K, T> = {
+    Get: (name: K, data: T, status: Record<string, any>) => T | null
+    Set: (name: K, data: T) => {
+        data: T
+        status: Record<string, any>
+    }
+}
+
+export class LocalStorage<
+    T extends Record<string, any>,
+    K extends keyof T = keyof T
+> extends Base {
     private storage: Storage | null
     private namespaces: string
+    private interceptGet: Intercept<K, T[K]>['Get'] | null = null
+    private interceptSet: Intercept<K, T[K]>['Set'] | null = null
     constructor(namespaces: string, options?: {
         storageSystem?: Storage
         dafaultColumns?: Partial<T>
+        intercept?: {
+            get?: Intercept<K, T[K]>['Get']
+            set?: Intercept<K, T[K]>['Set']
+        }
     }) {
         super('LocalStorage')
         this.storage = typeof window === 'undefined' ? null : window.localStorage
@@ -16,6 +33,14 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
         if (options) {
             if (options.storageSystem) {
                 this.storage = options.storageSystem
+            }
+            if (options.intercept) {
+                if (options.intercept.get) {
+                    this.interceptGet = options.intercept.get.bind(this)
+                }
+                if (options.intercept.set) {
+                    this.interceptSet = options.intercept.set.bind(this)
+                }
             }
             if (options.dafaultColumns) {
                 for (let key in options.dafaultColumns) {
@@ -33,9 +58,15 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
 
     set<K extends keyof T>(name: K, data: T[K]) {
         if (this.storage) {
+            let status = {}
+            if (this.interceptSet) {
+                let result = this.interceptSet(name as any, data as any)
+                data = result.data as any
+                status = result.status
+            }
             this.storage.setItem(this._genName(name), JSON.stringify({
-                createdAt: Date.now(),
-                data
+                data,
+                status
             }))
         }
     }
@@ -45,7 +76,11 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
             let data = this.storage.getItem(this._genName(name))
             if (data != null) {
                 let result = JSON.parse(data)
-                return result.data
+                let response = result.data
+                if (this.interceptGet) {
+                    response = this.interceptGet(name as any, result.data, result.status)
+                }
+                return response
             }
         }
     }

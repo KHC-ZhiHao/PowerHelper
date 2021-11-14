@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+import { sleep } from '../utils/flow'
 import { LocalStorage } from './local-storage'
 
 const getStorage = () => {
@@ -52,7 +53,41 @@ describe('LocalStorage', () => {
         })
         expect(localStorage.get('name')).to.equal('dev')
     })
+    it('intercept', async function() {
+        const items: any = {
+            setItem: (key: string, value: any) => items[key] = value,
+            getItem: (key: string) => items[key],
+            removeItem: (key: string) => delete items[key]
+        }
+        let localStorage = new LocalStorage('test', {
+            storageSystem: items,
+            intercept: {
+                get(name, data, status) {
+                    if (Date.now() > status.exp) {
+                        localStorage.remove(name)
+                        return null
+                    }
+                    return data
+                },
+                set(name, data) {
+                    return {
+                        data,
+                        status: {
+                            exp: Date.now() + 100
+                        }
+                    }
+                }
+            }
+        })
+        localStorage.set('name', 'dave')
+        expect(localStorage.get('name')).to.equal('dave')
+        await sleep(150)
+        expect(localStorage.get('name')).to.equal(null)
+    })
     it('cover', function() {
+        new LocalStorage('test', {
+            intercept: {}
+        })
         let localStorage = new LocalStorage('test', {})
         localStorage.set('test', 'test')
         localStorage.get('test')
