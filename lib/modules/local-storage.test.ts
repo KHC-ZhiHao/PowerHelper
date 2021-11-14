@@ -40,7 +40,9 @@ describe('LocalStorage', () => {
             setItem: (key: string, value: any) => items[key] = value,
             getItem: (key: string) => items[key],
             removeItem: (key: string) => delete items[key],
-            '_power_test/name': '"dev"'
+            '_power_test/name': JSON.stringify({
+                data: 'dev'
+            })
         }
         let localStorage = new LocalStorage('test', {
             storageSystem: items,

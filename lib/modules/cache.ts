@@ -83,7 +83,10 @@ export class Cache<P, R> extends Base {
                 return resolve(item.data)
             }
             let channel = `${key}-onload`
-            this.event.once(channel, ({ data }) => resolve(data as any))
+            this.event.on(channel, (data, context) => {
+                context.off()
+                resolve(data as any)
+            })
             if (this.event.getChannelListenerSize(channel) === 1) {
                 this.pick(params, { key })
                     .then(item => {

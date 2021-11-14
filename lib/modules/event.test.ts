@@ -4,13 +4,28 @@ import { Event } from './event'
 describe('Event', () => {
     it('base', function(done) {
         let event = new Event()
-        event.on('test', ({ data }) => {
+        event.on('test', (data) => {
             expect(data.name).to.equal('dave')
             done()
         })
         event.emit('test', {
             name: 'dave'
         })
+    })
+    it('context', function(done) {
+        let event = new Event()
+        event.on('test', (data, context) => {
+            if (context.state.count == null) {
+                context.state.count = 0
+            }
+            expect(typeof context.id).to.equal('string')
+            context.state.count += 1
+            if (context.state.count === 2) {
+                done()
+            }
+        })
+        event.emit('test', {})
+        event.emit('test', {})
     })
     it('emit empty', function() {
         let event = new Event()
@@ -70,8 +85,9 @@ describe('Event', () => {
     it('once', function() {
         let count = 0
         let event = new Event()
-        event.once('test', () => {
+        event.on('test', (data, context) => {
             count += 1
+            context.off()
         })
         event.emit('test', {})
         event.emit('test', {})

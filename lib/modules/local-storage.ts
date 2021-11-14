@@ -1,5 +1,8 @@
 import { Base } from '../module-base'
 
+// LocalStorage Size 問題
+// 檢驗資料正確的 function
+
 export class LocalStorage<T extends Record<string, any>> extends Base {
     private storage: Storage | null
     private namespaces: string
@@ -30,7 +33,10 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
 
     set<K extends keyof T>(name: K, data: T[K]) {
         if (this.storage) {
-            this.storage.setItem(this._genName(name), JSON.stringify(data))
+            this.storage.setItem(this._genName(name), JSON.stringify({
+                createdAt: Date.now(),
+                data
+            }))
         }
     }
 
@@ -38,7 +44,8 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
         if (this.storage) {
             let data = this.storage.getItem(this._genName(name))
             if (data != null) {
-                return JSON.parse(data)
+                let result = JSON.parse(data)
+                return result.data
             }
         }
     }

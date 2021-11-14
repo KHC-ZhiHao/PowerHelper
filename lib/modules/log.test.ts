@@ -23,7 +23,7 @@ describe('Log', () => {
             logType: string
         }
         let log = new Log('new-log')
-        log.on('print', ({ data }) => {
+        log.on('print', (data) => {
             result = data
         })
         log.print('hello', {

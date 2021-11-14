@@ -16,23 +16,23 @@ log.print('hello')
 /**
  * @param {string} name
  * @param {object} [options]
- * @param {boolean} [options.silence = false]
- * @param {LogType} [options.defaultLogType  = 'normal']
+ * @param {boolean} [options.silence = false] - 是否預設為 silence 狀態
+ * @param {LogType} [options.defaultLogType  = 'normal'] - 如果不指定 LogType 則預設此設定值
  */
-new Log(name, options)
+class Log {
+    constructor(name, options)
+}
 ```
 
 ### Property
 
-Extends: [Event]()
+Extends: [Event](./Event.md)
 
 ```ts
 /** 可以繼續呼叫 print 但不會打印 log。 */
-
 function silence(active: boolean = true): void
 
 /** 打印 log。 */
-
 function print(message: any, options?: {
     color?: Color
     importantLevel?: 0 | 1 | 2 | 3

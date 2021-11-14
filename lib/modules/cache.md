@@ -100,29 +100,34 @@ user.name = 'john' // throw error
  * @param {(params: Params, context: PickContext) => Response} params.pick
  * @param {number} [params.keepAlive = 300000] 每筆資料的存活時間，超過則重取，單位:毫秒
  */
-new Cache<Params, Response>(params)
+class Cache<Params, Response> {
+    constructor(params)
+}
 ```
 
 ### Property
 
 ```ts
 /** 獲取目前所有 Cache 的鍵值。 */
-
 function keys(): string[]
 
 /** 清空所有 Cache。 */
-
 function clear(): void
 
 /** 刪除指定參數的 Cache。 */
-
 function remove(params: Params): void
 
 /** 直接設定指定參數的值。 */
-
 function set(params: Params, value: Response): void
 
 /** 獲取指定參數的值。 */
-
 function get(params: Params): Response
+```
+
+### Types
+
+```ts
+type PickContext = {
+    key: string
+}
 ```
