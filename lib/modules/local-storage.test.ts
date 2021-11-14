@@ -30,10 +30,10 @@ describe('LocalStorage', () => {
         let localStorage = new LocalStorage('test', {
             storageSystem: getStorage(),
             dafaultColumns: {
-                name: 'dev'
+                test: 'dev'
             }
         })
-        expect(localStorage.get('name')).to.equal('dev')
+        expect(localStorage.get('test')).to.equal('dev')
     })
     it('default already exists', function() {
         const items: any = {

@@ -25,3 +25,7 @@ const log = new Log('my-first-log')
 import type { YYYYMMDDFormat } from 'power-helper/types/date'
 const birthday: YYYYMMDDFormat = '2021-01-01'
 ```
+
+## 說明文件
+
+[Log](./docs/Log.md)

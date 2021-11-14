@@ -6,6 +6,13 @@ describe('Log', () => {
         let log = new Log('new-log')
         log.print('hello')
     })
+    it('default log tpye', function() {
+        let log = new Log('new-log', {
+            defaultLogType: 'warning'
+        })
+        let result = log.print('hello')
+        expect(result.logType).to.equal('warning')
+    })
     it('event', function() {
         let result = null as any as {
             time: string

@@ -22,17 +22,17 @@ log.print('hello')
 new Log(name, options)
 ```
 
-### API
+### Property
 
 Extends: [Event]()
 
 ```ts
 /**
- * 可以繼續呼叫 print 但不會打印 log。
+ * 
  */
 function silence(active: boolean = true): void
 /**
- * 可以繼續呼叫 print 但不會打印 log。
+ * 打印 log。
  */
 function print(message: any, options?: {
     color?: Color
@@ -41,3 +41,19 @@ function print(message: any, options?: {
 ```
 
 ### Event
+
+#### print
+
+呼叫 `print` 時觸發。
+
+```ts
+data = {
+    time: string
+    name: string
+    data: any
+    step: number
+    color: string
+    message: string
+    logType: 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo'
+}
+```

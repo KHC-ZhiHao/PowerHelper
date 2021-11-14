@@ -11,15 +11,15 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
         this.storage = typeof window === 'undefined' ? null : window.localStorage
         this.namespaces = namespaces
         if (options) {
+            if (options.storageSystem) {
+                this.storage = options.storageSystem
+            }
             if (options.dafaultColumns) {
                 for (let key in options.dafaultColumns) {
                     if (this.get(key) == null) {
                         this.set(key, options.dafaultColumns[key] as any)
                     }
                 }
-            }
-            if (options.storageSystem) {
-                this.storage = options.storageSystem
             }
         }
     }
