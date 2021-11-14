@@ -8,7 +8,7 @@ type Channels = {
         name: string
         data: any
         step: number
-        color: string
+        color: Color
         message: string
         logType: LogType
     }
@@ -54,9 +54,17 @@ export class Log extends Event<Channels> {
         return `[${time}][${this.name}][${logType}] ${this.step}: ${content}`
     }
 
+    /**
+     * 可以繼續呼叫 print 但不會打印 log。
+     */
+
     silence(active = true) {
         this.isSilence = active
     }
+
+    /**
+     * 打印 log。
+     */
 
     print(data: any, options: {
         color?: Color

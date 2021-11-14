@@ -1,16 +1,18 @@
 import { Base } from '../module-base'
 import { Event } from './event'
 
-type Pick<P, R> = (params: P, context: {
+type PickContext = {
     key: string
-}) => Promise<R>
+}
+
+type Pick<P, R> = (params: P, context: PickContext) => Promise<R>
 
 class CacheItem<T> {
-    data: T
+    readonly data: T
     keepAlive: number
     createdAt: number = Date.now()
     constructor(data: T, keepAlive: number) {
-        this.data = data
+        this.data = Object.freeze(data)
         this.keepAlive = keepAlive
     }
     isExpired() {
@@ -41,29 +43,37 @@ export class Cache<P, R> extends Base {
         return Array.from(this.items.keys())
     }
 
+    /** 清空所有 Cache。 */
+
     clear() {
         this.items.clear()
     }
+
+    /** 刪除指定參數的 Cache。 */
 
     remove(params: P) {
         let key = this.key(params)
         this.removeByKey(key)
     }
 
-    removeByKey(key: string) {
+    private removeByKey(key: string) {
         if (this.items.has(key)) {
             this.items.delete(key)
         }
     }
+
+    /** 直接設定指定參數的值。 */
 
     set(params: P, data: R) {
         let key = this.key(params)
         this.setByKey(key, data)
     }
 
-    setByKey(key: string, data: R) {
+    private setByKey(key: string, data: R) {
         this.items.set(key, new CacheItem(data, this.keepAlive))
     }
+
+    /** 獲取指定參數的值。 */
 
     get(params: P): Promise<R> {
         return new Promise((resolve, reject) => {

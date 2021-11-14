@@ -27,17 +27,23 @@ new Log(name, options)
 Extends: [Event]()
 
 ```ts
-/**
- * 
- */
+/** 可以繼續呼叫 print 但不會打印 log。 */
+
 function silence(active: boolean = true): void
-/**
- * 打印 log。
- */
+
+/** 打印 log。 */
+
 function print(message: any, options?: {
     color?: Color
     importantLevel?: 0 | 1 | 2 | 3
 }): string
+```
+
+### Types
+
+```ts
+type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white'
+type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo'
 ```
 
 ### Event
@@ -47,13 +53,13 @@ function print(message: any, options?: {
 呼叫 `print` 時觸發。
 
 ```ts
-data = {
+const eventData: {
     time: string
     name: string
     data: any
     step: number
-    color: string
+    color: Color
     message: string
-    logType: 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo'
+    logType: LogType
 }
 ```
