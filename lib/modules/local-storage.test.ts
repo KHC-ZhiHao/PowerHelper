@@ -41,9 +41,7 @@ describe('LocalStorage', () => {
             setItem: (key: string, value: any) => items[key] = value,
             getItem: (key: string) => items[key],
             removeItem: (key: string) => delete items[key],
-            '_power_test/name': JSON.stringify({
-                data: 'dev'
-            })
+            '_power_test/name': JSON.stringify('dev')
         }
         let localStorage = new LocalStorage('test', {
             storageSystem: items,
@@ -62,19 +60,17 @@ describe('LocalStorage', () => {
         let localStorage = new LocalStorage('test', {
             storageSystem: items,
             intercept: {
-                get(name, data, status) {
-                    if (Date.now() > status.exp) {
+                get(name, data) {
+                    if (Date.now() > data.exp) {
                         localStorage.remove(name)
                         return null
                     }
-                    return data
+                    return data.data
                 },
                 set(name, data) {
                     return {
                         data,
-                        status: {
-                            exp: Date.now() + 100
-                        }
+                        exp: Date.now() + 100
                     }
                 }
             }

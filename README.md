@@ -46,6 +46,10 @@ const log = new Log('my-first-log')
 
 [Event](./lib/modules/event.md)
 
+[Schedule](./lib/modules/schedule.md)
+
+[LocalStorage](./lib/modules/local-storage.md)
+
 ### Types
 
 將複雜的型態方案進行封裝，提高開發的安全性與效率。

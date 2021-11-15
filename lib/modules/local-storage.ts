@@ -1,14 +1,8 @@
 import { Base } from '../module-base'
 
-// LocalStorage Size 問題
-// 檢驗資料正確的 function
-
 type Intercept<K, T> = {
-    Get: (name: K, data: T, status: Record<string, any>) => T | null
-    Set: (name: K, data: T) => {
-        data: T
-        status: Record<string, any>
-    }
+    Get: (name: K, data: T) => T | null
+    Set: (name: K, data: T) => T
 }
 
 export class LocalStorage<
@@ -56,34 +50,34 @@ export class LocalStorage<
         return `_power_${this.namespaces}/${name.toString()}`
     }
 
+    /** 設定指定名稱的資料 */
+
     set<K extends keyof T>(name: K, data: T[K]) {
         if (this.storage) {
-            let status = {}
             if (this.interceptSet) {
                 let result = this.interceptSet(name as any, data as any)
-                data = result.data as any
-                status = result.status
+                data = result as any
             }
-            this.storage.setItem(this._genName(name), JSON.stringify({
-                data,
-                status
-            }))
+            this.storage.setItem(this._genName(name), JSON.stringify(data))
         }
     }
+
+    /** 獲取指定名稱的資料 */
 
     get<K extends keyof T>(name: K): T[K] | undefined {
         if (this.storage) {
             let data = this.storage.getItem(this._genName(name))
             if (data != null) {
                 let result = JSON.parse(data)
-                let response = result.data
                 if (this.interceptGet) {
-                    response = this.interceptGet(name as any, result.data, result.status)
+                    result = this.interceptGet(name as any, result)
                 }
-                return response
+                return result
             }
         }
     }
+
+    /** 刪除整個 namespaces 的資料 */
 
     clear() {
         if (this.storage) {
@@ -96,6 +90,8 @@ export class LocalStorage<
             }
         }
     }
+
+    /** 刪除指定名稱的資料 */
 
     remove<K extends keyof T>(name: K) {
         if (this.storage) {
