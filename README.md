@@ -30,6 +30,14 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 
 [array](./lib/utils/array.md)
 
+[detect](./lib/utils/detect.md)
+
+[flow](./lib/utils/flow.md)
+
+[json](./lib/utils/json.md)
+
+[string](./lib/utils/string.md)
+
 ### Modules
 
 基本上是一組提供繼承的 Class，也可以單獨使用。
@@ -46,6 +54,10 @@ const log = new Log('my-first-log')
 
 [Event](./lib/modules/event.md)
 
+[Timer](./lib/modules/timer.md)
+
+[Ticker](./lib/modules/ticker.md)
+
 [Schedule](./lib/modules/schedule.md)
 
 [LocalStorage](./lib/modules/local-storage.md)
@@ -59,3 +71,9 @@ const log = new Log('my-first-log')
 import type { YYYYMMDDFormat } from 'power-helper/types/date'
 const birthday: YYYYMMDDFormat = '2021-01-01'
 ```
+
+[date](./lib/types/date.md)
+
+[pick](./lib/types/pick.md)
+
+[string-params](./lib/types/string-params.md)
