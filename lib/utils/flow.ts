@@ -1,5 +1,5 @@
 /**
- * 停止執行指定時間
+ * 停止執行指定時間(毫秒)
  */
 
 export const sleep = (ms: number) => {

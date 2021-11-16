@@ -7,7 +7,7 @@ type GetRouteParameter<S extends string> = RemoveTail<
 >
 
 /**
- * 從路徑字串中獲取:開頭的變數
+ * 從路徑字串中獲取 : 開頭的變數
  * @example
  * const route = 'users/:user/cards/:card'
  * const data: RouteParameters<typeof route> = {
@@ -41,7 +41,7 @@ type GetParameter<S extends string> = RemoveTail<
 >
 
 /**
- * 從 SQL 字串中獲取:開頭的變數
+ * 從 SQL 字串中獲取 : 開頭的變數
  * @example
  * const sql = `SELECT * FROM mytable WHERE name = :name AND card = :card;`
  * const data: SqlParameters<typeof sql> = {
