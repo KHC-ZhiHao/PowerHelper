@@ -26,5 +26,5 @@ import {
      * }
      */
     SqlParameters
-} from 'power-helper/types/pick'
+} from 'power-helper/types/string-params'
 ```
