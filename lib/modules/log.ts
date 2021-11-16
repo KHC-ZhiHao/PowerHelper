@@ -50,7 +50,7 @@ export class Log extends Event<Channels> {
         return (new Date()).toISOString().split(/T|\./).slice(0, 2).join(' ')
     }
 
-    private toPrintString(time: string, logType:LogType, content: string) {
+    private toPrintString(time: string, logType: LogType, content: string) {
         return `[${time}][${this.name}][${logType}] ${this.step}: ${content}`
     }
 

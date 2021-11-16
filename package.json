@@ -12,7 +12,8 @@
     "url": "git+https://github.com/KHC-ZhiHao/PowerHelper.git"
   },
   "keywords": [
-    "canvas",
+    "utils",
+    "typescript",
     "library"
   ],
   "author": "khczhihao",

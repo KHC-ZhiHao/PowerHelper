@@ -1,4 +1,12 @@
 import { Base } from '../module-base';
+declare type Info = {
+    /** 程序名稱 */
+    name: string;
+    /** 運行當下時間，如果為 null 則尚未運行 */
+    runningTime: number | null;
+    /** 執行次數 */
+    executedCount: number;
+};
 export declare class Schedule extends Base {
     private int;
     private isStop;
@@ -6,14 +14,17 @@ export declare class Schedule extends Base {
     private processes;
     constructor();
     private run;
+    /** 加入一個程序，不能重複已存在的命名 */
     add(name: string, intervalMs: number, callback: () => Promise<any>): void;
+    /** 刪除指定的程序 */
     remove(name: string): void;
-    info(): {
-        name: string;
-        runningTime: number | null;
-        executedCount: number;
-    }[];
+    /** 獲取現在所有正在運作的程序 */
+    info(): Info[];
+    /** 暫停計時，正在運行中的程序不受限制 */
     stop(): void;
+    /** 假如是暫停狀態可以透過 play 繼續計時 */
     play(): void;
+    /** 關閉計時器 */
     close(): void;
 }
+export {};
