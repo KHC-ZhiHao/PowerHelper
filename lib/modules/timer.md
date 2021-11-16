@@ -23,7 +23,7 @@ class Timer {
 
 ### Property
 
-Extends: [Ticker](./Ticker.md)
+Extends: [Ticker](./ticker.md)
 
 ```ts
 /* 設定正向倒數或是反向 */

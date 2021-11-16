@@ -28,7 +28,7 @@ class Ticker {
 
 ### Property
 
-Extends: [Event](./Event.md)
+Extends: [Event](./event.md)
 
 ```ts
 /** 暫停 event 被呼叫 */

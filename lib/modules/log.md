@@ -26,7 +26,7 @@ class Log {
 
 ### Property
 
-Extends: [Event](./Event.md)
+Extends: [Event](./event.md)
 
 ```ts
 /** 可以繼續呼叫 print 但不會打印 log。 */
