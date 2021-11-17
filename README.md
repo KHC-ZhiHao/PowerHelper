@@ -83,8 +83,8 @@ import type { YYYYMMDDFormat } from 'power-helper/types/date'
 const birthday: YYYYMMDDFormat = '2021-01-01'
 ```
 
-[date](./lib/types/date.md)
+[date](./types/date.md)
 
-[pick](./lib/types/pick.md)
+[pick](./types/pick.md)
 
-[string-params](./lib/types/string-params.md)
+[string-params](./types/string-params.md)
