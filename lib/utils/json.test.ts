@@ -1,7 +1,15 @@
 import { expect } from 'chai'
-import { nonStrictJSONParse, nonStrictJSONStringify } from './json'
+import { jpjs, nonStrictJSONParse, nonStrictJSONStringify } from './json'
 
 describe('Json', () => {
+    it('jpjs', async function() {
+        let ori = {
+            name: 'dave'
+        }
+        let data = jpjs(ori)
+        expect(data.name).to.equal(ori.name)
+        expect(data === ori).to.equal(false)
+    })
     it('nonStrictJSONParse success', async function() {
         let data = nonStrictJSONParse('{ "name": "123" }')
         expect(data.name).to.equal('123')

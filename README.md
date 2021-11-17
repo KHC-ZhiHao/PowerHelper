@@ -1,4 +1,15 @@
-# Power Helper
+<br>
+
+<h1 align="center">Power Helper</h1>
+<h3 align="center">super utils package</h3>
+
+<p align="center">
+    <a href="https://www.npmjs.com/package/power-helper"><img src="https://img.shields.io/npm/v/power-helper.svg"></a>
+    <a href="https://github.com/KHC-ZhiHao/PowerHelper"><img src="https://img.shields.io/github/stars/KHC-ZhiHao/PowerHelper.svg?style=social"></a>
+    <br>
+</p>
+
+<br>
 
 本套件是一種常用的工具集成，包括 Module，TS Type、Utils，因為功能簡單且不需要任何依賴項目，因此極為精簡。
 

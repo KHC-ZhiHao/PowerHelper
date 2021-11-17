@@ -27,8 +27,11 @@ export class Cache<P, R> extends Base {
     private keepAlive: number
     private items: Map<string, CacheItem<R>> = new Map()
     constructor(params: {
+        /** 將參數轉換成唯一鍵 */
         key: (params: P) => string
+        /** 如果鍵值不存在則如何獲取資料 */
         pick: Pick<P, R>
+        /** 每筆資料的存活時間，超過則重取，單位:毫秒 */
         keepAlive?: number
     }) {
         super('Cache')

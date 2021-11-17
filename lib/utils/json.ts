@@ -1,4 +1,12 @@
 /**
+ * 經典的深拷貝方案 JSON.parse(JSON.stringify(data))
+ */
+
+export const jpjs = <T>(data: T): T => {
+    return JSON.parse(JSON.stringify(data))
+}
+
+/**
  * 如果 Parse 發生錯誤則回傳 {}
  */
 

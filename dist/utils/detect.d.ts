@@ -16,6 +16,6 @@ export declare const inIOS: () => boolean;
  */
 export declare const inAndroid: () => boolean;
 /**
- * 是否正在 Safari 系統裡面執行
+ * 是否正在 Safari 瀏覽器裡面執行
  */
 export declare const inSafari: () => boolean;

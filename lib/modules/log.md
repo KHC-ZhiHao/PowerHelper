@@ -14,7 +14,7 @@ log.print('hello')
 
 ```ts
 /**
- * @param {string} name
+ * @param {string} name - 辨識用的名稱
  * @param {object} [options]
  * @param {boolean} [options.silence = false] - 是否預設為 silence 狀態
  * @param {LogType} [options.defaultLogType  = 'normal'] - 如果不指定 LogType 則預設此設定值

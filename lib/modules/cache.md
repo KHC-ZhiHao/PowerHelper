@@ -96,8 +96,8 @@ user.name = 'john' // throw error
 ```ts
 /**
  * @param {object} params
- * @param {(params: Params) => string} params.key
- * @param {(params: Params, context: PickContext) => Response} params.pick
+ * @param {(params: Params) => string} params.key 將參數轉換成唯一鍵
+ * @param {(params: Params, context: PickContext) => Response} params.pick 如果鍵值不存在則如何獲取資料
  * @param {number} [params.keepAlive = 300000] 每筆資料的存活時間，超過則重取，單位:毫秒
  */
 class Cache<Params, Response> {

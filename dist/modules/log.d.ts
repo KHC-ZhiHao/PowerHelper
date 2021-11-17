@@ -18,7 +18,9 @@ export declare class Log extends Event<Channels> {
     private isSilence;
     private defaultLogType;
     constructor(name: string, options?: {
+        /** 是否預設為 silence 狀態 */
         silence?: boolean;
+        /** 如果不指定 LogType 則預設此設定值 */
         defaultLogType?: LogType;
     });
     private getNow;

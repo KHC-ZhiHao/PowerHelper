@@ -13,46 +13,66 @@ export class Timer extends Ticker {
             }
         })
     }
-
+    
+    /* 設定正向倒數或是反向 */
+    
     setPositive(positive: boolean) {
         this.positive = positive
         return this
     }
-
+    
+    /* 獲取現在執行時間(毫秒) */
+    
     getTime() {
         return this.nowTime
     }
-
+    
+    /* 設定執行時間(毫秒) */
+    
     setTime(ms: number) {
         this.nowTime = ms
         return this
     }
-
+    
+    /* 增加執行時間(毫秒) */
+    
     addTime(ms: number) {
         this.nowTime += ms
         return this
     }
-
+    
+    /* 減少執行時間(毫秒) */
+    
     subtractTime(ms: number) {
         this.nowTime -= ms
         return this
     }
-
+    
+    /* 獲取現在計時的小時 */
+    
     getHours() {
         return this.nowTime / 1000 / 60 / 60
     }
-
+    
+    /* 獲取現在計時的分，每 60 一個循環 */
+    
     getMinutes() {
         return this.nowTime / 1000 / 60 % 60
     }
-
+    
+    /* 獲取現在計時的秒，每 60 一個循環 */
+    
     getSeconds() {
         return this.nowTime / 1000 % 60
     }
 
+    /* 獲取現在計時的分，每 1000 一個循環 */
+
     getMicroseconds() {
         return this.nowTime % 1000
     }
+
+    /* 獲取可以顯示用的時間字串 */
 
     getTimeString(format = 'hh:mm:ss.ff') {
         let hours = Math.floor(this.getHours()).toString().padStart(2, '0')

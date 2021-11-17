@@ -52,7 +52,7 @@ export const inAndroid = () => {
 }
 
 /**
- * 是否正在 Safari 系統裡面執行
+ * 是否正在 Safari 瀏覽器裡面執行
  */
 
 export const inSafari = () => {

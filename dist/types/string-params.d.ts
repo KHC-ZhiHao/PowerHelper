@@ -1,7 +1,7 @@
 declare type RemoveTail<S extends string, Tail extends string> = S extends `${infer P}${Tail}` ? P : S;
 declare type GetRouteParameter<S extends string> = RemoveTail<RemoveTail<RemoveTail<S, `/${string}`>, `-${string}`>, `.${string}`>;
 /**
- * 從路徑字串中獲取:開頭的變數
+ * 從路徑字串中獲取 : 開頭的變數
  * @example
  * const route = 'users/:user/cards/:card'
  * const data: RouteParameters<typeof route> = {
@@ -16,7 +16,7 @@ export declare type RouteParameters<Route extends string> = Route extends `${str
 }) & (Rest extends `${GetRouteParameter<Rest>}${infer Next}` ? RouteParameters<Next> : unknown) : {};
 declare type GetParameter<S extends string> = RemoveTail<RemoveTail<RemoveTail<RemoveTail<RemoveTail<S, `\n${string}`>, ` ${string}`>, `,${string}`>, `;${string}`>, `)${string}`>;
 /**
- * 從 SQL 字串中獲取:開頭的變數
+ * 從 SQL 字串中獲取 : 開頭的變數
  * @example
  * const sql = `SELECT * FROM mytable WHERE name = :name AND card = :card;`
  * const data: SqlParameters<typeof sql> = {
