@@ -1,4 +1,4 @@
-import { Whitespace, VarParameters } from '../../types/string'
+import { Whitespace, VarParameters } from '../types/string'
 
 /** 獲取指定字串的 Byte 長度 */
 
