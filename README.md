@@ -47,7 +47,7 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 
 [json](./lib/utils/json.md)
 
-[string](./lib/utils/string.md)
+[text](./lib/utils/text.md)
 
 ### Modules
 
@@ -87,4 +87,4 @@ const birthday: YYYYMMDDFormat = '2021-01-01'
 
 [pick](./types/pick.md)
 
-[string-params](./types/string-params.md)
+[string](./types/string.md)

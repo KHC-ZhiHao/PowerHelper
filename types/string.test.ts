@@ -1,4 +1,4 @@
-import { SqlParameters, RouteParameters } from './string-params'
+import { SqlParameters, RouteParameters, VarParameters } from './string'
 
 () => {
     const route = `users/:user/cards/:card`
@@ -17,6 +17,15 @@ import { SqlParameters, RouteParameters } from './string-params'
     `
     const data: SqlParameters<typeof sql> = {
         name: 'name'
+    }
+    return data
+}
+
+() => {
+    const message = 'Deposit ${N}fwe{name }'
+    const data: VarParameters<'{', '}', typeof message> = {
+        N: 12,
+        name: 456
     }
     return data
 }

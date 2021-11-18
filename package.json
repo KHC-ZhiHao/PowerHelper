@@ -1,10 +1,10 @@
 {
   "name": "power-helper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Super power helper.",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "cross-env webpack --progress --hide-modules",
+    "build": "npm run test && cross-env webpack --progress --hide-modules",
     "test": "nyc mocha --require ts-node/register ./**/*.test.ts"
   },
   "repository": {

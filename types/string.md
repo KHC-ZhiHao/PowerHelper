@@ -7,6 +7,26 @@
 ```ts
 import {
     /**
+     * 只有空白的字串組，不包含空字串
+     * @example
+     * const text: Whitespace = ' '
+     */
+    Whitespace,
+    /**
+     * 移除前後的空白字組
+     * @example
+     * const text: Trim<' 123 '> = '123'
+     */
+    Trim,
+    /**
+     * 從字串中獲取指定符號包覆的變數
+     * @example
+     * const text: VarParameters<'{', '}', '我的名子是{name}'> = {
+     *  name: 'dave'
+     * }
+     */
+    VarParameters,
+    /**
      * 從路徑字串中獲取 : 開頭的變數
      * @example
      * const route = 'users/:user/cards/:card'

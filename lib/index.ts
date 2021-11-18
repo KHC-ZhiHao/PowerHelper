@@ -2,6 +2,7 @@ import * as _flow from './utils/flow'
 import * as _json from './utils/json'
 import * as _array from './utils/array'
 import * as _detect from './utils/detect'
+import * as _text from './utils/text'
 
 import { Log as _Log } from './modules/log'
 import { Event as _Event } from './modules/event'
@@ -13,6 +14,7 @@ import { LocalStorage as _LocalStorage } from './modules/local-storage'
 
 export const flow = _flow
 export const json = _json
+export const text = _text
 export const array = _array
 export const detect = _detect
 export const Log = _Log
@@ -25,6 +27,7 @@ export const LocalStorage = _LocalStorage
 export const PowerHelper = {
     flow,
     json,
+    text,
     array,
     detect,
     Log,
