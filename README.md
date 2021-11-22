@@ -75,7 +75,11 @@ const log = new Log('my-first-log')
 
 ### Types
 
-將複雜的型態方案進行封裝，提高開發的安全性與效率。
+將複雜的型態方案進行封裝，提高開發的安全性與效率，當然為了保持包的輕便性，想要更強大的表達式可以使用以下套件。
+
+[utility-types](https://www.npmjs.com/package/utility-types)
+
+[ts-essentials](https://github.com/krzkaczor/ts-essentials)
 
 ``` ts
 // types
