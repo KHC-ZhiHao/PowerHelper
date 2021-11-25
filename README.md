@@ -49,6 +49,8 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 
 [text](./lib/utils/text.md)
 
+[pick](./lib/utils/pick.md)
+
 ### Modules
 
 基本上是一組提供繼承的 Class，也可以單獨使用。

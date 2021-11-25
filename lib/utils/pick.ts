@@ -1,3 +1,4 @@
+import { PeelPath, PeelType } from '../types/pick'
 
 /** 指定的值如果是 null，則回傳預設值 */
 
@@ -33,20 +34,10 @@ export const getType = (target: any) => {
     return type
 }
 
-type PeelPath<
-    N extends string,
-    T extends Record<string, any>,
-    K = keyof T
-> = K extends string ? (
-    T[K] extends Record<string, any> ?
-        PeelPath<N extends '' ? K : `${N}.${K}`, T[K]> :
-        N extends '' ? K : `${N}.${K}`
-) | (N extends '' ? '' : N) : string
-
-type PeelType<
-    P extends string,
-    T extends Record<string, any>
-> = P extends `${infer H}.${infer S}` ? PeelType<S, T[H]> : T[P]
+/**
+ * 獲取指定路徑的值
+ * @see https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+ */
 
 export const peel = <
     T extends Record<string, any>,
@@ -55,7 +46,7 @@ export const peel = <
 >(target: T, path: C): C extends '' ? T : (R | null) => {
     let units = (path as string).split(/[.[\]'"]/g).filter(s => s.trim() !== '')
     let output = target as any
-    while(true) {
+    while (true) {
         if (units.length === 0) {
             return output
         }

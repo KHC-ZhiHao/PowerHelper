@@ -2,6 +2,7 @@ import * as _flow from './utils/flow'
 import * as _json from './utils/json'
 import * as _array from './utils/array'
 import * as _detect from './utils/detect'
+import * as _pick from './utils/pick'
 import * as _text from './utils/text'
 
 import { Log as _Log } from './modules/log'
@@ -12,6 +13,7 @@ import { Ticker as _Ticker } from './modules/ticker'
 import { Schedule as _Schedule } from './modules/schedule'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
 
+export const pick = _pick
 export const flow = _flow
 export const json = _json
 export const text = _text
@@ -28,6 +30,7 @@ export const PowerHelper = {
     flow,
     json,
     text,
+    pick,
     array,
     detect,
     Log,
