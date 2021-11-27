@@ -1,9 +1,14 @@
-import { Base } from '../module-base';
+import { Event } from './event';
 declare type PickContext = {
     key: string;
 };
 declare type Pick<P, R> = (params: P, context: PickContext) => Promise<R>;
-export declare class Cache<P, R> extends Base {
+declare type Channels<T> = {
+    remove: {
+        data: T;
+    };
+};
+export declare class Cache<P, R> extends Event<Channels<R>> {
     private event;
     private key;
     private pick;
@@ -23,6 +28,8 @@ export declare class Cache<P, R> extends Base {
     clear(): void;
     /** 刪除指定參數的 Cache。 */
     remove(params: P): void;
+    /** 清除過期的 Cache。 */
+    removeExpired(): void;
     private removeByKey;
     /** 直接設定指定參數的值。 */
     set(params: P, data: R): void;

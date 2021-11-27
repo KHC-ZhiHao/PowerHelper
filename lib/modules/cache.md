@@ -107,6 +107,8 @@ class Cache<Params, Response> {
 
 ### Property
 
+Extends: [Event](./event.md)
+
 ```ts
 /** 獲取目前所有 Cache 的鍵值。 */
 function keys(): string[]
@@ -122,6 +124,9 @@ function set(params: Params, value: Response): void
 
 /** 獲取指定參數的值。 */
 function get(params: Params): Response
+
+/** 清除過期的 Cache */
+function removeExpired(): void
 ```
 
 ### Types
@@ -129,5 +134,17 @@ function get(params: Params): Response
 ```ts
 type PickContext = {
     key: string
+}
+```
+
+### Event
+
+#### remove
+
+當 Cache 被取代、過期、手動移除或是執行 clear 時都會觸發。
+
+```ts
+const eventData: {
+    data: Response
 }
 ```

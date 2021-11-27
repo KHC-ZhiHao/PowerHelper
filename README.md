@@ -1,7 +1,6 @@
 <br>
 
 <h1 align="center">Power Helper</h1>
-<h3 align="center">super utils package</h3>
 
 <p align="center">
     <a href="https://www.npmjs.com/package/power-helper"><img src="https://img.shields.io/npm/v/power-helper.svg"></a>

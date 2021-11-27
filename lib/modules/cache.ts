@@ -20,7 +20,13 @@ class CacheItem<T> {
     }
 }
 
-export class Cache<P, R> extends Base {
+type Channels<T> = {
+    remove: {
+        data: T
+    }
+}
+
+export class Cache<P, R> extends Event<Channels<R>> {
     private event = new Event()
     private key: (params: P) => string
     private pick: Pick<P, R>
@@ -34,7 +40,7 @@ export class Cache<P, R> extends Base {
         /** 每筆資料的存活時間，超過則重取，單位:毫秒 */
         keepAlive?: number
     }) {
-        super('Cache')
+        super()
         this.key = params.key
         this.pick = params.pick
         this.keepAlive = params.keepAlive == null ? 60 * 1000 * 5 : params.keepAlive
@@ -49,7 +55,10 @@ export class Cache<P, R> extends Base {
     /** 清空所有 Cache。 */
 
     clear() {
-        this.items.clear()
+        let keys = this.keys()
+        for (let key of keys) {
+            this.removeByKey(key)
+        }
     }
 
     /** 刪除指定參數的 Cache。 */
@@ -59,8 +68,22 @@ export class Cache<P, R> extends Base {
         this.removeByKey(key)
     }
 
+    /** 清除過期的 Cache。 */
+
+    removeExpired() {
+        for (let [key, data] of this.items) {
+            if (data.isExpired()) {
+                this.removeByKey(key)
+            }
+        }
+    }
+
     private removeByKey(key: string) {
-        if (this.items.has(key)) {
+        let data = this.items.get(key)
+        if (data) {
+            this.emit('remove', {
+                data: data.data
+            })
             this.items.delete(key)
         }
     }
@@ -73,6 +96,7 @@ export class Cache<P, R> extends Base {
     }
 
     private setByKey(key: string, data: R) {
+        this.removeByKey(key)
         this.items.set(key, new CacheItem(data, this.keepAlive))
     }
 

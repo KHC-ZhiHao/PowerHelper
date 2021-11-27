@@ -125,6 +125,27 @@ describe('Cache', () => {
         cache.remove(params)
         expect(await cache.get(params)).to.equal(2)
     })
+    it('remove event', async function() {
+        let count = 0
+        let cache = new Cache<{ name: string }, number>({
+            keepAlive: 50,
+            key: params => params.name,
+            pick: async () => {
+                return 10
+            }
+        })
+        let params = {
+            name: '123'
+        }
+        await cache.get(params)
+        cache.on('remove', ({ data }) => {
+            count += data
+        })
+        await sleep(100)
+        await cache.get({ name: '567' })
+        cache.removeExpired()
+        expect(count).to.equal(10)
+    })
     it('remove empty', async function() {
         let count = 0
         let params = {
