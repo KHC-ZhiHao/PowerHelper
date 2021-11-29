@@ -20,27 +20,6 @@ describe('Cache', () => {
         }
         expect(await cache.get(params)).to.equal('123/456')
     })
-    it('change value', async function() {
-        let flag = false
-        let cache = new Cache<any, any>({
-            key: params => params.name,
-            pick: async (params) => {
-                return {
-                    name: params.name
-                }
-            }
-        })
-        let params = {
-            name: '123'
-        }
-        try {
-            let result = await cache.get(params)
-            result.name = '456'
-        } catch (error) {
-            flag = true
-        }
-        expect(flag).to.equal(true)
-    })
     it('get by again', async function() {
         let cache = getCache()
         let params = {

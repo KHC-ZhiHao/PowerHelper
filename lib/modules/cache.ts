@@ -12,7 +12,7 @@ class CacheItem<T> {
     keepAlive: number
     createdAt: number = Date.now()
     constructor(data: T, keepAlive: number) {
-        this.data = Object.freeze(data)
+        this.data = data
         this.keepAlive = keepAlive
     }
     isExpired() {

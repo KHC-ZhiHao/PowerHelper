@@ -71,26 +71,6 @@ let [r1, r2] = await Promise.all([
 console.log(r1 === r2) // true
 ```
 
-### 不可修改性
-
-Cache 獲取的資料會透過 Object.freeze 封裝，如果嘗試進行修改會擲出錯誤。
-
-```ts
-import { Cache } from 'power-helper'
-let cache = new Cache({
-    key: params => params.name,
-    pick: async params => {
-        return {
-            name: params.name
-        }
-    }
-})
-let user = await cache.get({
-    name: 'dave'
-})
-user.name = 'john' // throw error
-```
-
 ### Constructor
 
 ```ts
