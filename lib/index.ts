@@ -12,6 +12,7 @@ import { Timer as _Timer } from './modules/timer'
 import { Ticker as _Ticker } from './modules/ticker'
 import { Schedule as _Schedule } from './modules/schedule'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
+import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group'
 
 export const pick = _pick
 export const flow = _flow
@@ -26,6 +27,7 @@ export const Timer = _Timer
 export const Ticker = _Ticker
 export const Schedule = _Schedule
 export const LocalStorage = _LocalStorage
+export const ElementListenerGroup = _ElementListenerGroup
 export const PowerHelper = {
     flow,
     json,
@@ -39,7 +41,8 @@ export const PowerHelper = {
     Timer,
     Ticker,
     Schedule,
-    LocalStorage
+    LocalStorage,
+    ElementListenerGroup
 }
 
 module.exports = PowerHelper

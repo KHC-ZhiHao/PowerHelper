@@ -10,6 +10,7 @@ type Channels = {
         step: number
         color: Color
         message: string
+        silence: boolean
         logType: LogType
     }
 }
@@ -84,7 +85,8 @@ export class Log extends Event<Channels> {
             data,
             color,
             message,
-            logType
+            logType,
+            silence: this.isSilence
         }
         this.emit('print', output)
         if (this.isSilence === false) {

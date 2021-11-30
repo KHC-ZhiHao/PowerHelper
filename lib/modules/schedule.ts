@@ -46,9 +46,12 @@ export class Schedule extends Base {
                 process.executedCount += 1
                 process
                     .handler()
-                    .catch(e => this.$devWarn(process.name, e))
-                    .finally(() => {
+                    .then(() => {
                         process.runningTime = null
+                    })
+                    .catch(e => {
+                        process.runningTime = null
+                        this.$devWarn(process.name, e)
                     })
             }
         }
