@@ -32,6 +32,29 @@ describe('Flow', () => {
         })
         expect(result).to.equal(1)
     })
+    it('retry int', async() => {
+        let now = 0
+        retry({
+            max: 3,
+            interval: 100,
+            action: async(index) => {
+                now = index
+                if (index === 2) {
+                    return '123'
+                } else {
+                    throw ''
+                }
+            }
+        })
+        await sleep(10)
+        expect(now).to.equal(0)
+        await sleep(65)
+        expect(now).to.equal(0)
+        await sleep(50)
+        expect(now).to.equal(1)
+        await sleep(100)
+        expect(now).to.equal(2)
+    })
     it('retry with fail', async() => {
         let failCount = 0
         let result = await retry({

@@ -74,6 +74,8 @@ const log = new Log('my-first-log')
 
 [LocalStorage](./lib/modules/local-storage.md)
 
+[ElementListenerGroup](./lib/modules/element-listener-group.md)
+
 ### Types
 
 將複雜的型態方案進行封裝，提高開發的安全性與效率，當然為了保持包的輕便性，想要更強大的表達式可以使用以下套件。

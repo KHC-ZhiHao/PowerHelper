@@ -11,6 +11,7 @@ import { Timer as _Timer } from './modules/timer';
 import { Ticker as _Ticker } from './modules/ticker';
 import { Schedule as _Schedule } from './modules/schedule';
 import { LocalStorage as _LocalStorage } from './modules/local-storage';
+import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group';
 export declare const pick: typeof _pick;
 export declare const flow: typeof _flow;
 export declare const json: typeof _json;
@@ -24,6 +25,7 @@ export declare const Timer: typeof _Timer;
 export declare const Ticker: typeof _Ticker;
 export declare const Schedule: typeof _Schedule;
 export declare const LocalStorage: typeof _LocalStorage;
+export declare const ElementListenerGroup: typeof _ElementListenerGroup;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -38,5 +40,6 @@ export declare const PowerHelper: {
     Ticker: typeof _Ticker;
     Schedule: typeof _Schedule;
     LocalStorage: typeof _LocalStorage;
+    ElementListenerGroup: typeof _ElementListenerGroup;
 };
 export default PowerHelper;

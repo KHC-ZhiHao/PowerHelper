@@ -9,6 +9,7 @@ declare type Channels = {
         step: number;
         color: Color;
         message: string;
+        silence: boolean;
         logType: LogType;
     };
 };
@@ -43,6 +44,7 @@ export declare class Log extends Event<Channels> {
         color: Color;
         message: string;
         logType: LogType;
+        silence: boolean;
     };
 }
 export {};

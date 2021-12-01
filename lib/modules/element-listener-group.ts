@@ -4,7 +4,7 @@ type Listeners = Record<string, {
     callback: any
 }>
 
-type EventMap<T extends Element | Document | Window> = 
+type EventMap<T extends Element | Document | Window> =
     T extends Window ? WindowEventMap :
     T extends Document ? DocumentEventMap :
     T extends SVGAElement ? SVGElementEventMap :
@@ -30,19 +30,22 @@ export class ElementListenerGroup<T extends Element | Document | Window> {
         }
         this.element.addEventListener(data.name, data.callback, options)
         this.listeners[id] = data
-        return {
+        const output = {
             /** 鎖定時不會被 clear 給移除 */
             lock: (active = true) => {
                 data.lock = active
+                return output
             },
             /** 關閉這組監聽對象 */
             off: () => {
-                this.element.removeEventListener(data.name, data.callback)
                 if (this.listeners[id]) {
+                    this.element.removeEventListener(data.name, data.callback)
                     delete this.listeners[id]
                 }
+                return output
             }
         }
+        return output
     }
 
     /** 清空現在監聽的項目，不包含已 lock 的對象 */

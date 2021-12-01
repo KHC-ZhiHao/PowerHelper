@@ -52,10 +52,7 @@ export const retry = async<T extends (index: number) => Promise<any>>(params: {
         index: number
         error: any
     }>
-    while (true) {
-        if (retryMax <= 0) {
-            break
-        }
+    while (retryMax > 0) {
         try {
             let result = await params.action(index)
             return result
