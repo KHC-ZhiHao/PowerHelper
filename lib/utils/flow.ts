@@ -1,3 +1,5 @@
+import { PromiseResponseType } from '../types/pick'
+
 /**
  * 停止執行指定時間(毫秒)
  */
@@ -22,4 +24,55 @@ export const randomPick = <T extends any>(items: T[]): T => {
 
 export const randomInt = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+/**
+ * 反覆執行直到成功為止
+ */
+
+export const retry = async<T extends (index: number) => Promise<any>>(params: {
+    /**
+     * 要重試幾次
+     * @default 1
+     */
+    max?: number
+    /** 錯誤時呼叫此事件 */
+    onFail?: (index: number, error: any) => void
+    /**
+     * 每次錯誤重試間格的等待時間(毫秒)
+     * @default 0
+     */
+    interval?: number
+    /** 總執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
+    action: T
+}): Promise<PromiseResponseType<T>> => {
+    let index = 0
+    let retryMax = params.max == null ? 1 : params.max
+    let fails = [] as Array<{
+        index: number
+        error: any
+    }>
+    while (true) {
+        if (retryMax <= 0) {
+            break
+        }
+        try {
+            let result = await params.action(index)
+            return result
+        } catch (error) {
+            if (params.onFail) {
+                params.onFail(index, error)
+            }
+            fails.push({
+                index,
+                error
+            })
+        }
+        index += 1
+        retryMax -= 1
+        if (params.interval) {
+            await sleep(params.interval)
+        }
+    }
+    throw fails
 }

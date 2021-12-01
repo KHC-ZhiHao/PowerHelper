@@ -15,3 +15,17 @@ type KeysOfTypeStrict<T, U> = {
  */
 
 export type PickByTypeStrict<U, T> = Pick<T, KeysOfTypeStrict<T, U>>
+
+/**
+ * 獲取 Promise 的回傳值
+ * @example
+ * const foo = async() => {
+ *  return 3
+ * }
+ * const bar: PromiseResponseType<typeof foo> = 3
+ */
+
+export type PromiseResponseType<
+    T extends (...args: any) => Promise<any>,
+    R = Parameters<ReturnType<T>['then']>[0]
+> =  R extends (value: infer P) => any ? P : never

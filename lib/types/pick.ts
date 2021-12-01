@@ -12,3 +12,8 @@ export type PeelType<
     P extends string,
     T extends Record<string, any>
 > = P extends `${infer H}.${infer S}` ? PeelType<S, T[H]> : T[P]
+
+export type PromiseResponseType<
+    T extends (...args: any) => Promise<any>,
+    R = Parameters<ReturnType<T>['then']>[0]
+> =  R extends (value: infer P) => any ? P : never

@@ -17,6 +17,15 @@ import {
      *  age: 20
      * }
      */
-    PickByTypeStrict
+    PickByTypeStrict,
+    /**
+     * 獲取 Promise 的回傳值
+     * @example
+     * const foo = async() => {
+     *  return 3
+     * }
+     * const bar: PromiseResponseType<typeof foo> = 3
+     */
+    PromiseResponseType
 } from 'power-helper/types/pick'
 ```

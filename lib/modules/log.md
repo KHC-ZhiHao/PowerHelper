@@ -35,7 +35,7 @@ function silence(active: boolean = true): void
 /** 打印 log。 */
 function print(message: any, options?: {
     color?: Color
-    importantLevel?: 0 | 1 | 2 | 3
+    logType?: LogType
 }): string
 ```
 

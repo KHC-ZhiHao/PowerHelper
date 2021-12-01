@@ -1,4 +1,4 @@
-import { PickByTypeStrict } from './pick'
+import { PickByTypeStrict, PromiseResponseType } from './pick'
 
 () => {
     const data = {
@@ -9,4 +9,10 @@ import { PickByTypeStrict } from './pick'
         age: 1
     }
     return after
+}
+
+() => {
+    const foo = async() => 3
+    const bar: PromiseResponseType<typeof foo> = 1
+    return bar
 }

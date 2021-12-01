@@ -14,4 +14,22 @@ flow.randomPick = function(items: any[]): any;
 
 /** 求整數範圍內的隨機值 */
 flow.randomInt = function(min: number, max: number): number;
+
+/** 重複執行直到成功為止 */
+flow.retry = function(params: {
+    /**
+     * 最大重複次數
+     * @default 1
+     */
+    max?: number
+    /** 錯誤時呼叫此事件 */
+    onFail?: (index: number, error: any) => void
+    /**
+     * 每次錯誤重試間格的等待時間(毫秒)
+     * @default 0
+     */
+    interval?: number
+    /** 總執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
+    action: (index: number) => Promise<any>
+}): Promise<any>;
 ```
