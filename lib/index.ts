@@ -4,6 +4,7 @@ import * as _array from './utils/array'
 import * as _detect from './utils/detect'
 import * as _pick from './utils/pick'
 import * as _text from './utils/text'
+import * as _element from './utils/element'
 
 import { Log as _Log } from './modules/log'
 import { Event as _Event } from './modules/event'
@@ -20,6 +21,7 @@ export const json = _json
 export const text = _text
 export const array = _array
 export const detect = _detect
+export const element = _element
 export const Log = _Log
 export const Event = _Event
 export const Cache = _Cache
@@ -35,6 +37,7 @@ export const PowerHelper = {
     pick,
     array,
     detect,
+    element,
     Log,
     Event,
     Cache,

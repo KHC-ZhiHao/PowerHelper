@@ -10,7 +10,7 @@
 
 <br>
 
-本套件是一種常用的工具集成，包括 Module，TS Type、Utils，因為功能簡單且不需要任何依賴項目，因此極為精簡。
+Power Helper 是常用的工具集成，包括 Module，TS Type、Utils，因為功能簡單且不需要任何依賴項目，因此極為精簡。
 
 你可把他想像成是一種稍微複雜點的 Lodash，在稍微複雜化的前後端環境中能用上本套件 50% 以上的功能。
 
@@ -49,6 +49,8 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 [text](./lib/utils/text.md)
 
 [pick](./lib/utils/pick.md)
+
+[element](./lib/utils/element.md)
 
 ### Modules
 
