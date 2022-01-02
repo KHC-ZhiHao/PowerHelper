@@ -1,4 +1,3 @@
-import { Base } from '../module-base'
 import { Event } from './event'
 
 type PickContext = {

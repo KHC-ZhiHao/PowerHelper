@@ -3,8 +3,27 @@
 <h1 align="center">Power Helper</h1>
 
 <p align="center">
-    <a href="https://www.npmjs.com/package/power-helper"><img src="https://img.shields.io/npm/v/power-helper.svg"></a>
-    <a href="https://github.com/KHC-ZhiHao/PowerHelper"><img src="https://img.shields.io/github/stars/KHC-ZhiHao/PowerHelper.svg?style=social"></a>
+    <a href="https://www.npmjs.com/package/power-helper">
+        <img src="https://img.shields.io/npm/v/power-helper.svg">
+    </a>
+    <a href='https://coveralls.io/github/KHC-ZhiHao/PowerHelper?branch=master'>
+        <img src='https://github.com/KHC-ZhiHao/PowerHelper/actions/workflows/build.yml/badge.svg'/>
+    </a>
+    <a href='https://coveralls.io/github/KHC-ZhiHao/PowerHelper?branch=master'>
+        <img src='https://coveralls.io/repos/github/KHC-ZhiHao/PowerHelper/badge.svg?branch=master' alt='Coverage Status' />
+    </a>
+    <a href="https://standardjs.com/">
+        <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard Code Style"  style="max-width:100%;">
+    </a>
+    <a href="https://lgtm.com/projects/g/KHC-ZhiHao/PowerHelper/alerts/">
+        <img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/KHC-ZhiHao/PowerHelper.svg?logo=lgtm&logoWidth=18"/>
+    </a>
+    <a href="https://lgtm.com/projects/g/KHC-ZhiHao/PowerHelper/context:javascript">
+        <img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/KHC-ZhiHao/PowerHelper.svg?logo=lgtm&logoWidth=18"/>
+    </a>
+    <a href="https://github.com/KHC-ZhiHao/PowerHelper">
+        <img src="https://img.shields.io/github/stars/KHC-ZhiHao/PowerHelper.svg?style=social">
+    </a>
     <br>
 </p>
 
