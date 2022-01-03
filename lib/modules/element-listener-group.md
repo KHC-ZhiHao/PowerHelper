@@ -10,7 +10,9 @@
 import { ElementListenerGroup } from 'power-helper'
 
 const elg = new ElementListenerGroup(document.body)
-const listener = elg.add('click', (event) => console.log(event))
+const listener = elg.add('click', event => {
+    // do something...
+})
 elg.clear()
 ```
 
@@ -28,7 +30,7 @@ class ElementListenerGroup {
 ### Property
 
 ```ts
-/** 獲取目前所有 Cache 的鍵值。 */
+/** 加入一個監聽的項目 */
 function add(channel: string, callback: (event: Event) => void): Listener
 
 /** 清空現在監聽的項目，不包含已 lock 的對象 */
