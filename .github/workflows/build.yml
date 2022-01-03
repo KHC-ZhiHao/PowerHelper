@@ -1,4 +1,4 @@
-name: GitHub Actions Build
+name: Build
 on: [push]
 jobs:
   Explore-GitHub-Actions:
@@ -20,7 +20,6 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: LGTM
-        uses: beeceej/lgtm@v0.0.3
+      - uses: micnncim/action-lgtm-reaction@master
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
