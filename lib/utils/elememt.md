@@ -6,6 +6,9 @@ Dom 相關操作。
 
 ```ts
 import { element } from 'power-helper'
-/** 引入 JavaScript */
+/**
+ * 引入 JavaScript
+ * @BrowserOnly
+ */
 element.importScript = function(url: string) => Promise<null>;
 ```

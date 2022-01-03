@@ -12,6 +12,11 @@ type EventMap<T extends Element | Document | Window> =
     T extends HTMLBodyElement ? HTMLBodyElementEventMap :
     T extends HTMLElement ? HTMLElementEventMap : ElementEventMap
 
+/**
+ * 將 element 的 addEventListener 昇華到更好操作的階段。
+ * @BrowserOnly
+ */
+
 export class ElementListenerGroup<T extends Element | Document | Window> {
     private element: T
     private listeners: Listeners = {}

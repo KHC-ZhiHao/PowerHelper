@@ -1,4 +1,8 @@
 declare type EventMap<T extends Element | Document | Window> = T extends Window ? WindowEventMap : T extends Document ? DocumentEventMap : T extends SVGAElement ? SVGElementEventMap : T extends HTMLMediaElement ? HTMLMediaElementEventMap : T extends HTMLBodyElement ? HTMLBodyElementEventMap : T extends HTMLElement ? HTMLElementEventMap : ElementEventMap;
+/**
+ * 將 element 的 addEventListener 昇華到更好操作的階段。
+ * @BrowserOnly
+ */
 export declare class ElementListenerGroup<T extends Element | Document | Window> {
     private element;
     private listeners;

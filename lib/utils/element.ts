@@ -1,5 +1,6 @@
 /**
  * 引入 JavaScript
+ * @BrowserOnly
  */
 
 export const importScript = (url: string) => new Promise((resolve, reject) => {
