@@ -1,6 +1,6 @@
 {
   "name": "power-helper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Super power helper.",
   "main": "./dist/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "library"
   ],
   "author": "khczhihao",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/KHC-ZhiHao/PowerHelper/issues"
   },
