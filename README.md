@@ -94,6 +94,8 @@ const log = new Log('my-first-log')
 
 [LocalStorage](./lib/modules/local-storage.md)
 
+[QueryCollection](./lib/modules/query-collection.md)
+
 [ElementListenerGroup](./lib/modules/element-listener-group.md)
 
 ### Types
