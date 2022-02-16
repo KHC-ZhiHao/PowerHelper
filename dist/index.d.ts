@@ -46,6 +46,7 @@ export declare const PowerHelper: {
     Ticker: typeof _Ticker;
     Schedule: typeof _Schedule;
     LocalStorage: typeof _LocalStorage;
+    QueryCollection: typeof _QueryCollection;
     ElementListenerGroup: typeof _ElementListenerGroup;
 };
 export default PowerHelper;

@@ -51,6 +51,7 @@ export const PowerHelper = {
     Ticker,
     Schedule,
     LocalStorage,
+    QueryCollection,
     ElementListenerGroup
 }
 
