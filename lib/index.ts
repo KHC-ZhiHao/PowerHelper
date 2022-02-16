@@ -13,6 +13,7 @@ import { Timer as _Timer } from './modules/timer'
 import { Ticker as _Ticker } from './modules/ticker'
 import { Schedule as _Schedule } from './modules/schedule'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
+import { QueryCollection as _QueryCollection } from './modules/query-collection'
 import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group'
 
 export const pick = _pick
@@ -22,6 +23,9 @@ export const text = _text
 export const array = _array
 export const detect = _detect
 export const element = _element
+
+export type Log = _Log
+
 export const Log = _Log
 export const Event = _Event
 export const Cache = _Cache
@@ -30,6 +34,8 @@ export const Ticker = _Ticker
 export const Schedule = _Schedule
 export const LocalStorage = _LocalStorage
 export const ElementListenerGroup = _ElementListenerGroup
+export const QueryCollection = _QueryCollection
+
 export const PowerHelper = {
     flow,
     json,

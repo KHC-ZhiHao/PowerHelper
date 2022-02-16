@@ -74,7 +74,7 @@ let localStorage = new LocalStorage('my-storage', {
  * @param {(name: string, data: any) => any} [options.intercept.get] - 攔截資料獲取
  * @param {(name: string, data: any) => any} [options.intercept.set] - 攔截資料設定
  */
-class LocalStorage<Columns extends Record<string, any> {
+class LocalStorage<Columns extends Record<string, any>> {
     constructor(namespaces, options)
 }
 ```
