@@ -5,26 +5,34 @@ type Pub = Record<string, any>
 type FailTypes = 'unknown' | 'send' | 'message'
 
 type Channels = {
+    /** 成功連接伺服器時觸發。 */
     $open: any
+    /** 連接失敗等狀態等觸發。 */
     $error: {
         from: FailTypes
         error: any
     }
+    /** 連接關閉時觸發，可以透過 isManuallyClosed 得知是否需要重連。 */
     $close: {
         isManuallyClosed: boolean
     }
 }
 
 type WebSocketParams<P extends Pub> = {
+    /** 連線網址 */
     url: string
+    /** 指定運行的 WebSocket 環境，假如你想應用在 NodeJs 上必須設定此參數 */
     system?: typeof WebSocket
+    /** 指定運行的 WebSocket Protocol */
     protocol?: string[]
+    /** 接收到資料要執行什麼事 */
     onMessage: (event: MessageEvent) => Promise<any>
+    /** 發送資料前進行資料轉換 */
     sendHandler: <K extends keyof P>(channel: K, data: P[K]) => Promise<any>
 }
 
 export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
-    _websocket: WebSocket
+    _websocket!: WebSocket
     private params: WebSocketParams<P>
     private isManuallyClosed = false
     constructor(params: WebSocketParams<P>) {
@@ -40,7 +48,8 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
     private get connected() {
         return !!this._websocket
     }
-    get status() {
+    /* 現在的連線狀態 */
+    getStatus() {
         if (this.connected === false) {
             return 'wait'
         }
@@ -57,20 +66,20 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
             return 'closed'
         }
     }
-    send<K extends keyof P>(channel: K, data: P[K]) {
-        this.params
-            .sendHandler(channel, data)
-            .then((record) => {
-                if (this.connected) {
-                    this._websocket.send(record)
-                } else {
-                    console.warn(`Socket not connected, from send ${channel}.`)
-                }
-            })
-            .catch(error => {
-                this.fail('send', error)
-            })
+    /* 發送資料至伺服器 */
+    async send<K extends keyof P>(channel: K, data: P[K]) {
+        try {
+            let record = await this.params.sendHandler(channel, data)
+            if (this.connected) {
+                this._websocket.send(record)
+            } else {
+                console.warn(`Socket not connected, from send ${channel}.`)
+            }
+        } catch (error) {
+            this.fail('send', error)
+        }
     }
+    /* 連接至伺服器 */
     connect() {
         return new Promise((resolve, reject) => {
             let opened = false
@@ -102,12 +111,14 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
                 let data: any = {
                     isManuallyClosed: this.isManuallyClosed
                 }
+                // @ts-ignore
                 this._websocket = null
                 this.emit('$close', data)
                 this.isManuallyClosed = false
             }
         })
     }
+    /* 斷開伺服器連線 */
     disconnect() {
         if (this.connected) {
             this.isManuallyClosed = true

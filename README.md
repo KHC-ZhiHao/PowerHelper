@@ -96,6 +96,8 @@ const log = new Log('my-first-log')
 
 [QueryCollection](./lib/modules/query-collection.md)
 
+[WebSocketClient](./lib/modules/websocket.md)
+
 [ElementListenerGroup](./lib/modules/element-listener-group.md)
 
 ### Types

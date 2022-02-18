@@ -15,6 +15,7 @@ import { Schedule as _Schedule } from './modules/schedule'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
 import { QueryCollection as _QueryCollection } from './modules/query-collection'
 import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group'
+import { WebSocketClient as _WebSocketClient } from './modules/websocket'
 
 export const pick = _pick
 export const flow = _flow
@@ -35,6 +36,7 @@ export const Schedule = _Schedule
 export const LocalStorage = _LocalStorage
 export const ElementListenerGroup = _ElementListenerGroup
 export const QueryCollection = _QueryCollection
+export const WebSocketClient = _WebSocketClient
 
 export const PowerHelper = {
     flow,
@@ -52,6 +54,7 @@ export const PowerHelper = {
     Schedule,
     LocalStorage,
     QueryCollection,
+    WebSocketClient,
     ElementListenerGroup
 }
 
