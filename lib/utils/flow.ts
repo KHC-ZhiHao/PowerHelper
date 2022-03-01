@@ -5,7 +5,7 @@ import { PromiseResponseType } from '../types/pick'
  */
 
 export const sleep = (ms: number) => {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         setTimeout(() => resolve(null), ms)
     })
 }
