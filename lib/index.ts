@@ -12,6 +12,8 @@ import { Cache as _Cache } from './modules/cache'
 import { Timer as _Timer } from './modules/timer'
 import { Ticker as _Ticker } from './modules/ticker'
 import { Schedule as _Schedule } from './modules/schedule'
+import { Debounce as _Debounce } from './modules/debounce'
+import { StyleString as _StyleString } from './modules/style-string'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
 import { QueryCollection as _QueryCollection } from './modules/query-collection'
 import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group'
@@ -33,6 +35,8 @@ export const Cache = _Cache
 export const Timer = _Timer
 export const Ticker = _Ticker
 export const Schedule = _Schedule
+export const Debounce = _Debounce
+export const StyleString = _StyleString
 export const LocalStorage = _LocalStorage
 export const ElementListenerGroup = _ElementListenerGroup
 export const QueryCollection = _QueryCollection
@@ -52,6 +56,8 @@ export const PowerHelper = {
     Timer,
     Ticker,
     Schedule,
+    Debounce,
+    StyleString,
     LocalStorage,
     QueryCollection,
     WebSocketClient,

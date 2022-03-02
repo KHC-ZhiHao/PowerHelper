@@ -90,7 +90,11 @@ const log = new Log('my-first-log')
 
 [Ticker](./lib/modules/ticker.md)
 
+[Debounce](./lib/modules/debounce.md)
+
 [Schedule](./lib/modules/schedule.md)
+
+[StyleString](./lib/modules/style-string.md)
 
 [LocalStorage](./lib/modules/local-storage.md)
 

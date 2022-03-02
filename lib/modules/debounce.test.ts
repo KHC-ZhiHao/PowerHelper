@@ -35,7 +35,7 @@ describe('Debounce', () => {
             flag = true
         })
         debounce.input('1')
-        debounce.stop()
+        debounce.close()
         await sleep(100)
         expect(flag).to.equal(false)
     })
@@ -92,6 +92,6 @@ describe('Debounce', () => {
             delay: 10
         })
         debounce.trigger()
-        debounce.stop()
+        debounce.close()
     })
 })
