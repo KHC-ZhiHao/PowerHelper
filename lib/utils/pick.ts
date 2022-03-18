@@ -1,3 +1,4 @@
+import { Whitespace, VarParameters } from '../types/string'
 import { PeelPath, PeelType } from '../types/pick'
 
 /** 指定的值如果是 null，則回傳預設值 */
@@ -58,4 +59,60 @@ export const peel = <
             output = output[key]
         }
     }
+}
+
+/**
+ * 複寫字串的指定變數。
+ * @example
+ * let result = pickVar({
+ *  start: '{',
+ *  end: '}',
+ *  text: '你好我是 {name}，目前是 {job}。'
+ * })
+ * console.log(result) // ['name', 'job']
+ */
+
+export function pickVar<
+    S extends string,
+    E extends string,
+    T extends string
+>({ start, end, text }: {
+    /** 複寫起始符號 */
+    start: S extends '' ? never : S extends Whitespace ? never : S,
+    /** 複寫終止符號 */
+    end: E extends '' ? never : E extends Whitespace ? never : E,
+    /** 複寫文本 */
+    text: T
+}): (keyof VarParameters<S, E, T>)[] {
+    let isStart = false
+    let output: string[] = []
+    let varKey = ''
+    let startFirstUnit = start[0]
+    let endFirstUnit = end[0]
+    for (let i = 0; i < text.length; i++) {
+        let unit = text[i]
+        if (isStart) {
+            if (unit === endFirstUnit) {
+                let isEnd = text.slice(i, i + end.length) === end
+                if (isEnd) {
+                    i += end.length - 1
+                    output.push(varKey)
+                    varKey = ''
+                    isStart = false
+                    continue
+                }
+            }
+            varKey += unit
+        } else {
+            // 進入匹配
+            if (unit === startFirstUnit) {
+                isStart = text.slice(i, i + start.length) === start
+                if (isStart) {
+                    i += start.length - 1
+                    continue
+                }
+            }
+        }
+    }
+    return output as any
 }

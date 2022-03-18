@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { peel, ifEmpty, getType } from './pick'
+import { peel, ifEmpty, getType, pickVar } from './pick'
 
 describe('Pick', () => {
     it('ifEmpty', async function() {
@@ -42,5 +42,22 @@ describe('Pick', () => {
         // @ts-ignore
         let result = peel(data, 'a.c.d')
         expect(result).to.equal(null)
+    })
+    it('pickVar', async function() {
+        let result = pickVar({
+            start: '{',
+            end: '}',
+            text: '你好我是 {name}，目前是 {job}。'
+        })        
+        expect(result[0]).to.equal('name')
+        expect(result[1]).to.equal('job')
+    })
+    it('pickVar-nodata', async function() {
+        let result = pickVar({
+            start: '{',
+            end: '}',
+            text: '你好我是。'
+        })        
+        expect(result[0]).to.equal(undefined)
     })
 })

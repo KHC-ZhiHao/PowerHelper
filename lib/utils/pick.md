@@ -22,4 +22,19 @@ let data = {
 }
 
 console.log(pick.peel(data, 'a.b')) // 3
+
+
+/**獲取文字裡面的變數 */
+pick.pickVar = function(params: {
+    start: string
+    end: string
+    text: string
+}): string[]
+
+console.log(pick.pickVar({
+    start: '{',
+    end: '}',
+    text: '你好我是 {name}，目前是 {job}。'
+})) // ['name', 'job']
+
 ```
