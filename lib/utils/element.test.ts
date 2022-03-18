@@ -7,6 +7,9 @@ describe('Element', () => {
                 body: {
                     appendChild: (el: any) => el.onload()
                 },
+                getElementsByTagName() {
+                    return []
+                },
                 createElement() {
                     return {}
                 }
