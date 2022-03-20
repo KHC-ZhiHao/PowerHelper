@@ -73,6 +73,12 @@ export class Schedule extends Base {
         })
     }
 
+    /** 驗證程序是否存在 */
+
+    has(name: string) {
+        return !!this.processes.find(e => e.name === name)
+    }
+
     /** 刪除指定的程序 */
 
     remove(name: string) {

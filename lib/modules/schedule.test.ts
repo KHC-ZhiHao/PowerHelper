@@ -10,6 +10,15 @@ describe('Schedule', () => {
             done()
         })
     })
+    it('has', function(done) {
+        let schedule = new Schedule()
+        schedule.add('test', 100, async() => {
+            schedule.close()
+            done()
+        })
+        expect(schedule.has('test')).to.equal(true)
+        expect(schedule.has('test2')).to.equal(false)
+    })
     it('stop', async function() {
         let count = 0
         let schedule = new Schedule()

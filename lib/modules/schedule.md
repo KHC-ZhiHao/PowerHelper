@@ -39,6 +39,9 @@ class Schedule {
 /** 加入一個程序，不能重複已存在的命名 */
 function add(name: string, intervalMs: number, callback: () => Promise<any>): void
 
+/** 驗證程序是否存在 */
+function has(name: string): boolean
+
 /** 刪除指定的程序 */
 function remove(name: string): void
 

@@ -8,7 +8,11 @@ describe('Element', () => {
                     appendChild: (el: any) => el.onload()
                 },
                 getElementsByTagName() {
-                    return []
+                    return [
+                        {
+                            src: './html'
+                        }
+                    ]
                 },
                 createElement() {
                     return {}
@@ -23,6 +27,9 @@ describe('Element', () => {
         global.window = undefined
     })
     it('importScript', async function() {
+        await importScript('./htmll')
+    })
+    it('importScript same', async function() {
         await importScript('./html')
     })
 })
