@@ -1,4 +1,4 @@
-import { Event } from 'power-helper'
+import { Event } from './event'
 
 type Channels<S, D, R> = {
     done: {
@@ -29,7 +29,7 @@ type FlowParams<S, D, R> = {
     beforeEach?: (context: FlowContext<S, D>) => Promise<any>
 }
 
-export class Flow<S, D, R> extends Event<Channels<S, D, R>> {
+export class Step<S, D, R> extends Event<Channels<S, D, R>> {
     private store: S = null
     private inited = false
     private params: FlowParams<S, D, R>
