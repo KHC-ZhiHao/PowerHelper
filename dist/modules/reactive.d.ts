@@ -24,8 +24,11 @@ export declare class Reactive<S extends Record<string, any>> extends Event<Chann
     private oldKey;
     private params;
     private schedule;
+    private installed;
     private nextTicks;
     constructor(params: ReactiveParams<S>);
+    /** 是否觸發過 from */
+    isActive(): boolean;
     /** 關閉輪詢 */
     close(): void;
     /** 在下一次輪詢時觸發 */

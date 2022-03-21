@@ -41,6 +41,7 @@ describe('Reactive', () => {
                 return state.name + 'ouo'
             }
         })
+        expect(reactive.isActive()).to.equal(false)
         await reactive.from(state)
         state.name = '1234'
         await sleep(100)
@@ -48,6 +49,7 @@ describe('Reactive', () => {
         await sleep(200)
         reactive.close()
         expect(count).to.equal(3)
+        expect(reactive.isActive()).to.equal(true)
     })
     it('double from', async function() {
         type S = {

@@ -31,10 +31,15 @@ export class Reactive<S extends Record<string, any>> extends Event<Channels<S>> 
     private oldKey: string | null = null
     private params: ReactiveParams<S>
     private schedule = new Schedule()
+    private installed = false
     private nextTicks: NextTickCallback<S>[] = []
     constructor(params: ReactiveParams<S>) {
         super()
         this.params = params
+    }
+    /** 是否觸發過 from */
+    isActive() {
+        return this.installed
     }
     /** 關閉輪詢 */
     close() {
@@ -48,6 +53,7 @@ export class Reactive<S extends Record<string, any>> extends Event<Channels<S>> 
     async from(data: S) {
         this.oldKey = null
         this.state = data
+        this.installed = true
         const schedule = this.params.schedule != null ? this.params.schedule : 100
         await this.dispatch()
         if (this.schedule.has('reactive') === false) {
