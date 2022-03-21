@@ -62,4 +62,6 @@ function close(): void
 function nextTick(cb: (state: State) => void): void
 /** 指定監聽對象 */
 function from(state: State): Promise<Reactive>
+/** 是否觸發過 from */
+function isActive(): boolean
 ```
