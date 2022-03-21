@@ -16,6 +16,8 @@ export declare class Schedule extends Base {
     private run;
     /** 加入一個程序，不能重複已存在的命名 */
     add(name: string, intervalMs: number, callback: () => Promise<any>): void;
+    /** 驗證程序是否存在 */
+    has(name: string): boolean;
     /** 刪除指定的程序 */
     remove(name: string): void;
     /** 獲取現在所有正在運作的程序 */

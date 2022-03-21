@@ -94,6 +94,8 @@ const log = new Log('my-first-log')
 
 [Schedule](./lib/modules/schedule.md)
 
+[Reactive](./lib/modules/reactive.md)
+
 [StyleString](./lib/modules/style-string.md)
 
 [LocalStorage](./lib/modules/local-storage.md)

@@ -6,11 +6,16 @@
 
 ```ts
 import { Reactive } from 'power-helper'
+
+type State = {
+    name: string
+}
+
 const nowName = 'dave'
-const state = {
+const state: State = {
     name: 'dave'
 }
-const reactive = new Reactive({
+const reactive = new Reactive<State>({
     // 透過長輪詢回傳指定的 key
     observable: async(state) => {
         return state.name
@@ -32,16 +37,18 @@ setTimeout(() => {
 ### Constructor
 
 ```ts
-class Reactive {
+class Reactive<State> {
     constructor(params: {
-        // 透過長輪詢回傳指定的 key
-        observable: async(state) => {
-            return state.name
-        },
-        // 如果 observable 回傳的 key 有改動則觸發
-        action: async({ state }) => {
-            nowName = state.name
-        }
+        /** 每次輪詢時間(毫秒)，預設 100 ms */
+        schedule?: number,
+        /** 透過長輪詢回傳指定的 key */
+        observable: (state: State) => Promise<string>,
+        /** 如果 observable 回傳的 key 有改動則觸發 */
+        action: (context: {
+            state: State
+            newKey: string
+            oldKey: string | null
+        }) => Promise<any>
     })
 }
 ```
@@ -50,5 +57,9 @@ class Reactive {
 
 ```ts
 /** 加入一個程序，不能重複已存在的命名 */
-function add(name: string, intervalMs: number, callback: () => Promise<any>): void
+function close(): void
+/** 在下一次輪詢時觸發 */
+function nextTick(cb: (state: State) => void): void
+/** 指定監聽對象 */
+function from(state: State): Promise<Reactive>
 ```

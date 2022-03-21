@@ -10,6 +10,7 @@ import { Event as _Event } from './modules/event';
 import { Cache as _Cache } from './modules/cache';
 import { Timer as _Timer } from './modules/timer';
 import { Ticker as _Ticker } from './modules/ticker';
+import { Reactive as _Reactive } from './modules/reactive';
 import { Schedule as _Schedule } from './modules/schedule';
 import { Debounce as _Debounce } from './modules/debounce';
 import { StyleString as _StyleString } from './modules/style-string';
@@ -37,6 +38,7 @@ export declare const LocalStorage: typeof _LocalStorage;
 export declare const ElementListenerGroup: typeof _ElementListenerGroup;
 export declare const QueryCollection: typeof _QueryCollection;
 export declare const WebSocketClient: typeof _WebSocketClient;
+export declare const Reactive: typeof _Reactive;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -52,6 +54,7 @@ export declare const PowerHelper: {
     Ticker: typeof _Ticker;
     Schedule: typeof _Schedule;
     Debounce: typeof _Debounce;
+    Reactive: typeof _Reactive;
     StyleString: typeof _StyleString;
     LocalStorage: typeof _LocalStorage;
     QueryCollection: typeof _QueryCollection;
