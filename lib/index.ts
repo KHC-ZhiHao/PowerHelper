@@ -7,6 +7,7 @@ import * as _text from './utils/text'
 import * as _element from './utils/element'
 
 import { Log as _Log } from './modules/log'
+import { Hook as _Hook } from './modules/hook'
 import { Event as _Event } from './modules/event'
 import { Cache as _Cache } from './modules/cache'
 import { Timer as _Timer } from './modules/timer'
@@ -31,6 +32,7 @@ export const element = _element
 export type Log = _Log
 
 export const Log = _Log
+export const Hook = _Hook
 export const Event = _Event
 export const Cache = _Cache
 export const Timer = _Timer
@@ -53,6 +55,7 @@ export const PowerHelper = {
     detect,
     element,
     Log,
+    Hook,
     Event,
     Cache,
     Timer,

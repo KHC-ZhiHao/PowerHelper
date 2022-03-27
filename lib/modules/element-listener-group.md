@@ -41,7 +41,7 @@ function clear(): void
 
 ```ts
 type Listener<T> = {
-    /** 鎖定這個 Listener，促使不被刪除 */
+    /** 鎖定這個 Listener，使之不被 clear 指令刪除 */
     lock(active: boolean = true): void
     /** 關閉這個 Listener */
     off(): void

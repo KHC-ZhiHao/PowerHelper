@@ -82,6 +82,8 @@ const log = new Log('my-first-log')
 
 [Log](./lib/modules/log.md)
 
+[Hook](./lib/modules/hook.md)
+
 [Cache](./lib/modules/cache.md)
 
 [Event](./lib/modules/event.md)
