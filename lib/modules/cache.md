@@ -71,6 +71,20 @@ let [r1, r2] = await Promise.all([
 console.log(r1 === r2) // true
 ```
 
+### 永不過期
+
+並沒有開關可以選擇是否不過其，但可以指定 keepAlive 為 Infinity。
+
+```ts
+import { Cache, flow } from 'power-helper'
+
+let cache = new Cache<Params, Response>({
+    keepAlive: Infinity,
+    key: params => params.name,
+    pick: async params => params
+})
+```
+
 ### Constructor
 
 ```ts
