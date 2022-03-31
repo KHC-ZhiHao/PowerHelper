@@ -1,38 +1,34 @@
-import { Cache } from './cache'
+import { Event } from './event'
 
-export class Loader<T extends (...params: any[]) => Promise<any>> {
-    private callback: T
-    private cache = new Cache({
-        keepAlive: Infinity,
-        key: () => 'loader',
-        pick: (params: any[]) => new Promise((resolve, reject) => {
-            this.status.params = params
-            this.status.isCalled = true
-            this.status.isLoading = true
-            this.callback(...params)
-                .then(result => {
-                    this.status.result = result
-                    resolve(result)
-                })
-                .catch(error => {
-                    this.status.failMessage = error
-                    reject(error)
-                })
-                .finally(() => {
-                    this.status.isLoading = false
-                })
-        })
-    })
+type Channels = {
+    call: {}
+    done: {}
+    fail: {
+        error: any
+    }
+    success: {}
+}
+
+export class Loader extends Event<Channels> {
+    private name: string
+    private items: Array<() => Promise<void>> = []
     private status = {
         isDone: false,
         isCalled: false,
         isLoading: false,
-        failMessage: null,
-        result: null,
-        params: null
+        isSuccess: false,
+        doneCount: 0,
+        failMessage: null
     }
-    constructor(callback: T) {
-        this.callback = callback
+    constructor(name?: string) {
+        super()
+        this.name = name || '-'
+    }
+    get size() {
+        return this.items.length
+    }
+    get doneCount() {
+        return this.status.doneCount
     }
     get done() {
         return this.status.isDone
@@ -46,24 +42,44 @@ export class Loader<T extends (...params: any[]) => Promise<any>> {
     get loading() {
         return this.status.isLoading
     }
-    get result() {
-        return this.status.result
+    get success() {
+        return this.status.isSuccess
     }
-    get params() {
-        return this.status.params
+    push(callback: () => Promise<void>) {
+        this.items.push(callback)
     }
-    reset() {
-        this.cache.clear()
-        this.status = {
-            isDone: false,
-            isCalled: false,
-            isLoading: false,
-            failMessage: null,
-            result: null,
-            params: null
+    start() {
+        if (this.status.isCalled) {
+            throw new Error(`Loader ${this.name} Called.`)
         }
-    }
-    fetch(...params: Parameters<T>): ReturnType<T> {
-        return this.cache.get(params) as any
+        this.emit('call', {})
+        this.status.isCalled = true
+        this.status.isLoading = true
+        return new Promise((resolve, reject) => {
+            let promises = []
+            for (let item of this.items) {
+                promises.push(async() => {
+                    await item()
+                    this.status.doneCount +=1
+                })
+            }
+            Promise
+                .all(promises)
+                .then(result => {
+                    this.emit('success', {})
+                    this.status.isSuccess = true
+                    resolve(result)
+                })
+                .catch(error => {
+                    this.emit('fail', { error })
+                    this.status.failMessage = error
+                    reject(error)
+                })
+                .finally(() => {
+                    this.emit('done', {})
+                    this.status.isDone = true
+                    this.status.isLoading = false
+                })
+        })
     }
 }
