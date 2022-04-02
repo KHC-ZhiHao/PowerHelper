@@ -29,3 +29,24 @@ export type PromiseResponseType<
     T extends (...args: any) => Promise<any>,
     R = Parameters<ReturnType<T>['then']>[0]
 > =  R extends (value: infer P) => any ? P : never
+
+/**
+ * 回傳物件鏈
+ * @example
+ * const foo = {
+ *  a: {
+ *      b: '123'
+ *  }
+ * }
+ * const bar: ObjectPath<typeof foo> = 'a.b'
+ */
+
+export type ObjectPath<
+    T extends Record<string, any>,
+    N extends string = '',
+    K = keyof T
+> = K extends string ? (
+    T[K] extends Record<string, any> ?
+    ObjectPath<T[K], N extends '' ? K : `${N}.${K}`> :
+    N extends '' ? K : `${N}.${K}`
+) | (N extends '' ? '' : N) : string

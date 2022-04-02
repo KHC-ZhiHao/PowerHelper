@@ -26,6 +26,17 @@ import {
      * }
      * const bar: PromiseResponseType<typeof foo> = 3
      */
-    PromiseResponseType
+    PromiseResponseType,
+    /**
+     * 回傳物件鏈
+     * @example
+     * const foo = {
+     *  a: {
+     *      b: '123'
+     *  }
+     * }
+     * const bar: ObjectPath<typeof foo> = 'a.b'
+     */
+    ObjectPath
 } from 'power-helper/types/pick'
 ```

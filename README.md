@@ -92,6 +92,8 @@ const log = new Log('my-first-log')
 
 [Ticker](./lib/modules/ticker.md)
 
+[Loader](./lib/modules/loader.md)
+
 [Debounce](./lib/modules/debounce.md)
 
 [Schedule](./lib/modules/schedule.md)

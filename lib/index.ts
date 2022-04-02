@@ -11,6 +11,7 @@ import { Hook as _Hook } from './modules/hook'
 import { Event as _Event } from './modules/event'
 import { Cache as _Cache } from './modules/cache'
 import { Timer as _Timer } from './modules/timer'
+import { Loader as _Loader } from './modules/loader'
 import { Ticker as _Ticker } from './modules/ticker'
 import { Reactive as _Reactive } from './modules/reactive'
 import { Schedule as _Schedule } from './modules/schedule'
@@ -30,6 +31,7 @@ export const detect = _detect
 export const element = _element
 
 export type Log = _Log
+export type Loader<T> = _Loader<T>
 
 export const Log = _Log
 export const Hook = _Hook
@@ -37,6 +39,7 @@ export const Event = _Event
 export const Cache = _Cache
 export const Timer = _Timer
 export const Ticker = _Ticker
+export const Loader = _Loader
 export const Schedule = _Schedule
 export const Debounce = _Debounce
 export const StyleString = _StyleString
@@ -60,6 +63,7 @@ export const PowerHelper = {
     Cache,
     Timer,
     Ticker,
+    Loader,
     Schedule,
     Debounce,
     Reactive,
