@@ -31,7 +31,20 @@ export const detect = _detect
 export const element = _element
 
 export type Log = _Log
-export type Loader<T> = _Loader<T>
+export type Hook<Channels extends Record<string, Record<string, any>>> = _Hook<Channels>
+export type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>
+export type Cache<Params, Response> = _Cache<Params, Response>
+export type Timer = _Timer
+export type Ticker = _Ticker
+export type Loader<Data> = _Loader<Data>
+export type Schedule = _Schedule
+export type Debounce<InputValue> = _Debounce<InputValue>
+export type StyleString = _StyleString
+export type LocalStorage<Columns> = _LocalStorage<Columns>
+export type ElementListenerGroup<El extends Element | Document | Window> = _ElementListenerGroup<El>
+export type QueryCollection<Params, Response> = _QueryCollection<Params, Response>
+export type WebSocketClient<Pub, Sub> = _WebSocketClient<Pub, Sub>
+export type Reactive<Target extends Record<string, any>> = _Reactive<Target>
 
 export const Log = _Log
 export const Hook = _Hook
