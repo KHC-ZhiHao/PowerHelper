@@ -32,7 +32,7 @@ export const getType = (target: any) => {
     if (target instanceof Error) {
         return 'error'
     }
-    return type
+    return type as 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'object' | 'function'
 }
 
 /**

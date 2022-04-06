@@ -1,9 +1,10 @@
 import * as _flow from './utils/flow';
 import * as _json from './utils/json';
-import * as _array from './utils/array';
-import * as _detect from './utils/detect';
 import * as _pick from './utils/pick';
 import * as _text from './utils/text';
+import * as _array from './utils/array';
+import * as _detect from './utils/detect';
+import * as _record from './utils/record';
 import * as _element from './utils/element';
 import { Log as _Log } from './modules/log';
 import { Hook as _Hook } from './modules/hook';
@@ -25,6 +26,7 @@ export declare const flow: typeof _flow;
 export declare const json: typeof _json;
 export declare const text: typeof _text;
 export declare const array: typeof _array;
+export declare const record: typeof _record;
 export declare const detect: typeof _detect;
 export declare const element: typeof _element;
 export declare type Log = _Log;
@@ -63,6 +65,7 @@ export declare const PowerHelper: {
     text: typeof _text;
     pick: typeof _pick;
     array: typeof _array;
+    record: typeof _record;
     detect: typeof _detect;
     element: typeof _element;
     Log: typeof _Log;

@@ -1,9 +1,10 @@
 import * as _flow from './utils/flow'
 import * as _json from './utils/json'
-import * as _array from './utils/array'
-import * as _detect from './utils/detect'
 import * as _pick from './utils/pick'
 import * as _text from './utils/text'
+import * as _array from './utils/array'
+import * as _detect from './utils/detect'
+import * as _record from './utils/record'
 import * as _element from './utils/element'
 
 import { Log as _Log } from './modules/log'
@@ -27,6 +28,7 @@ export const flow = _flow
 export const json = _json
 export const text = _text
 export const array = _array
+export const record = _record
 export const detect = _detect
 export const element = _element
 
@@ -68,6 +70,7 @@ export const PowerHelper = {
     text,
     pick,
     array,
+    record,
     detect,
     element,
     Log,

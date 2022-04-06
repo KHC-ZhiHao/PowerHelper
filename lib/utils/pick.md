@@ -10,7 +10,7 @@ import { pick } from 'power-helper'
 pick.ifEmpty = function(data: any, def: any): any;
 
 /** 比 typeof 回傳更精準的類型 */
-pick.getType = function(data: any): "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function" | "empty" | "array" | "NaN" | "regexp" | "promise" | "buffer" | "error";
+pick.getType = function(data: any): "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "empty" | "array" | "NaN" | "regexp" | "promise" | "buffer" | "error";
 
 /**獲取指定路徑的值 */
 pick.peel = function(data: any, path: string): any | null
