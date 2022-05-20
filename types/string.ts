@@ -28,13 +28,15 @@ type TrimEnd<T extends string> = T extends `${infer Rest}${Whitespace}` ? TrimEn
 export type Trim<T extends string> = TrimEnd<TrimStart<T>>
 
 type GetRouteParameter<S extends string> = RemoveTail<
-    RemoveTail<RemoveTail<S, `/${string}`>,
-        `-${string}`>,
-    `.${string}`
+    RemoveTail<
+        RemoveTail<RemoveTail<S, `/${string}`>,
+            `-${string}`>,
+        `.${string}`>,
+    `#${string}`
 >
 
 /**
- * 從路徑字串中獲取 : 開頭的變數
+ * 從路徑字串中獲取 : 開頭的變數，變數可以由 #, ., /, - 四個符號切割，在尾巴帶上 ? 則為可選
  * @example
  * const route = 'users/:user/cards/:card'
  * const data: RouteParameters<typeof route> = {

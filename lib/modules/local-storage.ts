@@ -9,6 +9,14 @@ export class LocalStorage<
     T extends Record<string, any>,
     K extends keyof T = keyof T
 > extends Base {
+    private options?: {
+        storageSystem?: Storage
+        dafaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
+        intercept?: {
+            get?: Intercept<K, T[K]>['Get']
+            set?: Intercept<K, T[K]>['Set']
+        }
+    }
     private storage: Storage | null
     private namespaces: string
     private interceptGet: Intercept<K, T[K]>['Get'] | null = null
@@ -17,7 +25,7 @@ export class LocalStorage<
         /** 指定運行的 LocalStorage 環境，假如你想應用在 NodeJs 上必須設定此參數 */
         storageSystem?: Storage
         /** 假如該欄位尚未寫入時給予預設值 */
-        dafaultColumns?: Partial<T>
+        dafaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
         /** 攔截相關 get set 設定 */
         intercept?: {
             /** 攔截資料獲取 */
@@ -27,6 +35,7 @@ export class LocalStorage<
         }
     }) {
         super('LocalStorage')
+        this.options = options
         this.storage = typeof window === 'undefined' ? null : window.localStorage
         this.namespaces = namespaces
         if (options) {
@@ -41,13 +50,6 @@ export class LocalStorage<
                     this.interceptSet = options.intercept.set.bind(this)
                 }
             }
-            if (options.dafaultColumns) {
-                for (let key in options.dafaultColumns) {
-                    if (this.get(key) == null) {
-                        this.set(key, options.dafaultColumns[key] as any)
-                    }
-                }
-            }
         }
     }
 
@@ -57,13 +59,13 @@ export class LocalStorage<
 
     /** 設定指定名稱的資料 */
 
-    set<K extends keyof T>(name: K, data: T[K]) {
+    set<K extends keyof T>(name: K, data: T[K] | ((value: T[K]) => T[K])) {
         if (this.storage) {
+            let saveData = typeof data === 'function' ? (data as any)(this.get(name)) : data
             if (this.interceptSet) {
-                let result = this.interceptSet(name as any, data as any)
-                data = result as any
+                saveData = this.interceptSet(name as any, saveData as any)
             }
-            this.storage.setItem(this._genName(name), JSON.stringify(data))
+            this.storage.setItem(this._genName(name), JSON.stringify(saveData))
         }
     }
 
@@ -71,9 +73,17 @@ export class LocalStorage<
 
     get<K extends keyof T>(name: K): T[K] | undefined {
         if (this.storage) {
+            let isDefault = false
             let data = this.storage.getItem(this._genName(name))
+            if (data == null) {
+                let options = this.options
+                if (options && options.dafaultColumns && options.dafaultColumns[name]) {
+                    data = (options.dafaultColumns[name] as any)()
+                    isDefault = true
+                }
+            }
             if (data != null) {
-                let result = JSON.parse(data)
+                let result = isDefault ? data : JSON.parse(data)
                 if (this.interceptGet) {
                     result = this.interceptGet(name as any, result)
                 }

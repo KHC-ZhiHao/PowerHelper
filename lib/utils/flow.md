@@ -15,6 +15,14 @@ flow.randomPick = function(items: any[]): any;
 /** 求整數範圍內的隨機值 */
 flow.randomInt = function(min: number, max: number): number;
 
+/** 非同步迴圈 */
+flow.asyncWhile = function(cb: (context: {
+    /** 迴圈執行的次數 */
+    count: number
+    /** 跳出迴圈 */
+    doBreak: () => void
+}) => void): void;
+
 /** 重複執行直到成功為止 */
 flow.retry = function(params: {
     /**

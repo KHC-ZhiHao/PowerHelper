@@ -31,7 +31,7 @@ describe('LocalStorage', () => {
         let localStorage = new LocalStorage('test', {
             storageSystem: getStorage(),
             dafaultColumns: {
-                test: 'dev'
+                test: () => 'dev'
             }
         })
         expect(localStorage.get('test')).to.equal('dev')
@@ -46,7 +46,7 @@ describe('LocalStorage', () => {
         let localStorage = new LocalStorage('test', {
             storageSystem: items,
             dafaultColumns: {
-                name: 'ouo'
+                name: () => 'ouo'
             }
         })
         expect(localStorage.get('name')).to.equal('dev')
@@ -98,5 +98,12 @@ describe('LocalStorage', () => {
         new LocalStorage('test')
         // @ts-ignore
         global.window = undefined
+    })
+    it('set with callback', function() {
+        let localStorage = new LocalStorage('test', {
+            storageSystem: getStorage()
+        })
+        localStorage.set('name', () => 'qwer')
+        expect(localStorage.get('name')).to.equal('qwer')
     })
 })

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { randomInt, randomPick, sleep, retry } from './flow'
+import { randomInt, randomPick, sleep, retry, asyncWhile } from './flow'
 
 describe('Flow', () => {
     it('sleep', async function() {
@@ -84,5 +84,16 @@ describe('Flow', () => {
             // @ts-ignore
             expect(error.length).to.equal(3)
         }
+    })
+       
+    it('async while', async() => {
+        let flag = 0
+        await asyncWhile(async({ count, doBreak }) => {
+            if (count >= 5) {
+                return doBreak()
+            }
+            flag += 1
+        })
+        expect(flag).to.equal(5)
     })
 })

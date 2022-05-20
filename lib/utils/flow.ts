@@ -73,3 +73,23 @@ export const retry = async<T extends (index: number) => Promise<any>>(params: {
     }
     throw fails
 }
+
+export const asyncWhile = async(cb: (context: {
+    count: number
+    doBreak: () => void
+}) => Promise<any>) => {
+    let isBreak = false
+    let context = {
+        count: 0,
+        doBreak: () => {
+            isBreak = true
+        }
+    }
+    while (true) {
+        await cb(context)
+        if (isBreak) {
+            break
+        }
+        context.count += 1
+    }
+}

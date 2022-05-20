@@ -30,3 +30,7 @@ export declare const retry: <T extends (index: number) => Promise<any>>(params: 
     /** 總執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
     action: T;
 }) => Promise<PromiseResponseType<T, Parameters<ReturnType<T>["then"]>[0]>>;
+export declare const asyncWhile: (cb: (context: {
+    count: number;
+    doBreak: () => void;
+}) => Promise<any>) => Promise<void>;

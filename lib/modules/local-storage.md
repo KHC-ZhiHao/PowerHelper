@@ -63,6 +63,26 @@ let localStorage = new LocalStorage('my-storage', {
 })
 ```
 
+### 使用 callback 寫入值
+
+```ts
+import { LocalStorage } from 'power-helper'
+
+type Columns = {
+    names: string[]
+}
+
+let localStorage = new LocalStorage<Columns>('my-storage', {
+    dafaultColumns: {
+        names: () => []
+    }
+})
+// 如果使用傳統方式要 push 一組資料需要透過以下方法
+localStorage.set('names', localStorage.get('names').push('dave'))
+// 如果第二個參數是一組 function 則寫入回傳值
+localStorage.set('names', names => [...names, 'dave'])
+```
+
 ### Constructor
 
 ```ts
@@ -70,7 +90,7 @@ let localStorage = new LocalStorage('my-storage', {
  * @param {string} namespaces 命名空間，防止與其他服務起衝突
  * @param {object} [options]
  * @param {Storage} [options.storageSystem = window.localStorage] 指定運行的 LocalStorage 環境，假如你想應用在 NodeJs 上必須設定此參數
- * @param {Record<string, any>} [options.dafaultColumns] - 假如該欄位尚未寫入時給予預設值
+ * @param {Record<string, () => any>} [options.dafaultColumns] - 假如該欄位尚未寫入時給予預設值
  * @param {(name: string, data: any) => any} [options.intercept.get] - 攔截資料獲取
  * @param {(name: string, data: any) => any} [options.intercept.set] - 攔截資料設定
  */
@@ -86,7 +106,7 @@ class LocalStorage<Columns extends Record<string, any>> {
 function get(name: string): any
 
 /** 設定指定名稱的資料 */
-function set(name: string, data: any): any
+function set(name: string, data: any | (value: any) => any): any
 
 /** 刪除指定名稱的資料 */
 function remove(name: string): void
