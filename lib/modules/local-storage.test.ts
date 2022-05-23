@@ -27,10 +27,10 @@ describe('LocalStorage', () => {
         localStorage.clear()
         expect(localStorage.get('name')).to.equal(undefined)
     })
-    it('dafaultColumns', function() {
+    it('defaultColumns', function() {
         let localStorage = new LocalStorage('test', {
             storageSystem: getStorage(),
-            dafaultColumns: {
+            defaultColumns: {
                 test: () => 'dev'
             }
         })
@@ -45,7 +45,7 @@ describe('LocalStorage', () => {
         }
         let localStorage = new LocalStorage('test', {
             storageSystem: items,
-            dafaultColumns: {
+            defaultColumns: {
                 name: () => 'ouo'
             }
         })

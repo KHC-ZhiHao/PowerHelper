@@ -11,7 +11,7 @@ export class LocalStorage<
 > extends Base {
     private options?: {
         storageSystem?: Storage
-        dafaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
+        defaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
         intercept?: {
             get?: Intercept<K, T[K]>['Get']
             set?: Intercept<K, T[K]>['Set']
@@ -25,7 +25,7 @@ export class LocalStorage<
         /** 指定運行的 LocalStorage 環境，假如你想應用在 NodeJs 上必須設定此參數 */
         storageSystem?: Storage
         /** 假如該欄位尚未寫入時給予預設值 */
-        dafaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
+        defaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
         /** 攔截相關 get set 設定 */
         intercept?: {
             /** 攔截資料獲取 */
@@ -77,8 +77,8 @@ export class LocalStorage<
             let data = this.storage.getItem(this._genName(name))
             if (data == null) {
                 let options = this.options
-                if (options && options.dafaultColumns && options.dafaultColumns[name]) {
-                    data = (options.dafaultColumns[name] as any)()
+                if (options && options.defaultColumns && options.defaultColumns[name]) {
+                    data = (options.defaultColumns[name] as any)()
                     isDefault = true
                 }
             }

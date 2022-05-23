@@ -13,7 +13,7 @@ export declare class LocalStorage<T extends Record<string, any>, K extends keyof
         /** 指定運行的 LocalStorage 環境，假如你想應用在 NodeJs 上必須設定此參數 */
         storageSystem?: Storage;
         /** 假如該欄位尚未寫入時給予預設值 */
-        dafaultColumns?: Partial<{
+        defaultColumns?: Partial<{
             [K in keyof T]: () => T[K];
         }>;
         /** 攔截相關 get set 設定 */
