@@ -30,9 +30,31 @@ describe('Record', () => {
         expect(data.age).to.equal(18)
         // @ts-ignore
         expect(data.sex).to.equal(undefined)
+        expect(data.profile.country.area).to.equal('HK')
     })
     it('empty', async function() {
         let data = setMapValue(null, null)
         expect(JSON.stringify(data)).to.equal('{}')
+    })
+    it('directReplacePeels', async function() {
+        let data = setMapValue({
+            d: {
+                e: '5'
+            },
+            c: {
+                d: '4'
+            }
+        }, {
+            d: {
+                e: '6'
+            },
+            c: {
+                j: '7'
+            }
+        }, {
+            directReplacePeels: ['c']
+        })
+        // @ts-ignore
+        expect(data.c.j).to.equal('7')
     })
 })

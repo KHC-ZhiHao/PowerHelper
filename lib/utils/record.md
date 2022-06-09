@@ -7,7 +7,10 @@
 ```ts
 import { record } from 'power-helper'
 /** 複製指定物件的值到目標物件上，並產生一份新的物件 */
-record.setMapValue = function(template: Record<string, any>, data: Record<string, any>): any;
+record.setMapValue = function(template: Record<string, any>, data: Record<string, any>, optnios?: {
+    // 如果是物件則會深入復寫，可以透過物件路徑直接覆蓋値
+    directReplacePeels?: string[]
+}): any;
 
 const template = {
     name: 'dave',

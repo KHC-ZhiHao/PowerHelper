@@ -106,6 +106,8 @@ const log = new Log('my-first-log')
 
 [LocalStorage](./lib/modules/local-storage.md)
 
+[PromiseOverlap](./lib/modules/promise-overlap.md)
+
 [QueryCollection](./lib/modules/query-collection.md)
 
 [WebSocketClient](./lib/modules/websocket.md)
@@ -131,3 +133,5 @@ const birthday: YYYYMMDDFormat = '2021-01-01'
 [pick](./types/pick.md)
 
 [string](./types/string.md)
+
+[record](./types/record.md)

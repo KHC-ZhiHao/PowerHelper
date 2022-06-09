@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Log } from './Log'
+import { Log } from './log'
 
 describe('Log', () => {
     it('base', function() {

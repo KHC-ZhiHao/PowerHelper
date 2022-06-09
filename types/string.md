@@ -1,6 +1,6 @@
-# String Params
+# String
 
-解析複雜的字串找出變數。
+字串相關處理。
 
 ## 如何使用
 
@@ -46,5 +46,5 @@ import {
      * }
      */
     SqlParameters
-} from 'power-helper/types/string-params'
+} from 'power-helper/types/string'
 ```
