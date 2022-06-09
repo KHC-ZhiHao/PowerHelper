@@ -21,6 +21,7 @@ import { LocalStorage as _LocalStorage } from './modules/local-storage';
 import { QueryCollection as _QueryCollection } from './modules/query-collection';
 import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group';
 import { WebSocketClient as _WebSocketClient } from './modules/websocket';
+import { PromiseOverlap as _PromiseOverlap } from './modules/promise-overlap';
 export declare const pick: typeof _pick;
 export declare const flow: typeof _flow;
 export declare const json: typeof _json;
@@ -44,6 +45,7 @@ export declare type ElementListenerGroup<El extends Element | Document | Window>
 export declare type QueryCollection<Params, Response> = _QueryCollection<Params, Response>;
 export declare type WebSocketClient<Pub, Sub> = _WebSocketClient<Pub, Sub>;
 export declare type Reactive<Target extends Record<string, any>> = _Reactive<Target>;
+export declare type PromiseOverlap<PickType> = _PromiseOverlap<PickType>;
 export declare const Log: typeof _Log;
 export declare const Hook: typeof _Hook;
 export declare const Event: typeof _Event;
@@ -59,6 +61,7 @@ export declare const ElementListenerGroup: typeof _ElementListenerGroup;
 export declare const QueryCollection: typeof _QueryCollection;
 export declare const WebSocketClient: typeof _WebSocketClient;
 export declare const Reactive: typeof _Reactive;
+export declare const PromiseOverlap: typeof _PromiseOverlap;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -80,6 +83,7 @@ export declare const PowerHelper: {
     Reactive: typeof _Reactive;
     StyleString: typeof _StyleString;
     LocalStorage: typeof _LocalStorage;
+    PromiseOverlap: typeof _PromiseOverlap;
     QueryCollection: typeof _QueryCollection;
     WebSocketClient: typeof _WebSocketClient;
     ElementListenerGroup: typeof _ElementListenerGroup;

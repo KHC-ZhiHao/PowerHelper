@@ -34,7 +34,6 @@ type SetMapValueOptions<T> = {
  *         }
  *     }
  * }
- * 
  * console.log(record.setMapValue(template, data. options?))
  * // output
  * {
