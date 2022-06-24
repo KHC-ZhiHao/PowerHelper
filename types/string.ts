@@ -39,19 +39,19 @@ type GetRouteParameter<S extends string> = RemoveTail<
  * 從路徑字串中獲取 : 開頭的變數，變數可以由 #, ., /, - 四個符號切割，在尾巴帶上 ? 則為可選
  * @example
  * const route = 'users/:user/cards/:card'
- * const data: RouteParameters<typeof route> = {
+ * const data: RouteParameters<typeof route, string> = {
  *  user: '123',
  *  card: '123'
  * }
  */
 
-export type RouteParameters<Route extends string> = Route extends `${string}:${infer Rest}`
+export type RouteParameters<Route extends string, ST = string> = Route extends `${string}:${infer Rest}`
     ? (
         GetRouteParameter<Rest> extends never
         ? null
         : GetRouteParameter<Rest> extends `${infer ParamName}?`
-        ? { [P in ParamName]?: string }
-        : { [P in GetRouteParameter<Rest>]: string }
+        ? { [P in ParamName]?: ST }
+        : { [P in GetRouteParameter<Rest>]: ST }
     ) &
     (Rest extends `${GetRouteParameter<Rest>}${infer Next}`
         ? RouteParameters<Next> : unknown)

@@ -2,9 +2,9 @@ import { SqlParameters, RouteParameters, VarParameters } from './string'
 
 () => {
     const route = `users/:user/cards/:card`
-    const data: RouteParameters<typeof route> = {
+    const data: RouteParameters<typeof route, string | number> = {
         card: '123',
-        user: '456'
+        user: 1
     }
     return data
 }
