@@ -9,10 +9,6 @@ function toStyleCase(key: string) {
 export class StyleString extends Base {
     private styles: Record<string, string> = {}
 
-    constructor() {
-        super('StyleString')
-    }
-
     /** 寫入 key */
     set(key: StyleKeys, value?: string, defaultValue?: string) {
         let v = value == null ? defaultValue : value

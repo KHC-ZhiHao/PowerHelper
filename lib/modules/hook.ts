@@ -47,9 +47,6 @@ class Listener<T> {
 
 export class Hook<T extends Record<string, Record<string, any>>> extends Base {
     private listeners: Map<string, Listener<any>[]> = new Map()
-    constructor() {
-        super('Hook')
-    }
 
     /** 發送資料至指定頻道 */
 

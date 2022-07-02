@@ -46,9 +46,6 @@ class Listener<T> {
 
 export class Event<T extends Record<string, Record<string, any>>> extends Base {
     private listeners: Map<string, Listener<any>[]> = new Map()
-    constructor() {
-        super('Event')
-    }
 
     /** 獲取指定頻道的監聽數量 */
 

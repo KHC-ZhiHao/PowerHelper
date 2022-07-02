@@ -17,18 +17,11 @@ const parseError = (data: any) => {
 }
 
 export class Base {
-    private _base: { name: string }
-    constructor(name: string) {
-        this._base = {
-            name
-        }
-    }
-
     $devWarn(functionName: string, data: any) {
-        console.error(new Error(`PowerHelper (O_O) ${this._base.name} => ${functionName} -> ${parseError(data)}`))
+        console.error(new Error(`PowerHelper (O_O) => ${functionName} -> ${parseError(data)}`))
     }
 
     $devError(functionName: string, data: any) {
-        throw new Error(`PowerHelper (X_X) ${this._base.name} => ${functionName} -> ${parseError(data)}`)
+        throw new Error(`PowerHelper (X_X) => ${functionName} -> ${parseError(data)}`)
     }
 }

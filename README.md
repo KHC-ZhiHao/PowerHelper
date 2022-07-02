@@ -102,6 +102,8 @@ const log = new Log('my-first-log')
 
 [Reactive](./lib/modules/reactive.md)
 
+[CacheLite](./lib/modules/cache-lite.md)
+
 [StyleString](./lib/modules/style-string.md)
 
 [LocalStorage](./lib/modules/local-storage.md)

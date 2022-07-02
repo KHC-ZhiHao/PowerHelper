@@ -12,7 +12,6 @@ export declare class Schedule extends Base {
     private isStop;
     private lastTime;
     private processes;
-    constructor();
     private run;
     /** 加入一個程序，不能重複已存在的命名 */
     add(name: string, intervalMs: number, callback: () => Promise<any>): void;

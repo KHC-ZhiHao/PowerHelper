@@ -73,7 +73,7 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
             if (this.connected) {
                 this._websocket.send(record)
             } else {
-                console.warn(`Socket not connected, from send ${channel}.`)
+                console.warn(`Socket not connected, from send ${channel as string}.`)
             }
         } catch (error) {
             this.fail('send', error)

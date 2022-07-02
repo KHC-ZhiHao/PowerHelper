@@ -23,11 +23,6 @@ export class Schedule extends Base {
     private isStop = false
     private lastTime = Date.now()
     private processes: Process[] = []
-
-    constructor() {
-        super('Schedule')
-    }
-
     private run() {
         if (this.isStop) {
             return null

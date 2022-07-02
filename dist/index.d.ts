@@ -22,6 +22,7 @@ import { QueryCollection as _QueryCollection } from './modules/query-collection'
 import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group';
 import { WebSocketClient as _WebSocketClient } from './modules/websocket';
 import { PromiseOverlap as _PromiseOverlap } from './modules/promise-overlap';
+import { CacheLite as _CacheLite } from './modules/cache-lite';
 export declare const pick: typeof _pick;
 export declare const flow: typeof _flow;
 export declare const json: typeof _json;
@@ -46,6 +47,7 @@ export declare type QueryCollection<Params, Response> = _QueryCollection<Params,
 export declare type WebSocketClient<Pub, Sub> = _WebSocketClient<Pub, Sub>;
 export declare type Reactive<Target extends Record<string, any>> = _Reactive<Target>;
 export declare type PromiseOverlap<PickType> = _PromiseOverlap<PickType>;
+export declare type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>;
 export declare const Log: typeof _Log;
 export declare const Hook: typeof _Hook;
 export declare const Event: typeof _Event;
@@ -62,6 +64,7 @@ export declare const QueryCollection: typeof _QueryCollection;
 export declare const WebSocketClient: typeof _WebSocketClient;
 export declare const Reactive: typeof _Reactive;
 export declare const PromiseOverlap: typeof _PromiseOverlap;
+export declare const CacheLite: typeof _CacheLite;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -81,6 +84,7 @@ export declare const PowerHelper: {
     Schedule: typeof _Schedule;
     Debounce: typeof _Debounce;
     Reactive: typeof _Reactive;
+    CacheLite: typeof _CacheLite;
     StyleString: typeof _StyleString;
     LocalStorage: typeof _LocalStorage;
     PromiseOverlap: typeof _PromiseOverlap;

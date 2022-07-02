@@ -23,6 +23,7 @@ import { QueryCollection as _QueryCollection } from './modules/query-collection'
 import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group'
 import { WebSocketClient as _WebSocketClient } from './modules/websocket'
 import { PromiseOverlap as _PromiseOverlap } from './modules/promise-overlap'
+import { CacheLite as _CacheLite } from './modules/cache-lite'
 
 export const pick = _pick
 export const flow = _flow
@@ -49,6 +50,7 @@ export type QueryCollection<Params, Response> = _QueryCollection<Params, Respons
 export type WebSocketClient<Pub, Sub> = _WebSocketClient<Pub, Sub>
 export type Reactive<Target extends Record<string, any>> = _Reactive<Target>
 export type PromiseOverlap<PickType> = _PromiseOverlap<PickType>
+export type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>
 
 export const Log = _Log
 export const Hook = _Hook
@@ -66,6 +68,7 @@ export const QueryCollection = _QueryCollection
 export const WebSocketClient = _WebSocketClient
 export const Reactive = _Reactive
 export const PromiseOverlap = _PromiseOverlap
+export const CacheLite = _CacheLite
 
 export const PowerHelper = {
     flow,
@@ -86,6 +89,7 @@ export const PowerHelper = {
     Schedule,
     Debounce,
     Reactive,
+    CacheLite,
     StyleString,
     LocalStorage,
     PromiseOverlap,

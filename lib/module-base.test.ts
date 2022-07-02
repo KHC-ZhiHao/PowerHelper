@@ -3,7 +3,7 @@ import { Base } from './module-base'
 
 describe('Cache', () => {
     it('base', async function(done) {
-        let base = new Base('test')
+        let base = new Base()
         try {
             base.$devError('123', '456')
         } catch(e) {
@@ -13,7 +13,7 @@ describe('Cache', () => {
         }
     })
     it('Unknown Error', async function(done) {
-        let base = new Base('test')
+        let base = new Base()
         try {
             base.$devError('123', true)
         } catch(e) {
@@ -23,7 +23,7 @@ describe('Cache', () => {
         }
     })
     it('Error', async function(done) {
-        let base = new Base('test')
+        let base = new Base()
         try {
             base.$devError('123', new Error('123'))
         } catch(e) {
@@ -33,7 +33,7 @@ describe('Cache', () => {
         }
     })
     it('Object Error', async function(done) {
-        let base = new Base('test')
+        let base = new Base()
         try {
             base.$devError('123', {
                 error: '123'
@@ -45,7 +45,7 @@ describe('Cache', () => {
         }
     })
     it('Object Unknown Error', async function(done) {
-        let base = new Base('test')
+        let base = new Base()
         let target: any = {}
         target.target = target
         try {

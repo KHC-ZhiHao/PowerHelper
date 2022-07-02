@@ -2,7 +2,6 @@ import { Base } from '../module-base';
 declare type StyleKeys = keyof CSSStyleDeclaration;
 export declare class StyleString extends Base {
     private styles;
-    constructor();
     /** 寫入 key */
     set(key: StyleKeys, value?: string, defaultValue?: string): void;
     /** 獲取指定 key 的值 */

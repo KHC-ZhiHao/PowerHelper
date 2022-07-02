@@ -34,7 +34,7 @@ export class LocalStorage<
             set?: Intercept<K, T[K]>['Set']
         }
     }) {
-        super('LocalStorage')
+        super()
         this.options = options
         this.storage = typeof window === 'undefined' ? null : window.localStorage
         this.namespaces = namespaces

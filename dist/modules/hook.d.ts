@@ -26,7 +26,6 @@ declare class Listener<T> {
 }
 export declare class Hook<T extends Record<string, Record<string, any>>> extends Base {
     private listeners;
-    constructor();
     /** 發送資料至指定頻道 */
     notify<K extends keyof T>(channel: K, data: T[K]): Promise<void>;
     /** 取消指定 ID 掛勾 */

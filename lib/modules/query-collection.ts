@@ -16,7 +16,7 @@ export class QueryCollection<T, R> extends Base {
         reject: any
     }[] = []
     constructor(params: QueryCollectionParams<T, R>) {
-        super('QueryCollection')
+        super()
         this.params = params
     }
     /** 推送一筆資料進搜集器 */

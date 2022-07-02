@@ -25,7 +25,6 @@ declare class Listener<T> {
 }
 export declare class Event<T extends Record<string, Record<string, any>>> extends Base {
     private listeners;
-    constructor();
     /** 獲取指定頻道的監聽數量 */
     getChannelListenerSize<K extends keyof T>(channel: K): number;
     /** 發送資料至指定頻道 */
