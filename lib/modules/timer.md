@@ -38,6 +38,12 @@ function setTime(ms: number): Timer
 /* 增加執行時間(毫秒) */
 function addTime(ms: number): Timer
 
+/* 設定最小時間(毫秒) */
+function setMinTime(ms: number): void
+
+/* 設定最大時間(毫秒) */
+function setMaxTime(ms: number): void
+
 /* 減少執行時間(毫秒) */
 function subtractTime(ms: number): Timer
 
@@ -53,6 +59,6 @@ function getSeconds(): number
 /* 獲取現在計時的分，每 1000 一個循環 */
 function getMicroseconds(): number
 
-/* 獲取可以顯示用的時間字串 */
+/* 獲取可以顯示用的時間字串，預設 format = hh:mm:ss.ff */
 function getTimeString(format = 'hh:mm:ss.ff'): string
 ```

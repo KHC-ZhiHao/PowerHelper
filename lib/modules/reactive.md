@@ -56,7 +56,7 @@ class Reactive<State> {
 ### Property
 
 ```ts
-/** 加入一個程序，不能重複已存在的命名 */
+/** 關閉監聽 */
 function close(): void
 /** 在下一次輪詢時觸發 */
 function nextTick(cb: (state: State) => void): void

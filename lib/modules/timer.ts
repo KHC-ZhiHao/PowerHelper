@@ -2,14 +2,22 @@ import { Ticker } from './ticker'
 
 export class Timer extends Ticker {
     private nowTime = 0
+    private minTime = 0
+    private maxTime = 999999999999
     private positive = true
     constructor() {
         super(1, { autoPlay: false })
-        this.on('next', () => {
+        this.on('next', ({ timeGap }) => {
             if (this.positive) {
-                this.nowTime += 1
+                this.nowTime += timeGap
             } else {
-                this.nowTime -= 1
+                this.nowTime -= timeGap
+            }
+            if (this.nowTime <= this.minTime) {
+                this.nowTime = this.minTime
+            }
+            if (this.nowTime >= this.maxTime) {
+                this.nowTime = this.maxTime
             }
         })
     }
@@ -19,6 +27,18 @@ export class Timer extends Ticker {
     setPositive(positive: boolean) {
         this.positive = positive
         return this
+    }
+
+    /* 設定最小時間 */
+
+    setMinTime(ms: number) {
+        this.minTime = ms
+    }
+
+    /* 設定最大時間 */
+
+    setMaxTime(ms: number) {
+        this.maxTime = ms
     }
 
     /* 獲取現在執行時間(毫秒) */
@@ -72,7 +92,7 @@ export class Timer extends Ticker {
         return this.nowTime % 1000
     }
 
-    /* 獲取可以顯示用的時間字串 */
+    /* 獲取可以顯示用的時間字串，預設 format = hh:mm:ss.ff */
 
     getTimeString(format = 'hh:mm:ss.ff') {
         let hours = Math.floor(this.getHours()).toString().padStart(2, '0')

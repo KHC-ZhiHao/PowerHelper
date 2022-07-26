@@ -55,7 +55,7 @@ describe('Reactive', () => {
         type S = {
             name: string
         }
-        let flag = null
+        let flag: any = null
         let reactive = new Reactive<S>({
             schedule: 10000,
             action: async({ state }) => {

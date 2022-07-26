@@ -8,8 +8,9 @@
 import { Ticker } from 'power-helper'
 const ticker = new Ticker(1000)
 // 以下事件會每 1 秒執行一次
-ticker.on('next', ({ delta }) => {
+ticker.on('next', ({ delta, timeGap }) => {
     console.log(delta) // delta 在每次呼叫的時候會加 1
+    console.log(timeGap) // 由於單執行續的關係，並不會保證準確1秒運行，可以透過 timeGap 獲取上次到現在呼叫的時間
 })
 ```
 

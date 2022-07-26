@@ -41,7 +41,7 @@ describe('Schedule', () => {
         let schedule = new Schedule()
         schedule.add('test', 100, async() => {})
         schedule.add('test2', 200, async() => {})
-        await sleep(110)
+        await sleep(150)
         let result = schedule.info()
         expect(result[0].name).to.equal('test')
         expect(result[0].executedCount).to.equal(1)
