@@ -67,6 +67,15 @@ export class Event<T extends Record<string, Record<string, any>>> extends Base {
                 listener.invoke(data)
             }
         }
+        let allListeners = this.listeners.get('*')
+        if (allListeners) {
+            for (let listener of allListeners) {
+                listener.invoke({
+                    data,
+                    channel
+                })
+            }
+        }
     }
 
     /** 停止指定 ID 的監聽者 */
@@ -81,7 +90,7 @@ export class Event<T extends Record<string, Record<string, any>>> extends Base {
 
     /** 監聽指定頻道 */
 
-    on<K extends keyof T>(channel: K, callback: ListenerCallback<T[K]>) {
+    on<K extends keyof T>(channel: K | '*', callback: ListenerCallback<T[K]>) {
         let key = channel as string
         let listener: Listener<T[K]> = new Listener(this, key, callback)
         if (this.listeners.has(key) === false) {

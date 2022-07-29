@@ -15,6 +15,10 @@ let event = new Event<Channels>()
 event.on('update', (data) => {
     console.log(data.name) // dave
 })
+// 可以全局監聽
+event.on('*', ({ channel, data }) => {
+    console.log(data.name) // dave
+})
 evemt.emit('update', {
     name: 'dave'
 })

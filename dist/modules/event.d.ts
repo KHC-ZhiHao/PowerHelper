@@ -32,6 +32,6 @@ export declare class Event<T extends Record<string, Record<string, any>>> extend
     /** 停止指定 ID 的監聽者 */
     off<K extends keyof T>(channel: K, id: string): void;
     /** 監聽指定頻道 */
-    on<K extends keyof T>(channel: K, callback: ListenerCallback<T[K]>): Listener<T[K]>;
+    on<K extends keyof T>(channel: K | '*', callback: ListenerCallback<T[K]>): Listener<T[K]>;
 }
 export {};

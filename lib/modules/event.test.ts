@@ -94,4 +94,16 @@ describe('Event', () => {
         event.emit('test', {})
         expect(count).to.equal(1)
     })
+    it('on all', function() {
+        let count = 0
+        let event = new Event()
+        event.on('test', (data, context) => {
+            count += 1
+        })
+        event.on('*', (data, context) => {
+            count += 1
+        })
+        event.emit('test', {})
+        expect(count).to.equal(2)
+    })
 })
