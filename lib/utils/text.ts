@@ -1,5 +1,11 @@
 import { Whitespace, VarParameters } from '../types/string'
 
+/** 字串開頭是否符合指定目標 */
+
+export function headMatch(text: string, match: string) {
+    return text.slice(0, match.length) === match
+}
+
 /** 獲取指定字串的 Byte 長度 */
 
 export function byteLength(text: string) {

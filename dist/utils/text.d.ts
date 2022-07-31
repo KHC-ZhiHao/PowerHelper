@@ -1,4 +1,6 @@
 import { Whitespace, VarParameters } from '../types/string';
+/** 字串開頭是否符合指定目標 */
+export declare function headMatch(text: string, match: string): boolean;
 /** 獲取指定字串的 Byte 長度 */
 export declare function byteLength(text: string): number;
 /**

@@ -1,7 +1,14 @@
 import { expect } from 'chai'
-import { byteLength, replaceVar } from './text'
+import { byteLength, replaceVar, headMatch } from './text'
 
 describe('String', () => {
+    it('headMatch', async function() {
+        let a = 'verify'
+        let b = 'verify:123'
+        let c = 'verisy:123'
+        expect(headMatch(b, a)).to.equal(true)
+        expect(headMatch(c, a)).to.equal(false)
+    })
     it('byteLength', async function() {
         expect(byteLength('א')).to.equal(2)
         expect(byteLength('a c')).to.equal(3)
