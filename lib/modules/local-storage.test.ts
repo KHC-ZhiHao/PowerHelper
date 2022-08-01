@@ -25,7 +25,7 @@ describe('LocalStorage', () => {
         })
         localStorage.set('name', 'dev')
         localStorage.clear()
-        expect(localStorage.get('name')).to.equal(undefined)
+        expect(localStorage.get('name')).to.equal(null)
     })
     it('defaultColumns', function() {
         let localStorage = new LocalStorage('test', {
@@ -81,16 +81,6 @@ describe('LocalStorage', () => {
         expect(localStorage.get('name')).to.equal(null)
     })
     it('cover', function() {
-        new LocalStorage('test', {
-            intercept: {}
-        })
-        let localStorage = new LocalStorage('test', {})
-        localStorage.set('test', 'test')
-        localStorage.get('test')
-        localStorage.clear()
-        localStorage.remove('test')
-    })
-    it('cover', function() {
         global.window = {
             // @ts-ignore
             localStorage: {}
@@ -105,5 +95,22 @@ describe('LocalStorage', () => {
         })
         localStorage.set('name', () => 'qwer')
         expect(localStorage.get('name')).to.equal('qwer')
+    })
+    it('height level control', function() {
+        let isDefaultFlag = false
+        let localStorage = new LocalStorage('test', {
+            storageSystem: getStorage(),
+            defaultColumns: {
+                name: () => '1234'
+            },
+            intercept: {
+                get(key, value, { isDefault, defaultValue }) {
+                    isDefaultFlag = isDefault
+                    return defaultValue()
+                }
+            }
+        })
+        expect(localStorage.get('name')).to.equal('1234')
+        expect(isDefaultFlag).to.equal(true)
     })
 })

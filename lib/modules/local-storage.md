@@ -91,7 +91,7 @@ localStorage.set('names', names => [...names, 'dave'])
  * @param {object} [options]
  * @param {Storage} [options.storageSystem = window.localStorage] 指定運行的 LocalStorage 環境，假如你想應用在 NodeJs 上必須設定此參數
  * @param {Record<string, () => any>} [options.defaultColumns] - 假如該欄位尚未寫入時給予預設值
- * @param {(name: string, data: any) => any} [options.intercept.get] - 攔截資料獲取
+ * @param {(name: string, data: any, context: InterceptGet) => any} [options.intercept.get] - 攔截資料獲取
  * @param {(name: string, data: any) => any} [options.intercept.set] - 攔截資料設定
  */
 class LocalStorage<Columns extends Record<string, any>> {
@@ -114,3 +114,13 @@ function remove(name: string): void
 /** 刪除整個 namespaces 的資料 */
 function clear(): void
 ```
+
+## Types
+
+```ts
+type InterceptGet = {
+    // 是否是採用預設值
+    isDefault: boolean
+    // 獲取預設值
+    defaultValue: () => any
+}

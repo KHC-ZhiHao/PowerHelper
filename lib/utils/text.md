@@ -9,6 +9,9 @@ import { text } from 'power-helper'
 /** 字串開頭是否符合指定目標 */
 text.headMatch = function(text: string, match: string): boolean;
 
+/** 字串結尾是否符合指定目標 */
+text.lastMatch = function(text: string, match: string): boolean;
+
 /** 獲取指定字串的 Byte 長度 */
 text.byteLength = function(text: string): number;
 

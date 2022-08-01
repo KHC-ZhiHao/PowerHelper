@@ -1,9 +1,14 @@
 import { Base } from '../module-base';
-declare type Intercept<K, T> = {
-    Get: (name: K, data: T) => T | null;
-    Set: (name: K, data: T) => T;
+declare type Intercept = {
+    Set: (name: string, data: any) => any;
+    Get: (name: string, data: any, context: {
+        /** 是否是採用預設值 */
+        isDefault: boolean;
+        /** 獲取預設值 */
+        defaultValue: () => any;
+    }) => any;
 };
-export declare class LocalStorage<T extends Record<string, any>, K extends keyof T = keyof T> extends Base {
+export declare class LocalStorage<T extends Record<string, any>> extends Base {
     private options?;
     private storage;
     private namespaces;
@@ -19,16 +24,16 @@ export declare class LocalStorage<T extends Record<string, any>, K extends keyof
         /** 攔截相關 get set 設定 */
         intercept?: {
             /** 攔截資料獲取 */
-            get?: Intercept<K, T[K]>['Get'];
+            get?: Intercept['Get'];
             /** 攔截資料設定 */
-            set?: Intercept<K, T[K]>['Set'];
+            set?: Intercept['Set'];
         };
     });
     private _genName;
     /** 設定指定名稱的資料 */
     set<K extends keyof T>(name: K, data: T[K] | ((value: T[K]) => T[K])): void;
     /** 獲取指定名稱的資料 */
-    get<K extends keyof T>(name: K): T[K] | undefined;
+    get<K extends keyof T>(name: K): T[K];
     /** 刪除整個 namespaces 的資料 */
     clear(): void;
     /** 刪除指定名稱的資料 */
