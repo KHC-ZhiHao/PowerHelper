@@ -2,7 +2,16 @@ import { expect } from 'chai'
 import { Base } from './module-base'
 
 describe('Cache', () => {
-    it('base', async function(done) {
+    it('cover', function() {
+        let base = new Base()
+        base.$devWarn('123', '456')
+        base.$devWarn('123', true)
+        base.$devWarn('123', new Error('123'))
+        base.$devWarn('123', {
+            name: '123'
+        })
+    })
+    it('base', function(done) {
         let base = new Base()
         try {
             base.$devError('123', '456')
@@ -12,7 +21,7 @@ describe('Cache', () => {
             done()
         }
     })
-    it('Unknown Error', async function(done) {
+    it('Unknown Error', function(done) {
         let base = new Base()
         try {
             base.$devError('123', true)
@@ -22,7 +31,7 @@ describe('Cache', () => {
             done()
         }
     })
-    it('Error', async function(done) {
+    it('Error', function(done) {
         let base = new Base()
         try {
             base.$devError('123', new Error('123'))
@@ -32,7 +41,7 @@ describe('Cache', () => {
             done()
         }
     })
-    it('Object Error', async function(done) {
+    it('Object Error', function(done) {
         let base = new Base()
         try {
             base.$devError('123', {
@@ -44,7 +53,7 @@ describe('Cache', () => {
             done()
         }
     })
-    it('Object Unknown Error', async function(done) {
+    it('Object Unknown Error', function(done) {
         let base = new Base()
         let target: any = {}
         target.target = target

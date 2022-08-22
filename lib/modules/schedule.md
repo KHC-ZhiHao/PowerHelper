@@ -35,6 +35,8 @@ class Schedule {
 
 ### Property
 
+Extends: [Event](./event.md)
+
 ```ts
 /** 加入一個程序，不能重複已存在的命名 */
 function add(name: string, intervalMs: number, callback: () => Promise<any>): void
@@ -68,5 +70,18 @@ type Info = {
     runningTime: number | null
     /** 執行次數 */
     executedCount: number
+}
+```
+
+### Event
+
+#### processFail
+
+執行緒錯誤時不會中止整個程序，可以透過此事件抓到問題並終止。
+
+```ts
+const eventData: {
+    processName: string
+    error: any
 }
 ```

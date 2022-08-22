@@ -1,4 +1,4 @@
-import { Base } from '../module-base';
+import { Event } from './event';
 declare type Info = {
     /** 程序名稱 */
     name: string;
@@ -7,7 +7,13 @@ declare type Info = {
     /** 執行次數 */
     executedCount: number;
 };
-export declare class Schedule extends Base {
+declare type Channels = {
+    'processFail': {
+        processName: string;
+        error: any;
+    };
+};
+export declare class Schedule extends Event<Channels> {
     private int;
     private isStop;
     private lastTime;

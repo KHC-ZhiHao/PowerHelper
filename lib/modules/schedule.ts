@@ -1,4 +1,4 @@
-import { Base } from '../module-base'
+import { Event } from './event'
 
 type Info = {
     /** 程序名稱 */
@@ -18,7 +18,14 @@ type Process = {
     handler: () => Promise<any>
 }
 
-export class Schedule extends Base {
+type Channels = {
+    'processFail': {
+        processName: string
+        error: any
+    }
+}
+
+export class Schedule extends Event<Channels> {
     private int = setInterval(() => this.run(), 100)
     private isStop = false
     private lastTime = Date.now()
@@ -46,7 +53,10 @@ export class Schedule extends Base {
                     })
                     .catch(e => {
                         process.runningTime = null
-                        this.$devWarn(process.name, e)
+                        this.emit('processFail', {
+                            processName: process.name,
+                            error: e
+                        })
                     })
             }
         }

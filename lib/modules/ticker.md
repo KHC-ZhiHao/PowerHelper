@@ -41,3 +41,16 @@ function play(): void
 /** 關閉 Interval 的執行 */
 function close(): void
 ```
+
+### Event
+
+#### next
+
+執行下一階段時觸發。
+
+```ts
+const eventData: {
+    delta: number
+    timeGap: number
+}
+```

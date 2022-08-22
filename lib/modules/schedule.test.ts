@@ -72,6 +72,18 @@ describe('Schedule', () => {
         expect(flag).to.equal(true)
         schedule.close()
     })
+    it('error process', function(done) {
+        let schedule = new Schedule()
+        schedule.on('processFail', ({ processName, error }) => {
+            expect(error).to.equal('ouo')
+            expect(processName).to.equal('test')
+            schedule.close()
+            done()
+        })
+        schedule.add('test', 100, async() => {
+            throw 'ouo'
+        })
+    })
     it('error remove', async function() {
         let flag = false
         let schedule = new Schedule()

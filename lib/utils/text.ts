@@ -75,9 +75,9 @@ export function replaceVar<
                 if (isEnd) {
                     i += end.length - 1
                     // @ts-ignore
-                    let data = vars[varKey.trim()]
+                    let data = vars ? vars[varKey.trim()]?.toString() : null
                     if (data) {
-                        output += data.toString()
+                        output += data
                     } else if (dafaultVar) {
                         output += dafaultVar
                     }

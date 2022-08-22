@@ -91,5 +91,23 @@ describe('String', () => {
             vars: {}
         })
         expect(result7).to.equal('我是{{ 狗動物')
+        let result8 = replaceVar({
+            start: '{',
+            end: '}',
+            text: '我是{狗}，你是{豬}，大家都是{哺乳}動物',
+            // @ts-ignore
+            vars: null
+        })
+        expect(result8).to.equal('我是，你是，大家都是動物')
+        let result9 = replaceVar({
+            start: '{',
+            end: '}',
+            text: '我是{狗}',
+            // @ts-ignore
+            vars: {
+                '狗': 0
+            }
+        })
+        expect(result9).to.equal('我是0')
     })
 })
