@@ -74,6 +74,8 @@ export const retry = async<T extends (index: number) => Promise<any>>(params: {
     throw fails
 }
 
+/** 非同步迴圈 */
+
 export const asyncWhile = async(cb: (context: {
     count: number
     doBreak: () => void

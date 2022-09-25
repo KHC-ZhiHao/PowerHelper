@@ -28,19 +28,27 @@
 
 <br>
 
-Power Helper 是常用的工具集成，包括 Module，TS Type、Utils，因為功能簡單且不需要任何依賴項目，因此極為精簡。
+Power Helper 是常用的工具集成，包括 Utils、Module、TS Type，功能簡單且不需要任何依賴項目，因此極為精簡。
 
-你可把他想像成是一種稍微複雜點的 Lodash，在稍微複雜化的前後端環境中能用上本套件 50% 以上的功能。
+你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能。
 
 ## 安裝
 
+### npm
+
 ```bash
-npm install power-helper --save
+npm install power-helper
+```
+
+### yarn
+
+```bash
+yarn add power-helper
 ```
 
 ## TypeScript 環境
 
-PowerHelper 完整支援 TypeScript 環境，並且建議你在 TypeScript 中進行開發，因為考慮到效能上的增減，PowerHelper 只依賴 TypeScript 進行資料型態的檢查。
+PowerHelper 完整支援 TypeScript 環境，並且建議你在 TypeScript 中進行開發，同時 PowerHelper 大量依賴 TypeScript 進行資料型態的檢查。
 
 ## 如何使用？
 
@@ -74,7 +82,7 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 
 ### Modules
 
-基本上是一組提供繼承的 Class，也可以單獨使用。
+更強大的複合工具。
 
 ```ts
 // modules
@@ -84,7 +92,9 @@ const log = new Log('my-first-log')
 
 [Log](./lib/modules/log.md)
 
-[Hook](./lib/modules/hook.md)
+[Hook](./lib/modules/hook.md) - 基於非同步架構的事件。
+
+[I18n](./lib/modules/i18n.md) - 多語系操作系統。
 
 [Cache](./lib/modules/cache.md)
 
@@ -118,12 +128,7 @@ const log = new Log('my-first-log')
 
 ### Types
 
-將複雜的型態方案進行封裝，提高開發的安全性與效率，當然為了保持包的輕便性，想要更強大的表達式可以使用以下套件。
-
-[utility-types](https://www.npmjs.com/package/utility-types)
-
-[ts-essentials](https://github.com/krzkaczor/ts-essentials)
-
+將複雜的型態方案進行封裝，提高開發的安全性與效率。
 ``` ts
 // types
 import type { YYYYMMDDFormat } from 'power-helper/types/date'
@@ -137,3 +142,9 @@ const birthday: YYYYMMDDFormat = '2021-01-01'
 [string](./types/string.md)
 
 [record](./types/record.md)
+
+Types 只是一種開發 module 時順手的包裝，想要更強大的表達式可以使用以下套件：
+
+[utility-types](https://www.npmjs.com/package/utility-types)
+
+[ts-essentials](https://github.com/krzkaczor/ts-essentials)

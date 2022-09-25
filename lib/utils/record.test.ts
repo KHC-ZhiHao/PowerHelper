@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { setMapValue } from './record'
+import { setMapValue, createStrictObject } from './record'
 
 describe('Record', () => {
     it('basic', async function() {
@@ -56,5 +56,87 @@ describe('Record', () => {
         })
         // @ts-ignore
         expect(data.c.j).to.equal('7')
+    })
+    it('createStrictObject', function() {
+        let flag = false
+        let env = createStrictObject({
+           isProd: [Boolean, true, 'true'],
+           baseUrl: [String, true, 'http://hello'],
+           port: [Number, true, '8080'],
+           count: [Number, true, 1234],
+           isLocal: [Boolean, false, null, false]
+        })
+        expect(env.isProd).to.equal(true)
+        expect(env.isLocal).to.equal(false)
+        expect(env.baseUrl).to.equal('http://hello')
+        expect(env.port).to.equal(8080)
+        expect(env.count).to.equal(1234)
+        try {
+            // @ts-ignore
+            env.isProd = false
+        } catch (error) {
+            flag = true
+        }
+        expect(flag).to.equal(true)
+    })
+    it('createStrictObject Fail', function() {
+        let flag = 0
+        try {
+            createStrictObject({
+                isProd: [Boolean, true, '123']
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('not a boolean')
+            flag += 1
+        }
+        try {
+            createStrictObject({
+                isProd: [Boolean, true, null]
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('is required')
+            flag += 1
+        }
+        try {
+            createStrictObject({
+                isProd: [String, true, 123]
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('not a string')
+            flag += 1
+        }
+        try {
+            createStrictObject({
+                isProd: [String, true, '']
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('no content')
+            flag += 1
+        }
+        try {
+            createStrictObject({
+                isProd: [Number, true, true]
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('not a number')
+            flag += 1
+        }
+        try {
+            createStrictObject({
+                isProd: [Number, true, '12A']
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('is NaN')
+            flag += 1
+        }
+        try {
+            createStrictObject({
+                isProd: [Boolean, true, 1234]
+             })
+        } catch (error) {
+            expect((error as any).message).to.contain('output value not a true or false')
+            flag += 1
+        }
+        expect(flag).to.equal(7)
     })
 })

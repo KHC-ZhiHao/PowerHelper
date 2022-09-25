@@ -8,6 +8,7 @@ import * as _record from './utils/record'
 import * as _element from './utils/element'
 
 import { Log as _Log } from './modules/log'
+import { I18n as _I18n } from './modules/i18n'
 import { Hook as _Hook } from './modules/hook'
 import { Event as _Event } from './modules/event'
 import { Cache as _Cache } from './modules/cache'
@@ -35,6 +36,7 @@ export const detect = _detect
 export const element = _element
 
 export type Log = _Log
+export type I18n<L extends string, K extends string> = _I18n<L, K>
 export type Hook<Channels extends Record<string, Record<string, any>>> = _Hook<Channels>
 export type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>
 export type Cache<Params, Response> = _Cache<Params, Response>
@@ -53,6 +55,7 @@ export type PromiseOverlap<PickType> = _PromiseOverlap<PickType>
 export type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>
 
 export const Log = _Log
+export const I18n = _I18n
 export const Hook = _Hook
 export const Event = _Event
 export const Cache = _Cache
@@ -80,6 +83,7 @@ export const PowerHelper = {
     detect,
     element,
     Log,
+    I18n,
     Hook,
     Event,
     Cache,
