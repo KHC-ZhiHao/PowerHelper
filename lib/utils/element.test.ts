@@ -1,8 +1,10 @@
-import { importScript } from './element'
+import { expect } from 'chai'
+import { importScript, isBreakpoint } from './element'
 
 describe('Element', () => {
     beforeEach(() => {
         const window = {
+            innerWidth: 768,
             document: {
                 body: {
                     appendChild: (el: any) => el.onload()
@@ -31,5 +33,8 @@ describe('Element', () => {
     })
     it('importScript same', async function() {
         await importScript('./html')
+    })
+    it('is breakpoint basic', function() {
+        expect(isBreakpoint('sm-and-up')).to.equal(true) 
     })
 })
