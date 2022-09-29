@@ -8,14 +8,17 @@ type Pick<P, R> = (params: P, context: PickContext) => Promise<R>
 
 class CacheItem<T> {
     readonly data: T
+    index: number
     keepAlive: number
     createdAt: number = Date.now()
-    constructor(data: T, keepAlive: number) {
+    constructor(data: T, index: number, keepAlive: number) {
         this.data = data
+        this.index = index
         this.keepAlive = keepAlive
     }
+
     isExpired() {
-        return this.createdAt + this.keepAlive < Date.now()
+        return (this.createdAt + this.keepAlive) < Date.now()
     }
 }
 
@@ -28,6 +31,8 @@ type Channels<T> = {
 export class Cache<P, R> extends Event<Channels<R>> {
     private event = new Event()
     private key: (params: P) => string
+    private index = 0
+    private maxSize: number
     private pick: Pick<P, R>
     private keepAlive: number
     private items: Map<string, CacheItem<R>> = new Map()
@@ -38,17 +43,41 @@ export class Cache<P, R> extends Event<Channels<R>> {
         pick: Pick<P, R>
         /** 每筆資料的存活時間，超過則重取，單位:毫秒 */
         keepAlive?: number
+        /** 最多存取幾筆資料，超過則會刪除最舊的資料 */
+        maxSize?: number
     }) {
         super()
         this.key = params.key
         this.pick = params.pick
-        this.keepAlive = params.keepAlive == null ? 60 * 1000 * 5 : params.keepAlive
+        this.maxSize = params.maxSize || Infinity
+        this.keepAlive = params.keepAlive == null ? Infinity : params.keepAlive
+    }
+
+    private refresh() {
+        if (this.keepAlive !== Infinity) {
+            this.removeExpired()
+        }
+        if (this.maxSize !== Infinity) {
+            if (this.items.size > this.maxSize) {
+                let diff = this.items.size - this.maxSize
+                let items = [...this.items.entries()].sort((a, b) => a[1].index > b[1].index ? 1 : -1).slice(0, diff)
+                for (let item of items) {
+                    this.removeByKey(item[0])
+                }
+            }
+        }
     }
 
     /** 獲取所有的 Cache 鍵值 */
 
     keys() {
         return Array.from(this.items.keys())
+    }
+
+    /** 獲取 Cache 的資料長度 */
+
+    size() {
+        return this.items.size
     }
 
     /** 清空所有 Cache。 */
@@ -67,7 +96,7 @@ export class Cache<P, R> extends Event<Channels<R>> {
         this.removeByKey(key)
     }
 
-    /** 清除過期的 Cache。 */
+    /** 手動清除過期的 Cache。 */
 
     removeExpired() {
         for (let [key, data] of this.items) {
@@ -96,12 +125,15 @@ export class Cache<P, R> extends Event<Channels<R>> {
 
     private setByKey(key: string, data: R) {
         this.removeByKey(key)
-        this.items.set(key, new CacheItem(data, this.keepAlive))
+        this.index += 1
+        this.items.set(key, new CacheItem(data, this.index, this.keepAlive))
+        this.refresh()
     }
 
     /** 獲取指定參數的值。 */
 
     get(params: P): Promise<R> {
+        this.refresh()
         return new Promise((resolve, reject) => {
             let key = this.key(params)
             let item = this.items.get(key)
@@ -116,7 +148,7 @@ export class Cache<P, R> extends Event<Channels<R>> {
             if (this.event.getChannelListenerSize(channel) === 1) {
                 this.pick(params, { key })
                     .then(item => {
-                        this.event.emit(channel, item)
+                        this.event.emit(channel, item as any)
                         this.setByKey(key, item)
                     })
                     .catch(reject)

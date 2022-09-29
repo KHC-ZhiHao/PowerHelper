@@ -27,6 +27,22 @@ export const randomInt = (min: number, max: number) => {
 }
 
 /**
+ * 建立一組隨機的 v4 uuid
+ */
+
+export const createUuid = () => {
+    if (typeof crypto !== 'undefined') {
+        return crypto.randomUUID()
+    }
+    let now = Date.now()
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        let r = (now + Math.random() * 16) % 16 | 0
+        now = Math.floor(now / 16)
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16)
+    })
+}
+
+/**
  * 反覆執行直到成功為止
  */
 

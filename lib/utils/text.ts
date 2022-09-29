@@ -101,3 +101,25 @@ export function replaceVar<
     }
     return isStart ? output + start + varKey : output
 }
+
+/**
+ * 轉換字串轉換成指定格式。
+ * @example
+ * // output: '0900-123-***'
+ * format('vvvv-vvv-***', '0900123456')
+ */
+
+export const format = (format: string, text: string, def = '-') => {
+    let index = 0
+    let output = ''
+    for (let i = 0; i < format.length; i++) {
+        let t = format[i]
+        if (t === 'v') {
+            output += text[index] == null ? def : text[index]
+            index += 1
+        } else {
+            output += format[i]
+        }
+    }
+    return output
+}

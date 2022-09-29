@@ -16,15 +16,8 @@ for (let i = -360; i < 360; i++) {
 
 export const helper = {
 
-    arc,
-    rarc,
-
-    /**
-     * 指定的值如果是 null，則回傳預設值
-     */
-
-    ifEmpty<T>(data: T | undefined, def: T): T {
-        return (data != null ? data : def)
+    minToMs(min: number) {
+        return 1000 * 60 * min
     },
 
     /**
@@ -63,14 +56,6 @@ export const helper = {
     },
 
     /**
-     * 求整數範圍內的隨機值
-     */
-
-    randInt(min: number, max: number) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-    },
-
-    /**
      * 求兩點角度
      */
 
@@ -80,40 +65,6 @@ export const helper = {
         }
         let angle = Math.atan2(ay - y, ax - x) * rarc
         return angle > 0 ? angle : 360 + angle
-    },
-
-    /**
-     * 獲取指定點旋轉後角度的新座標
-     */
-
-    getRotationPosition(px: number, py: number, x: number, y: number, angle: number) {
-        let s = helper.sinByRad(angle)
-        let c = helper.cosByRad(angle)
-        return {
-            x: (x - px) * c - (y - py) * s + px,
-            y: (x - px) * s + (y - py) * c + py
-        }
-    },
-
-    /**
-     * 檢測目前螢幕裝置大小
-     */
-
-    getVisibility() {
-        let width = window.screen.availWidth
-        if (width < 600) {
-            return 'xs'
-        }
-        if (width >= 600 && width < 960) {
-            return 'sm'
-        }
-        if (width >= 960 && width < 1264) {
-            return 'md'
-        }
-        if (width >= 1264 && width < 1904) {
-            return 'lg'
-        }
-        return 'xl'
     },
 
     /**
@@ -135,21 +86,34 @@ export const helper = {
         return Math.sqrt(Math.pow((x - x2), 2) + Math.pow((y - y2), 2))
     },
 
-    /** 重新調整圖片大小 */
+    /**
+     * 經緯度
+     * @param unit K = 英里 N = 公里
+     */
 
-    imageResize(image: HTMLImageElement, scale: number): Promise<HTMLImageElement> {
-        return new Promise((resolve, reject) => {
-            let canvas = document.createElement('canvas')
-            canvas.width = image.width * scale
-            canvas.height = image.height * scale
-            let context = canvas.getContext('2d')!
-            context.drawImage(image, 0, 0, canvas.width, canvas.height)
-            let newImage = new Image()
-            newImage.onload = () => resolve(newImage)
-            newImage.onerror = (error) => reject(error)
-            newImage.src = canvas.toDataURL()
-        })
+    getGeoDistance(lat1: number, lon1: number, lat2: number, lon2: number, unit: 'N' | 'K' = 'K') {
+        if ((lat1 === lat2) && (lon1 === lon2)) {
+            return 0
+        } else {
+            let theta = lon1 - lon2
+            let radlat1 = Math.PI * lat1 / 180
+            let radlat2 = Math.PI * lat2 / 180
+            let radtheta = Math.PI * theta / 180
+            let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta)
+            if (dist > 1) {
+                dist = 1
+            }
+            dist = Math.acos(dist)
+            dist = dist * 180 / Math.PI
+            dist = dist * 60 * 1.1515
+            dist = dist * 60 * 1.1515
+            if (unit === 'K') {
+                dist = dist * 1.609344
+            }
+            if (unit === 'N') {
+                dist = dist * 0.8684
+            }
+            return dist
+        }
     }
-
-    /** 經緯度 */
 }

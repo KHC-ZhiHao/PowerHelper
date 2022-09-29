@@ -71,20 +71,6 @@ let [r1, r2] = await Promise.all([
 console.log(r1 === r2) // true
 ```
 
-### 永不過期
-
-並沒有開關可以選擇是否不過其，但可以指定 keepAlive 為 Infinity。
-
-```ts
-import { Cache, flow } from 'power-helper'
-
-let cache = new Cache<Params, Response>({
-    keepAlive: Infinity,
-    key: params => params.name,
-    pick: async params => params
-})
-```
-
 ### Constructor
 
 ```ts
@@ -92,7 +78,8 @@ let cache = new Cache<Params, Response>({
  * @param {object} params
  * @param {(params: Params) => string} params.key 將參數轉換成唯一鍵
  * @param {(params: Params, context: PickContext) => Response} params.pick 如果鍵值不存在則如何獲取資料
- * @param {number} [params.keepAlive = 300000] 每筆資料的存活時間，超過則重取，單位:毫秒
+ * @param {number} [params.keepAlive = Infinity] 每筆資料的存活時間，超過則重取，單位:毫秒
+ * @param {number} [params.maxSize = Infinity] 最多存取幾筆資料，超過則會刪除最舊的資料
  */
 class Cache<Params, Response> {
     constructor(params)
@@ -107,6 +94,9 @@ Extends: [Event](./event.md)
 /** 獲取目前所有 Cache 的鍵值。 */
 function keys(): string[]
 
+/** 獲取 Cache 的資料長度 */
+function size(): number
+
 /** 清空所有 Cache。 */
 function clear(): void
 
@@ -119,7 +109,7 @@ function set(params: Params, value: Response): void
 /** 獲取指定參數的值。 */
 function get(params: Params): Response
 
-/** 清除過期的 Cache */
+/** 手動清除過期的 Cache */
 function removeExpired(): void
 ```
 

@@ -39,4 +39,13 @@ text.replaceVar = function(params: {
     // 如果沒有定義變數則覆蓋預設值
     dafaultVar?: string
 }): string;
+
+/**
+ * 轉換字串轉換成指定格式。
+ * @example
+ * // output: '0900-123-***'
+ * format('vvvv-vvv-***', '0900123456')
+ */
+
+text.format = function(format: string, text: string, def: string = '-'): string;
 ```

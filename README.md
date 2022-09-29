@@ -90,7 +90,7 @@ import { Log } from 'power-helper'
 const log = new Log('my-first-log')
 ```
 
-[Log](./lib/modules/log.md)
+[Log](./lib/modules/log.md) - 可以更多變化的 Log。
 
 [Hook](./lib/modules/hook.md) - 基於非同步架構的事件。
 
@@ -112,7 +112,13 @@ const log = new Log('my-first-log')
 
 [Reactive](./lib/modules/reactive.md)
 
+[Exception](./lib/modules/exception.md)
+
 [CacheLite](./lib/modules/cache-lite.md)
+
+[Breakpoint](./lib/modules/breakpoint.md)
+
+[Interaction](./lib/modules/interaction.md)
 
 [StyleString](./lib/modules/style-string.md)
 

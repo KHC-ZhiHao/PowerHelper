@@ -25,6 +25,9 @@ import { ElementListenerGroup as _ElementListenerGroup } from './modules/element
 import { WebSocketClient as _WebSocketClient } from './modules/websocket'
 import { PromiseOverlap as _PromiseOverlap } from './modules/promise-overlap'
 import { CacheLite as _CacheLite } from './modules/cache-lite'
+import { Breakpoint as _Breakpoint } from './modules/breakpoint'
+import { Exception as _Exception } from './modules/exception'
+import { Interaction as _Interaction } from './modules/interaction'
 
 export const pick = _pick
 export const flow = _flow
@@ -46,13 +49,16 @@ export type Loader<Data> = _Loader<Data>
 export type Schedule = _Schedule
 export type Debounce<InputValue> = _Debounce<InputValue>
 export type StyleString = _StyleString
-export type LocalStorage<Columns> = _LocalStorage<Columns>
+export type LocalStorage<Columns extends Record<string, any>> = _LocalStorage<Columns>
 export type ElementListenerGroup<El extends Element | Document | Window> = _ElementListenerGroup<El>
 export type QueryCollection<Params, Response> = _QueryCollection<Params, Response>
-export type WebSocketClient<Pub, Sub> = _WebSocketClient<Pub, Sub>
+export type WebSocketClient<Pub extends Record<string, any>, Sub> = _WebSocketClient<Pub, Sub>
 export type Reactive<Target extends Record<string, any>> = _Reactive<Target>
 export type PromiseOverlap<PickType> = _PromiseOverlap<PickType>
 export type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>
+export type Exception = _Exception
+export type Breakpoint = _Breakpoint
+export type Interaction = _Interaction
 
 export const Log = _Log
 export const I18n = _I18n
@@ -72,6 +78,9 @@ export const WebSocketClient = _WebSocketClient
 export const Reactive = _Reactive
 export const PromiseOverlap = _PromiseOverlap
 export const CacheLite = _CacheLite
+export const Breakpoint = _Breakpoint
+export const Exception = _Exception
+export const Interaction = _Interaction
 
 export const PowerHelper = {
     flow,
@@ -93,8 +102,11 @@ export const PowerHelper = {
     Schedule,
     Debounce,
     Reactive,
+    Exception,
     CacheLite,
+    Breakpoint,
     StyleString,
+    Interaction,
     LocalStorage,
     PromiseOverlap,
     QueryCollection,

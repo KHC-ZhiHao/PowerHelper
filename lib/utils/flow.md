@@ -40,4 +40,7 @@ flow.retry = function(params: {
     /** 總執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
     action: (index: number) => Promise<any>
 }): Promise<any>;
+
+/** 建立一組隨機的 v4 uuid */
+flow.createUuid = function(): string;
 ```

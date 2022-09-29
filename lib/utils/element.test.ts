@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { importScript, isBreakpoint } from './element'
+import { importScript } from './element'
 
 describe('Element', () => {
     beforeEach(() => {
@@ -33,8 +33,5 @@ describe('Element', () => {
     })
     it('importScript same', async function() {
         await importScript('./html')
-    })
-    it('is breakpoint basic', function() {
-        expect(isBreakpoint('sm-and-up')).to.equal(true) 
     })
 })

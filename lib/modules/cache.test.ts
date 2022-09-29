@@ -174,4 +174,23 @@ describe('Cache', () => {
         await cache.get({ name: '125', value: '1' })
         expect(JSON.stringify(cache.keys())).to.equal('["123","124","125"]')
     })
+    it('size', async function() {
+        let count = 0
+        let cache = new Cache<{ name: string }, number>({
+            key: params => params.name,
+            maxSize: 3,
+            pick: async () => {
+                count += 1
+                return count
+            }
+        })
+        await cache.get({ name: '1' })
+        await cache.get({ name: '2' })
+        await cache.get({ name: '3' })
+        expect(cache.size()).to.equal(3)
+        await cache.get({ name: '4' })
+        await cache.get({ name: '5' })
+        expect(cache.size()).to.equal(3)
+        expect(cache.keys().join()).to.equal('3,4,5')
+    })
 })

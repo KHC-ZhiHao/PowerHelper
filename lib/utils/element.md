@@ -11,14 +11,4 @@ import { element } from 'power-helper'
  * @BrowserOnly
  */
 element.importScript = function(url: string) => Promise<null>;
-
-/**
- * 獲取視窗是否符合斷點資格
- * @BrowserOnly
- */
-
-element.isBreakpoint = function(
-    breakpoint: `${'xs' | 'sm' | 'md' | 'lg'}-${'only' | 'and-up' | 'and-down'}`,
-    el: HTMLElement = window
-) => boolean;
 ```
