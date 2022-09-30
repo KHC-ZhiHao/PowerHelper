@@ -1,6 +1,6 @@
 # Loader
 
-讓 Promise.all 可以透過更好的 UI 呈現。
+可以搜集並發出多個 Promise 的加載元件。
 
 ## 如何使用
 

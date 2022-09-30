@@ -28,7 +28,7 @@
 
 <br>
 
-Power Helper 是常用的工具集成，包括 Utils、Module、TS Type，功能簡單且不需要任何依賴項目，因此極為精簡。
+Power Helper 是常用的工具集成，包括 Utils、Module、TS Type，功能簡單且無任何依賴項目，極為精簡。
 
 你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能。
 
@@ -96,41 +96,41 @@ const log = new Log('my-first-log')
 
 [I18n](./lib/modules/i18n.md) - 多語系操作系統。
 
-[Cache](./lib/modules/cache.md)
+[Cache](./lib/modules/cache.md) - 可以將指定參數請求進行有期限的固定資料存取。
 
-[Event](./lib/modules/event.md)
+[Event](./lib/modules/event.md) - 基礎的 Pub/Sub 的架構模塊。
 
-[Timer](./lib/modules/timer.md)
+[Timer](./lib/modules/timer.md) - 一組計時器，可以正向也可以反向計時。
 
-[Ticker](./lib/modules/ticker.md)
+[Ticker](./lib/modules/ticker.md) - 就如同 setInterval (實際上也是) 一樣運作，只是你可以監聽好幾組事件。
 
-[Loader](./lib/modules/loader.md)
+[Loader](./lib/modules/loader.md) - 可以搜集並發出多個 Promise 的加載元件。
 
-[Debounce](./lib/modules/debounce.md)
+[Debounce](./lib/modules/debounce.md) - 去抖動功能，避免頻繁發出請求。
 
-[Schedule](./lib/modules/schedule.md)
+[Schedule](./lib/modules/schedule.md) - 可以建立多個定時執行系統，且能保證不重複執行。
 
-[Reactive](./lib/modules/reactive.md)
+[Reactive](./lib/modules/reactive.md) - 透過輪詢的方法監聽物件有沒有發生變動。
 
-[Exception](./lib/modules/exception.md)
+[Exception](./lib/modules/exception.md) - 高階的錯誤訊息處理工具。
 
-[CacheLite](./lib/modules/cache-lite.md)
+[CacheLite](./lib/modules/cache-lite.md) - 指定鍵值並同步的存取，非常近似 Map，但是有 TTL。
 
-[Breakpoint](./lib/modules/breakpoint.md)
+[Breakpoint](./lib/modules/breakpoint.md) - 斷點驗證工具。
 
-[Interaction](./lib/modules/interaction.md)
+[Interaction](./lib/modules/interaction.md) - 建立可監聽、追蹤、可搭配視圖化的訊息整合工具。
 
-[StyleString](./lib/modules/style-string.md)
+[StyleString](./lib/modules/style-string.md) - 方便組合出 HTML Element Style 的工具。
 
-[LocalStorage](./lib/modules/local-storage.md)
+[LocalStorage](./lib/modules/local-storage.md) - 協助你在複雜的網頁應用程式中更安全的操作 LocalStorage。
 
-[PromiseOverlap](./lib/modules/promise-overlap.md)
+[PromiseOverlap](./lib/modules/promise-overlap.md) - 控制多次發出相同 Promise 時只獲取第一次或是最後一次的結果。
 
-[QueryCollection](./lib/modules/query-collection.md)
+[QueryCollection](./lib/modules/query-collection.md) - 一定時間內蒐集資料並統一發出。
 
-[WebSocketClient](./lib/modules/websocket.md)
+[WebSocketClient](./lib/modules/websocket.md) - 更高階的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
 
-[ElementListenerGroup](./lib/modules/element-listener-group.md)
+[ElementListenerGroup](./lib/modules/element-listener-group.md) - 將 element 的 addEventListener 昇華到更好操作的階段。
 
 ### Types
 
