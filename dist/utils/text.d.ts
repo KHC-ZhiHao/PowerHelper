@@ -32,3 +32,10 @@ export declare function replaceVar<S extends string, E extends string, T extends
     /** 如果沒有定義變數則覆蓋預設值 */
     dafaultVar?: string;
 }): string;
+/**
+ * 轉換字串轉換成指定格式。
+ * @example
+ * // output: '0900-123-***'
+ * format('vvvv-vvv-***', '0900123456')
+ */
+export declare const format: (format: string, text: string, def?: string) => string;

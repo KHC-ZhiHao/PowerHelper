@@ -12,6 +12,10 @@ export declare const randomPick: <T extends unknown>(items: T[]) => T;
  */
 export declare const randomInt: (min: number, max: number) => number;
 /**
+ * 建立一組隨機的 v4 uuid
+ */
+export declare const createUuid: () => string;
+/**
  * 反覆執行直到成功為止
  */
 export declare const retry: <T extends (index: number) => Promise<any>>(params: {
@@ -30,6 +34,7 @@ export declare const retry: <T extends (index: number) => Promise<any>>(params: 
     /** 總執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
     action: T;
 }) => Promise<PromiseResponseType<T, Parameters<ReturnType<T>["then"]>[0]>>;
+/** 非同步迴圈 */
 export declare const asyncWhile: (cb: (context: {
     count: number;
     doBreak: () => void;
