@@ -12,7 +12,7 @@ type Data = {
 }
 
 let user = null
-let userLoader = new Loader<Data>()
+let userLoader = new Loader<Data>('fetch user')
 
 // 加入一個非同步載入
 userLoader.push('fetch', async({ name }) => {
@@ -37,7 +37,7 @@ console.log(userLoader.loading) // true
 
 ```ts
 class Loader<Data> {
-    constructor()
+    constructor(name = 'no_name')
 }
 ```
 
@@ -50,6 +50,8 @@ Extends: [Event](./event.md)
 function push(name: string, handler: (data: any) => Promise<any>): void
 /** 執行所有已註冊的事件 */
 function start(data: any): Promise<any>
+/** 重置 Loader 狀態，只有在 done 為 true 才能執行 */
+function reset(): Loader
 /** 註冊事件長度 */
 const size: Readonly<number>
 /** 已完成事件 */
@@ -94,6 +96,7 @@ const eventData: {}
 const eventData: {
     name: string
     result: any
+    loaderName: string
 }
 ```
 
@@ -107,6 +110,7 @@ const eventData: {
         isPowerHelperLoader: true
         name: string
         error: any
+        loaderName: string
     }
 }
 ```

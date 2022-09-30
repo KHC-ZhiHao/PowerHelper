@@ -99,4 +99,37 @@ describe('Loader', () => {
             done()
         }
     })
+    it('reset', async function() {
+        let loader = new Loader<{ name: string }>()
+        loader.push('test', async({ name }) => {
+            await sleep(100)
+            return {
+                name
+            }
+        })
+        expect(loader.done).to.equal(false)
+        await loader.start({
+            name: '123'
+        })
+        expect(loader.done).to.equal(true)
+        loader.reset()
+        expect(loader.done).to.equal(false)
+    })
+    it('reset error', async function() {
+        let flag = ''
+        let loader = new Loader<{ name: string }>('123')
+        loader.push('test', async({ name }) => {
+            await sleep(100)
+            return {
+                name
+            }
+        })
+        try {
+            loader.reset()
+        } catch (error) {
+            // @ts-ignore
+            flag = error.message
+        }
+        expect(flag).to.contain('Loader 123 call "reset" must called s')
+    })
 })

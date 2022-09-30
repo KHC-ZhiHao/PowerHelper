@@ -4,6 +4,7 @@ type FailError = {
     isPowerHelperLoader: true
     name: string
     error: any
+    loaderName: string
 }
 
 type Channels = {
@@ -15,6 +16,7 @@ type Channels = {
     complete: {
         name: string
         result: any
+        loaderName: string
     }
 }
 
@@ -24,6 +26,7 @@ type LoaderItem<T> = {
 }
 
 export class Loader<T> extends Event<Channels> {
+    private name: string
     private items: LoaderItem<T>[] = []
     private status = {
         isDone: false,
@@ -32,6 +35,12 @@ export class Loader<T> extends Event<Channels> {
         complete: 0,
         fail: null
     }
+
+    constructor(name = 'no_name') {
+        super()
+        this.name = name
+    }
+
     get size() {
         return this.items.length
     }
@@ -56,7 +65,7 @@ export class Loader<T> extends Event<Channels> {
     push(name: string, handler: (data: T) => Promise<any>) {
         let has = this.items.find(e => e.name === name)
         if (has) {
-            this.$devError('push', `Name ${name} already exists.`)
+            this.$devError('push', `Loader ${name} push name ${name} already exists.`)
         }
         this.items.push({
             name,
@@ -64,11 +73,27 @@ export class Loader<T> extends Event<Channels> {
         })
     }
 
+    /** 重置 Loader 狀態，只有在 done 為 true 才能執行 */
+
+    reset() {
+        if (this.status.isDone === false) {
+            throw new Error(`Loader ${this.name} call "reset" must called start.`)
+        }
+        Object.assign(this.status, {
+            isDone: false,
+            isCalled: false,
+            isLoading: false,
+            complete: 0,
+            fail: null
+        })
+        return this
+    }
+
     /** 執行所有已註冊的事件 */
 
     start(data: T): Promise<Array<{ name: string, result: any }>> {
         if (this.status.isCalled) {
-            this.$devError('start', `Loader Already Called.`)
+            this.$devError('start', `Loader ${this.name} Already Called.`)
         }
         this.status.isCalled = true
         this.status.isLoading = true
@@ -81,7 +106,8 @@ export class Loader<T> extends Event<Channels> {
                         this.status.complete += 1
                         this.emit('complete', {
                             name,
-                            result
+                            result,
+                            loaderName: this.name,
                         })
                         return {
                             name,
@@ -90,6 +116,7 @@ export class Loader<T> extends Event<Channels> {
                     } catch (error) {
                         throw {
                             isPowerHelperLoader: true,
+                            loaderName: this.name,
                             name,
                             error
                         }
@@ -108,7 +135,9 @@ export class Loader<T> extends Event<Channels> {
                     this.status.isDone = true
                     this.status.isLoading = false
                     this.status.fail = error
-                    this.emit('fail', { error })
+                    this.emit('fail', {
+                        error
+                    })
                     reject(error)
                 })
         })
