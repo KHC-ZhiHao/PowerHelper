@@ -1,5 +1,5 @@
 import { Event } from './event';
-declare type StepTypes = 'step' | 'wrong' | 'notify';
+declare type StepTypes = 'step' | 'wrong' | 'notify' | 'fail';
 declare type StepLevel = 'info' | 'warning' | 'danger' | 'success';
 declare type Step = {
     type: StepTypes;
@@ -35,7 +35,11 @@ export declare class Interaction extends Event<Channels> {
      */
     step(message: string, meta?: any): void;
     /**
-     * 發出錯誤的訊息
+     * 發出錯誤的訊息，並回傳一組錯誤
+     */
+    fail(message: string, error: any): Error;
+    /**
+     * 發出錯誤的訊息，通常表示於整個應用程式發生錯誤
      */
     wrong(message: any): void;
     /**

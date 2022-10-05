@@ -1,7 +1,7 @@
 import { Event } from './event'
 import { DeepReadonly } from '../types/record'
 
-type StepTypes = 'step' | 'wrong' | 'notify'
+type StepTypes = 'step' | 'wrong' | 'notify' | 'fail'
 type StepLevel = 'info' | 'warning' | 'danger' | 'success'
 
 type Step = {
@@ -88,7 +88,22 @@ export class Interaction extends Event<Channels> {
     }
 
     /**
-     * 發出錯誤的訊息
+     * 發出錯誤的訊息，並回傳一組錯誤
+     */
+
+    fail(message: string, error: any) {
+        this.pushStep({
+            meta: error,
+            type: 'fail',
+            level: 'danger',
+            message,
+            checkoutAt: this.fullName
+        })
+        return error instanceof Error ? error : new Error(error)
+    }
+
+    /**
+     * 發出錯誤的訊息，通常表示於整個應用程式發生錯誤
      */
 
     wrong(message: any) {

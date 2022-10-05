@@ -52,8 +52,10 @@ Extends: [Event](./event.md)
 function each(cb: (_step: Step, _index: number) => void): void
 /** 增加一個階段訊息 */
 function setp(message: string, meta?: any): void
-/** 發出錯誤的訊息 */
+/** 發出錯誤的訊息，通常表示於整個應用程式發生錯誤 */
 function wrong(message: string): void
+/** 發出錯誤的訊息，並回傳一組錯誤 */
+function fail(message: string): Error
 /** 發出通知的訊息 */
 function notify(type: StepLevel, content: any): void
 ```
@@ -71,7 +73,7 @@ const eventData: Step
 ### Types
 
 ```ts
-type StepTypes = 'step' | 'wrong' | 'notify'
+type StepTypes = 'step' | 'wrong' | 'notify' | 'fail'
 type StepLevel = 'info' | 'warning' | 'danger' | 'success'
 type Step = {
     type: StepTypes

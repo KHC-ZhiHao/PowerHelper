@@ -31,7 +31,7 @@ export const randomInt = (min: number, max: number) => {
  */
 
 export const createUuid = () => {
-    if (typeof crypto !== 'undefined') {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
         return crypto.randomUUID()
     }
     let now = Date.now()
