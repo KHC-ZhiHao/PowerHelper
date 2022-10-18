@@ -14,6 +14,7 @@ import { Cache as _Cache } from './modules/cache';
 import { Timer as _Timer } from './modules/timer';
 import { Loader as _Loader } from './modules/loader';
 import { Ticker as _Ticker } from './modules/ticker';
+import { Resource as _Resource } from './modules/resource';
 import { Reactive as _Reactive } from './modules/reactive';
 import { Schedule as _Schedule } from './modules/schedule';
 import { Debounce as _Debounce } from './modules/debounce';
@@ -56,6 +57,7 @@ export declare type CacheLite<Handler extends (key: string) => any> = _CacheLite
 export declare type Exception = _Exception;
 export declare type Breakpoint = _Breakpoint;
 export declare type Interaction = _Interaction;
+export declare type Resource = _Resource;
 export declare const Log: typeof _Log;
 export declare const I18n: typeof _I18n;
 export declare const Hook: typeof _Hook;
@@ -77,6 +79,7 @@ export declare const CacheLite: typeof _CacheLite;
 export declare const Breakpoint: typeof _Breakpoint;
 export declare const Exception: typeof _Exception;
 export declare const Interaction: typeof _Interaction;
+export declare const Resource: typeof _Resource;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -97,6 +100,7 @@ export declare const PowerHelper: {
     Schedule: typeof _Schedule;
     Debounce: typeof _Debounce;
     Reactive: typeof _Reactive;
+    Resource: typeof _Resource;
     Exception: typeof _Exception;
     CacheLite: typeof _CacheLite;
     Breakpoint: typeof _Breakpoint;

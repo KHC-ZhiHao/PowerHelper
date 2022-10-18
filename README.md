@@ -2,7 +2,7 @@
 <p align="center"><img style="max-width: 300px" src="./logo.png"></p>
 
 <h1 align="center">Power Helper</h1>
-<h3 align="center">Javascript Utils Package</h3>
+<h3 align="center">優雅的 Javascript 工具組</h3>
 
 <p align="center">
     <a href="https://www.npmjs.com/package/power-helper">
@@ -107,6 +107,8 @@ const log = new Log('my-first-log')
 [Loader](./lib/modules/loader.md) - 可以搜集並發出多個 Promise 的加載元件。
 
 [Debounce](./lib/modules/debounce.md) - 去抖動功能，避免頻繁發出請求。
+
+[Resource](./lib/modules/resource.md) - 更優雅的實現獲取檔案路徑。
 
 [Schedule](./lib/modules/schedule.md) - 可以建立多個定時執行系統，且能保證不重複執行。
 

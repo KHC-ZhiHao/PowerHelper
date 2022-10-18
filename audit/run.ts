@@ -34,3 +34,7 @@ export const runWroker = (cb: WorkerCallback) => {
         }
     }
 }
+
+
+
+const runWasm = () => {}
