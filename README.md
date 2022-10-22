@@ -96,6 +96,8 @@ const log = new Log('my-first-log')
 
 [I18n](./lib/modules/i18n.md) - 多語系操作系統。
 
+[Pool](./lib/modules/pool.md) - 輕鬆發出請求與快取請求資料的資料池。
+
 [Cache](./lib/modules/cache.md) - 可以將指定參數請求進行有期限的固定資料存取。
 
 [Event](./lib/modules/event.md) - 基礎的 Pub/Sub 的架構模塊。

@@ -37,4 +37,7 @@ function url(source: string | File | Blob | MediaSource): string
 
 /** 將 url 轉換成 css style  */
 function backgroundStyle(source: string | File | Blob | MediaSource): `background-image: url(${string})`
+
+/** 如果取用過 File, Blob, MediaSource 等型態的 Url，需要釋放現有的快取資源 */
+function release(): void
 ```

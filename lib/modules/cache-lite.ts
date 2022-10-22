@@ -1,6 +1,4 @@
-import { Base } from '../module-base'
-
-export class CacheLite<T extends (key: string) => any> extends Base {
+export class CacheLite<T extends (key: string) => any> {
     private expTime: number
     private handler: T
     private lastUpdate = Date.now()
@@ -14,7 +12,6 @@ export class CacheLite<T extends (key: string) => any> extends Base {
      */
 
     constructor(expTime: number, cb: T) {
-        super()
         this.expTime = expTime
         this.handler = cb
     }

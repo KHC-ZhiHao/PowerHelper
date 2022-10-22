@@ -1,5 +1,3 @@
-import { Base } from '../module-base'
-
 type QueryCollectionParams<T, R> = {
     /** 發出請求前蒐集資料的時間，單位: 毫秒 */
     waitTime: number
@@ -7,7 +5,7 @@ type QueryCollectionParams<T, R> = {
     query: (collection: T[]) => Promise<R[]>
 }
 
-export class QueryCollection<T, R> extends Base {
+export class QueryCollection<T, R> {
     private params: QueryCollectionParams<T, R>
     private timeout: ReturnType<typeof setTimeout> | null = null
     private collection: {
@@ -16,7 +14,6 @@ export class QueryCollection<T, R> extends Base {
         reject: any
     }[] = []
     constructor(params: QueryCollectionParams<T, R>) {
-        super()
         this.params = params
     }
     /** 推送一筆資料進搜集器 */

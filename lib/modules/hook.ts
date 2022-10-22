@@ -1,5 +1,3 @@
-import { Base } from '../module-base'
-
 type ListenerContext = {
     /** 唯一並隨機的 Listener ID */
     id: string
@@ -22,7 +20,7 @@ class Listener<T> {
     private manager: Hook<any>
     isAfter = false
 
-    constructor(manager: Hook<any>, channel: string, callback: ListenerCallback<any>, isAfter: boolean) {
+    constructor(manager: Hook<any>, channel: string, callback: ListenerCallback<any>) {
         this.manager = manager
         this.channel = channel
         this.callback = callback
@@ -45,7 +43,7 @@ class Listener<T> {
     }
 }
 
-export class Hook<T extends Record<string, Record<string, any>>> extends Base {
+export class Hook<T extends Record<string, Record<string, any>>> {
     private listeners: Map<string, Listener<any>[]> = new Map()
 
     /** 發送資料至指定頻道 */
@@ -76,7 +74,7 @@ export class Hook<T extends Record<string, Record<string, any>>> extends Base {
 
     attach<K extends keyof T>(channel: K, callback: ListenerCallback<T[K]>) {
         let key = channel as string
-        let listener: Listener<T[K]> = new Listener(this, key, callback, false)
+        let listener: Listener<T[K]> = new Listener(this, key, callback)
         if (this.listeners.has(key) === false) {
             this.listeners.set(key, [])
         }

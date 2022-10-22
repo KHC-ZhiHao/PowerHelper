@@ -63,4 +63,18 @@ describe('Resource', () => {
         })
         expect(resource.backgroundStyle('banana.jpg')).eq('background-image: url(images/banana.jpg)')
     })
+    it('blob', function() {
+        mock(resource => {
+            // @ts-ignore
+            global.Blob = class {}
+            resource.url(new Blob())
+            // @ts-ignore
+            expect(resource.objectUrls.length).eq(1)
+            resource.release()
+            // @ts-ignore
+            expect(resource.objectUrls.length).eq(0)
+            // @ts-ignore
+            global.Blob = undefined
+        })
+    })
 })

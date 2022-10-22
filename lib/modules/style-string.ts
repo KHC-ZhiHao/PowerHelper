@@ -1,12 +1,10 @@
-import { Base } from '../module-base'
-
 type StyleKeys = keyof CSSStyleDeclaration
 
 function toStyleCase(key: string) {
     return key.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)
 }
 
-export class StyleString extends Base {
+export class StyleString {
     private styles: Record<string, string> = {}
 
     /** 寫入 key */

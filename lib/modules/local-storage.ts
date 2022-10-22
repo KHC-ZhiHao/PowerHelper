@@ -1,5 +1,3 @@
-import { Base } from '../module-base'
-
 type Intercept = {
     Set: (name: string, data: any) => any
     Get: (name: string, data: any, context: {
@@ -10,7 +8,7 @@ type Intercept = {
     }) => any
 }
 
-export class LocalStorage<T extends Record<string, any>> extends Base {
+export class LocalStorage<T extends Record<string, any>> {
     private options?: {
         storageSystem?: Storage
         defaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
@@ -36,7 +34,6 @@ export class LocalStorage<T extends Record<string, any>> extends Base {
             set?: Intercept['Set']
         }
     }) {
-        super()
         this.options = options
         this.storage = (typeof window === 'undefined' ? null : window.localStorage)!
         this.namespaces = namespaces

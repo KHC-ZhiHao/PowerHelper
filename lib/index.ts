@@ -29,6 +29,7 @@ import { CacheLite as _CacheLite } from './modules/cache-lite'
 import { Breakpoint as _Breakpoint } from './modules/breakpoint'
 import { Exception as _Exception } from './modules/exception'
 import { Interaction as _Interaction } from './modules/interaction'
+import { Pool as _Pool } from './modules/pool'
 
 export const pick = _pick
 export const flow = _flow
@@ -41,6 +42,7 @@ export const element = _element
 
 export type Log = _Log
 export type I18n<L extends string, K extends string> = _I18n<L, K>
+export type Pool<Params, Data> = _Pool<Params, Data>
 export type Hook<Channels extends Record<string, Record<string, any>>> = _Hook<Channels>
 export type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>
 export type Cache<Params, Response> = _Cache<Params, Response>
@@ -65,6 +67,7 @@ export type Resource = _Resource
 export const Log = _Log
 export const I18n = _I18n
 export const Hook = _Hook
+export const Pool = _Pool
 export const Event = _Event
 export const Cache = _Cache
 export const Timer = _Timer
@@ -97,6 +100,7 @@ export const PowerHelper = {
     Log,
     I18n,
     Hook,
+    Pool,
     Event,
     Cache,
     Timer,
