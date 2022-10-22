@@ -1,5 +1,7 @@
-const path = require('path')
-module.exports = {
+import ESLintPlugin from 'eslint-webpack-plugin'
+import path from 'path'
+
+export default {
     mode: 'production',
     entry: './lib/index.ts',
     output: {
@@ -18,13 +20,13 @@ module.exports = {
     resolve: {
         extensions: ['.ts']
     },
+    plugins: [
+        new ESLintPlugin({
+            files: 'lib/**/*.ts'
+        })
+    ],
     module: {
         rules: [
-            {
-                test: /\.ts$/,
-                enforce: 'pre',
-                use: 'tslint-loader'
-            },
             {
                 test: /\.ts$/,
                 use: 'ts-loader',

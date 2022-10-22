@@ -29,7 +29,7 @@ const nodeColors: Record<Color, string> = {
 export class Log extends Event<Channels> {
     private step = 0
     private name
-    private isSilence: boolean = false
+    private isSilence = false
     private defaultLogType: LogType = 'normal'
     constructor(name: string, options?: {
         /** 是否預設為 silence 狀態 */

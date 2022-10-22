@@ -14,8 +14,31 @@ export const sleep = (ms: number) => {
  * 隨機獲取陣列內的一個值
  */
 
-export const randomPick = <T extends any>(items: T[]): T => {
+export const randomPick = <T>(items: T[]): T => {
     return items[Math.floor(Math.random() * items.length)]
+}
+
+/**
+ * 隨機獲取陣列內的一個組
+ */
+
+export const randomPicks = <T>(take: number, items: T[]): T[] => {
+    if (items.length <= take) {
+        return items.slice()
+    }
+    let outputs: T[] = []
+    let loop = items.length * 100
+    while (loop > 0) {
+        loop -= 1
+        let item = randomPick(items)
+        if (outputs.includes(item) === false) {
+            outputs.push(item)
+        }
+        if (outputs.length >= take) {
+            break
+        }
+    }
+    return outputs
 }
 
 /**
@@ -46,14 +69,14 @@ export const createUuid = () => {
  * 反覆執行直到成功為止
  */
 
-export const retry = async<T extends (index: number) => Promise<any>>(params: {
+export const retry = async<T extends (_index: number) => Promise<any>>(params: {
     /**
      * 要重試幾次
      * @default 1
      */
     max?: number
     /** 錯誤時呼叫此事件 */
-    onFail?: (index: number, error: any) => void
+    onFail?: (_index: number, _error: any) => void
     /**
      * 每次錯誤重試間格的等待時間(毫秒)
      * @default 0
@@ -92,7 +115,7 @@ export const retry = async<T extends (index: number) => Promise<any>>(params: {
 
 /** 非同步迴圈 */
 
-export const asyncWhile = async(cb: (context: {
+export const asyncWhile = async(cb: (_context: {
     count: number
     doBreak: () => void
 }) => Promise<any>) => {
@@ -103,6 +126,7 @@ export const asyncWhile = async(cb: (context: {
             isBreak = true
         }
     }
+    // eslint-disable-next-line no-constant-condition
     while (true) {
         await cb(context)
         if (isBreak) {

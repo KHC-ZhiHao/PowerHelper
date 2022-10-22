@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 type Listeners = Record<string, {
     name: string
     lock: boolean

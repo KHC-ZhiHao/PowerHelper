@@ -48,7 +48,7 @@ export class CacheLite<T extends (key: string) => any> {
      * 獲取目標
      */
 
-    get(key: string = ''): ReturnType<T> {
+    get(key = ''): ReturnType<T> {
         this.gc()
         if (this.keyMap.has(key)) {
             return this.keyMap.get(key)!.data

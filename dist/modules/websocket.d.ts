@@ -22,9 +22,9 @@ declare type WebSocketParams<P extends Pub> = {
     /** 指定運行的 WebSocket Protocol */
     protocol?: string[];
     /** 接收到資料要執行什麼事 */
-    onMessage: (event: MessageEvent) => Promise<any>;
+    onMessage: (_event: MessageEvent) => Promise<any>;
     /** 發送資料前進行資料轉換 */
-    sendHandler: <K extends keyof P>(channel: K, data: P[K]) => Promise<any>;
+    sendHandler: <K extends keyof P>(_channel: K, _data: P[K]) => Promise<any>;
 };
 export declare class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
     _websocket: WebSocket;

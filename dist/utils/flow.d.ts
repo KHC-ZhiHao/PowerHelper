@@ -6,7 +6,11 @@ export declare const sleep: (ms: number) => Promise<unknown>;
 /**
  * 隨機獲取陣列內的一個值
  */
-export declare const randomPick: <T extends unknown>(items: T[]) => T;
+export declare const randomPick: <T>(items: T[]) => T;
+/**
+ * 隨機獲取陣列內的一個組
+ */
+export declare const randomPicks: <T>(take: number, items: T[]) => T[];
 /**
  * 求整數範圍內的隨機值
  */
@@ -18,14 +22,14 @@ export declare const createUuid: () => string;
 /**
  * 反覆執行直到成功為止
  */
-export declare const retry: <T extends (index: number) => Promise<any>>(params: {
+export declare const retry: <T extends (_index: number) => Promise<any>>(params: {
     /**
      * 要重試幾次
      * @default 1
      */
     max?: number | undefined;
     /** 錯誤時呼叫此事件 */
-    onFail?: ((index: number, error: any) => void) | undefined;
+    onFail?: ((_index: number, _error: any) => void) | undefined;
     /**
      * 每次錯誤重試間格的等待時間(毫秒)
      * @default 0
@@ -35,7 +39,7 @@ export declare const retry: <T extends (index: number) => Promise<any>>(params: 
     action: T;
 }) => Promise<PromiseResponseType<T, Parameters<ReturnType<T>["then"]>[0]>>;
 /** 非同步迴圈 */
-export declare const asyncWhile: (cb: (context: {
+export declare const asyncWhile: (cb: (_context: {
     count: number;
     doBreak: () => void;
 }) => Promise<any>) => Promise<void>;

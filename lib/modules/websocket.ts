@@ -26,9 +26,9 @@ type WebSocketParams<P extends Pub> = {
     /** 指定運行的 WebSocket Protocol */
     protocol?: string[]
     /** 接收到資料要執行什麼事 */
-    onMessage: (event: MessageEvent) => Promise<any>
+    onMessage: (_event: MessageEvent) => Promise<any>
     /** 發送資料前進行資料轉換 */
-    sendHandler: <K extends keyof P>(channel: K, data: P[K]) => Promise<any>
+    sendHandler: <K extends keyof P>(_channel: K, _data: P[K]) => Promise<any>
 }
 
 export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
@@ -111,6 +111,7 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
                 let data: any = {
                     isManuallyClosed: this.isManuallyClosed
                 }
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 this._websocket = null
                 this.emit('$close', data)

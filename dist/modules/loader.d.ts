@@ -6,8 +6,8 @@ declare type FailError = {
     loaderName: string;
 };
 declare type Channels = {
-    call: {};
-    done: {};
+    call: Record<string, unknown>;
+    done: Record<string, unknown>;
     fail: {
         error: FailError;
     };
@@ -29,7 +29,7 @@ export declare class Loader<T> extends Event<Channels> {
     get called(): boolean;
     get loading(): boolean;
     /** 加入一個非同步事件 */
-    push(name: string, handler: (data: T) => Promise<any>): void;
+    push(name: string, handler: (_data: T) => Promise<any>): void;
     /** 重置 Loader 狀態，只有在 done 為 true 才能執行 */
     reset(): this;
     /** 執行所有已註冊的事件 */

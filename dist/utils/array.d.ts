@@ -5,4 +5,4 @@
  * const newArray = groups(3, myArray)
  * console.log(arrayGroups) // [[1,2,3],[4,5,6]]
  */
-export declare const arrayGroups: <T extends unknown>(size: number, data: T[]) => T[][];
+export declare const arrayGroups: <T>(size: number, data: T[]) => T[][];

@@ -1,4 +1,3 @@
-import { Base } from '../module-base';
 declare type ListenerContext = {
     /** 唯一並隨機的 Listener ID */
     id: string;
@@ -18,13 +17,13 @@ declare class Listener<T> {
     private callback;
     private manager;
     isAfter: boolean;
-    constructor(manager: Hook<any>, channel: string, callback: ListenerCallback<any>, isAfter: boolean);
+    constructor(manager: Hook<any>, channel: string, callback: ListenerCallback<any>);
     /** 觸發這個監聽對象 */
     invoke(data: T): Promise<void>;
     /** 關閉這個 Listener */
     off(): void;
 }
-export declare class Hook<T extends Record<string, Record<string, any>>> extends Base {
+export declare class Hook<T extends Record<string, Record<string, any>>> {
     private listeners;
     /** 發送資料至指定頻道 */
     notify<K extends keyof T>(channel: K, data: T[K]): Promise<void>;

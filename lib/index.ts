@@ -1,3 +1,5 @@
+/* eslint-disable no-redeclare */
+
 import * as _flow from './utils/flow'
 import * as _json from './utils/json'
 import * as _pick from './utils/pick'

@@ -47,6 +47,7 @@ export const peel = <
 >(target: T, path: C): C extends '' ? T : (R | null) => {
     let units = (path as string).split(/[.[\]'"]/g).filter(s => s.trim() !== '')
     let output = target as any
+    // eslint-disable-next-line no-constant-condition
     while (true) {
         if (units.length === 0) {
             return output

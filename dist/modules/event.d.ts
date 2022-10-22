@@ -7,7 +7,7 @@ declare type ListenerContext = {
     /** 一組可供當下 Listener 儲存的空白物件 */
     state: Record<string, any>;
 };
-declare type ListenerCallback<T> = (data: T, context: ListenerContext) => void;
+declare type ListenerCallback<T> = (_data: T, _context: ListenerContext) => void;
 declare class Listener<T> {
     /** 唯一並隨機的 Listener ID */
     readonly id: string;

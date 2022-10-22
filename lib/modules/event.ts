@@ -9,7 +9,7 @@ type ListenerContext = {
     state: Record<string, any>
 }
 
-type ListenerCallback<T> = (data: T, context: ListenerContext) => void
+type ListenerCallback<T> = (_data: T, _context: ListenerContext) => void
 
 class Listener<T> {
     /** 唯一並隨機的 Listener ID */

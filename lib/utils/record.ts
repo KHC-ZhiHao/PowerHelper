@@ -53,7 +53,7 @@ export const setMapValue = <T extends JsonObject>(
     target: JsonObject,
     options?: SetMapValueOptions<T>
 ): T => {
-    let handler = (template: T, target: JsonObject, nowPeel: string = '') => {
+    let handler = (template: T, target: JsonObject, nowPeel = '') => {
         const output: any = {}
         const s: any = template == null ? {} : jpjs(template)
         const t: any = target == null ? {} : jpjs(target)

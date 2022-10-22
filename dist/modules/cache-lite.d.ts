@@ -1,5 +1,4 @@
-import { Base } from '../module-base';
-export declare class CacheLite<T extends (key: string) => any> extends Base {
+export declare class CacheLite<T extends (key: string) => any> {
     private expTime;
     private handler;
     private lastUpdate;

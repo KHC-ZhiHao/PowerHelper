@@ -1,6 +1,6 @@
 type Intercept = {
-    Set: (name: string, data: any) => any
-    Get: (name: string, data: any, context: {
+    Set: (_name: string, _data: any) => any
+    Get: (_name: string, _data: any, _context: {
         /** 是否是採用預設值 */
         isDefault: boolean
         /** 獲取預設值 */
@@ -58,7 +58,7 @@ export class LocalStorage<T extends Record<string, any>> {
 
     /** 設定指定名稱的資料 */
 
-    set<K extends keyof T>(name: K, data: T[K] | ((value: T[K]) => T[K])) {
+    set<K extends keyof T>(name: K, data: T[K] | ((_value: T[K]) => T[K])) {
         let saveData = typeof data === 'function' ? (data as any)(this.get(name)) : data
         if (this.interceptSet) {
             saveData = this.interceptSet(name as any, saveData as any)

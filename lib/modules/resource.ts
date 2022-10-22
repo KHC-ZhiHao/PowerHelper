@@ -4,7 +4,7 @@ import { headMatch } from '../utils/text'
 type ResourceSupport = string | File | Blob | MediaSource
 
 type ResourceParams = {
-    def: (path: string) => string
+    def: (_path: string) => string
 }
 
 type Channels = {

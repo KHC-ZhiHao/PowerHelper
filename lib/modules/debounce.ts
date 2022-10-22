@@ -15,7 +15,7 @@ type Channels<T> = {
     }
 }
 
-class DebounceUnit extends Event<Channels<any> & { close: {} }> {
+class DebounceUnit extends Event<Channels<any> & { close: Record<string, unknown> }> {
     isDone = false
     params: Params
     values: any[] = []

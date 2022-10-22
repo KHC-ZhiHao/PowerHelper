@@ -37,6 +37,7 @@ export class I18n<L extends string, K extends string> extends Event<Channels> {
         if (text.slice(0, 2) === '##') {
             text = text.slice(2).trim()
         } else {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             text = (this.params.locales[locale][key] || key)
         }

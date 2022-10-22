@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { randomInt, randomPick, sleep, retry, asyncWhile, createUuid } from './flow'
+import { randomInt, randomPick, sleep, retry, asyncWhile, createUuid, randomPicks } from './flow'
 
 describe('Flow', () => {
     it('sleep', async function() {
@@ -76,7 +76,7 @@ describe('Flow', () => {
         try {
             await retry({
                 max: 3,
-                action: async(index) => {
+                action: async() => {
                     throw 'ouo'
                 }
             })
@@ -107,5 +107,10 @@ describe('Flow', () => {
             }
         }
         expect(createUuid()).to.equal('ouo')
+    })
+
+    it('randomPicks', () => {
+        expect(randomPicks(2, [1, 2, 3, 4]).length).to.equal(2)
+        expect(randomPicks(5, [1, 2, 3, 4]).length).to.equal(4)
     })
 })

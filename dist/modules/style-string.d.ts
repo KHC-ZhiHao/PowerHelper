@@ -1,6 +1,5 @@
-import { Base } from '../module-base';
 declare type StyleKeys = keyof CSSStyleDeclaration;
-export declare class StyleString extends Base {
+export declare class StyleString {
     private styles;
     /** 寫入 key */
     set(key: StyleKeys, value?: string, defaultValue?: string): void;

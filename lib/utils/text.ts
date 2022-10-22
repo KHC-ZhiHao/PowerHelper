@@ -74,6 +74,7 @@ export function replaceVar<
                 let isEnd = text.slice(i, i + end.length) === end
                 if (isEnd) {
                     i += end.length - 1
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     let data = vars ? vars[varKey.trim()]?.toString() : null
                     if (data) {

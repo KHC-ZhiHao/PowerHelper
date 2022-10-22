@@ -68,6 +68,7 @@ export const inSafari = () => {
     if (iOS) {
         let webkit = !!ua.match(/WebKit/i)
         result = webkit && hasSafariInUa && noOtherBrowsersInUa
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     } else if (typeof window !== 'undefined' && window.safari !== undefined) {
         result = true

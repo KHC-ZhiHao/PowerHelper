@@ -8,8 +8,8 @@ type FailError = {
 }
 
 type Channels = {
-    call: {}
-    done: {}
+    call: Record<string, unknown>
+    done: Record<string, unknown>
     fail: {
         error: FailError
     }
@@ -22,7 +22,7 @@ type Channels = {
 
 type LoaderItem<T> = {
     name: string
-    handler: (data: T) => Promise<any>
+    handler: (_data: T) => Promise<any>
 }
 
 export class Loader<T> extends Event<Channels> {
@@ -62,7 +62,7 @@ export class Loader<T> extends Event<Channels> {
 
     /** 加入一個非同步事件 */
 
-    push(name: string, handler: (data: T) => Promise<any>) {
+    push(name: string, handler: (_data: T) => Promise<any>) {
         let has = this.items.find(e => e.name === name)
         if (has) {
             this.$devError('push', `Loader ${name} push name ${name} already exists.`)

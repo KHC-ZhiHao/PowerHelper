@@ -8,16 +8,16 @@ declare type ActionContext<S> = {
     newKey: string;
     oldKey: string | null;
 };
-declare type NextTickCallback<S> = (state: S) => void;
+declare type NextTickCallback<S> = (_state: S) => void;
 declare type ReactiveParams<S> = {
     /** 每次輪詢時間(毫秒)，預設 100 ms */
     schedule?: number;
     /** 透過長輪詢回傳指定的 key */
-    action: (context: ActionContext<S> & {
+    action: (_context: ActionContext<S> & {
         close: () => void;
     }) => Promise<any>;
     /** 如果 observable 回傳的 key 有改動則觸發 */
-    observable: (state: S) => Promise<string>;
+    observable: (_state: S) => Promise<string>;
 };
 export declare class Reactive<S extends Record<string, any>> extends Event<Channels<S>> {
     private state;
