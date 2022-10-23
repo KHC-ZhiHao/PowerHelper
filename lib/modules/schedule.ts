@@ -1,4 +1,5 @@
 import { Event } from './event'
+import { devError } from '../base'
 
 type Info = {
     /** 程序名稱 */
@@ -66,7 +67,7 @@ export class Schedule extends Event<Channels> {
 
     add(name: string, intervalMs: number, callback: () => Promise<any>) {
         if (this.processes.find(e => e.name === name)) {
-            this.$devError('add', `Name ${name} already exists.`)
+            devError('add', `Name ${name} already exists.`)
         }
         this.processes.push({
             sec: intervalMs,
@@ -88,7 +89,7 @@ export class Schedule extends Event<Channels> {
 
     remove(name: string) {
         if (this.processes.find(e => e.name === name) == null) {
-            this.$devError('add', `Name ${name} not found.`)
+            devError('add', `Name ${name} not found.`)
         }
         this.processes = this.processes.filter(e => e.name !== name)
     }

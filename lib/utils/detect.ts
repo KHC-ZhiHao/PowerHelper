@@ -10,12 +10,22 @@ export const inAppBrowser = () => {
     if (navigator == null) {
         return false
     }
-    let u = navigator.userAgent
     let ua = navigator.userAgent.toLowerCase()
-    let isLineApp = u.indexOf('Line') > -1
-    let isFbApp = u.indexOf('FBAV') > -1
-    let isWeixinApp = !!ua.match(/MicroMessenger/)
-    return !!isLineApp || !!isFbApp || !!isWeixinApp || false
+    let platforms = [
+        'line/',
+        'instagram',
+        'fbios',
+        'fb_iab',
+        'fban',
+        'fbav',
+        'micromessenger'
+    ]
+    for (let platform of platforms) {
+        if (ua.includes(platform)) {
+            return true
+        }
+    }
+    return false
 }
 
 /**
@@ -68,7 +78,6 @@ export const inSafari = () => {
     if (iOS) {
         let webkit = !!ua.match(/WebKit/i)
         result = webkit && hasSafariInUa && noOtherBrowsersInUa
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     } else if (typeof window !== 'undefined' && window.safari !== undefined) {
         result = true

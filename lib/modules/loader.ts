@@ -1,4 +1,5 @@
 import { Event } from './event'
+import { devError } from '../base'
 
 type FailError = {
     isPowerHelperLoader: true
@@ -65,7 +66,7 @@ export class Loader<T> extends Event<Channels> {
     push(name: string, handler: (_data: T) => Promise<any>) {
         let has = this.items.find(e => e.name === name)
         if (has) {
-            this.$devError('push', `Loader ${name} push name ${name} already exists.`)
+            devError('push', `Loader ${name} push name ${name} already exists.`)
         }
         this.items.push({
             name,
@@ -93,7 +94,7 @@ export class Loader<T> extends Event<Channels> {
 
     start(data: T): Promise<Array<{ name: string, result: any }>> {
         if (this.status.isCalled) {
-            this.$devError('start', `Loader ${this.name} Already Called.`)
+            devError('start', `Loader ${this.name} Already Called.`)
         }
         this.status.isCalled = true
         this.status.isLoading = true

@@ -1,17 +1,28 @@
 # Array
 
-針對陣列的結果
+針對 Array 的操作。
 
-## 如何使用
+## Methods
+
+### Groups
+
+將 Array 依照指定數量集成一組。
+
+```ts
+array.groups = function<T>(size: number, data: T[]): T[][]
+```
+
+#### example
 
 ```ts
 import { array } from 'power-helper'
-/**
- * 將陣列依照數量集成一組
- * @example
- * const myArray = [1,2,3,4,5,6]
- * const newArray = groups(3, myArray)
- * console.log(arrayGroups) // [[1,2,3],[4,5,6]]
- */
-array.arrayGroups = function(size: number, data: any[]): any[][]
+const oldArray = [1,2,3,4,5,6]
+const newArray = groups(3, oldArray)
+console.log(newArray)
+```
+
+outputs:
+
+```ts
+[[1,2,3],[4,5,6]]
 ```

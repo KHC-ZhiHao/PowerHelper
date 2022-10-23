@@ -66,6 +66,9 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 
 [array](./lib/utils/array.md)
 
+* [groups]()
+* [123]()
+
 [detect](./lib/utils/detect.md)
 
 [flow](./lib/utils/flow.md)

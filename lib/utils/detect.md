@@ -1,6 +1,8 @@
 # Detect
 
-驗證當下執行環境。
+[codesandbox](https://codesandbox.io/s/power-helper-playground-cdw2lt?file=/src/views/utils/detect.vue)
+
+驗證當下的執行環境。
 
 ## 如何使用
 

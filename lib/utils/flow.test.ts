@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { randomInt, randomPick, sleep, retry, asyncWhile, createUuid, randomPicks } from './flow'
+import { randomInt, sleep, retry, asyncWhile, createUuid,  } from './flow'
 
 describe('Flow', () => {
     it('sleep', async function() {
@@ -7,17 +7,6 @@ describe('Flow', () => {
         await sleep(350)
         let diff = Date.now() - now
         expect(diff >= 300).to.equal(true)
-    })
-    it('random pick', async function() {
-        let data = randomPick([
-            {
-                name: 'dave'
-            },
-            {
-                name: 'john'
-            }
-        ])
-        expect(data.name).to.match(/dave|john/)
     })
     it('random int', async function() {
         let num = randomInt(10, 20)
@@ -107,10 +96,5 @@ describe('Flow', () => {
             }
         }
         expect(createUuid()).to.equal('ouo')
-    })
-
-    it('randomPicks', () => {
-        expect(randomPicks(2, [1, 2, 3, 4]).length).to.equal(2)
-        expect(randomPicks(5, [1, 2, 3, 4]).length).to.equal(4)
     })
 })

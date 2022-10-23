@@ -1,5 +1,3 @@
-import { Base } from '../module-base'
-
 type ListenerContext = {
     /** 唯一並隨機的 Listener ID */
     id: string
@@ -44,7 +42,7 @@ class Listener<T> {
     }
 }
 
-export class Event<T extends Record<string, Record<string, any>>> extends Base {
+export class Event<T extends Record<string, Record<string, any>>> {
     private listeners: Map<string, Listener<any>[]> = new Map()
 
     /** 獲取指定頻道的監聽數量 */

@@ -1,4 +1,3 @@
-import { expect } from 'chai'
 import { importScript } from './element'
 
 describe('Element', () => {

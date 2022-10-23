@@ -1,4 +1,3 @@
-import { Base } from '../module-base';
 declare type ListenerContext = {
     /** 唯一並隨機的 Listener ID */
     id: string;
@@ -23,7 +22,7 @@ declare class Listener<T> {
     /** 關閉這個 Listener */
     off(): void;
 }
-export declare class Event<T extends Record<string, Record<string, any>>> extends Base {
+export declare class Event<T extends Record<string, Record<string, any>>> {
     private listeners;
     /** 獲取指定頻道的監聽數量 */
     getChannelListenerSize<K extends keyof T>(channel: K): number;

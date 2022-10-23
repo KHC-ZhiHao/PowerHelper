@@ -11,37 +11,6 @@ export const sleep = (ms: number) => {
 }
 
 /**
- * 隨機獲取陣列內的一個值
- */
-
-export const randomPick = <T>(items: T[]): T => {
-    return items[Math.floor(Math.random() * items.length)]
-}
-
-/**
- * 隨機獲取陣列內的一個組
- */
-
-export const randomPicks = <T>(take: number, items: T[]): T[] => {
-    if (items.length <= take) {
-        return items.slice()
-    }
-    let outputs: T[] = []
-    let loop = items.length * 100
-    while (loop > 0) {
-        loop -= 1
-        let item = randomPick(items)
-        if (outputs.includes(item) === false) {
-            outputs.push(item)
-        }
-        if (outputs.length >= take) {
-            break
-        }
-    }
-    return outputs
-}
-
-/**
  * 求整數範圍內的隨機值
  */
 
