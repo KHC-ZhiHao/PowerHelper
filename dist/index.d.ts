@@ -33,6 +33,10 @@ export declare const pick: typeof _pick;
 export declare const flow: typeof _flow;
 export declare const json: typeof _json;
 export declare const text: typeof _text;
+/**
+ * 針對 Array 的操作。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md
+ */
 export declare const array: typeof _array;
 export declare const record: typeof _record;
 export declare const detect: typeof _detect;

@@ -1,19 +1,20 @@
 
 /**
- * 將陣列依照數量集成一組
- * @see
+ * 將 Array 依照指定數量集成一組。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups
  */
 
-export const groups = <T>(size: number, data: T[]): T[][] => {
+export const groups = <T>(size: number, items: T[]): T[][] => {
     let result: T[][] = []
-    for (let i = 0; i < data.length; i += size) {
-        result.push(data.slice(i, i + size))
+    for (let i = 0; i < items.length; i += size) {
+        result.push(items.slice(i, i + size))
     }
     return result
 }
 
 /**
- * 隨機獲取陣列內的一個值
+ * 從 Array 中隨機獲取一個值。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPick
  */
 
 export const randomPick = <T>(items: T[]): T => {
@@ -21,7 +22,9 @@ export const randomPick = <T>(items: T[]): T => {
 }
 
 /**
- * 隨機獲取陣列內的一個組
+ * 從 Array 中隨機獲取指定數量且不重複的值，如果指定數量大於 Array 長度時會傳整組 Array。
+ * @param take 指定獲取數量。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPicks
  */
 
 export const randomPicks = <T>(take: number, items: T[]): T[] => {

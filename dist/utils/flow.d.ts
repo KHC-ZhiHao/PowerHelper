@@ -4,14 +4,6 @@ import { PromiseResponseType } from '../types/pick';
  */
 export declare const sleep: (ms: number) => Promise<unknown>;
 /**
- * 隨機獲取陣列內的一個值
- */
-export declare const randomPick: <T>(items: T[]) => T;
-/**
- * 隨機獲取陣列內的一個組
- */
-export declare const randomPicks: <T>(take: number, items: T[]) => T[];
-/**
  * 求整數範圍內的隨機值
  */
 export declare const randomInt: (min: number, max: number) => number;

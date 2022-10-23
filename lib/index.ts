@@ -37,6 +37,12 @@ export const pick = _pick
 export const flow = _flow
 export const json = _json
 export const text = _text
+
+/**
+ * 針對 Array 的操作。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md
+ */
+
 export const array = _array
 export const record = _record
 export const detect = _detect

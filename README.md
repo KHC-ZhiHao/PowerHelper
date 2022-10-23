@@ -64,10 +64,12 @@ import { array } from 'power-helper'
 const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 ```
 
-[array](./lib/utils/array.md)
+[array](./lib/utils/array.md) - 針對 Array 的操作。
 
-* [groups]()
-* [123]()
+* [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - 將 Array 依照指定數量集成一組。
+* [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPick) - 從 Array 中隨機獲取一個值。
+* [randomPicks](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPicks) - 
+從 Array 中隨機獲取指定數量且不重複的值，如果指定數量大於 Array 長度時會傳整組 Array。
 
 [detect](./lib/utils/detect.md)
 
