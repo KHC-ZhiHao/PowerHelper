@@ -83,6 +83,8 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [element](./lib/utils/element.md)
 
+* [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+
 [record](./lib/utils/record.md)
 
 ### Modules

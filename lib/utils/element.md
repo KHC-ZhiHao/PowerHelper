@@ -1,14 +1,25 @@
 # Element
 
-Dom 相關操作。
-
-## 如何使用
+關於 Dom 的一些操作。
 
 ```ts
 import { element } from 'power-helper'
-/**
- * 引入 JavaScript
- * @BrowserOnly
- */
-element.importScript = function(url: string) => Promise<null>;
+```
+
+---
+
+## Methods
+
+### importScript
+
+透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+
+```ts
+function(url: string): Promise<unknow>
+```
+
+#### example
+
+```ts
+element.importScript('https://code.jquery.com/jquery-3.6.1.min.js')
 ```

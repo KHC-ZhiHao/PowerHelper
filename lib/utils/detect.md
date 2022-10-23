@@ -6,6 +6,8 @@
 import { detect } from 'power-helper'
 ```
 
+---
+
 ## Methods
 
 ### inSafari

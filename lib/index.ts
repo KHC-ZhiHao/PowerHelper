@@ -52,6 +52,12 @@ export const record = _record
  */
 
 export const detect = _detect
+
+/**
+ * 關於 Dom 的一些操作。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md
+ */
+
 export const element = _element
 
 export type Log = _Log

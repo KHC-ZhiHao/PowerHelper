@@ -6,6 +6,8 @@
 import { array } from 'power-helper'
 ```
 
+---
+
 ## Methods
 
 ### groups

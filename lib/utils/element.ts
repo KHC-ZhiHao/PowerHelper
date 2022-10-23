@@ -1,6 +1,6 @@
 /**
- * 引入 JavaScript
- * @BrowserOnly
+ * 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript
  */
 
 export const importScript = (url: string) => new Promise((resolve, reject) => {
