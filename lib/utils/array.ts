@@ -14,7 +14,7 @@ export const groups = <T>(size: number, items: T[]): T[][] => {
 
 /**
  * 從 Array 中隨機獲取一個值。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPick
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompick
  */
 
 export const randomPick = <T>(items: T[]): T => {
@@ -24,7 +24,7 @@ export const randomPick = <T>(items: T[]): T => {
 /**
  * 從 Array 中隨機獲取指定數量且不重複的值，如果指定數量大於 Array 長度時會傳整組 Array。
  * @param take 指定獲取數量。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPicks
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompicks
  */
 
 export const randomPicks = <T>(take: number, items: T[]): T[] => {

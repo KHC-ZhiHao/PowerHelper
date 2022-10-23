@@ -28,7 +28,7 @@
 
 <br>
 
-Power Helper 是常用的工具集成，包括 Utils、Module、TS Type，功能簡單且無任何依賴項目，極為精簡。
+Power Helper 是 JS 的工具集成，包括 Utils、Module、TS Type，功能簡單且無任何依賴項目，極為精簡。
 
 你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能。
 
@@ -58,20 +58,20 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 大多由單純的 Function 組成。
 
-```ts
-// utils
-import { array } from 'power-helper'
-const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
-```
-
 [array](./lib/utils/array.md) - 針對 Array 的操作。
 
 * [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - 將 Array 依照指定數量集成一組。
-* [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPick) - 從 Array 中隨機獲取一個值。
-* [randomPicks](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randomPicks) - 
+* [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompick) - 從 Array 中隨機獲取一個值。
+* [randomPicks](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompicks) - 
 從 Array 中隨機獲取指定數量且不重複的值，如果指定數量大於 Array 長度時會傳整組 Array。
 
-[detect](./lib/utils/detect.md)
+[detect](./lib/utils/detect.md) - 驗證當下的執行環境。
+
+* [inAppBrowser](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inappbrowser) - 是否正在 in app browser 裡面執行，很難覆蓋所有應用範圍，僅供參考使用。
+* [inMobile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inmobile) - 是否正在 iOS 或是 Android 系統裡面執行。
+* [inIOS](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inios) - 是否正在 iOS 系統裡面執行。
+* [inAndroid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inandroid) - 是否正在 Android 系統裡面執行。
+* [inSafari](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#insafari) - 是否正在 Safari 瀏覽器裡面執行。
 
 [flow](./lib/utils/flow.md)
 
@@ -88,12 +88,6 @@ const groupArray = array.groups(3, [1, 2, 3, 4, 5, 6])
 ### Modules
 
 更強大的複合工具。
-
-```ts
-// modules
-import { Log } from 'power-helper'
-const log = new Log('my-first-log')
-```
 
 [Log](./lib/modules/log.md) - 可以更多變化的 Log。
 
@@ -144,11 +138,6 @@ const log = new Log('my-first-log')
 ### Types
 
 將複雜的型態方案進行封裝，提高開發的安全性與效率。
-``` ts
-// types
-import type { YYYYMMDDFormat } from 'power-helper/types/date'
-const birthday: YYYYMMDDFormat = '2021-01-01'
-```
 
 [date](./types/date.md)
 

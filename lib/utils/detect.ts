@@ -1,8 +1,8 @@
 const getNavigator = () => typeof window === 'undefined' ? null : window.navigator
 
 /**
- * 是否正在 Line、Messenger 等 in app browser 裡面執行
- * @description 並不嚴謹，僅供參考使用
+ * 是否正在 Line、Messenger 等 in app browser 裡面執行，很難覆蓋所有應用範圍，僅供參考使用。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inappbrowser
  */
 
 export const inAppBrowser = () => {
@@ -29,7 +29,8 @@ export const inAppBrowser = () => {
 }
 
 /**
- * 是否正在 IoS 或是 Android 系統裡面執行
+ * 是否正在 iOS 或是 Android 系統裡面執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inmobile
  */
 
 export const inMobile = () => {
@@ -37,7 +38,8 @@ export const inMobile = () => {
 }
 
 /**
- * 是否正在 IoS 系統裡面執行
+ * 是否正在 iOS 系統裡面執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inios
  */
 
 export const inIOS = () => {
@@ -49,7 +51,8 @@ export const inIOS = () => {
 }
 
 /**
- * 是否正在 Android 系統裡面執行
+ * 是否正在 Android 系統裡面執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inandroid
  */
 
 export const inAndroid = () => {
@@ -62,7 +65,8 @@ export const inAndroid = () => {
 }
 
 /**
- * 是否正在 Safari 瀏覽器裡面執行
+ * 是否正在 Safari 瀏覽器裡面執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#insafari
  */
 
 export const inSafari = () => {

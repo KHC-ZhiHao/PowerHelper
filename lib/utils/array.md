@@ -30,6 +30,8 @@ console.log(newArray)
 */
 ```
 
+---
+
 ### randomPick
 
 從 Array 中隨機獲取一個值。
@@ -48,6 +50,8 @@ console.log(item)
     outputs: 1 | 2 | 3
 */
 ```
+
+---
 
 ### randomPicks
 

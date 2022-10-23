@@ -45,6 +45,12 @@ export const text = _text
 
 export const array = _array
 export const record = _record
+
+/**
+ * 驗證當下的執行環境。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md
+ */
+
 export const detect = _detect
 export const element = _element
 
