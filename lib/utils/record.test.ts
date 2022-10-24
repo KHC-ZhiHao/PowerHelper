@@ -96,7 +96,7 @@ describe('Record', () => {
         expect(result).to.eql({
             name: 'james',
             age: 18,
-            parents: ['sisterr'],
+            parents: ['sister'],
             cars: {
                 bike: {
                     name: 'ubike',

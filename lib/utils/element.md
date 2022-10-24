@@ -1,6 +1,6 @@
 # Element
 
-關於 Dom 的一些操作。
+優雅的 Dom 操作。
 
 ```ts
 import { element } from 'power-helper'

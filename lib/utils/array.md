@@ -1,6 +1,6 @@
 # Array
 
-針對 Array 的操作。
+優雅的 Array 操作。
 
 ```ts
 import { array } from 'power-helper'

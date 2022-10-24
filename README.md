@@ -58,7 +58,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 大多由單純的 Function 組成。
 
-[array](./lib/utils/array.md) - 針對 Array 的操作。
+[array](./lib/utils/array.md) - 優雅的 Array 操作。
 
 * [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - 將 Array 依照指定數量集成一組。
 * [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompick) - 從 Array 中隨機獲取一個值。
@@ -81,11 +81,11 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [pick](./lib/utils/pick.md)
 
-[element](./lib/utils/element.md)
+[element](./lib/utils/element.md) - 優雅的 Dom 操作。
 
 * [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
 
-[record](./lib/utils/record.md)
+[record](./lib/utils/record.md) - 優雅的 Object 操作。
 
 * [setMapValue](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue) - 複製指定物件的值到目標 Object 上，並產生一份新的 Object。
 

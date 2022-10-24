@@ -1,6 +1,6 @@
 # Record
 
-更優雅的物件操作。
+優雅的 Object 操作。
 
 ```ts
 import { record } from 'power-helper'

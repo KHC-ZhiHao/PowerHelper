@@ -40,14 +40,14 @@ export const json = _json
 export const text = _text
 
 /**
- * 針對 Array 的操作。
+ * 優雅的 Array 操作。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md
  */
 
 export const array = _array
 
 /**
- * 更優雅的物件操作。
+ * 優雅的 Object 操作。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md
  */
 
@@ -61,7 +61,7 @@ export const record = _record
 export const detect = _detect
 
 /**
- * 關於 Dom 的一些操作。
+ * 優雅的 Dom 操作。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md
  */
 
