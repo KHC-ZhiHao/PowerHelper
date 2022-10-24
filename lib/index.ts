@@ -36,6 +36,7 @@ import { Pool as _Pool } from './modules/pool'
 export const pick = _pick
 export const flow = _flow
 export const json = _json
+
 export const text = _text
 
 /**
@@ -44,6 +45,12 @@ export const text = _text
  */
 
 export const array = _array
+
+/**
+ * 更優雅的物件操作。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md
+ */
+
 export const record = _record
 
 /**

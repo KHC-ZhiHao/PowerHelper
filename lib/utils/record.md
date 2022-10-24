@@ -1,42 +1,125 @@
 # Record
 
-進行高等的物件操作。
-
-## 如何使用
+更優雅的物件操作。
 
 ```ts
 import { record } from 'power-helper'
+```
 
-/** 複製指定物件的值到目標物件上，並產生一份新的物件 */
+---
 
-record.setMapValue = function(template: Record<string, any>, data: Record<string, any>, optnios?: {
-    // 如果是物件則會深入復寫，可以透過物件路徑直接覆蓋値
+## Methods
+
+### setMapValue
+
+複製指定物件的值到目標 Object 上，並產生一份新的 Object，細部規則可詳見 example。
+
+```ts
+type Options = {
+    /** 如果 Object 內遇到 Object 則會深入復寫，可以透過指定路徑直接覆蓋値 */
     directReplacePeels?: string[]
-}): any;
+}
+function<T extends Record<string, any>>(template: T, data: Record<string, any>, optnios?: Options): T
+```
 
+#### example
+
+```ts
 const template = {
     name: 'dave',
-    age: 18 // data 沒有 age，採用原本的值
+    // data 沒有 age 屬性，會保留原本的值
+    age: 18,
+    parents: ['mother', 'father'],
+    cars: {
+        bike: {
+            name: 'giant',
+            boughtAt: '2022-01-01'
+        },
+        scooter: {
+            name: 'gt',
+            boughtAt: '2022-01-02'
+        }
+    }
 }
 
 const data = {
-    name: 'james', // 共同有 name 的 key 值，所以複寫 template 的 name
-    sex: 'M' // template 沒有 sex，忽略
+    // 共同有 name 的 key 值，所以複寫 template 的 name
+    name: 'james',
+    // template 沒有 sex，將忽略
+    sex: 'M',
+    // 如果對象是一組 Array 值會直接複寫
+    parents: ['sister'],
+    // 如果對象是一組 Object 則會深入復寫
+    cars: {
+        bike: {
+            name: 'ubike'
+        },
+        // 可以透過 options.directReplacePeels 抉擇是否直接複寫
+        scooter: {
+            name: 'gt',
+            price: 100
+        }
+    }
 }
 
-console.log(record.setMapValue(template, data)) // { name: 'james', age: 18 }
+console.log(record.setMapValue(template, data, {
+    directReplacePeels: [
+        'cars.scooter'
+    ]
+}))
+/*
+    outputs: {
+        name: 'james',
+        age: 18,
+        parents: ['sister'],
+        cars: {
+            bike: {
+                name: 'ubike',
+                boughtAt: '2022-01-01'
+            },
+            scooter: {
+                name: 'gt',
+                price: 100
+            }
+        }
+    }
+*/
+```
 
-/** 建立一組嚴格檢查、轉譯並實質不能變動的物件，通常應用在環境變數，防止出現定義問題。 */
-/** 內容分別是： [型態, 必填, 值, 預設值] */
+---
 
-record.createStrictObject = function(data: Record<string, [Number | String | Boolean, boolean, any, any?]>)
+### createStrictObject
 
-const env = record.createStrictObject({
+建立一組嚴格檢查、轉譯並實質不能變動的 Object，通常應用在環境變數。
+
+```ts
+// 內容分別是： [型態, 必填, 值, 預設值]
+type Params = [
+    Number | String | Boolean,
+    boolean,
+    any,
+    any?
+]
+function<T extends Record<string, Params>>(data: T): Record<keyof T, boolean | string | number>
+```
+
+#### example
+
+```ts
+// 如果執行階段中檢測到不符合格式會擲出錯誤。
+const data = record.createStrictObject({
     isProd: [Boolean, true, 'true'],
     baseUrl: [String, true, process.env.baseUrl],
     port: [Number, true, '8080'],
     isLocal: [Boolean, false, null, false]
 })
-
-console.log(env.port) // 8080
+console.log(data)
+/*
+    outputs: {
+        isProd: true,
+        baseUrl: 'http://...',
+        port: 8080,
+        isLocal: false
+    }
+*/
 ```

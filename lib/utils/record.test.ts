@@ -57,14 +57,66 @@ describe('Record', () => {
         // @ts-ignore
         expect(data.c.j).to.equal('7')
     })
+    it('cover test', function() {
+        const template = {
+            name: 'dave',
+            age: 18,
+            parents: ['mother', 'father'],
+            cars: {
+                bike: {
+                    name: 'giant',
+                    boughtAt: '2022-01-01'
+                },
+                scooter: {
+                    name: 'gt',
+                    boughtAt: '2022-01-02'
+                }
+            }
+        }
+        
+        const data = {
+            name: 'james',
+            sex: 'M',
+            parents: ['sister'],
+            cars: {
+                bike: {
+                    name: 'ubike'
+                },
+                scooter: {
+                    name: 'bws',
+                    price: 100
+                }
+            }
+        }
+        const result = setMapValue(template, data, {
+            directReplacePeels: [
+                'cars.scooter'
+            ]
+        })
+        expect(result).to.eql({
+            name: 'james',
+            age: 18,
+            parents: ['sisterr'],
+            cars: {
+                bike: {
+                    name: 'ubike',
+                    boughtAt: '2022-01-01'
+                },
+                scooter: {
+                    name: 'bws',
+                    price: 100
+                }
+            }
+        })
+    })
     it('createStrictObject', function() {
         let flag = false
         let env = createStrictObject({
-           isProd: [Boolean, true, 'true'],
-           baseUrl: [String, true, 'http://hello'],
-           port: [Number, true, '8080'],
-           count: [Number, true, 1234],
-           isLocal: [Boolean, false, null, false]
+            isProd: [Boolean, true, 'true'],
+            baseUrl: [String, true, 'http://hello'],
+            port: [Number, true, '8080'],
+            count: [Number, true, 1234],
+            isLocal: [Boolean, false, null, false]
         })
         expect(env.isProd).to.equal(true)
         expect(env.isLocal).to.equal(false)
@@ -84,7 +136,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [Boolean, true, '123']
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('not a boolean')
             flag += 1
@@ -92,7 +144,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [Boolean, true, null]
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('is required')
             flag += 1
@@ -100,7 +152,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [String, true, 123]
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('not a string')
             flag += 1
@@ -108,7 +160,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [String, true, '']
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('no content')
             flag += 1
@@ -116,7 +168,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [Number, true, true]
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('not a number')
             flag += 1
@@ -124,7 +176,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [Number, true, '12A']
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('is NaN')
             flag += 1
@@ -132,7 +184,7 @@ describe('Record', () => {
         try {
             createStrictObject({
                 isProd: [Boolean, true, 1234]
-             })
+            })
         } catch (error) {
             expect((error as any).message).to.contain('output value not a true or false')
             flag += 1
