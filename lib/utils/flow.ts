@@ -1,7 +1,6 @@
-import { PromiseResponseType } from '../types/pick'
-
 /**
- * 停止執行指定時間(毫秒)
+ * 停止執行指定時間(毫秒)。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep
  */
 
 export const sleep = (ms: number) => {
@@ -11,7 +10,8 @@ export const sleep = (ms: number) => {
 }
 
 /**
- * 求整數範圍內的隨機值
+ * 求整數範圍內的隨機值。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#randomint
  */
 
 export const randomInt = (min: number, max: number) => {
@@ -19,7 +19,8 @@ export const randomInt = (min: number, max: number) => {
 }
 
 /**
- * 建立一組隨機的 v4 uuid
+ * 建立一組隨機的 v4 uuid。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createuuid
  */
 
 export const createUuid = () => {
@@ -35,45 +36,48 @@ export const createUuid = () => {
 }
 
 /**
- * 反覆執行直到成功為止
+ * 優雅的設計有限的重複執行直到成功為止。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry
  */
 
-export const retry = async<T extends (_index: number) => Promise<any>>(params: {
+export const retry = async<T>(params: {
     /**
      * 要重試幾次
      * @default 1
      */
     max?: number
-    /** 錯誤時呼叫此事件 */
+    /**
+     * 錯誤時呼叫此事件
+     */
     onFail?: (_index: number, _error: any) => void
     /**
      * 每次錯誤重試間格的等待時間(毫秒)
      * @default 0
      */
     interval?: number
-    /** 總執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
-    action: T
-}): Promise<PromiseResponseType<T>> => {
-    let index = 0
+    /** 執行過程，回傳 resolve 為成功， reject 為失敗進入下一次重試 */
+    action: (_index: number) => Promise<T>
+}): Promise<T> => {
+    let count = 0
     let retryMax = params.max == null ? 1 : params.max
     let fails = [] as Array<{
-        index: number
+        count: number
         error: any
     }>
     while (retryMax > 0) {
         try {
-            let result = await params.action(index)
+            let result = await params.action(count)
             return result
         } catch (error) {
             if (params.onFail) {
-                params.onFail(index, error)
+                params.onFail(count, error)
             }
             fails.push({
-                index,
+                count,
                 error
             })
         }
-        index += 1
+        count += 1
         retryMax -= 1
         if (params.interval) {
             await sleep(params.interval)
@@ -82,7 +86,10 @@ export const retry = async<T extends (_index: number) => Promise<any>>(params: {
     throw fails
 }
 
-/** 非同步迴圈 */
+/**
+ * 結合非同步與計數的迴圈操作。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile
+ */
 
 export const asyncWhile = async(cb: (_context: {
     count: number

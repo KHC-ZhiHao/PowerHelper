@@ -34,6 +34,12 @@ import { Interaction as _Interaction } from './modules/interaction'
 import { Pool as _Pool } from './modules/pool'
 
 export const pick = _pick
+
+/**
+ * 流程控制的工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md
+ */
+
 export const flow = _flow
 export const json = _json
 

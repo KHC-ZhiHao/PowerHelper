@@ -28,7 +28,7 @@
 
 <br>
 
-Power Helper 是 JS 的工具集成，包括 Utils、Module、TS Type，功能簡單且無任何依賴項目，極為精簡。
+Power Helper 是 JavaScript 的工具集成，功能簡單且無任何依賴項目，極為精簡。
 
 你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能。
 
@@ -48,7 +48,7 @@ yarn add power-helper
 
 ## TypeScript 環境
 
-PowerHelper 完整支援 TypeScript 環境，並且建議你在 TypeScript 中進行開發，同時 PowerHelper 大量依賴 TypeScript 進行資料型態的檢查。
+PowerHelper 原生採用 TypeScript 環境，且推薦你在 TypeScript 中進行開發。
 
 ## 如何使用？
 
@@ -73,7 +73,14 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [inAndroid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inandroid) - 是否正在 Android 系統裡面執行。
 * [inSafari](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#insafari) - 是否正在 Safari 瀏覽器裡面執行。
 
-[flow](./lib/utils/flow.md)
+[flow](./lib/utils/flow.md) - 流程控制的工具。
+
+* [sleep](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep) - 停止執行指定時間(毫秒)。
+* [randomInt](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#randomint) - 求整數範圍內的隨機值。
+* [createUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createuuid) - 建立一組隨機的 v4 uuid。
+* [retry](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry) - 優雅的設計有限的重複執行直到成功為止。
+* [asyncWhile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile) - 結合非同步與計數的迴圈操作。
+
 
 [json](./lib/utils/json.md)
 
