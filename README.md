@@ -87,6 +87,10 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [record](./lib/utils/record.md)
 
+* [setMapValue](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue) - 複製指定物件的值到目標 Object 上，並產生一份新的 Object。
+
+* [createStrictObject](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#createstrictobject) - 建立一組嚴格檢查、轉譯並實質不能變動的 Object，通常應用在環境變數。
+
 ### Modules
 
 更強大的複合工具。

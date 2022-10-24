@@ -1,7 +1,7 @@
 import { Whitespace, VarParameters } from '../types/string'
 import { PeelPath, PeelType } from '../types/pick'
 
-/** 指定的值如果是 null，則回傳預設值 */
+/** 指定的值如果是 null | undefined，則回傳預設值 */
 
 export const ifEmpty = <T>(data: T | undefined, def: T): T => {
     return (data != null ? data : def)
