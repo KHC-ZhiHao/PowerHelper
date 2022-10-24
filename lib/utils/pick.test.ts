@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { peel, ifEmpty, getType, pickVar } from './pick'
+import { peel, ifEmpty, getType, vars } from './pick'
 
 describe('Pick', () => {
     it('ifEmpty', async function() {
@@ -12,7 +12,7 @@ describe('Pick', () => {
         expect(getType([])).to.equal('array')
         expect(getType(Number('ouo'))).to.equal('NaN')
         expect(getType(/123/)).to.equal('regexp')
-        expect(getType(new Promise(() => {}))).to.equal('promise')
+        expect(getType(new Promise(() => null))).to.equal('promise')
         expect(getType(Buffer.from([]))).to.equal('buffer')
         expect(getType(new Error())).to.equal('error')
     })
@@ -44,7 +44,7 @@ describe('Pick', () => {
         expect(result).to.equal(null)
     })
     it('pickVar', async function() {
-        let result = pickVar({
+        let result = vars({
             start: '{',
             end: '}',
             text: '你好我是 {name}，目前是 {job}。'
@@ -53,7 +53,7 @@ describe('Pick', () => {
         expect(result[1]).to.equal('job')
     })
     it('pickVar-nodata', async function() {
-        let result = pickVar({
+        let result = vars({
             start: '{',
             end: '}',
             text: '你好我是。'

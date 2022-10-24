@@ -45,3 +45,12 @@ export const randomPicks = <T>(take: number, items: T[]): T[] => {
     }
     return outputs
 }
+
+/**
+ * 移除 Array 中相同的元素。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique
+ */
+
+export const unique = <T extends Array<any>>(items: T): T => {
+    return [...new Set(items)] as T
+}

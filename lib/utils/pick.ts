@@ -1,13 +1,19 @@
 import { Whitespace, VarParameters } from '../types/string'
 import { PeelPath, PeelType } from '../types/pick'
 
-/** 指定的值如果是 null | undefined，則回傳預設值 */
+/**
+ * 值如果是 null | undefined，則回傳預設值。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty
+ */
 
-export const ifEmpty = <T>(data: T | undefined, def: T): T => {
+export const ifEmpty = <T>(data: T | undefined | null, def: T): T => {
     return (data != null ? data : def)
 }
 
-/** 比 typeof 回傳更精準的類型 */
+/**
+ * 比 typeof 回傳更精準的類型。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype
+ */
 
 export const getType = (target: any) => {
     let type = typeof target
@@ -36,8 +42,8 @@ export const getType = (target: any) => {
 }
 
 /**
- * 獲取指定路徑的值
- * @see https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+ * 獲取指定路徑的值，如果值不存在回傳 `null`。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel
  */
 
 export const peel = <
@@ -63,17 +69,11 @@ export const peel = <
 }
 
 /**
- * 複寫字串的指定變數。
- * @example
- * let result = pickVar({
- *  start: '{',
- *  end: '}',
- *  text: '你好我是 {name}，目前是 {job}。'
- * })
- * console.log(result) // ['name', 'job']
+ * 獲取文字裡面的變數列表。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars
  */
 
-export function pickVar<
+export function vars<
     S extends string,
     E extends string,
     T extends string

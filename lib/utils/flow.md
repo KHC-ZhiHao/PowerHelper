@@ -14,7 +14,6 @@ import { flow } from 'power-helper'
 
 停止執行指定時間(毫秒)。
 
-
 ```ts
 function(ms: number): Promise<any>
 ```

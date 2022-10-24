@@ -1,18 +1,27 @@
 import { Whitespace, VarParameters } from '../types/string'
 
-/** 字串開頭是否符合指定目標 */
+/**
+ * Text 開頭是否符合目標。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#headmatch
+ */
 
 export function headMatch(text: string, match: string) {
     return text.slice(0, match.length) === match
 }
 
-/** 字串結尾是否符合指定目標 */
+/**
+ * Text 結尾是否符合目標。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#lastmatch
+ */
 
 export function lastMatch(text: string, match: string) {
     return text.slice(match.length * -1) === match
 }
 
-/** 獲取指定字串的 Byte 長度 */
+/**
+ * 獲取指定 Text 的 Byte 長度。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength
+ */
 
 export function byteLength(text: string) {
     let size = text.length
@@ -31,19 +40,8 @@ export function byteLength(text: string) {
 }
 
 /**
- * 複寫字串的指定變數。
- * @example
- * let result = replaceVar({
- *  start: '{',
- *  end: '}',
- *  text: '你好我是 {name}，目前是 {job}。',
- *  vars: {
- *    name: 'dave',
- *    job: 'rd'
- *  },
- *  dafaultVar: '-'
- * })
- * console.log(result) // 你好我是 dave，目前是 rd。
+ * 複寫 Text 的指定變數。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar
  */
 
 export function replaceVar<
@@ -51,15 +49,15 @@ export function replaceVar<
     E extends string,
     T extends string
 >({ start, end, text, vars, dafaultVar }: {
-    /** 複寫起始符號 */
+    /** 變數起始符號 */
     start: S extends '' ? never : S extends Whitespace ? never : S,
-    /** 複寫終止符號 */
+    /** 變數終止符號 */
     end: E extends '' ? never : E extends Whitespace ? never : E,
     /** 複寫文本 */
     text: T
     /** 複寫變數 */
     vars: Partial<VarParameters<S, E, T>>
-    /** 如果沒有定義變數則覆蓋預設值 */
+    /** 如果找不到對應資料的預設值 */
     dafaultVar?: string
 }) {
     let isStart = false
@@ -104,10 +102,8 @@ export function replaceVar<
 }
 
 /**
- * 轉換字串轉換成指定格式。
- * @example
- * // output: '0900-123-***'
- * format('vvvv-vvv-***', '0900123456')
+ * 轉換 Text 轉換成指定格式，填入 v 代表映射的值。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format
  */
 
 export const format = (format: string, text: string, def = '-') => {

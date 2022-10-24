@@ -73,3 +73,24 @@ console.log(item)
     outputs: [1, 2] | [2, 3] | [1, 3] ...
 */
 ```
+
+---
+
+### unique
+
+移除 Array 中相同的元素。
+
+```ts
+function <T extends Array<any>>(items: T): T
+```
+
+#### example
+
+```ts
+const items = [1, 2, 3, 4, 4]
+const result = array.unique(items)
+console.log(result)
+/*
+    outputs: [1, 2, 3, 4]
+*/
+```

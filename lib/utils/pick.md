@@ -1,40 +1,102 @@
 # Pick
 
-精準地進行物件選取。
-
-## 如何使用
+精準地提取目標相關資源。
 
 ```ts
 import { pick } from 'power-helper'
-/** data 如果是 null，則回傳預設值 */
-pick.ifEmpty = function(data: any, def: any): any;
+```
 
-/** 比 typeof 回傳更精準的類型 */
-pick.getType = function(data: any): "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "empty" | "array" | "NaN" | "regexp" | "promise" | "buffer" | "error";
+---
 
-/**獲取指定路徑的值 */
-pick.peel = function(data: any, path: string): any | null
+## Methods
 
+### ifEmpty
+
+值如果是 null | undefined，則回傳預設值。
+
+```ts
+function<T>(data: T | null | undefined, def: T): T
+```
+
+#### example
+
+```ts
+const result = pick.ifEmpty(null, '123')
+/*
+    outputs: '1234'
+*/
+```
+
+---
+
+### getType
+
+比 typeof 回傳更精準的類型。
+
+```ts
+function(data: any): 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'object' | 'function' | 'empty' | 'array' | 'NaN' | 'regexp' | 'promise' | 'buffer' | 'error'
+```
+
+#### example
+
+```ts
+const result = pick.getType(new Promise(resolve => resolve()))
+/*
+    outputs: 'promise'
+*/
+```
+
+---
+
+### peel
+
+獲取指定路徑的值，如果值不存在回傳 `null`。
+
+```ts
+function(target: Record<string, any>, path: string): any | null
+```
+
+#### example
+
+```ts
 let data = {
     a: {
         b: 3
     }
 }
+console.log(pick.peel(data, 'a.b'))
+/*
+    outputs: 3
+*/
+```
 
-console.log(pick.peel(data, 'a.b')) // 3
+---
 
+### vars
 
-/**獲取文字裡面的變數 */
-pick.pickVar = function(params: {
+獲取文字裡面的變數列表。
+
+```ts
+function(params: {
     start: string
     end: string
     text: string
 }): string[]
+```
 
-console.log(pick.pickVar({
+#### example
+
+```ts
+const result = pick.vars({
     start: '{',
     end: '}',
-    text: '你好我是 {name}，目前是 {job}。'
-})) // ['name', 'job']
-
+    text: '你好我是 {name}，目前的工作是 {job}。'
+})
+console.log(result)
+/*
+    outputs: [
+        'name',
+        'job'
+    ]
+*/
 ```

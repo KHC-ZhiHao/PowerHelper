@@ -30,7 +30,14 @@
 
 Power Helper 是 JavaScript 的工具集成，功能簡單且無任何依賴項目，極為精簡。
 
-你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能。
+你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能，盡可能的解決套件破碎化的問題。
+
+那麼如果只用此套件，你可以獲得什麼呢？
+
+1. 完整的測試覆蓋率。
+2. 完整的中文文件支援。
+3. 持續改善的工具。
+4. 針對編輯器完整的提示。
 
 ## 安裝
 
@@ -60,6 +67,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [array](./lib/utils/array.md) - 優雅的 Array 操作。
 
+* [unique](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique) - 移除 Array 中相同的元素。
 * [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - 將 Array 依照指定數量集成一組。
 * [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompick) - 從 Array 中隨機獲取一個值。
 * [randomPicks](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompicks) - 
@@ -81,16 +89,32 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [retry](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry) - 優雅的設計有限的重複執行直到成功為止。
 * [asyncWhile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile) - 結合非同步與計數的迴圈操作。
 
+[json](./lib/utils/json.md) - 優雅的 JSON 格式相關處理。
 
-[json](./lib/utils/json.md)
+* [jpjs](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#jpjs) - 經典的深拷貝方案 JSON.parse(JSON.stringify(data))。
+* [nonStrictJSONParse](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#nonstrictjsonparse) - 執行 JSON Parse，如果失敗回傳空白物件 `{}`。
+* [nonStrictJSONStringify](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#nonstrictjsonstringify) - 執行 JSON Stringify，如果失敗回傳字串 `'{}'`。
 
-[text](./lib/utils/text.md)
+[text](./lib/utils/text.md) - 字串相關的處理。
 
-[pick](./lib/utils/pick.md)
+* [headMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#headmatch) - Text 開頭是否符合目標。
+* [lastMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#lastmatch) - Text 結尾是否符合目標。
+* [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - Text 結尾是否符合目標。
+* [replaceVar](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar) - 複寫 Text 的指定變數。
+* [format](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format) - 轉換 Text 轉換成指定格式，填入 v 代表映射的值。
+
+[pick](./lib/utils/pick.md) - 精準地提取目標相關資源。
+
+* [ifEmpty](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty) - 經典的深拷貝方案 JSON.parse(JSON.stringify(data))。
+* [getType](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype) - 比 typeof 回傳更精準的類型。
+* [peel](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel) - 獲取指定路徑的值，如果值不存在回傳 `null`。
+* [vars](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars) - 獲取文字裡面的變數列表。
+
 
 [element](./lib/utils/element.md) - 優雅的 Dom 操作。
 
 * [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+* [createAndAppend](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#createandappend) - 新增並將 Tag Append 至指定 Element，這個方法只允許在 Browser 中執行。
 
 [record](./lib/utils/record.md) - 優雅的 Object 操作。
 

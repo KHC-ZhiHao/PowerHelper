@@ -1,4 +1,5 @@
-import { importScript } from './element'
+import { expect } from 'chai'
+import { importScript, createAndAppend } from './element'
 
 describe('Element', () => {
     beforeEach(() => {
@@ -6,7 +7,11 @@ describe('Element', () => {
             innerWidth: 768,
             document: {
                 body: {
-                    appendChild: (el: any) => el.onload()
+                    appendChild: (el: any) => {
+                        if (el.onload) {
+                            el.onload()
+                        }
+                    }
                 },
                 getElementsByTagName() {
                     return [
@@ -32,5 +37,17 @@ describe('Element', () => {
     })
     it('importScript same', async function() {
         await importScript('./html')
+    })
+    it('createAndAppend', async function() {
+        const el = createAndAppend('a', el => {
+            el.href = '123'
+        })
+        expect(el.href).eq('123')
+    })
+    it('createAndAppend target', async function() {
+        const el = createAndAppend('a', el => {
+            el.href = '123'
+        }, window.document.body)
+        expect(el.href).eq('123')
     })
 })

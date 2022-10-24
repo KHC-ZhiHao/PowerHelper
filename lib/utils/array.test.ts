@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { groups, randomPick, randomPicks } from './array'
+import { groups, randomPick, randomPicks, unique } from './array'
 
 describe('Array', () => {
     it('group', function() {
@@ -22,5 +22,8 @@ describe('Array', () => {
     it('randomPicks', () => {
         expect(randomPicks(2, [1, 2, 3, 4]).length).to.equal(2)
         expect(randomPicks(5, [1, 2, 3, 4]).length).to.equal(4)
+    })
+    it('unique', () => {
+        expect(unique([1, 2, 3, 4, 4]).join()).eq([1, 2, 3, 4].join())
     })
 })
