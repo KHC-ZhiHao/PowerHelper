@@ -4,8 +4,13 @@ import { QueryCollection } from './query-collection'
 type PoolParams<P, D> = {
     find: (_data: D, _params: P) => boolean
     fetch: (_params: P[]) => Promise<D[]>
-    cache?: Omit<ConstructorParameters<typeof Cache<P, D>>[0], 'key' | 'pick'>
-    collection?: Omit<ConstructorParameters<typeof QueryCollection<P, D>>[0], 'query'>
+    cache?: {
+        keepAlive?: number
+        maxSize?: number
+    }
+    collection?: {
+        waitTime?: number
+    }
 }
 
 export class Pool<P, D> {

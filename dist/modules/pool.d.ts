@@ -1,10 +1,13 @@
-import { Cache } from './cache';
-import { QueryCollection } from './query-collection';
 declare type PoolParams<P, D> = {
     find: (_data: D, _params: P) => boolean;
     fetch: (_params: P[]) => Promise<D[]>;
-    cache?: Omit<ConstructorParameters<typeof Cache<P, D>>[0], 'key' | 'pick'>;
-    collection?: Omit<ConstructorParameters<typeof QueryCollection<P, D>>[0], 'query'>;
+    cache?: {
+        keepAlive?: number;
+        maxSize?: number;
+    };
+    collection?: {
+        waitTime?: number;
+    };
 };
 export declare class Pool<P, D> {
     private dataCache;
