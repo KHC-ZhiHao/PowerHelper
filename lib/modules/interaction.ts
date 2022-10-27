@@ -120,7 +120,7 @@ export class Interaction extends Event<Channels> {
      * 切出一個分支有利於追蹤
      */
 
-    checkout(name: string): Pick<Interaction, 'wrong' | 'notify' | 'checkout' | 'step'> {
+    checkout(name: string): Pick<Interaction, 'wrong' | 'notify' | 'checkout' | 'step' | 'fail'> {
         const branch = new Interaction({
             name,
             interceptorMessage: this.interceptorMessage
@@ -128,6 +128,7 @@ export class Interaction extends Event<Channels> {
         branch.parent = this
         return {
             step: branch.step.bind(branch),
+            fail: branch.fail.bind(branch),
             wrong: branch.wrong.bind(branch),
             notify: branch.notify.bind(branch),
             checkout: branch.checkout.bind(branch)

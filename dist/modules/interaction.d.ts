@@ -45,7 +45,7 @@ export declare class Interaction extends Event<Channels> {
     /**
      * 切出一個分支有利於追蹤
      */
-    checkout(name: string): Pick<Interaction, 'wrong' | 'notify' | 'checkout' | 'step'>;
+    checkout(name: string): Pick<Interaction, 'wrong' | 'notify' | 'checkout' | 'step' | 'fail'>;
     /**
      * 發出通知的訊息
      */
