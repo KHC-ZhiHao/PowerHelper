@@ -35,6 +35,10 @@ describe('Hook', () => {
         expect(i18n.t('hello {Name}', { Name: '小白' })).eq('Hello 小白')
         expect(i18n.getLocale()).eq('en')
     })
+    it('load key', function() {
+        const i18n = getI18n()
+        expect(i18n.key('hello {Name}', { Name: '小白' }).get('zh')).eq('你好 小白')
+    })
     it('escape', function() {
         const i18n = getI18n()
         expect(i18n.export('en')('## ouo')).eq('ouo')

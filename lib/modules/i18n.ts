@@ -85,4 +85,20 @@ export class I18n<L extends string, K extends string> extends Event<Channels> {
     getLocale() {
         return this.nowLocale
     }
+
+    /**
+     * 獲取鍵值來協助延後獲取語系 
+     * @example
+     * i18n.key('user').get('zh')
+     * // output: 使用者
+     */
+
+    key<
+        T extends (K | `##${string}`),
+        V extends VarParameters<'{', '}', T extends string ? T : ''>
+    >(key: T, ...vars: V extends Record<string, never> ? any[] : [V]) {
+        return {
+            get: (locale: L) => this.get(locale, key, ...vars)
+        }
+    }
 }
