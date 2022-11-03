@@ -1,5 +1,5 @@
 import { Whitespace, VarParameters } from '../types/string'
-import { PeelPath, PeelType } from '../types/pick'
+import { PeelType } from '../types/pick'
 
 /**
  * 值如果是 null | undefined，則回傳預設值。
@@ -47,11 +47,11 @@ export const getType = (target: any) => {
  */
 
 export const peel = <
-    T extends Record<string, any>,
-    C extends PeelPath<'', T>,
-    R extends PeelType<C, T>
+    T extends Record<string, any> = Record<'', any>,
+    C extends string = '',
+    R = PeelType<C, T>
 >(target: T, path: C): C extends '' ? T : (R | null) => {
-    let units = (path as string).split(/[.[\]'"]/g).filter(s => s.trim() !== '')
+    let units = (path as unknown as string).split(/[.[\]'"]/g).filter(s => s.trim() !== '')
     let output = target as any
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -84,7 +84,7 @@ export function vars<
     end: E extends '' ? never : E extends Whitespace ? never : E,
     /** 複寫文本 */
     text: T
-}): (keyof VarParameters<S, E, T>)[] {
+}): (keyof VarParameters<S, E, T> extends never ? string : keyof VarParameters<S, E, T>)[] {
     let isStart = false
     let output: string[] = []
     let varKey = ''

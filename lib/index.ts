@@ -228,25 +228,25 @@ export const PromiseOverlap = _PromiseOverlap
 export const CacheLite = _CacheLite
 
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpointmd
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpoint.md
  */
 
 export const Breakpoint = _Breakpoint
 
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception.md
  */
 
 export const Exception = _Exception
 
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction.md
  */
 
 export const Interaction = _Interaction
 
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.md
  */
 
 export const Resource = _Resource

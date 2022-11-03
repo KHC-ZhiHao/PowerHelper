@@ -169,19 +169,19 @@ export declare const PromiseOverlap: typeof _PromiseOverlap;
  */
 export declare const CacheLite: typeof _CacheLite;
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpointmd
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpoint.md
  */
 export declare const Breakpoint: typeof _Breakpoint;
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception.md
  */
 export declare const Exception: typeof _Exception;
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction.md
  */
 export declare const Interaction: typeof _Interaction;
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.md
  */
 export declare const Resource: typeof _Resource;
 export declare const PowerHelper: {
