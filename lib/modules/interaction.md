@@ -54,8 +54,8 @@ function each(cb: (_step: Step, _index: number) => void): void
 function setp(message: string, meta?: any): void
 /** 發出錯誤的訊息，通常表示於整個應用程式發生錯誤 */
 function wrong(message: string): void
-/** 發出錯誤的訊息，並回傳一組錯誤 */
-function fail(message: string): Error
+/** 發出錯誤的訊息，並回傳一組錯誤，如果沒有傳入第二個參數則以 message 擲出 */
+function fail(message: string, error?: any): Error
 /** 發出通知的訊息 */
 function notify(type: StepLevel, content: any): void
 ```

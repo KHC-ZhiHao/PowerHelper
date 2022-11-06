@@ -65,6 +65,10 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 大多由單純的 Function 組成。
 
+[calc](./lib/utils/calc.md) - 負責計算的單元。
+
+* [toMs](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.md#toms) - 將指定時間格式的數值轉換成毫秒。
+
 [array](./lib/utils/array.md) - 優雅的 Array 操作。
 
 * [unique](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique) - 移除 Array 中相同的元素。

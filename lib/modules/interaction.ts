@@ -88,18 +88,19 @@ export class Interaction extends Event<Channels> {
     }
 
     /**
-     * 發出錯誤的訊息，並回傳一組錯誤
+     * 發出錯誤的訊息，並回傳一組錯誤，如果沒有傳入第二個參數則以 message 擲出。
      */
 
-    fail(message: string, error: any) {
+    fail(message: string, error?: any) {
+        let e = error ? error : message
         this.pushStep({
-            meta: error,
+            meta: e,
             type: 'fail',
             level: 'danger',
             message,
             checkoutAt: this.fullName
         })
-        return error instanceof Error ? error : new Error(error)
+        return e instanceof Error ? e : new Error(e)
     }
 
     /**

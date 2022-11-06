@@ -48,6 +48,19 @@ describe('Interaction', () => {
         expect(flag.type).eq('fail')
         expect(flag.meta.message).eq('123')
     })
+    it('fail def', function() {
+        let flag: any = null
+        let interaction = new Interaction({
+            name: 'root',
+            interceptorMessage: (message) => message
+        })
+        interaction.on('action', s => {
+            flag = s
+        })
+        interaction.fail('1234')
+        expect(flag.type).eq('fail')
+        expect(flag.meta).eq('1234')
+    })
     it('max size', function() {
         let messages: string[] = []
         let interaction = new Interaction({

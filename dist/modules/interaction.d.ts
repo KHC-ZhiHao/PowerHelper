@@ -35,9 +35,9 @@ export declare class Interaction extends Event<Channels> {
      */
     step(message: string, meta?: any): void;
     /**
-     * 發出錯誤的訊息，並回傳一組錯誤
+     * 發出錯誤的訊息，並回傳一組錯誤，如果沒有傳入第二個參數則以 message 擲出。
      */
-    fail(message: string, error: any): Error;
+    fail(message: string, error?: any): Error;
     /**
      * 發出錯誤的訊息，通常表示於整個應用程式發生錯誤
      */

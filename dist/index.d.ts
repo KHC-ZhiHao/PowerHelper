@@ -6,6 +6,7 @@ import * as _array from './utils/array';
 import * as _detect from './utils/detect';
 import * as _record from './utils/record';
 import * as _element from './utils/element';
+import * as _calc from './utils/calc';
 import { Log as _Log } from './modules/log';
 import { I18n as _I18n } from './modules/i18n';
 import { Hook as _Hook } from './modules/hook';
@@ -29,6 +30,11 @@ import { Breakpoint as _Breakpoint } from './modules/breakpoint';
 import { Exception as _Exception } from './modules/exception';
 import { Interaction as _Interaction } from './modules/interaction';
 import { Pool as _Pool } from './modules/pool';
+/**
+ * 負責計算的單元。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.md
+ */
+export declare const calc: typeof _calc;
 /**
  * 精準地提取目標相關資源。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md
@@ -189,6 +195,7 @@ export declare const PowerHelper: {
     json: typeof _json;
     text: typeof _text;
     pick: typeof _pick;
+    calc: typeof _calc;
     array: typeof _array;
     record: typeof _record;
     detect: typeof _detect;
