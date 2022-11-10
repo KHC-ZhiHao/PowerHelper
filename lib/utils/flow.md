@@ -10,6 +10,26 @@ import { flow } from 'power-helper'
 
 ## Methods
 
+### run
+
+直接運行方法並返回結果。
+
+```ts
+function<T extends () => any>(cb: T): ReturnType<T> 
+```
+
+#### example
+
+```ts
+const result = flow.run(() => 10)
+console.log(result)
+/*
+    outputs: 10
+*/
+```
+
+---
+
 ### sleep
 
 停止執行指定時間(毫秒)。

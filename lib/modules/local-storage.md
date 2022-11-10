@@ -123,4 +123,6 @@ type InterceptGet = {
     isDefault: boolean
     // 獲取預設值
     defaultValue: () => any
+    /** Storage */
+    storage: LocalStorage<any>
 }

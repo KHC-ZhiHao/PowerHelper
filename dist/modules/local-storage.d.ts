@@ -1,6 +1,8 @@
 declare type Intercept = {
     Set: (_name: string, _data: any) => any;
     Get: (_name: string, _data: any, _context: {
+        /** Storage */
+        storage: LocalStorage<any>;
         /** 是否是採用預設值 */
         isDefault: boolean;
         /** 獲取預設值 */

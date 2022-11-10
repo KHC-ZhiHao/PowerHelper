@@ -1,7 +1,11 @@
 import { expect } from 'chai'
-import { randomInt, sleep, retry, asyncWhile, createUuid,  } from './flow'
+import { run, randomInt, sleep, retry, asyncWhile, createUuid,  } from './flow'
 
 describe('Flow', () => {
+    it('run', async function() {
+        let result = run(() => 10)
+        expect(result).to.equal(10)
+    })
     it('sleep', async function() {
         let now = Date.now()
         await sleep(350)

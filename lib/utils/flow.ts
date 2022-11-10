@@ -1,4 +1,13 @@
 /**
+ * 直接運行方法並返回結果。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#run
+ */
+
+export const run = <T extends () => any>(cb: T): ReturnType<T> => {
+    return cb()
+}
+
+/**
  * 停止執行指定時間(毫秒)。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep
  */

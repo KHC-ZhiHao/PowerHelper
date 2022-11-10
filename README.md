@@ -87,6 +87,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [flow](./lib/utils/flow.md) - 流程控制的工具。
 
+* [run](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#run) - 直接運行方法並返回結果。
 * [sleep](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep) - 停止執行指定時間(毫秒)。
 * [randomInt](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#randomint) - 求整數範圍內的隨機值。
 * [createUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createuuid) - 建立一組隨機的 v4 uuid。
