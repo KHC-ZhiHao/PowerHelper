@@ -110,3 +110,18 @@ export const createStrictObject = <T extends StrictObjectParams>(envs: T): DeepR
     }
     return Object.freeze(output)
 }
+
+/**
+ * 淺拷貝同一份 Object，但忽略掉指定對象。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit
+ */
+
+export const omit = <D extends object, T extends (keyof D)[]>(data: D, keys: T): Omit<D, T[0]> => {
+    let output: any = {}
+    for (let key in data) {
+        if (keys.includes(key) === false) {
+            output[key] = data[key]
+        }
+    }
+    return output
+}

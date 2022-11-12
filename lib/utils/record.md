@@ -10,6 +10,34 @@ import { record } from 'power-helper'
 
 ## Methods
 
+### omit
+
+淺拷貝同一份 Object，但忽略掉指定對象。
+
+```ts
+function<D extends object, T extends (keyof D)[]>(data: D, keys: T): Omit<D, T[0]>
+```
+
+#### example
+
+```ts
+const data = {
+    name: 'dave',
+    age: 18,
+    year: 1993
+}
+
+console.log(record.omit(data, ['name']))
+/*
+    outputs: {
+        age: 18,
+        year: 1993
+    }
+*/
+```
+
+---
+
 ### setMapValue
 
 複製指定物件的值到目標 Object 上，並產生一份新的 Object，細部規則可詳見 example。

@@ -19,4 +19,9 @@ declare type StrictObjectParams = {
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#createstrictobject
  */
 export declare const createStrictObject: <T extends StrictObjectParams>(envs: T) => DeepReadonly<{ [key in keyof T]: T[key][0] extends StringConstructor ? string : T[key][0] extends NumberConstructor ? number : T[key][0] extends BooleanConstructor ? boolean : unknown; }>;
+/**
+ * 淺拷貝同一份 Object，但忽略掉指定對象。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit
+ */
+export declare const omit: <D extends object, T extends (keyof D)[]>(data: D, keys: T) => Omit<D, T[0]>;
 export {};

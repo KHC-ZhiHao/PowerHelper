@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { setMapValue, createStrictObject } from './record'
+import { setMapValue, createStrictObject, omit } from './record'
 
 describe('Record', () => {
     it('basic', async function() {
@@ -35,6 +35,19 @@ describe('Record', () => {
     it('empty', async function() {
         let data = setMapValue(null, null)
         expect(JSON.stringify(data)).to.equal('{}')
+    })
+    it('omit', async function() {
+        let old = {
+            name: '123',
+            age: 456,
+            year: 777
+        }
+        let data = omit(old, ['name'])
+        // @ts-ignore
+        expect(data.name == null).to.equal(true)
+        expect(data.age).to.equal(456)
+        expect(data.year).to.equal(777)
+        expect(old.name).to.equal('123')
     })
     it('directReplacePeels', async function() {
         let data = setMapValue({
