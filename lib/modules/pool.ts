@@ -35,10 +35,14 @@ export class Pool<P, D> {
         })
     }
 
+    /** 獲取資料 */
+
     async pick(params: P) {
         const result = this.dataCache.get(params)
         return result
     }
+
+    /** 批次獲取資料 */
 
     async list(paramsItems: P[]) {
         const result = await Promise.all(paramsItems.map(params => this.dataCache.get(params)))

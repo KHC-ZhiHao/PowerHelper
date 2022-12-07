@@ -36,6 +36,9 @@ export class Exception extends Event<Channels> {
                 if (typeof data.response?.data === 'string') {
                     return data.response.data
                 }
+                if (typeof data.response?.data?.message === 'string') {
+                    return data.response?.data?.message
+                }
                 if (typeof data.response?.data?.error === 'string') {
                     return data.response?.data?.error
                 }

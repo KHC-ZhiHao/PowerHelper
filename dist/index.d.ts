@@ -97,7 +97,7 @@ export declare type CacheLite<Handler extends (key: string) => any> = _CacheLite
 export declare type Exception = _Exception;
 export declare type Breakpoint = _Breakpoint;
 export declare type Interaction = _Interaction;
-export declare type Resource = _Resource;
+export declare type Resource<Items extends Record<string, (data: any) => string>> = _Resource<Items>;
 /**
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/log.md
  */

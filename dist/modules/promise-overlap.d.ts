@@ -7,6 +7,7 @@ export declare class PromiseOverlap<T> {
     private options;
     private processes;
     constructor(pick: Pick, options?: Options);
+    /** 執行目標 promise */
     run(cb: () => Promise<T>): Promise<T>;
 }
 export {};

@@ -22,6 +22,7 @@ export class PromiseOverlap<T> {
         this.options = options
     }
 
+    /** 執行目標 promise */
     run(cb: () => Promise<T>): Promise<T> {
         let obj: Process = {
             data: null,

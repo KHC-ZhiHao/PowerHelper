@@ -10,6 +10,14 @@ import { pick } from 'power-helper'
 
 ## Methods
 
+### ifBad
+
+值如果是 null | undefined | Error | NaN，則回傳預設值。
+
+```ts
+function<T>(data: T | null | undefined | Error, def: T): T
+```
+
 ### ifEmpty
 
 值如果是 null | undefined，則回傳預設值。

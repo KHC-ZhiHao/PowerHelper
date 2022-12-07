@@ -1,5 +1,4 @@
-interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {
-}
+declare type DeepReadonlyArray<T> = ReadonlyArray<DeepReadonly<T>>;
 declare type DeepReadonlyObject<T> = {
     readonly [P in keyof T]: DeepReadonly<T[P]>;
 };

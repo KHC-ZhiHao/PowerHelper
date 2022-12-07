@@ -53,9 +53,9 @@ npm install power-helper
 yarn add power-helper
 ```
 
-## TypeScript 環境
+## TypeScript
 
-PowerHelper 原生採用 TypeScript 環境，且推薦你在 TypeScript 中進行開發。
+PowerHelper 全程採用 TypeScript 撰寫，非常推薦在 TypeScript 專案中使用。
 
 ## 如何使用？
 
@@ -104,13 +104,14 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 * [headMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#headmatch) - Text 開頭是否符合目標。
 * [lastMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#lastmatch) - Text 結尾是否符合目標。
-* [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - Text 結尾是否符合目標。
+* [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - 獲取指定 Text 的 Byte 長度。
 * [replaceVar](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar) - 複寫 Text 的指定變數。
 * [format](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format) - 轉換 Text 轉換成指定格式，填入 v 代表映射的值。
 
 [pick](./lib/utils/pick.md) - 精準地提取目標相關資源。
 
-* [ifEmpty](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty) - 經典的深拷貝方案 JSON.parse(JSON.stringify(data))。
+* [ifBad](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifbad) - 值如果是 null | undefined | Error | NaN，則回傳預設值。
+* [ifEmpty](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty) - 值如果是 null | undefined，則回傳預設值。
 * [getType](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype) - 比 typeof 回傳更精準的類型。
 * [peel](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel) - 獲取指定路徑的值，如果值不存在回傳 `null`。
 * [vars](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars) - 獲取文字裡面的變數列表。
@@ -151,7 +152,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [Debounce](./lib/modules/debounce.md) - 去抖動功能，避免頻繁發出請求。
 
-[Resource](./lib/modules/resource.md) - 更優雅的實現獲取檔案路徑。
+[Resource](./lib/modules/resource.md) - 更優雅的實現獲取各類靜態資源。
 
 [Schedule](./lib/modules/schedule.md) - 可以建立多個定時執行系統，且能保證不重複執行。
 

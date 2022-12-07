@@ -1,7 +1,13 @@
 import { expect } from 'chai'
-import { peel, ifEmpty, getType, vars } from './pick'
+import { peel, ifEmpty, ifBad, getType, vars } from './pick'
 
 describe('Pick', () => {
+    it('ifBad', async function() {
+        expect(ifBad(5, 10)).to.equal(5)
+        expect(ifBad(null, 10)).to.equal(10)
+        expect(ifBad(NaN, 10)).to.equal(10)
+        expect(ifBad(new Error('123'), 10)).to.equal(10)
+    })
     it('ifEmpty', async function() {
         expect(ifEmpty(5, 10)).to.equal(5)
         expect(ifEmpty(null, 10)).to.equal(10)

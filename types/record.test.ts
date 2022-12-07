@@ -1,4 +1,4 @@
-import { DeepReadonly } from './record'
+import { DeepReadonly, Assign } from './record'
 
 () => {
     const deepReadonly = <T>(data: T) => data as DeepReadonly<T>
@@ -8,5 +8,9 @@ import { DeepReadonly } from './record'
             name: '123'
         }
     })
-    return data
+    const assign: Assign<{ name: number }, { name: string }> = Object.assign({ name: 1 }, { name: '1' })
+    return {
+        data,
+        assign
+    }
 }

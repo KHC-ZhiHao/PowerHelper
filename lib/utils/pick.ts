@@ -2,6 +2,17 @@ import { Whitespace, VarParameters } from '../types/string'
 import { PeelType } from '../types/pick'
 
 /**
+ * 值如果是 null | undefined | Error | NaN，則回傳預設值。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifbad
+ */
+
+export const ifBad = <T>(data: T | undefined | null | Error, def: T) => {
+    const type = getType(data)
+    const defs = ['empty', 'NaN', 'error']
+    return defs.includes(type) ? def : data
+}
+
+/**
  * 值如果是 null | undefined，則回傳預設值。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty
  */
@@ -15,7 +26,21 @@ export const ifEmpty = <T>(data: T | undefined | null, def: T): T => {
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype
  */
 
-export const getType = (target: any) => {
+export const getType = (target: any):
+      'string'
+    | 'number'
+    | 'bigint'
+    | 'boolean'
+    | 'symbol'
+    | 'object'
+    | 'function'
+    | 'empty'
+    | 'array'
+    | 'NaN'
+    | 'regexp'
+    | 'promise'
+    | 'buffer'
+    | 'error' => {
     let type = typeof target
     if (target == null) {
         return 'empty'

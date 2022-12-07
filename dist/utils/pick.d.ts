@@ -1,6 +1,11 @@
 import { Whitespace, VarParameters } from '../types/string';
 import { PeelType } from '../types/pick';
 /**
+ * 值如果是 null | undefined | Error | NaN，則回傳預設值。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifbad
+ */
+export declare const ifBad: <T>(data: T | Error | null | undefined, def: T) => T | Error | null | undefined;
+/**
  * 值如果是 null | undefined，則回傳預設值。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty
  */
@@ -9,7 +14,7 @@ export declare const ifEmpty: <T>(data: T | null | undefined, def: T) => T;
  * 比 typeof 回傳更精準的類型。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype
  */
-export declare const getType: (target: any) => "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "empty" | "array" | "NaN" | "regexp" | "promise" | "buffer" | "error";
+export declare const getType: (target: any) => 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'object' | 'function' | 'empty' | 'array' | 'NaN' | 'regexp' | 'promise' | 'buffer' | 'error';
 /**
  * 獲取指定路徑的值，如果值不存在回傳 `null`。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel

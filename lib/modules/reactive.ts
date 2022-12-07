@@ -37,18 +37,22 @@ export class Reactive<S extends Record<string, any>> extends Event<Channels<S>> 
         super()
         this.params = params
     }
+
     /** 是否觸發過 from */
     isActive() {
         return this.installed
     }
+
     /** 關閉輪詢 */
     close() {
         this.schedule.close()
     }
+
     /** 在下一次輪詢時觸發 */
     nextTick(cb: NextTickCallback<S>) {
         this.nextTicks.push(cb)
     }
+
     /** 指定監聽對象 */
     async from(data: S) {
         this.oldKey = null
@@ -63,6 +67,7 @@ export class Reactive<S extends Record<string, any>> extends Event<Channels<S>> 
         }
         return this
     }
+
     /** 觸發驗證是否改變了 key 值，如果改變則執行 action */
     private async dispatch() {
         let newKey = await this.params.observable(this.state)
@@ -76,6 +81,7 @@ export class Reactive<S extends Record<string, any>> extends Event<Channels<S>> 
             this.nextTicks = []
         }
     }
+
     /** 執行 action */
     private async trigger(newKey: string) {
         const context = {

@@ -41,6 +41,15 @@ describe('Exception', () => {
             name: 'AxiosError',
             response: {
                 data: {
+                    message: 'BB',
+                    error: 'AA'
+                }
+            }
+        }).message).to.equal('test: BB')
+        expect(exception.create({
+            name: 'AxiosError',
+            response: {
+                data: {
                     error: 'AA'
                 }
             }

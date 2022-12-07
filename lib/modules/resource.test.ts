@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Resource } from './resource'
 
-const mock = (cb: (resource: Resource) => void) => {
+const mock = (cb: (resource: Resource<any>) => void) => {
     let bk = global.URL
     // @ts-ignore
     global.URL = {
@@ -28,6 +28,23 @@ describe('Resource', () => {
         expect(resource.url('file://banana.jpg')).eq('file://banana.jpg')
         expect(resource.url('https://banana.jpg')).eq('https://banana.jpg')
         expect(resource.url('data://banana.jpg')).eq('data://banana.jpg')
+    })
+    it('items', function() {
+        let resource = new Resource({
+            def: (path) => `images/${path}`,
+            items: {
+                logo: (data: 'google' | 'apple') => {
+                    return data === 'google' ? 'google.png' : 'apple.png'
+                },
+                logo2: () => {
+                    return 'apple.png'
+                }
+            }
+        })
+        // @ts-ignore
+        expect(resource.get('...', {})).eq('images/')
+        expect(resource.get('logo', 'google')).eq('images/google.png')
+        expect(resource.get('logo2')).eq('images/apple.png')
     })
     it('file', function() {
         mock(resource => {

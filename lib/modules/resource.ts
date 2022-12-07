@@ -1,10 +1,13 @@
 import { Event } from './event'
 import { headMatch } from '../utils/text'
 
+type Items = Record<string, (data: any) => string>
+
 type ResourceSupport = string | File | Blob | MediaSource
 
-type ResourceParams = {
+type ResourceParams<I extends Items> = {
     def: (_path: string) => string
+    items?: I
 }
 
 type Channels = {
@@ -15,10 +18,15 @@ type Channels = {
     }
 }
 
-export class Resource extends Event<Channels> {
+// TODO: 需要新的 guide module 來控制前綴與導向
+// private base
+// private alias: Map<string, string> = new Map()
+// private redirects: Map<string, string> = new Map()
+
+export class Resource<I extends Items> extends Event<Channels> {
     private objectUrls: string[] = []
-    private params: ResourceParams
-    constructor(params: ResourceParams) {
+    private params: ResourceParams<I>
+    constructor(params: ResourceParams<I>) {
         super()
         this.params = params
     }
@@ -29,6 +37,12 @@ export class Resource extends Event<Channels> {
         return url
     }
 
+    /** 獲取已編寫好案例的 items 資源，回傳的字串是經過 url 編譯後的結果 */
+    get<T extends keyof I>(name: T, ...data: Parameters<I[T]>[0] extends undefined ? [] : [Parameters<I[T]>[0]]): string {
+        return this.url(this.params.items?.[name]?.(data[0]) || '')
+    }
+
+    /** 獲取資源 url */
     url(source: ResourceSupport) {
         let url = ''
         let isObjectUrl = false
@@ -62,11 +76,13 @@ export class Resource extends Event<Channels> {
         return url
     }
 
+    /** 如果取用過 File, Blob, MediaSource 等型態的 Url，需要釋放現有的記憶體資源 */
     release() {
         this.objectUrls.forEach(url => URL.revokeObjectURL(url))
         this.objectUrls = []
     }
 
+    /** 將 url 轉換成 css style  */
     backgroundStyle(source: ResourceSupport) {
         return `background-image: url(${this.url(source)})`
     }

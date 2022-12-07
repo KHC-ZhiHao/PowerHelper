@@ -11,3 +11,5 @@ export type DeepReadonly<T> =
     T extends Function ? T :
     T extends object ? DeepReadonlyObject<T> :
     T
+
+export type Assign<T, R> = Omit<(T & R), keyof R> & R
