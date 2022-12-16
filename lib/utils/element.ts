@@ -3,7 +3,9 @@
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript
  */
 
-export const importScript = (url: string) => new Promise((resolve, reject) => {
+export const importScript = (url: string, options?: {
+    appendBefore?: (_el: HTMLScriptElement) => void
+}) => new Promise((resolve, reject) => {
     let dom = window.document as any
     let script = dom.createElement('script')
     let elements = Array.from(window.document.getElementsByTagName('script'))
@@ -12,9 +14,12 @@ export const importScript = (url: string) => new Promise((resolve, reject) => {
             return resolve(null)
         }
     }
+    script.src = url
+    if (options?.appendBefore) {
+        options.appendBefore(script)
+    }
     script.onload = resolve
     script.onerror = reject
-    script.src = url
     dom.body.appendChild(script)
 })
 
@@ -33,4 +38,32 @@ export const createAndAppend = <T extends keyof HTMLElementTagNameMap>(tag: T, c
         window.document.body.appendChild(element)
     }
     return element
+}
+
+/**
+ * 透過執行階段注入帶 stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importcss
+ */
+
+export const importCss = (url: string, options?: {
+    appendBefore?: (_el: HTMLLinkElement) => void
+}) => {
+    return new Promise((resolve, reject) => {
+        let dom = window.document
+        let link = dom.createElement('link')
+        let elements = Array.from(window.document.getElementsByTagName('link'))
+        for (let element of elements) {
+            if (element.href === url) {
+                return resolve(null)
+            }
+        }
+        link.rel = 'stylesheet'
+        link.href = url
+        if (options?.appendBefore) {
+            options.appendBefore(link)
+        }
+        link.onload = resolve
+        link.onerror = reject
+        dom.body.appendChild(link)
+    })
 }

@@ -1,6 +1,6 @@
 {
   "name": "power-helper",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Super power helper.",
   "main": "./dist/index.js",
   "scripts": {

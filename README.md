@@ -120,6 +120,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 [element](./lib/utils/element.md) - 優雅的 Dom 操作。
 
 * [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+* [importCss](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importcss) - 透過執行階段注入帶 stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
 * [createAndAppend](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#createandappend) - 新增並將 Tag Append 至指定 Element，這個方法只允許在 Browser 中執行。
 
 [record](./lib/utils/record.md) - 優雅的 Object 操作。

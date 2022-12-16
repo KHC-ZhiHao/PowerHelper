@@ -15,7 +15,16 @@ import { pick } from 'power-helper'
 值如果是 null | undefined | Error | NaN，則回傳預設值。
 
 ```ts
-function<T>(data: T | null | undefined | Error, def: T): T
+function<T>(data: T | Number | null | undefined | Error, def: T): T
+```
+
+#### example
+
+```ts
+const result = pick.ifBad(null, '123')
+/*
+    outputs: '123'
+*/
 ```
 
 ### ifEmpty
@@ -31,7 +40,7 @@ function<T>(data: T | null | undefined, def: T): T
 ```ts
 const result = pick.ifEmpty(null, '123')
 /*
-    outputs: '1234'
+    outputs: '123'
 */
 ```
 
