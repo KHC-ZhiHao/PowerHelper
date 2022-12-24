@@ -97,6 +97,26 @@ console.log(uuid)
 
 ---
 
+### createWithTsUuid
+
+建立一組隨機的 v4 uuid，但在前面加上當下的 timestamp(ms)。
+
+```ts
+function(): string
+```
+
+#### example
+
+```ts
+const uuid = flow.createWithTsUuid()
+console.log(uuid)
+/*
+    outputs: '123456789-xxxxxxxx-xxxx-xxxx....'
+*/
+```
+
+---
+
 ### randomInt
 
 求整數範圍內的隨機值。

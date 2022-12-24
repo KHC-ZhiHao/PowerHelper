@@ -45,6 +45,15 @@ export const createUuid = () => {
 }
 
 /**
+ * 建立一組隨機的 v4 uuid，但在前面加上當下的 timestamp(ms)。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createwithtsuuid
+ */
+
+export const createWithTsUuid = () => {
+    return `${Date.now()}-${createUuid()}`
+}
+
+/**
  * 優雅的設計有限的重複執行直到成功為止。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry
  */

@@ -17,9 +17,6 @@
     <a href="https://standardjs.com/">
         <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg">
     </a>
-    <a href="https://lgtm.com/projects/g/KHC-ZhiHao/PowerHelper/context:javascript">
-        <img src="https://img.shields.io/lgtm/grade/javascript/g/KHC-ZhiHao/PowerHelper.svg?logo=lgtm&logoWidth=18"/>
-    </a>
     <a href="https://github.com/KHC-ZhiHao/PowerHelper">
         <img src="https://img.shields.io/github/stars/KHC-ZhiHao/PowerHelper.svg?style=social">
     </a>
@@ -91,6 +88,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [sleep](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep) - 停止執行指定時間(毫秒)。
 * [randomInt](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#randomint) - 求整數範圍內的隨機值。
 * [createUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createuuid) - 建立一組隨機的 v4 uuid。
+* [createWithTsUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createwithtsuuid) - 建立一組隨機的 v4 uuid，但在前面加上當下的 timestamp(ms)。
 * [retry](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry) - 優雅的設計有限的重複執行直到成功為止。
 * [asyncWhile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile) - 結合非同步與計數的迴圈操作。
 
