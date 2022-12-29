@@ -19,3 +19,8 @@ export declare const randomPicks: <T>(take: number, items: T[]) => T[];
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique
  */
 export declare const unique: <T extends any[]>(items: T) => T;
+/**
+ * 允許非同步進行的 map。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#asyncmap
+ */
+export declare const asyncMap: <T, R>(items: T[], cb: (_item: T) => Promise<R>) => Promise<R[]>;

@@ -72,26 +72,24 @@ export class LocalStorage<T extends Record<string, any>> {
 
     get<K extends keyof T>(name: K): T[K] {
         let result = null
+        let options = this.options
         let isDefault = false
         let defaultValue = () => null
+        if (options && options.defaultColumns && options.defaultColumns[name]) {
+            defaultValue = options.defaultColumns[name] as any
+        }
         let data = this.storage.getItem(this._genName(name))
         if (data == null) {
-            let options = this.options
-            if (options && options.defaultColumns && options.defaultColumns[name]) {
-                defaultValue = options.defaultColumns[name] as any
-                data = defaultValue()
-                isDefault = true
-            }
+            data = defaultValue()
+            isDefault = true
         }
-        if (data != null) {
-            result = isDefault ? data : JSON.parse(data)
-            if (this.interceptGet) {
-                result = this.interceptGet(name as any, result, {
-                    storage: this,
-                    isDefault,
-                    defaultValue
-                })
-            }
+        result = isDefault ? data : (data != null ? JSON.parse(data) : null)
+        if (this.interceptGet) {
+            result = this.interceptGet(name as any, result, {
+                storage: this,
+                isDefault,
+                defaultValue
+            })
         }
         return result
     }

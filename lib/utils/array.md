@@ -94,3 +94,25 @@ console.log(result)
     outputs: [1, 2, 3, 4]
 */
 ```
+
+---
+
+### asyncMap
+
+允許非同步進行的 map。
+
+```ts
+function <T, R>(items: T[], cb: (item: T) => Promise<R>): Promise<R[]>
+```
+
+#### example
+
+```ts
+const result = await array.asyncMap([1, 2, 3, 4], async e => {
+    return e + 1
+})
+console.log(result)
+/*
+    outputs: [2, 3, 4, 5]
+*/
+```

@@ -54,3 +54,17 @@ export const randomPicks = <T>(take: number, items: T[]): T[] => {
 export const unique = <T extends Array<any>>(items: T): T => {
     return [...new Set(items)] as T
 }
+
+/**
+ * 允許非同步進行的 map。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#asyncmap
+ */
+
+export const asyncMap = async <T, R>(items: T[], cb: (_item: T) => Promise<R>): Promise<R[]> => {
+    let output = []
+    for (let item of items) {
+        let result = await cb(item)
+        output.push(result)
+    }
+    return output
+}
