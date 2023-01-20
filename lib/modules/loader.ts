@@ -61,6 +61,12 @@ export class Loader<T> extends Event<Channels> {
         return this.status.isLoading
     }
 
+    /** 清空所有非同步事件 */
+
+    clear() {
+        this.items = []
+    }
+
     /** 加入一個非同步事件 */
 
     push(name: string, handler: (_data: T) => Promise<any>) {

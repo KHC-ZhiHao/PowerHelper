@@ -4,17 +4,19 @@ declare type EventMap<T extends Element | Document | Window> = T extends Window 
  * @BrowserOnly
  */
 export declare class ElementListenerGroup<T extends Element | Document | Window> {
-    private element;
+    private elements;
     private listeners;
-    constructor(element: T);
+    constructor(element?: T);
+    /** 加入一個新的監聽對象 */
+    observe(element: T): void;
+    /** 移除指定 ID 的監聽 */
+    off(listenerId: string): void;
     /** 加入一個監聽的項目 */
     add<K extends keyof EventMap<T>>(name: K, callback: (event: EventMap<T>[K]) => void, options?: any): {
-        /** 鎖定時不會被 clear 給移除 */
-        lock: (active?: boolean) => any;
-        /** 關閉這組監聽對象 */
-        off: () => any;
+        id: string;
+        off: () => void;
     };
-    /** 清空現在監聽的項目，不包含已 lock 的對象 */
+    /** 清空現在監聽的項目 */
     clear(): void;
 }
 export {};

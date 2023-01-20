@@ -16,24 +16,52 @@ const listener = elg.add('click', event => {
 elg.clear()
 ```
 
+## 監聽多個對象
+
+你可以一口氣監聽多個 element。
+
+```ts
+import { ElementListenerGroup } from 'power-helper'
+
+const elg = new ElementListenerGroup()
+
+elg.observe(document.body)
+elg.add('click', event => {
+    console.log('hi')
+})
+
+const el = document.getElementById('xxx')
+elg.observe(el)
+el.click()
+/*
+    outputs: hi
+*/
+```
+
 ### Constructor
 
 ```ts
 /**
- * @param {Element} element 需要監聽的 DOM
+ * @param {[Element]} element 需要監聽的 DOM
  */
 class ElementListenerGroup {
-    constructor(element)
+    constructor(element?)
 }
 ```
 
 ### Property
 
 ```ts
-/** 加入一個監聽的項目 */
-function add(channel: string, callback: (event: Event) => void): Listener
+/** 加入一個新的監聽對象 */
+function observe(element: Element): void
 
-/** 清空現在監聽的項目，不包含已 lock 的對象 */
+/** 移除指定 ID 的監聽 */
+function off(listenerId: string): void
+
+/** 加入一個監聽的項目 */
+function add(channel: string, callback: (event: Event) => void, options: any): Listener
+
+/** 清空現在監聽的項目 */
 function clear(): void
 ```
 
@@ -41,8 +69,8 @@ function clear(): void
 
 ```ts
 type Listener<T> = {
-    /** 鎖定這個 Listener，使之不被 clear 指令刪除 */
-    lock(active: boolean = true): void
+    /** 提供刪除用的 id */
+    id: string
     /** 關閉這個 Listener */
     off(): void
 }

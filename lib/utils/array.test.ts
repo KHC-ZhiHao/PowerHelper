@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { sleep } from './flow'
-import { groups, randomPick, randomPicks, unique, asyncMap } from './array'
+import { groups, randomPick, randomPicks, unique, asyncMap, check } from './array'
 
 describe('Array', () => {
     it('group', function() {
@@ -33,5 +33,11 @@ describe('Array', () => {
             return e + 1
         })
         expect(result.join()).eq([2, 3, 4, 5].join())
+    })
+    it('check', async() => {
+        const result = await check([1, 2, 3, 4], 4)
+        expect(result.join()).eq([1, 2, 3].join())
+        const result2 = await check([1, 2, 3, 4], 5)
+        expect(result2.join()).eq([1, 2, 3, 4, 5].join())
     })
 })

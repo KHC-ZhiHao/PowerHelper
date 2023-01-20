@@ -27,7 +27,7 @@
 
 Power Helper 是 JavaScript 的工具集成，功能簡單且無任何依賴項目，極為精簡。
 
-你可把他想像成是一種稍微複雜點的 Lodash，在複雜化的前後端環境中能用上本套件 50% 以上的功能，盡可能的解決套件破碎化的問題。
+你可把他想像成是一種稍微複雜點的 Lodash，不管是前後端任何環境，皆能用上本套件 50% 以上的功能，盡可能的解決套件破碎化的問題。
 
 那麼如果只用此套件，你可以獲得什麼呢？
 
@@ -52,7 +52,7 @@ yarn add power-helper
 
 ## TypeScript
 
-PowerHelper 全程採用 TypeScript 撰寫，非常推薦在 TypeScript 專案中使用。
+PowerHelper 全程採用 TypeScript 撰寫，建議在 TypeScript 專案中使用。
 
 ## 如何使用？
 
@@ -68,6 +68,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [array](./lib/utils/array.md) - 優雅的 Array 操作。
 
+* [check](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#check) - 如果 Array 沒有指定的值，加入該值，如果有則移除。
 * [unique](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique) - 移除 Array 中相同的元素。
 * [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - 將 Array 依照指定數量集成一組。
 * [asyncMap](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#asyncmap) - 允許非同步進行的 map。

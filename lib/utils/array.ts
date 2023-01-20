@@ -68,3 +68,16 @@ export const asyncMap = async <T, R>(items: T[], cb: (_item: T) => Promise<R>): 
     }
     return output
 }
+
+/**
+ * 如果 Array 沒有指定的值，加入該值，如果有則移除。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#check
+ */
+
+export const check = <T>(items: T[], value: T) => {
+    if (items.includes(value)) {
+        return items.filter(e => e !== value)
+    } else {
+        return [...items, value]
+    }
+}

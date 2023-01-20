@@ -116,3 +116,28 @@ console.log(result)
     outputs: [2, 3, 4, 5]
 */
 ```
+
+---
+
+### check
+
+如果 Array 沒有指定的值，加入該值，如果有則移除。
+
+```ts
+function <T>(items: T[], value: T): T[]
+```
+
+#### example
+
+```ts
+const result = await array.check([1, 2, 3, 4], 4)
+console.log(result)
+/*
+    outputs: [1, 2, 3]
+*/
+const result2 = await array.check([1, 2, 3, 4], 5)
+console.log(result2)
+/*
+    outputs: [1, 2, 3, 4, 5]
+*/
+```

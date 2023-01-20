@@ -28,6 +28,8 @@ export declare class Loader<T> extends Event<Channels> {
     get fail(): FailError | null;
     get called(): boolean;
     get loading(): boolean;
+    /** 清空所有非同步事件 */
+    clear(): void;
     /** 加入一個非同步事件 */
     push(name: string, handler: (_data: T) => Promise<any>): void;
     /** 重置 Loader 狀態，只有在 done 為 true 才能執行 */

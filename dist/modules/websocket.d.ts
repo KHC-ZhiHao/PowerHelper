@@ -16,7 +16,7 @@ declare type Channels = {
 };
 declare type WebSocketParams<P extends Pub> = {
     /** 連線網址 */
-    url: string;
+    url: () => string;
     /** 指定運行的 WebSocket 環境，假如你想應用在 NodeJs 上必須設定此參數 */
     system?: typeof WebSocket;
     /** 指定運行的 WebSocket Protocol */

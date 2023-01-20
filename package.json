@@ -1,7 +1,7 @@
 {
   "name": "power-helper",
-  "version": "0.5.1",
-  "description": "This is javascript util collection, is your super power helper.",
+  "version": "0.5.2",
+  "description": "This is javascript tool collection, is your super power helper.",
   "main": "./dist/index.js",
   "scripts": {
     "test": "nyc mocha --require ts-node/register ./lib/**/*.test.ts ./lib/*.test.ts",
@@ -14,6 +14,7 @@
   },
   "keywords": [
     "utils",
+    "tools",
     "typescript",
     "library"
   ],

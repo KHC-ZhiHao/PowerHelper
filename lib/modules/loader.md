@@ -52,6 +52,8 @@ function push(name: string, handler: (data: any) => Promise<any>): void
 function start(data: any): Promise<any>
 /** 重置 Loader 狀態，只有在 done 為 true 才能執行 */
 function reset(): Loader
+/** 清空所有已註冊的非同步事件 */
+function clear(): Loader
 /** 註冊事件長度 */
 const size: Readonly<number>
 /** 已完成事件 */

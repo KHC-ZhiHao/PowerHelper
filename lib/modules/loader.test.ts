@@ -93,11 +93,21 @@ describe('Loader', () => {
     it('fail-same-name', function(done) {
         let loader = new Loader<{ name: string }>()
         try {
-            loader.push('a', async() => {})
-            loader.push('a', async() => {})
+            loader.push('a', async() => 1)
+            loader.push('a', async() => 2)
         } catch (error) {
             done()
         }
+    })
+    it('clear', async function() {
+        let flag = false
+        let loader = new Loader<void>()
+        loader.push('a', async() => {
+            flag = true
+        })
+        loader.clear()
+        await loader.start()
+        expect(flag).to.equal(false)
     })
     it('reset', async function() {
         let loader = new Loader<{ name: string }>()

@@ -7,7 +7,7 @@
 ```ts
 import { WebSocketClient } from 'power-helper'
 const wsc = new WebSocketClient({
-    url: 'ws://xxxx',
+    url: () => 'ws://xxxx',
     onMessage: async(event) => {
         let { channel, data } = JSON.parse(event.data)
         wsc.emit(channel, data)
@@ -38,7 +38,7 @@ wsc.connect().then(() => {
  */
 class WebSocketClient<Pub, Channels> {
     constructor(params{
-        url: string,
+        url:() => string,
         system?: typeof WebSocket,
         protocol?: string[],
         onMessage: (event: MessageEvent) => Promise<any>,

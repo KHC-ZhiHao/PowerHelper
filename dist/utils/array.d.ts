@@ -24,3 +24,8 @@ export declare const unique: <T extends any[]>(items: T) => T;
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#asyncmap
  */
 export declare const asyncMap: <T, R>(items: T[], cb: (_item: T) => Promise<R>) => Promise<R[]>;
+/**
+ * 如果 Array 沒有指定的值，加入該值，如果有則移除。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#check
+ */
+export declare const check: <T>(items: T[], value: T) => T[];

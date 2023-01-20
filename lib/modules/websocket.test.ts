@@ -11,14 +11,24 @@ class FakeSocket {
     get readyState() {
         return this.state
     }
-    send() {}
+    send() {
+        return null
+    }
     close() {
         this.onclose()
     }
-    onmessage() {}
-    onerror() {}
-    onopen() {}
-    onclose() {}
+    onmessage() {
+        return null
+    }
+    onerror() {
+        return null
+    }
+    onopen() {
+        return null
+    }
+    onclose() {
+        return null
+    }
 }
 
 class FakeSocketError {
@@ -28,16 +38,18 @@ class FakeSocketError {
             this.onerror('123')
         }, 10)
     }
-    onerror() {}
+    onerror() {
+        return null
+    }
 }
 
 describe('Time', () => {
     it('basic', async function() {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
-            onMessage: async(event) => {},
-            sendHandler: async(channel, data) => {}
+            onMessage: async() => null,
+            sendHandler: async() => null
         })
         await ws.send('123', {})
         await ws.connect()
@@ -46,10 +58,10 @@ describe('Time', () => {
     })
     it('status', async function() {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
-            onMessage: async(event) => {},
-            sendHandler: async(channel, data) => {}
+            onMessage: async() => null,
+            sendHandler: async() => null
         })
         expect(ws.getStatus()).to.equal('wait')
         await ws.connect()
@@ -69,10 +81,10 @@ describe('Time', () => {
     
     it('fail', function(done) {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
-            onMessage: async(event) => {},
-            sendHandler: async(channel, data) => {
+            onMessage: async() => null,
+            sendHandler: async() => {
                 throw '123'
             }
         })
@@ -86,10 +98,10 @@ describe('Time', () => {
     
     it('close', async function() {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
-            onMessage: async(event) => {},
-            sendHandler: async(channel, data) => {
+            onMessage: async() => null,
+            sendHandler: async() => {
                 throw '123'
             }
         })
@@ -100,13 +112,13 @@ describe('Time', () => {
         
     it('onmessage', function(done) {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
             onMessage: async(event) => {
                 expect(event).to.equal('123')
                 done()
             },
-            sendHandler: async(channel, data) => {
+            sendHandler: async() => {
                 throw '123'
             }
         })
@@ -118,13 +130,13 @@ describe('Time', () => {
      
     it('onmessage error', function(done) {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
             onMessage: async(event) => {
                 expect(event).to.equal('123')
                 throw '456'
             },
-            sendHandler: async(channel, data) => {
+            sendHandler: async() => {
                 throw '123'
             }
         })
@@ -141,10 +153,10 @@ describe('Time', () => {
       
     it('onmessage error', function(done) {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocket as any,
-            onMessage: async(event) => {},
-            sendHandler: async(channel, data) => {}
+            onMessage: async() => null,
+            sendHandler: async() => null
         })
         ws.on('$error', ({ from, error }) => {
             expect(from).to.equal('unknown')
@@ -159,10 +171,10 @@ describe('Time', () => {
           
     it('onmessage error2', function(done) {
         let ws = new WebSocketClient({
-            url: '123',
+            url: () => '123',
             system: FakeSocketError as any,
-            onMessage: async(event) => {},
-            sendHandler: async(channel, data) => {}
+            onMessage: async() => null,
+            sendHandler: async() => null
         })
         ws.connect().catch(() => {
             done()

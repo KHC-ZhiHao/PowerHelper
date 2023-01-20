@@ -20,7 +20,7 @@ type Channels = {
 
 type WebSocketParams<P extends Pub> = {
     /** 連線網址 */
-    url: string
+    url: () => string
     /** 指定運行的 WebSocket 環境，假如你想應用在 NodeJs 上必須設定此參數 */
     system?: typeof WebSocket
     /** 指定運行的 WebSocket Protocol */
@@ -85,9 +85,9 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
             let opened = false
             let System = this.params.system ? this.params.system : WebSocket
             if (this.connected) {
-                console.warn(`Websocket ${this.params.url} already connected.`)
+                console.warn(`Websocket ${this.params.url()} already connected.`)
             }
-            this._websocket = new System(this.params.url, this.params.protocol)
+            this._websocket = new System(this.params.url(), this.params.protocol)
             this._websocket.onopen = () => {
                 opened = true
                 this.emit('$open', {})

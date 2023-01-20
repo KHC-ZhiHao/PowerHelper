@@ -1,9 +1,5 @@
 /* eslint-disable no-undef */
-type Listeners = Record<string, {
-    name: string
-    lock: boolean
-    callback: any
-}>
+import { createUuid } from '../utils/flow'
 
 type EventMap<T extends Element | Document | Window> =
     T extends Window ? WindowEventMap :
@@ -19,50 +15,62 @@ type EventMap<T extends Element | Document | Window> =
  */
 
 export class ElementListenerGroup<T extends Element | Document | Window> {
-    private element: T
-    private listeners: Listeners = {}
-    constructor(element: T) {
-        this.element = element
+    private elements: T[] = []
+    private listeners = new Map<string, {
+        name: string
+        callback: (...args: any[]) => void
+        options?: any
+    }>()
+
+    constructor(element?: T) {
+        if (element) {
+            this.elements.push(element)
+        }
+    }
+
+    /** 加入一個新的監聽對象 */
+
+    observe(element: T) {
+        this.elements.push(element)
+        for (let listener of this.listeners.values()) {
+            element.addEventListener(listener.name, listener.callback, listener.options)
+        }
+    }
+
+    /** 移除指定 ID 的監聽 */
+
+    off(listenerId: string) {
+        let listener = this.listeners.get(listenerId)
+        if (listener) {
+            this.listeners.delete(listenerId)
+            for (let element of this.elements) {
+                element.removeEventListener(listener.name, listener.callback)
+            }
+        }
     }
 
     /** 加入一個監聽的項目 */
 
     add<K extends keyof EventMap<T>>(name: K, callback: (event: EventMap<T>[K]) => void, options?: any) {
-        let id = Date.now().toString() + Math.floor(Math.random() * 1000000)
-        let data = {
+        const id = createUuid()
+        const data = {
             name: name as string,
-            lock: false,
+            options,
             callback: callback as any
         }
-        this.element.addEventListener(data.name, data.callback, options)
-        this.listeners[id] = data
-        const output = {
-            /** 鎖定時不會被 clear 給移除 */
-            lock: (active = true) => {
-                data.lock = active
-                return output
-            },
-            /** 關閉這組監聽對象 */
-            off: () => {
-                if (this.listeners[id]) {
-                    this.element.removeEventListener(data.name, data.callback)
-                    delete this.listeners[id]
-                }
-                return output
-            }
+        this.listeners.set(id, data)
+        this.elements.forEach(e => e.addEventListener(data.name, data.callback, options))
+        return {
+            id,
+            off: () => this.off(id)
         }
-        return output
     }
 
-    /** 清空現在監聽的項目，不包含已 lock 的對象 */
+    /** 清空現在監聽的項目 */
 
     clear() {
-        for (let id in this.listeners) {
-            let data = this.listeners[id]
-            if (data.lock === false) {
-                this.element.removeEventListener(this.listeners[id].name, this.listeners[id].callback)
-                delete this.listeners[id]
-            }
+        for (let id of this.listeners.keys()) {
+            this.off(id)
         }
     }
 }
