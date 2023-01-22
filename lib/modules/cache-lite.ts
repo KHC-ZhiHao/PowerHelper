@@ -1,14 +1,14 @@
 type Params<T> = {
     expTime: number
-    handler: T
+    handler: (key: string, def?: T) => T
     maxSize?: number
 }
 
-export class CacheLite<T extends (key: string) => any> {
+export class CacheLite<T> {
     private params: Params<T>
     private lastUpdate = Date.now()
     private keyMap = new Map<string, {
-        data: ReturnType<T>
+        data: T
         time: number
     }>()
 
@@ -48,14 +48,14 @@ export class CacheLite<T extends (key: string) => any> {
      * 獲取目標
      */
 
-    get(key = ''): ReturnType<T> {
+    get(key = '', data?: T): T {
         this.gc()
         if (this.keyMap.has(key)) {
             return this.keyMap.get(key)!.data
         }
-        let data = this.params.handler(key)
+        let result = this.params.handler(key, data)
         this.keyMap.set(key, {
-            data,
+            data: result,
             time: Date.now()
         })
         if (this.params.maxSize && this.keyMap.size > this.params.maxSize) {
@@ -64,7 +64,7 @@ export class CacheLite<T extends (key: string) => any> {
                 this.keyMap.delete(firstKey)
             }
         }
-        return data
+        return result
     }
 
     /**

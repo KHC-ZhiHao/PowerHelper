@@ -17,6 +17,15 @@ describe('CacheLite', () => {
         expect(cl.get('b')).to.equal('b-3')
         expect(cl.get('a')).to.equal('a-2')
     })
+    it('data', function() {
+        let cl = new CacheLite<string>({
+            expTime: 100,
+            handler: (key, data) => {
+                return data || ''
+            }
+        })
+        expect(cl.get('a', '123')).to.equal('123')
+    })
     it('remove', function() {
         let flag = 0
         let cl = new CacheLite({

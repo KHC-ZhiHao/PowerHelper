@@ -1,9 +1,9 @@
 declare type Params<T> = {
     expTime: number;
-    handler: T;
+    handler: (key: string, def?: T) => T;
     maxSize?: number;
 };
-export declare class CacheLite<T extends (key: string) => any> {
+export declare class CacheLite<T> {
     private params;
     private lastUpdate;
     private keyMap;
@@ -20,7 +20,7 @@ export declare class CacheLite<T extends (key: string) => any> {
     /**
      * 獲取目標
      */
-    get(key?: string): ReturnType<T>;
+    get(key?: string, data?: T): T;
     /**
      * 清除指定 cache key
      */
