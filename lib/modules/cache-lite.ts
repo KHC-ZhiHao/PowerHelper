@@ -1,26 +1,26 @@
+type Params<T> = {
+    expTime: number
+    handler: T
+    maxSize?: number
+}
+
 export class CacheLite<T extends (key: string) => any> {
-    private expTime: number
-    private handler: T
+    private params: Params<T>
     private lastUpdate = Date.now()
     private keyMap = new Map<string, {
         data: ReturnType<T>
         time: number
     }>()
 
-    /**
-     * @param expTime 過期時間
-     */
-
-    constructor(expTime: number, cb: T) {
-        this.expTime = expTime
-        this.handler = cb
+    constructor(params: Params<T>) {
+        this.params = params
     }
 
     private gc() {
         let now = Date.now()
-        if (now > this.lastUpdate + this.expTime) {
+        if (now > this.lastUpdate + this.params.expTime) {
             for (let [key, value] of this.keyMap.entries()) {
-                if ((value.time + this.expTime) < now) {
+                if ((value.time + this.params.expTime) < now) {
                     this.keyMap.delete(key)
                 }
             }
@@ -53,11 +53,27 @@ export class CacheLite<T extends (key: string) => any> {
         if (this.keyMap.has(key)) {
             return this.keyMap.get(key)!.data
         }
-        let data = this.handler(key)
+        let data = this.params.handler(key)
         this.keyMap.set(key, {
             data,
             time: Date.now()
         })
+        if (this.params.maxSize && this.keyMap.size > this.params.maxSize) {
+            let firstKey = Array.from(this.keyMap.keys())[0]
+            if (firstKey != null) {
+                this.keyMap.delete(firstKey)
+            }
+        }
         return data
+    }
+
+    /**
+     * 清除指定 cache key
+     */
+
+    remove(key: string) {
+        if (this.keyMap.has(key)) {
+            this.keyMap.delete(key)
+        }
     }
 }

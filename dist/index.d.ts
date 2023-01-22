@@ -171,7 +171,7 @@ export declare const Reactive: typeof _Reactive;
  */
 export declare const PromiseOverlap: typeof _PromiseOverlap;
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/pcache-lite.md
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache-lite.md
  */
 export declare const CacheLite: typeof _CacheLite;
 /**

@@ -230,7 +230,7 @@ export const Reactive = _Reactive
 export const PromiseOverlap = _PromiseOverlap
 
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/pcache-lite.md
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache-lite.md
  */
 
 export const CacheLite = _CacheLite
