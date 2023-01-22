@@ -16,7 +16,7 @@ declare type Channels = {
 };
 declare type WebSocketParams<P extends Pub> = {
     /** 連線網址 */
-    url: () => string;
+    url: () => string | Promise<string>;
     /** 指定運行的 WebSocket 環境，假如你想應用在 NodeJs 上必須設定此參數 */
     system?: typeof WebSocket;
     /** 指定運行的 WebSocket Protocol */
@@ -33,6 +33,7 @@ export declare class WebSocketClient<P extends Pub, S> extends Event<S & Channel
     constructor(params: WebSocketParams<P>);
     private fail;
     private get connected();
+    private createWebsocket;
     getStatus(): "wait" | "connecting" | "open" | "closeing" | "closed" | undefined;
     send<K extends keyof P>(channel: K, data: P[K]): Promise<void>;
     connect(): Promise<unknown>;

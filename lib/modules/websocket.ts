@@ -20,7 +20,7 @@ type Channels = {
 
 type WebSocketParams<P extends Pub> = {
     /** 連線網址 */
-    url: () => string
+    url: () => string | Promise<string>
     /** 指定運行的 WebSocket 環境，假如你想應用在 NodeJs 上必須設定此參數 */
     system?: typeof WebSocket
     /** 指定運行的 WebSocket Protocol */
@@ -35,59 +35,31 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
     _websocket!: WebSocket
     private params: WebSocketParams<P>
     private isManuallyClosed = false
+
     constructor(params: WebSocketParams<P>) {
         super()
         this.params = params
     }
+
     private fail(from: FailTypes, error: any) {
         this.emit('$error', {
             from,
             error
         } as any)
     }
+
     private get connected() {
         return !!this._websocket
     }
-    /* 現在的連線狀態 */
-    getStatus() {
-        if (this.connected === false) {
-            return 'wait'
+
+    private createWebsocket(url: string) {
+        if (this.connected) {
+            console.warn(`Websocket ${url} already connected.`)
         }
-        if (this._websocket.readyState === 0) {
-            return 'connecting'
-        }
-        if (this._websocket.readyState === 1) {
-            return 'open'
-        }
-        if (this._websocket.readyState === 2) {
-            return 'closeing'
-        }
-        if (this._websocket.readyState === 3) {
-            return 'closed'
-        }
-    }
-    /* 發送資料至伺服器 */
-    async send<K extends keyof P>(channel: K, data: P[K]) {
-        try {
-            let record = await this.params.sendHandler(channel, data)
-            if (this.connected) {
-                this._websocket.send(record)
-            } else {
-                console.warn(`Socket not connected, from send ${channel as string}.`)
-            }
-        } catch (error) {
-            this.fail('send', error)
-        }
-    }
-    /* 連接至伺服器 */
-    connect() {
+        let opened = false
+        let System = this.params.system ? this.params.system : WebSocket
         return new Promise((resolve, reject) => {
-            let opened = false
-            let System = this.params.system ? this.params.system : WebSocket
-            if (this.connected) {
-                console.warn(`Websocket ${this.params.url()} already connected.`)
-            }
-            this._websocket = new System(this.params.url(), this.params.protocol)
+            this._websocket = new System(url, this.params.protocol)
             this._websocket.onopen = () => {
                 opened = true
                 this.emit('$open', {})
@@ -119,6 +91,47 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
             }
         })
     }
+
+    /* 現在的連線狀態 */
+    getStatus() {
+        if (this.connected === false) {
+            return 'wait'
+        }
+        if (this._websocket.readyState === 0) {
+            return 'connecting'
+        }
+        if (this._websocket.readyState === 1) {
+            return 'open'
+        }
+        if (this._websocket.readyState === 2) {
+            return 'closeing'
+        }
+        if (this._websocket.readyState === 3) {
+            return 'closed'
+        }
+    }
+
+    /* 發送資料至伺服器 */
+    async send<K extends keyof P>(channel: K, data: P[K]) {
+        try {
+            let record = await this.params.sendHandler(channel, data)
+            if (this.connected) {
+                this._websocket.send(record)
+            } else {
+                console.warn(`Socket not connected, from send ${channel as string}.`)
+            }
+        } catch (error) {
+            this.fail('send', error)
+        }
+    }
+
+    /* 連接至伺服器 */
+    async connect() {
+        let url = await this.params.url()
+        let websocket = await this.createWebsocket(url)
+        return websocket
+    }
+
     /* 斷開伺服器連線 */
     disconnect() {
         if (this.connected) {
