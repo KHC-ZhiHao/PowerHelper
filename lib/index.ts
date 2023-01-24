@@ -22,6 +22,7 @@ import { Resource as _Resource } from './modules/resource'
 import { Reactive as _Reactive } from './modules/reactive'
 import { Schedule as _Schedule } from './modules/schedule'
 import { Debounce as _Debounce } from './modules/debounce'
+import { JobQueues as _JobQueues } from './modules/job-queues'
 import { StyleString as _StyleString } from './modules/style-string'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
 import { QueryCollection as _QueryCollection } from './modules/query-collection'
@@ -116,6 +117,7 @@ export type WebSocketClient<Pub extends Record<string, any>, Sub> = _WebSocketCl
 export type Reactive<Target extends Record<string, any>> = _Reactive<Target>
 export type PromiseOverlap<PickType> = _PromiseOverlap<PickType>
 export type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>
+export type JobQueues = _JobQueues
 export type Exception = _Exception
 export type Breakpoint = _Breakpoint
 export type Interaction = _Interaction
@@ -259,6 +261,12 @@ export const Interaction = _Interaction
 
 export const Resource = _Resource
 
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.md
+ */
+
+export const JobQueues = _JobQueues
+
 export const PowerHelper = {
     flow,
     json,
@@ -284,6 +292,7 @@ export const PowerHelper = {
     Resource,
     Exception,
     CacheLite,
+    JobQueues,
     Breakpoint,
     StyleString,
     Interaction,

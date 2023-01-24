@@ -19,6 +19,7 @@ import { Resource as _Resource } from './modules/resource';
 import { Reactive as _Reactive } from './modules/reactive';
 import { Schedule as _Schedule } from './modules/schedule';
 import { Debounce as _Debounce } from './modules/debounce';
+import { JobQueues as _JobQueues } from './modules/job-queues';
 import { StyleString as _StyleString } from './modules/style-string';
 import { LocalStorage as _LocalStorage } from './modules/local-storage';
 import { QueryCollection as _QueryCollection } from './modules/query-collection';
@@ -94,6 +95,7 @@ export declare type WebSocketClient<Pub extends Record<string, any>, Sub> = _Web
 export declare type Reactive<Target extends Record<string, any>> = _Reactive<Target>;
 export declare type PromiseOverlap<PickType> = _PromiseOverlap<PickType>;
 export declare type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>;
+export declare type JobQueues = _JobQueues;
 export declare type Exception = _Exception;
 export declare type Breakpoint = _Breakpoint;
 export declare type Interaction = _Interaction;
@@ -190,6 +192,10 @@ export declare const Interaction: typeof _Interaction;
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.md
  */
 export declare const Resource: typeof _Resource;
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.md
+ */
+export declare const JobQueues: typeof _JobQueues;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -215,6 +221,7 @@ export declare const PowerHelper: {
     Resource: typeof _Resource;
     Exception: typeof _Exception;
     CacheLite: typeof _CacheLite;
+    JobQueues: typeof _JobQueues;
     Breakpoint: typeof _Breakpoint;
     StyleString: typeof _StyleString;
     Interaction: typeof _Interaction;

@@ -33,13 +33,13 @@ export class Exception extends Event<Channels> {
                 return data
             }
             if (data.name === 'AxiosError') {
-                if (typeof data.response?.data === 'string') {
+                if (data.response?.data && typeof data.response?.data === 'string') {
                     return data.response.data
                 }
-                if (typeof data.response?.data?.message === 'string') {
+                if (data.response?.data?.message && typeof data.response?.data?.message === 'string') {
                     return data.response?.data?.message
                 }
-                if (typeof data.response?.data?.error === 'string') {
+                if (data.response?.data?.error && typeof data.response?.data?.error === 'string') {
                     return data.response?.data?.error
                 }
             }

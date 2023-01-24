@@ -159,6 +159,8 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [Reactive](./lib/modules/reactive.md) - 透過輪詢的方法監聽物件有沒有發生變動。
 
+[JobQueues](./lib/modules/job-queues.md) - 有限的批次執行作業。
+
 [Exception](./lib/modules/exception.md) - 高階的錯誤訊息處理工具。
 
 [CacheLite](./lib/modules/cache-lite.md) - 指定鍵值並同步的存取，非常近似 Map，但是有 TTL。

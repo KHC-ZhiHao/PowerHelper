@@ -51,7 +51,7 @@ Extends: [Event](./event.md)
 /** 迭代每個階段訊息 */
 function each(cb: (_step: Step, _index: number) => void): void
 /** 增加一個階段訊息 */
-function setp(message: string, meta?: any): void
+function step(message: string, meta?: any): void
 /** 發出錯誤的訊息，通常表示於整個應用程式發生錯誤 */
 function wrong(message: string): void
 /** 發出錯誤的訊息，並回傳一組錯誤，如果沒有傳入第二個參數則以 message 擲出 */
