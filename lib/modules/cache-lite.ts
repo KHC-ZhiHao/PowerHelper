@@ -1,7 +1,14 @@
+type Context<T> = {
+    key: string
+    value: T
+}
+
 type Params<T> = {
     expTime: number
-    handler: (key: string, def?: T) => T
     maxSize?: number
+    intercept?: {
+        set?: (_context: Context<T>) => Context<T>
+    }
 }
 
 export class CacheLite<T> {
@@ -32,7 +39,7 @@ export class CacheLite<T> {
      * 獲取目前 Cache 的量
      */
 
-    getSize() {
+    get size() {
         return this.keyMap.size
     }
 
@@ -48,14 +55,21 @@ export class CacheLite<T> {
      * 獲取目標
      */
 
-    get(key = '', data?: T): T {
+    get(key: string): undefined | T {
         this.gc()
-        if (this.keyMap.has(key)) {
-            return this.keyMap.get(key)!.data
-        }
-        let result = this.params.handler(key, data)
-        this.keyMap.set(key, {
-            data: result,
+        return this.keyMap.get(key)?.data
+    }
+
+    /**
+     * 設定目標
+     */
+
+    set(key: string, value: T): T {
+        const context = { key, value }
+        const result = this.params.intercept?.set ? this.params.intercept?.set(context) : context
+        this.gc()
+        this.keyMap.set(result.key, {
+            data: result.value,
             time: Date.now()
         })
         if (this.params.maxSize && this.keyMap.size > this.params.maxSize) {
@@ -64,16 +78,43 @@ export class CacheLite<T> {
                 this.keyMap.delete(firstKey)
             }
         }
-        return result
+        return result.value
     }
 
     /**
-     * 清除指定 cache key
+     * 有無目標
+     */
+
+    has(key: string) {
+        this.gc()
+        return this.keyMap.has(key)
+    }
+
+    /**
+     * 刪除目標
      */
 
     remove(key: string) {
+        this.gc()
         if (this.keyMap.has(key)) {
             this.keyMap.delete(key)
         }
+    }
+
+    /**
+     * 獲取鍵組
+     */
+
+    keys() {
+        this.gc()
+        return [...this.keyMap.keys()]
+    }
+    /**
+     * 獲取值組
+     */
+
+    values() {
+        this.gc()
+        return [...this.keyMap.values()].map(e => e.data)
     }
 }

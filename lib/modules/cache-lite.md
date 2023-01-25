@@ -1,43 +1,22 @@
 # Cache Lite
 
-指定鍵值並同步的存取，非常近似 Map，但是有 TTL。
+指定鍵值並同步的存取，非常近似 Map 物件，但是有 TTL。
 
 ## 如何使用
 
 ```ts
-import { CacheLite } from 'power-helper'
+import { CacheLite, flow } from 'power-helper'
 
-let flag = 0
 let cacheLite = new CacheLite({
-    expTime: 100,
-    handler: () => {
-        flag += 1
-        return flag
-    }
+    expTime: 100
 })
 
-console.log(cacheLite.get('a')) // 1
-console.log(cacheLite.get('b')) // 2
-console.log(cacheLite.get('a')) // 1
-```
+cacheLite.set('a', 'b')
+console.log(cacheLite.get('a')) // b
 
-## 透過第二個參數給予其他值
+await flow.sleep(500)
 
-```ts
-import { CacheLite } from 'power-helper'
-
-let flag = 0
-let cacheLite = new CacheLite<string>({
-    expTime: 100,
-    handler: (key, data) => {
-        flag += 1
-        return data + '@' + flag
-    }
-})
-
-console.log(cacheLite.get('a', '123')) // 123@1
-console.log(cacheLite.get('a', '123')) // 123@1
-console.log(cacheLite.get('b', '123')) // 123@2
+console.log(cacheLite.get('a')) // undefined
 ```
 
 ### Constructor
@@ -45,14 +24,24 @@ console.log(cacheLite.get('b', '123')) // 123@2
 ```ts
 /**
  * @param {number} params.expTime 每筆資料的存活時間，超過則重取，單位:毫秒
- * @param {(key: string, data?: any) => any} params.handler 如果查無資料則運行後回傳
- * @param {[number]} params.maxSize 最大 cache 數量，超過則先行移除舊的資料
+ * @param {number} params.maxSize 最大 cache 數量，超過則先行移除舊的資料
+ * @param {{
+ *  set: (context: { key: string, value: any }) => { key: string, value: any }
+ * }} params.intercept 攔截運作
  */
-class CacheLite {
+class CacheLite<T> {
     constructor(params: {
         expTime: number
-        handler: (key: string, data?: any) => any
         maxSize?: number
+        intercept?: {
+            set?: (_context: {
+                key: string
+                value: T
+            }) => {
+                key: string
+                value: T
+            }
+        }
     })
 }
 ```
@@ -61,14 +50,26 @@ class CacheLite {
 
 ```ts
 /** 獲取目前 cache 的數量。 */
-function getSize(): number
+const size: readonly number
 
-/**  清除 cache。 */
+/** 清除 cache。 */
 function clear(): void
 
 /** 獲取目標。 */
-function get(key: string, data?: any): any
+function get(key: string): any | undefined
 
-/** 清除指定 cache key */
+/** 設定目標 */
+function set(key: string, value: any): any // value
+
+/** 有無目標 */
+function has(key: string): boolean
+
+/** 清除目標 */
 function remove(key: string): any
+
+/** 有無目標 */
+function keys(): string[]
+
+/** 獲取值組 */
+function values(): any[]
 ```

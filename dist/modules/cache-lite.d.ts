@@ -1,7 +1,13 @@
+declare type Context<T> = {
+    key: string;
+    value: T;
+};
 declare type Params<T> = {
     expTime: number;
-    handler: (key: string, def?: T) => T;
     maxSize?: number;
+    intercept?: {
+        set?: (_context: Context<T>) => Context<T>;
+    };
 };
 export declare class CacheLite<T> {
     private params;
@@ -12,7 +18,7 @@ export declare class CacheLite<T> {
     /**
      * 獲取目前 Cache 的量
      */
-    getSize(): number;
+    get size(): number;
     /**
      * 清除 cache
      */
@@ -20,10 +26,26 @@ export declare class CacheLite<T> {
     /**
      * 獲取目標
      */
-    get(key?: string, data?: T): T;
+    get(key: string): undefined | T;
     /**
-     * 清除指定 cache key
+     * 設定目標
+     */
+    set(key: string, value: T): T;
+    /**
+     * 有無目標
+     */
+    has(key: string): boolean;
+    /**
+     * 刪除目標
      */
     remove(key: string): void;
+    /**
+     * 獲取鍵組
+     */
+    keys(): string[];
+    /**
+     * 獲取值組
+     */
+    values(): T[];
 }
 export {};

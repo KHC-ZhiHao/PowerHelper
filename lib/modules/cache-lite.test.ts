@@ -3,101 +3,72 @@ import { sleep } from '../utils/flow'
 import { CacheLite } from './cache-lite'
 
 describe('CacheLite', () => {
+    it('basic', async function() {
+        let cl = new CacheLite<string>({
+            expTime: 20
+        })
+        cl.set('a', 'b')
+        cl.set('c', 'd')
+        expect(cl.get('a')).to.equal('b')
+        expect(cl.has('a')).to.equal(true)
+        expect(cl.has('b')).to.equal(false)
+        expect(cl.values().join()).to.equal('b,d')
+        await sleep(50)
+        expect(cl.get('a')).to.equal(undefined)
+    })
     it('get', function() {
         let flag = 0
-        let cl = new CacheLite({
-            expTime: 100,
-            handler: (key) => {
-                flag += 1
-                return key + '-' + flag
-            }
-        })
-        expect(cl.get()).to.equal('-1')
-        expect(cl.get('a')).to.equal('a-2')
-        expect(cl.get('b')).to.equal('b-3')
-        expect(cl.get('a')).to.equal('a-2')
-    })
-    it('data', function() {
         let cl = new CacheLite<string>({
             expTime: 100,
-            handler: (key, data) => {
-                return data || ''
+            intercept: {
+                set: ({ key }) => {
+                    flag += 1
+                    return {
+                        key,
+                        value: key + '-' + flag
+                    }
+                }
             }
         })
-        expect(cl.get('a', '123')).to.equal('123')
+        expect(cl.set('', '')).to.equal('-1')
+        expect(cl.set('a', '')).to.equal('a-2')
+        expect(cl.set('b', '')).to.equal('b-3')
+        expect(cl.set('a', '')).to.equal('a-4')
     })
     it('remove', function() {
-        let flag = 0
         let cl = new CacheLite({
-            expTime: 100,
-            handler: () => {
-                flag += 1
-                return flag
-            }
+            expTime: 100
         })
-        expect(cl.get('a')).to.equal(1)
-        expect(cl.get('a')).to.equal(1)
-        cl.remove('a')
-        cl.remove('b')
+        cl.set('a', 2)
         expect(cl.get('a')).to.equal(2)
+        cl.remove('a')
+        expect(cl.get('a')).to.equal(undefined)
     })
     it('max', function() {
-        let flag = 0
         let cl = new CacheLite({
             expTime: 100,
-            maxSize: 3,
-            handler: () => {
-                flag += 1
-                return flag
-            }
+            maxSize: 3
         })
-        expect(cl.get('a')).to.equal(1)
-        expect(cl.get('b')).to.equal(2)
-        expect(cl.get('c')).to.equal(3)
-        expect(cl.get('d')).to.equal(4)
-        expect(cl.get('a')).to.equal(5)
-    })
-    it('exp', async function() {
-        let flag = 0
-        let cl = new CacheLite({
-            expTime: 100,
-            handler: (key) => {
-                flag += 1
-                return key + '-' + flag
-            }
-        })
-        expect(cl.get('a')).to.equal('a-1')
-        await sleep(200)
-        expect(cl.get('a')).to.equal('a-2')
+        cl.set('a', '')
+        expect(cl.size).to.equal(1)
+        cl.set('b', '')
+        expect(cl.size).to.equal(2)
+        cl.set('c', '')
+        expect(cl.size).to.equal(3)
+        cl.set('d', '')
+        expect(cl.size).to.equal(3)
+        cl.set('a', '')
+        expect(cl.size).to.equal(3)
+        expect(cl.keys().join()).to.equal('c,d,a')
     })
     it('clear', function() {
-        let flag = 0
         let cl = new CacheLite({
-            expTime: 100,
-            handler: (key) => {
-                flag += 1
-                return key + '-' + flag
-            }
+            expTime: 100
         })
-        expect(cl.get('a')).to.equal('a-1')
-        expect(cl.get('b')).to.equal('b-2')
+        cl.set('a', '1')
+        cl.set('b', '2')
         cl.clear()
-        expect(cl.get('a')).to.equal('a-3')
-    })
-    it('gc', async function() {
-        let cl = new CacheLite({
-            expTime: 100,
-            handler: key => key
-        })
-        cl.get('a')
-        cl.get('b')
-        cl.get('c')
-        expect(cl.getSize()).to.equal(3)
-        await sleep(60)
-        cl.get('c')
-        cl.get('d')
-        await sleep(60)
-        cl.get('e')
-        expect(cl.getSize()).to.equal(2)
+        expect(cl.get('a')).to.equal(undefined)
+        expect(cl.get('b')).to.equal(undefined)
     })
 })
