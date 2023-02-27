@@ -10,6 +10,7 @@ import * as _calc from './utils/calc';
 import { Log as _Log } from './modules/log';
 import { I18n as _I18n } from './modules/i18n';
 import { Hook as _Hook } from './modules/hook';
+import { Once as _Once } from './modules/once';
 import { Event as _Event } from './modules/event';
 import { Cache as _Cache } from './modules/cache';
 import { Timer as _Timer } from './modules/timer';
@@ -83,6 +84,7 @@ export declare type Hook<Channels extends Record<string, Record<string, any>>> =
 export declare type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>;
 export declare type Cache<Params, Response> = _Cache<Params, Response>;
 export declare type Timer = _Timer;
+export declare type Once<T> = _Once<T>;
 export declare type Ticker = _Ticker;
 export declare type Loader<Data> = _Loader<Data>;
 export declare type Schedule = _Schedule;
@@ -196,6 +198,10 @@ export declare const Resource: typeof _Resource;
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.md
  */
 export declare const JobQueues: typeof _JobQueues;
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
+ */
+export declare const Once: typeof _Once;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -210,6 +216,7 @@ export declare const PowerHelper: {
     I18n: typeof _I18n;
     Hook: typeof _Hook;
     Pool: typeof _Pool;
+    Once: typeof _Once;
     Event: typeof _Event;
     Cache: typeof _Cache;
     Timer: typeof _Timer;

@@ -13,6 +13,7 @@ import * as _calc from './utils/calc'
 import { Log as _Log } from './modules/log'
 import { I18n as _I18n } from './modules/i18n'
 import { Hook as _Hook } from './modules/hook'
+import { Once as _Once } from './modules/once'
 import { Event as _Event } from './modules/event'
 import { Cache as _Cache } from './modules/cache'
 import { Timer as _Timer } from './modules/timer'
@@ -105,6 +106,7 @@ export type Hook<Channels extends Record<string, Record<string, any>>> = _Hook<C
 export type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>
 export type Cache<Params, Response> = _Cache<Params, Response>
 export type Timer = _Timer
+export type Once<T> = _Once<T>
 export type Ticker = _Ticker
 export type Loader<Data> = _Loader<Data>
 export type Schedule = _Schedule
@@ -267,6 +269,12 @@ export const Resource = _Resource
 
 export const JobQueues = _JobQueues
 
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
+ */
+
+export const Once = _Once
+
 export const PowerHelper = {
     flow,
     json,
@@ -281,6 +289,7 @@ export const PowerHelper = {
     I18n,
     Hook,
     Pool,
+    Once,
     Event,
     Cache,
     Timer,
