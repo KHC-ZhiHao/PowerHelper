@@ -58,6 +58,8 @@ function wrong(message: string): void
 function fail(message: string, error?: any): Error
 /** 發出通知的訊息 */
 function notify(type: StepLevel, content: any): void
+/** 獲取可見得流程文字 */
+function getFlowText(): string
 ```
 
 ### Event

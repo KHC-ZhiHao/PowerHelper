@@ -78,4 +78,15 @@ describe('Interaction', () => {
         })
         expect(messages.join()).eq('3,4,5')
     })
+    it('get flow text', function() {
+        let interaction = new Interaction({
+            name: 'root'
+        })
+        interaction.step('1')
+        interaction.step('2')
+        interaction.step('3')
+        interaction.step('4')
+        expect(interaction.getFlowText()).eq('3->4')
+        expect(interaction.getFlowText(3)).eq('2->3->4')
+    })
 })

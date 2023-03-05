@@ -1,5 +1,6 @@
 import { Event } from './event'
 import { headMatch } from '../utils/text'
+import { StyleString } from './style-string'
 
 type Items = Record<string, (data: any) => string>
 
@@ -82,8 +83,15 @@ export class Resource<I extends Items> extends Event<Channels> {
         this.objectUrls = []
     }
 
-    /** 將 url 轉換成 css style  */
-    backgroundStyle(source: ResourceSupport) {
-        return `background-image: url(${this.url(source)})`
+    /** 將 url 轉換成 css style，當 mode 為 cover 的時候會協助加入其他背景屬性  */
+    backgroundStyle(source: ResourceSupport, mode: 'basic' | 'cover' = 'basic') {
+        const ss = new StyleString()
+        ss.set('backgroundImage', `url(${this.url(source)})`)
+        if (mode === 'cover') {
+            ss.set('backgroundSize', 'cover')
+            ss.set('backgroundRepeat', 'no-repeat')
+            ss.set('backgroundPosition', 'center')
+        }
+        return ss.join()
     }
 }

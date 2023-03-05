@@ -65,6 +65,12 @@ export class Interaction extends Event<Channels> {
         }
     }
 
+    /** 獲取可見得流程文字 */
+
+    getFlowText(visible = 2) {
+        return this.steps.slice(visible * -1).map(e => e.message).join('->')
+    }
+
     /**
      * 迭代每個階段訊息
      */

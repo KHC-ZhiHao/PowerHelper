@@ -78,7 +78,7 @@ describe('Resource', () => {
         let resource = new Resource({
             def: (path) => `images/${path}`
         })
-        expect(resource.backgroundStyle('banana.jpg')).eq('background-image: url(images/banana.jpg)')
+        expect(resource.backgroundStyle('banana.jpg')).eq('background-image:url(images/banana.jpg)')
     })
     it('blob', function() {
         mock(resource => {
@@ -93,5 +93,12 @@ describe('Resource', () => {
             // @ts-ignore
             global.Blob = undefined
         })
+    })
+
+    it('style cover', function() {
+        let resource = new Resource({
+            def: (path) => `images/${path}`
+        })
+        expect(resource.backgroundStyle('banana.jpg', 'cover')).eq('background-image:url(images/banana.jpg);background-size:cover;background-repeat:no-repeat;background-position:center')
     })
 })

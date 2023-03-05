@@ -26,6 +26,8 @@ export declare class Interaction extends Event<Channels> {
     constructor({ name, interceptorMessage, stepMaxSize }: Params);
     get fullName(): string;
     private pushStep;
+    /** 獲取可見得流程文字 */
+    getFlowText(visible?: number): string;
     /**
      * 迭代每個階段訊息
      */
