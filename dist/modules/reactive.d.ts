@@ -1,5 +1,5 @@
 import { Event } from './event';
-declare type Channels<S> = {
+declare type Events<S> = {
     actionBefore: ActionContext<S>;
     actionAfter: ActionContext<S>;
 };
@@ -19,7 +19,7 @@ declare type ReactiveParams<S> = {
     /** 如果 observable 回傳的 key 有改動則觸發 */
     observable: (_state: S) => Promise<string>;
 };
-export declare class Reactive<S extends Record<string, any>> extends Event<Channels<S>> {
+export declare class Reactive<S extends Record<string, any>> extends Event<Events<S>> {
     private state;
     private oldKey;
     private params;

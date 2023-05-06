@@ -1,31 +1,57 @@
 type ListenerContext = {
-    /** 唯一並隨機的 Listener ID */
+    /**
+     * @zh 唯一並隨機的 Listener ID
+     * @en Unique and random Listener ID
+     */
     id: string
-    /** 關閉這個 Listener  */
+    /**
+     * @zh 關閉這個 Listener
+     * @en Close this Listener
+     */
     off: () => void
-    /** 一組可供當下 Listener 儲存的空白物件 */
+    /**
+     * @zh 一組可供當下 Listener 儲存的空白物件
+     * @en A set of blank objects that can be stored by the current Listener
+     */
     state: Record<string, any>
 }
 
 type ListenerCallback<T> = (_data: T, _context: ListenerContext) => void
 
 class Listener<T> {
-    /** 唯一並隨機的 Listener ID */
+    /**
+     * @zh 唯一並隨機的 Listener ID
+     * @en Unique and random Listener ID
+     */
+
     readonly id = Date.now().toString() + Math.floor(Math.random() * 1000000)
-    /** 一組可供當下 Listener 儲存的空白物件 */
+
+    /**
+     * @zh 一組可供當下 Listener 儲存的空白物件
+     * @en A set of blank objects that can be stored by the current Listener
+     */
+
     readonly state: Record<string, any> = {}
-    /** 監聽的頻道 */
-    readonly channel: string
+
+    /**
+     * @zh 監聽的事件
+     * @en Listened event
+     */
+
+    readonly event: string
     private callback: ListenerCallback<T>
     private manager: Event<any>
 
-    constructor(manager: Event<any>, channel: string, callback: ListenerCallback<any>) {
+    constructor(manager: Event<any>, event: string, callback: ListenerCallback<any>) {
         this.manager = manager
-        this.channel = channel
+        this.event = event
         this.callback = callback
     }
 
-    /** 觸發這個監聽對象 */
+    /**
+     * @zh 觸發這個監聽對象
+     * @en Trigger this Listener
+     */
 
     invoke(data: T) {
         this.callback(data, {
@@ -35,20 +61,26 @@ class Listener<T> {
         })
     }
 
-    /** 關閉這個 Listener */
+    /**
+     * @zh 關閉這個 Listener
+     * @en Close this Listener
+     */
 
     off() {
-        this.manager.off(this.channel, this.id)
+        this.manager.off(this.event, this.id)
     }
 }
 
 export class Event<T extends Record<string, Record<string, any>>> {
     private listeners: Map<string, Listener<any>[]> = new Map()
 
-    /** 獲取指定頻道的監聽數量 */
+    /**
+     * @zh 獲取指定事件的監聽數量
+     * @en Get the number of listeners for the specified event
+     */
 
-    getChannelListenerSize<K extends keyof T>(channel: K) {
-        let listeners = this.listeners.get(channel as string)
+    getEventListenerSize<K extends keyof T>(event: K) {
+        let listeners = this.listeners.get(event as string)
         if (listeners) {
             return listeners.length
         } else {
@@ -56,10 +88,13 @@ export class Event<T extends Record<string, Record<string, any>>> {
         }
     }
 
-    /** 發送資料至指定頻道 */
+    /**
+     * @zh 發送資料至指定事件
+     * @en Send data to the specified event
+     */
 
-    emit<K extends keyof T>(channel: K, data: T[K]) {
-        let listeners = this.listeners.get(channel as string)
+    emit<K extends keyof T>(event: K, data: T[K]) {
+        let listeners = this.listeners.get(event as string)
         if (listeners) {
             for (let listener of listeners) {
                 listener.invoke(data)
@@ -70,26 +105,32 @@ export class Event<T extends Record<string, Record<string, any>>> {
             for (let listener of allListeners) {
                 listener.invoke({
                     data,
-                    channel
+                    event
                 })
             }
         }
     }
 
-    /** 停止指定 ID 的監聽者 */
+    /**
+     * @zh 停止指定事件與 ID 的 Listener
+     * @en Stop the Listener of the specified event and ID
+     */
 
-    off<K extends keyof T>(channel: K, id: string) {
-        let key = channel as string
+    off<K extends keyof T>(event: K, id: string) {
+        let key = event as string
         let listeners = this.listeners.get(key)
         if (listeners) {
             this.listeners.set(key, listeners.filter(e => e.id !== id))
         }
     }
 
-    /** 監聽指定頻道 */
+    /**
+     * @zh 監聽指定事件
+     * @en Listen to the specified event
+     */
 
-    on<K extends keyof T>(channel: K | '*', callback: ListenerCallback<T[K]>) {
-        let key = channel as string
+    on<K extends keyof T>(event: K | '*', callback: ListenerCallback<T[K]>) {
+        let key = event as string
         let listener: Listener<T[K]> = new Listener(this, key, callback)
         if (this.listeners.has(key) === false) {
             this.listeners.set(key, [])

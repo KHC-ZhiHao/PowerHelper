@@ -8,7 +8,7 @@ declare type Params<L extends string, K extends string> = {
         };
     };
 };
-declare type Channels = {
+declare type Events = {
     get: {
         key: string;
         text: string;
@@ -16,7 +16,7 @@ declare type Channels = {
         output: string;
     };
 };
-export declare class I18n<L extends string, K extends string> extends Event<Channels> {
+export declare class I18n<L extends string, K extends string> extends Event<Events> {
     private params;
     private nowLocale;
     constructor(params: Params<L, K>);

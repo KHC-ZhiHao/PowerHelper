@@ -1,5 +1,7 @@
 # Log
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/log.ts)
+
 一種更高階打印出 Log 的模組，不只是你可以控制他是否要在指定環境中顯示，甚至可以建立監聽打印事件。
 
 ## 如何使用
@@ -46,7 +48,7 @@ type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' 
 type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo'
 ```
 
-### Event
+### Events
 
 #### print
 

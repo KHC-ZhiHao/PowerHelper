@@ -20,7 +20,7 @@ import { Resource as _Resource } from './modules/resource';
 import { Reactive as _Reactive } from './modules/reactive';
 import { Schedule as _Schedule } from './modules/schedule';
 import { Debounce as _Debounce } from './modules/debounce';
-import { JobQueues as _JobQueues } from './modules/job-queues';
+import { JobsQueue as _JobsQueue } from './modules/jobs-queue';
 import { StyleString as _StyleString } from './modules/style-string';
 import { LocalStorage as _LocalStorage } from './modules/local-storage';
 import { QueryCollection as _QueryCollection } from './modules/query-collection';
@@ -53,7 +53,7 @@ export declare const flow: typeof _flow;
  */
 export declare const json: typeof _json;
 /**
- * 優雅的 JSON 格式相關處理。
+ * 字串相關的處理。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md
  */
 export declare const text: typeof _text;
@@ -80,8 +80,8 @@ export declare const element: typeof _element;
 export declare type Log = _Log;
 export declare type I18n<L extends string, K extends string> = _I18n<L, K>;
 export declare type Pool<Params, Data> = _Pool<Params, Data>;
-export declare type Hook<Channels extends Record<string, Record<string, any>>> = _Hook<Channels>;
-export declare type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>;
+export declare type Hook<Events extends Record<string, Record<string, any>>> = _Hook<Events>;
+export declare type Event<Events extends Record<string, Record<string, any>>> = _Event<Events>;
 export declare type Cache<Params, Response> = _Cache<Params, Response>;
 export declare type Timer = _Timer;
 export declare type Once<T> = _Once<T>;
@@ -97,7 +97,7 @@ export declare type WebSocketClient<Pub extends Record<string, any>, Sub> = _Web
 export declare type Reactive<Target extends Record<string, any>> = _Reactive<Target>;
 export declare type PromiseOverlap<PickType> = _PromiseOverlap<PickType>;
 export declare type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>;
-export declare type JobQueues = _JobQueues;
+export declare type JobsQueue = _JobsQueue;
 export declare type Exception = _Exception;
 export declare type Breakpoint = _Breakpoint;
 export declare type Interaction = _Interaction;
@@ -195,9 +195,9 @@ export declare const Interaction: typeof _Interaction;
  */
 export declare const Resource: typeof _Resource;
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.md
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/jobs-queue.md
  */
-export declare const JobQueues: typeof _JobQueues;
+export declare const JobsQueue: typeof _JobsQueue;
 /**
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
  */
@@ -228,7 +228,7 @@ export declare const PowerHelper: {
     Resource: typeof _Resource;
     Exception: typeof _Exception;
     CacheLite: typeof _CacheLite;
-    JobQueues: typeof _JobQueues;
+    JobsQueue: typeof _JobsQueue;
     Breakpoint: typeof _Breakpoint;
     StyleString: typeof _StyleString;
     Interaction: typeof _Interaction;

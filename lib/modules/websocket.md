@@ -1,6 +1,8 @@
 # WebSocketClient
 
-更高階的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/websocket.ts)
+
+具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
 
 ## 如何使用
 
@@ -25,6 +27,25 @@ wsc.connect().then(() => {
 })
 ```
 
+### 實踐 keep-alive
+
+```ts
+import { WebSocketClient } from 'power-helper'
+const wsc = new WebSocketClient({
+    url: () => 'ws://xxxx',
+    onMessage: async(event) => { ... },
+    sendHandler: async(channel, data) => { ...}
+})
+wsc.on('$close', ({ isManuallyClosed }) => {
+    if (isManuallyClosed === false) {
+        wsc.connect()
+    }
+})
+wsc.connect().then(() => {
+    wsc.send('init', { ... })
+})
+```
+
 ### Constructor
 
 ```ts
@@ -41,7 +62,7 @@ class WebSocketClient<Pub, Channels> {
         url:() => string,
         system?: typeof WebSocket,
         protocol?: string[],
-        onMessage: (event: MessageEvent) => Promise<any>,
+        onMessage: (event: MessageEvent) => Promise<any>
         sendHandler: <K extends keyof Pub>(channel: K, data: P[K]) => Promise<any>
     })
 }
@@ -62,7 +83,7 @@ function connect(): Promise<any>
 function disconnect(): void
 ```
 
-### Event
+### Events
 
 #### $open
 

@@ -1,6 +1,8 @@
 # Debounce
 
-去抖動功能，避免頻繁發出請求。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/debounce.ts)
+
+去抖動功能，當觸發事件後會搜集結果並延遲事件發生，避免頻繁發出請求。
 
 ## 如何使用
 
@@ -45,7 +47,7 @@ function trigger(): void
 function close(): void
 ```
 
-### Event
+### Events
 
 #### trigger
 

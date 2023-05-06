@@ -11,7 +11,7 @@ type Params<L extends string, K extends string> = {
     }
 }
 
-type Channels = {
+type Events = {
     get: {
         key: string
         text: string
@@ -20,7 +20,7 @@ type Channels = {
     }
 }
 
-export class I18n<L extends string, K extends string> extends Event<Channels> {
+export class I18n<L extends string, K extends string> extends Event<Events> {
     private params: Params<L, K>
     private nowLocale: L
     constructor(params: Params<L, K>) {

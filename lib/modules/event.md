@@ -1,25 +1,25 @@
 # Event
 
-基礎的 Pub/Sub 的架構模塊。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/event.ts)
 
 ## 如何使用
 
 ```ts
 import { Event } from 'power-helper'
-type Channels = {
+type Events = {
     update: {
         name: string
     }
 }
-let event = new Event<Channels>()
-event.on('update', (data) => {
+const emitter = new Event<Events>()
+emitter.on('update', (data) => {
     console.log(data.name) // dave
 })
-// 可以全局監聽
-event.on('*', ({ channel, data }) => {
+// 透過 * 可以全局監聽
+emitter.on('*', ({ event, data }) => {
     console.log(data.name) // dave
 })
-evemt.emit('update', {
+emitter.emit('update', {
     name: 'dave'
 })
 ```
@@ -27,7 +27,7 @@ evemt.emit('update', {
 ### Constructor
 
 ```ts
-class Event<Channels extends Record<string, Record<string, any>>> {
+class Event<Events extends Record<string, Record<string, any>>> {
     constructor()
 }
 ```
@@ -35,17 +35,17 @@ class Event<Channels extends Record<string, Record<string, any>>> {
 ### Property
 
 ```ts
-/** 獲取指定頻道的監聽數量 */
-function getChannelListenerSize(channel: string): number
+/** 獲取指定事件的監聽數量 */
+function getEventListenerSize(event: string): number
 
-/** 發送資料至指定頻道 */
-function emit(channel: string, data: any): void
+/** 發送資料至指定事件 */
+function emit(event: string, data: any): void
 
-/** 停止指定 ID 的監聽者 */
-function off(channel: string, id: string): void
+/** 停止指定 ID 的 Listener */
+function off(event: string, id: string): void
 
-/** 監聽指定頻道 */
-function on(channel: string, callback: (data: any, context: ListenerCallback) => void): Listener
+/** 監聽指定事件 */
+function on(event: string, callback: (data: any, context: ListenerCallback) => void): Listener
 ```
 
 ## Types
@@ -67,8 +67,8 @@ type Listener<T> = {
     readonly id: number
     /** 一組可供當下 Listener 儲存的空白物件 */
     readonly state: Record<string, any>
-    /** 監聽的頻道 */
-    readonly channel: string
+    /** 監聽的事件 */
+    readonly event: string
     /** 觸發這個監聽對象 */
     invoke: <T>(data: T): void
     /** 關閉這個 Listener */

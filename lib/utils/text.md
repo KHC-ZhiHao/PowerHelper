@@ -1,5 +1,7 @@
 # Text
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.ts)
+
 字串相關的處理。
 
 ```ts

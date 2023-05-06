@@ -7,13 +7,13 @@ declare type Info = {
     /** 執行次數 */
     executedCount: number;
 };
-declare type Channels = {
+declare type Events = {
     'processFail': {
         processName: string;
         error: any;
     };
 };
-export declare class Schedule extends Event<Channels> {
+export declare class Schedule extends Event<Events> {
     private int;
     private isStop;
     private lastTime;

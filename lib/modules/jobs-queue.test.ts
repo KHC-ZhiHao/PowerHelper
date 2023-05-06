@@ -1,11 +1,11 @@
 import { expect } from 'chai'
 import { sleep } from '../utils/flow'
-import { JobQueues } from './job-queues'
+import { JobsQueue } from './jobs-queue'
 
-describe('JobQueues', () => {
+describe('JobsQueue', () => {
     it('base', function(done) {
         let flag = ''
-        let jq = new JobQueues({
+        let jq = new JobsQueue({
             concurrentExecutions: 1
         })
         jq.push('123', async() => {
@@ -23,7 +23,7 @@ describe('JobQueues', () => {
     })
     it('unshift', function(done) {
         let flag = ''
-        let jq = new JobQueues({
+        let jq = new JobsQueue({
             concurrentExecutions: 1
         })
         jq.push('123', async() => {
@@ -45,7 +45,7 @@ describe('JobQueues', () => {
     })
     it('Concurrent Executions 2', function(done) {
         let flag = ''
-        let jq = new JobQueues({
+        let jq = new JobsQueue({
             concurrentExecutions: 2
         })
         jq.push('123', async() => {
@@ -62,7 +62,7 @@ describe('JobQueues', () => {
         })
     })
     it('error', function(done) {
-        let jq = new JobQueues({
+        let jq = new JobsQueue({
             concurrentExecutions: 2
         })
         jq.push('123', async() => {
@@ -74,7 +74,7 @@ describe('JobQueues', () => {
     })
     it('close', async function() {
         let flag = '1'
-        let jq = new JobQueues({
+        let jq = new JobsQueue({
             concurrentExecutions: 1
         })
         jq.close()
@@ -86,7 +86,7 @@ describe('JobQueues', () => {
     })
     it('close 2', function(done) {
         let flag = ''
-        let jq = new JobQueues({
+        let jq = new JobsQueue({
             concurrentExecutions: 1
         })
         jq.push('123', async() => {

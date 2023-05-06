@@ -1,6 +1,8 @@
 # Loader
 
-可以搜集並發出多個 Promise 的加載元件。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/loader.ts)
+
+可以搜集並發出多個 Promise 的加載元件，且擁有多種狀態。
 
 ## 如何使用
 
@@ -72,7 +74,7 @@ const called: Readonly<boolean>
 const loading: Readonly<boolean>
 ```
 
-### Event
+### Events
 
 #### call
 

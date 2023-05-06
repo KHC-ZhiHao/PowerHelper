@@ -25,14 +25,15 @@
 
 <br>
 
-Power Helper 是 JavaScript 的工具集成，功能簡單且無任何依賴項目，因此極為精簡。
+Power Helper 是一套整合了多種 JavaScript 工具的輕量化集成工具，它非常簡潔，並且不需要任何依賴項目。這套工具可以被視為一種較為複雜的 Lodash，它可以支援幾乎所有的 JavaScript 環境。
 
-可以把他想像成是一種稍微複雜點的 Lodash，幾乎支援所有 JavaScript 環境，並且在開發過程中堅持以下幾點設計，讓使用者能獲得最佳開發體驗：
+在開發過程中，我們遵照以下幾點讓開發者能夠獲得最佳的開發體驗：
 
-1. 完整的測試覆蓋率。
-2. 完整的中文文件支援。
-3. 持續改善程式碼品質。
-4. 針對編輯器完整的提示。
+* 對產品進行了完整的測試覆蓋，確保產品的可靠性。
+* 提供了完善的中文文件支援，以幫助使用者快速上手。
+* 持續改善程式碼品質，確保產品的可維護性和可擴展性。
+* 為編輯器提供了完整的提示，以幫助使用者更高效地進行開發。
+* 提供了完整的 TypeScript 支援，以幫助使用者更好地進行開發。
 
 ## 安裝
 
@@ -47,10 +48,6 @@ npm install power-helper
 ```bash
 yarn add power-helper
 ```
-
-## TypeScript
-
-PowerHelper 全程採用 TypeScript 撰寫，建議在 TypeScript 專案中使用。
 
 ## 如何使用？
 
@@ -143,7 +140,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [Cache](./lib/modules/cache.md) - 可以將指定參數請求進行有期限的固定資料存取。
 
-[Event](./lib/modules/event.md) - 基礎的 Pub/Sub 的架構模塊。
+[Event](./lib/modules/event.md) - 簡單的事件監聽器，可以用來監聽和觸發事件。
 
 [Timer](./lib/modules/timer.md) - 一組計時器，可以正向也可以反向計時。
 
@@ -151,7 +148,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [Loader](./lib/modules/loader.md) - 可以搜集並發出多個 Promise 的加載元件。
 
-[Debounce](./lib/modules/debounce.md) - 去抖動功能，避免頻繁發出請求。
+[Debounce](./lib/modules/debounce.md) - 去抖動功能，當觸發事件後會搜集結果並延遲事件發生，避免頻繁發出請求。
 
 [Resource](./lib/modules/resource.md) - 更優雅的實現獲取各類靜態資源。
 
@@ -159,7 +156,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [Reactive](./lib/modules/reactive.md) - 透過輪詢的方法監聽物件有沒有發生變動。
 
-[JobQueues](./lib/modules/job-queues.md) - 有限的批次執行作業。
+[JobsQueue](./lib/modules/jobs-queue.md) - 有限的批次執行作業。
 
 [Exception](./lib/modules/exception.md) - 高階的錯誤訊息處理工具。
 
@@ -177,7 +174,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [QueryCollection](./lib/modules/query-collection.md) - 一定時間內蒐集資料並統一發出。
 
-[WebSocketClient](./lib/modules/websocket.md) - 更高階的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+[WebSocketClient](./lib/modules/websocket.md) - 具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
 
 [ElementListenerGroup](./lib/modules/element-listener-group.md) - 將 element 的 addEventListener 昇華到更好操作的階段。
 
@@ -198,3 +195,12 @@ Types 只是一種開發 module 時順手的包裝，想要更強大的表達式
 [utility-types](https://www.npmjs.com/package/utility-types)
 
 [ts-essentials](https://github.com/krzkaczor/ts-essentials)
+
+### Veriosns
+
+#### 0.6.0
+
+* [新增] - Websocket 新增 keepAlive 保持連線功能。
+* [修正] - 標準化 Event 相關的 Channel 命名。
+* [修正] - job-queues -> jobs-queue。
+* [優化] - 優化文件。

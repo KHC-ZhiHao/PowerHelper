@@ -1,5 +1,7 @@
 # Ticker
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/ticker.ts)
+
 就如同 setInterval (實際上也是) 一樣運作，只是你可以監聽好幾組事件。
 
 ## 如何使用
@@ -42,7 +44,7 @@ function play(): void
 function close(): void
 ```
 
-### Event
+### Events
 
 #### next
 

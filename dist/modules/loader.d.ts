@@ -5,7 +5,7 @@ declare type FailError = {
     error: any;
     loaderName: string;
 };
-declare type Channels = {
+declare type Events = {
     call: Record<string, unknown>;
     done: Record<string, unknown>;
     fail: {
@@ -17,7 +17,7 @@ declare type Channels = {
         loaderName: string;
     };
 };
-export declare class Loader<T> extends Event<Channels> {
+export declare class Loader<T> extends Event<Events> {
     private name;
     private items;
     private status;

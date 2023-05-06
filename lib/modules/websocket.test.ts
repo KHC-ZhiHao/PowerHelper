@@ -97,6 +97,7 @@ describe('Time', () => {
     })
     
     it('close', async function() {
+        let flag = false
         let ws = new WebSocketClient({
             url: () => '123',
             system: FakeSocket as any,
@@ -106,8 +107,12 @@ describe('Time', () => {
             }
         })
         await ws.connect()
+        ws.on('$close', ({ isManuallyClosed }) => {
+            flag = isManuallyClosed
+        })
         ws.disconnect()
         ws.disconnect()
+        expect(flag).to.equal(true)
     })
         
     it('onmessage', function(done) {

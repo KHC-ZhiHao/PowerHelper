@@ -36,15 +36,15 @@ describe('Event', () => {
         event.emit('test2', {})
         expect(count).to.equal(0)
     })
-    it('getChannelListenerSize', function() {
+    it('getEventListenerSize', function() {
         let event = new Event()
-        event.on('test', () => {})
-        event.on('test', () => {})
-        event.on('test', () => {})
-        event.on('test2', () => {})
-        expect(event.getChannelListenerSize('test')).to.equal(3)
-        expect(event.getChannelListenerSize('test2')).to.equal(1)
-        expect(event.getChannelListenerSize('test3')).to.equal(0)
+        event.on('test', () => null)
+        event.on('test', () => null)
+        event.on('test', () => null)
+        event.on('test2', () => null)
+        expect(event.getEventListenerSize('test')).to.equal(3)
+        expect(event.getEventListenerSize('test2')).to.equal(1)
+        expect(event.getEventListenerSize('test3')).to.equal(0)
     })
     it('event off', function() {
         let count = 0
@@ -97,10 +97,10 @@ describe('Event', () => {
     it('on all', function() {
         let count = 0
         let event = new Event()
-        event.on('test', (data, context) => {
+        event.on('test', (_data, _context) => {
             count += 1
         })
-        event.on('*', (data, context) => {
+        event.on('*', (_data, _context) => {
             count += 1
         })
         event.emit('test', {})

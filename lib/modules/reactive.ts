@@ -1,10 +1,7 @@
-// 未定案
-// 參考: https://blog.techbridge.cc/2017/12/08/rxjs/
-
 import { Event } from './event'
 import { Schedule } from './schedule'
 
-type Channels<S> = {
+type Events<S> = {
     actionBefore: ActionContext<S>
     actionAfter: ActionContext<S>
 }
@@ -26,7 +23,7 @@ type ReactiveParams<S> = {
     observable: (_state: S) => Promise<string>
 }
 
-export class Reactive<S extends Record<string, any>> extends Event<Channels<S>> {
+export class Reactive<S extends Record<string, any>> extends Event<Events<S>> {
     private state!: S
     private oldKey: string | null = null
     private params: ReactiveParams<S>

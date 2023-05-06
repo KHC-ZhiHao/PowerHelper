@@ -1,5 +1,5 @@
 import { Event } from './event';
-declare type Channels = {
+declare type Events = {
     fail: {
         error: any;
         message: string;
@@ -9,7 +9,8 @@ declare type Options = {
     defaultError: () => string;
     parseMessage: (error: any) => string | null;
 };
-export declare class Exception extends Event<Channels> {
+/** 高階的錯誤訊息處理工具。 */
+export declare class Exception extends Event<Events> {
     private serviceName;
     private parent;
     private options;

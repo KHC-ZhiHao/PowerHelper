@@ -1,14 +1,16 @@
-# Job Queues
+# Jobs Queue
+
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.ts)
 
 有限的批次執行作業。
 
 ## 如何使用
 
 ```ts
-import { JobQueues, flow } from 'power-helper'
+import { JobsQueue, flow } from 'power-helper'
 
 let flag = ''
-let jq = new JobQueues({
+let jq = new JobsQueue({
     concurrentExecutions: 1
 })
 jq.push('123', async() => {
@@ -59,7 +61,7 @@ function clear(): Error
 function close(): void
 ```
 
-### Event
+### Events
 
 #### error
 

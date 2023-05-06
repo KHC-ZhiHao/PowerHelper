@@ -1,5 +1,7 @@
 # Json
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.ts)
+
 優雅的 JSON 格式相關處理。
 
 ```ts

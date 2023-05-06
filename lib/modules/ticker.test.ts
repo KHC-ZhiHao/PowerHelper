@@ -1,4 +1,3 @@
-import { sleep } from '../utils/flow'
 import { expect } from 'chai'
 import { Ticker } from './ticker'
 

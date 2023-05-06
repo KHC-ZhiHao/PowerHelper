@@ -1,5 +1,7 @@
 # Style String
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/style-string.ts)
+
 方便組合出 HTML Element Style 的工具。
 
 ## 如何使用

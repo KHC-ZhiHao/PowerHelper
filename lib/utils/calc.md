@@ -1,5 +1,7 @@
 # Calc
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.ts)
+
 負責計算的單元。
 
 ```ts

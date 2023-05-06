@@ -1,6 +1,8 @@
 # Cache Lite
 
-指定鍵值並同步的存取，非常近似 Map 物件，但是有 TTL。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache-lite.ts)
+
+指定鍵值並同步的存取，非常近似 Map 物件，但是有 TTL(Time To Live)。
 
 ## 如何使用
 

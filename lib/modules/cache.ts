@@ -22,13 +22,13 @@ class CacheItem<T> {
     }
 }
 
-type Channels<T> = {
+type Events<T> = {
     remove: {
         data: T
     }
 }
 
-export class Cache<P, R> extends Event<Channels<R>> {
+export class Cache<P, R> extends Event<Events<R>> {
     private event = new Event()
     private key: (params: P) => string
     private index = 0
@@ -140,15 +140,15 @@ export class Cache<P, R> extends Event<Channels<R>> {
             if (item && item.isExpired() === false) {
                 return resolve(item.data)
             }
-            let channel = `${key}-onload`
-            this.event.on(channel, (data, context) => {
+            let event = `${key}-onload`
+            this.event.on(event, (data, context) => {
                 context.off()
                 resolve(data as any)
             })
-            if (this.event.getChannelListenerSize(channel) === 1) {
+            if (this.event.getEventListenerSize(event) === 1) {
                 this.pick(params, { key })
                     .then(item => {
-                        this.event.emit(channel, item as any)
+                        this.event.emit(event, item as any)
                         this.setByKey(key, item)
                     })
                     .catch(reject)

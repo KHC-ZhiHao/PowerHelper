@@ -1,5 +1,7 @@
 # Breakpoint
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpoint.ts)
+
 斷點驗證工具。
 
 ## 如何使用

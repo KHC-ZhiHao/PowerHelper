@@ -1,5 +1,7 @@
 # Record
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.ts)
+
 優雅的 Object 操作。
 
 ```ts

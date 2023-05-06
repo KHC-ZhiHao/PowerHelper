@@ -1,5 +1,7 @@
 # Schedule
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/schedule.ts)
+
 可以建立多個定時執行系統，且能保證不重複執行。
 
 ## 如何使用
@@ -73,7 +75,7 @@ type Info = {
 }
 ```
 
-### Event
+### Events
 
 #### processFail
 

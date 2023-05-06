@@ -1,5 +1,7 @@
 # Array
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.ts)
+
 優雅的 Array 操作。
 
 ```ts

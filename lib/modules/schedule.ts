@@ -19,14 +19,14 @@ type Process = {
     handler: () => Promise<any>
 }
 
-type Channels = {
+type Events = {
     'processFail': {
         processName: string
         error: any
     }
 }
 
-export class Schedule extends Event<Channels> {
+export class Schedule extends Event<Events> {
     private int = setInterval(() => this.run(), 100)
     private isStop = false
     private lastTime = Date.now()

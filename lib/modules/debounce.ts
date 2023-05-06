@@ -15,6 +15,8 @@ type Channels<T> = {
     }
 }
 
+/** 去抖動功能，當觸發事件後會搜集結果並延遲事件發生，避免頻繁發出請求 */
+
 class DebounceUnit extends Event<Channels<any> & { close: Record<string, unknown> }> {
     isDone = false
     params: Params

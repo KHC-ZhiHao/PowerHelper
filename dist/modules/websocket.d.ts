@@ -1,7 +1,7 @@
 import { Event } from './event';
 declare type Pub = Record<string, any>;
 declare type FailTypes = 'unknown' | 'send' | 'message';
-declare type Channels = {
+declare type Events = {
     /** 成功連接伺服器時觸發。 */
     $open: any;
     /** 連接失敗等狀態等觸發。 */
@@ -26,8 +26,11 @@ declare type WebSocketParams<P extends Pub> = {
     /** 發送資料前進行資料轉換 */
     sendHandler: <K extends keyof P>(_channel: K, _data: P[K]) => Promise<any>;
 };
-export declare class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
-    _websocket: WebSocket;
+/**
+ * 具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+ */
+export declare class WebSocketClient<P extends Pub, S> extends Event<S & Events> {
+    _websocket?: WebSocket;
     private params;
     private isManuallyClosed;
     constructor(params: WebSocketParams<P>);

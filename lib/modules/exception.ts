@@ -1,6 +1,6 @@
 import { Event } from './event'
 
-type Channels = {
+type Events = {
     fail: {
         error: any
         message: string
@@ -12,7 +12,9 @@ type Options = {
     parseMessage: (error: any) => string | null
 }
 
-export class Exception extends Event<Channels> {
+/** 高階的錯誤訊息處理工具。 */
+
+export class Exception extends Event<Events> {
     private serviceName: string
     private parent: Exception | null = null
     private options: Options = {

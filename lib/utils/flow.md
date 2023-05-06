@@ -1,5 +1,7 @@
 # Flow
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.ts)
+
 流程控制的工具。
 
 ```ts

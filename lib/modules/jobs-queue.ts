@@ -5,7 +5,7 @@ type Job = {
     handler: () => Promise<any>
 }
 
-type Channels = {
+type Events = {
     allDone: Record<string, unknown>
     error: {
         name: string
@@ -17,7 +17,7 @@ type Params = {
     concurrentExecutions: number
 }
 
-export class JobQueues extends Event<Channels> {
+export class JobsQueue extends Event<Events> {
     private jobs: Job[] = []
     private closed = false
     private runningCount = 0

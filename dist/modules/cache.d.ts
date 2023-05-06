@@ -3,12 +3,12 @@ declare type PickContext = {
     key: string;
 };
 declare type Pick<P, R> = (params: P, context: PickContext) => Promise<R>;
-declare type Channels<T> = {
+declare type Events<T> = {
     remove: {
         data: T;
     };
 };
-export declare class Cache<P, R> extends Event<Channels<R>> {
+export declare class Cache<P, R> extends Event<Events<R>> {
     private event;
     private key;
     private index;

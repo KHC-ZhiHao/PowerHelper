@@ -23,7 +23,7 @@ import { Resource as _Resource } from './modules/resource'
 import { Reactive as _Reactive } from './modules/reactive'
 import { Schedule as _Schedule } from './modules/schedule'
 import { Debounce as _Debounce } from './modules/debounce'
-import { JobQueues as _JobQueues } from './modules/job-queues'
+import { JobsQueue as _JobsQueue } from './modules/jobs-queue'
 import { StyleString as _StyleString } from './modules/style-string'
 import { LocalStorage as _LocalStorage } from './modules/local-storage'
 import { QueryCollection as _QueryCollection } from './modules/query-collection'
@@ -65,7 +65,7 @@ export const flow = _flow
 export const json = _json
 
 /**
- * 優雅的 JSON 格式相關處理。
+ * 字串相關的處理。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md
  */
 
@@ -102,8 +102,8 @@ export const element = _element
 export type Log = _Log
 export type I18n<L extends string, K extends string> = _I18n<L, K>
 export type Pool<Params, Data> = _Pool<Params, Data>
-export type Hook<Channels extends Record<string, Record<string, any>>> = _Hook<Channels>
-export type Event<Channels extends Record<string, Record<string, any>>> = _Event<Channels>
+export type Hook<Events extends Record<string, Record<string, any>>> = _Hook<Events>
+export type Event<Events extends Record<string, Record<string, any>>> = _Event<Events>
 export type Cache<Params, Response> = _Cache<Params, Response>
 export type Timer = _Timer
 export type Once<T> = _Once<T>
@@ -119,7 +119,7 @@ export type WebSocketClient<Pub extends Record<string, any>, Sub> = _WebSocketCl
 export type Reactive<Target extends Record<string, any>> = _Reactive<Target>
 export type PromiseOverlap<PickType> = _PromiseOverlap<PickType>
 export type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>
-export type JobQueues = _JobQueues
+export type JobsQueue = _JobsQueue
 export type Exception = _Exception
 export type Breakpoint = _Breakpoint
 export type Interaction = _Interaction
@@ -264,10 +264,10 @@ export const Interaction = _Interaction
 export const Resource = _Resource
 
 /**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.md
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/jobs-queue.md
  */
 
-export const JobQueues = _JobQueues
+export const JobsQueue = _JobsQueue
 
 /**
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
@@ -301,7 +301,7 @@ export const PowerHelper = {
     Resource,
     Exception,
     CacheLite,
-    JobQueues,
+    JobsQueue,
     Breakpoint,
     StyleString,
     Interaction,

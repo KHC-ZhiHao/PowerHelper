@@ -1,6 +1,8 @@
 # Element Listener Group
 
-將 element 的 addEventListener 昇華到更好操作的階段。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/element-listener-group.ts)
+
+將 Element 的 addEventListener 昇華到更好操作的階段。
 
 ## 如何使用
 

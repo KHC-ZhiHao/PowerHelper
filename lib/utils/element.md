@@ -1,5 +1,7 @@
 # Element
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.ts)
+
 優雅的 Dom 操作。
 
 ```ts

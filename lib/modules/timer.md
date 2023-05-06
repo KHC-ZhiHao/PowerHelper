@@ -1,5 +1,7 @@
 # Timer
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/timer.ts)
+
 一組計時器，可以正向也可以反向計時。
 
 ## 如何使用

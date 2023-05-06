@@ -1,5 +1,7 @@
 # Pool
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/pool.ts)
+
 輕鬆發出請求與快取請求資料的資料池。
 
 ## 如何使用

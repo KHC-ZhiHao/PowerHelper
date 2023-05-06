@@ -1,7 +1,7 @@
 import { Event } from './event';
 declare type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white';
 declare type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo';
-declare type Channels = {
+declare type Events = {
     print: {
         time: string;
         name: string;
@@ -13,7 +13,7 @@ declare type Channels = {
         logType: LogType;
     };
 };
-export declare class Log extends Event<Channels> {
+export declare class Log extends Event<Events> {
     private step;
     private name;
     private isSilence;

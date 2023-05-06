@@ -23,6 +23,7 @@ declare class Listener<T> {
     /** 關閉這個 Listener */
     off(): void;
 }
+/** 為非同步而生的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。 */
 export declare class Hook<T extends Record<string, Record<string, any>>> {
     private listeners;
     /** 發送資料至指定頻道 */
@@ -31,7 +32,7 @@ export declare class Hook<T extends Record<string, Record<string, any>>> {
     detach<K extends keyof T>(channel: K, id: string): void;
     /** 掛勾指定頻道 */
     attach<K extends keyof T>(channel: K, callback: ListenerCallback<T[K]>): Listener<T[K]>;
-    /** 掛勾指定頻道，並將執行順序安排到最後 */
+    /** 掛勾指定頻道，且無論註冊時間如何，永遠會在最後執行 */
     attachAfter<K extends keyof T>(channel: K, callback: ListenerCallback<T[K]>): Listener<T[K]>;
 }
 export {};

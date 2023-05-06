@@ -2,7 +2,7 @@ import { Event } from './event'
 
 type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white'
 type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo'
-type Channels = {
+type Events = {
     print: {
         time: string
         name: string
@@ -26,7 +26,7 @@ const nodeColors: Record<Color, string> = {
     yellow: '\x1b[33m'
 }
 
-export class Log extends Event<Channels> {
+export class Log extends Event<Events> {
     private step = 0
     private name
     private isSilence = false

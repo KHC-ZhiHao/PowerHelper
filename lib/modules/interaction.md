@@ -1,5 +1,7 @@
 # Interaction
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction.ts)
+
 建立可監聽、追蹤、可搭配視圖化的訊息整合工具。
 
 ## 如何使用
@@ -62,7 +64,7 @@ function notify(type: StepLevel, content: any): void
 function getFlowText(): string
 ```
 
-### Event
+### Events
 
 #### call
 

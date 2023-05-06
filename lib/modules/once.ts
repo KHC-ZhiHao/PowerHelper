@@ -34,7 +34,7 @@ export class Once<T> {
                     context.off()
                     action()
                 })
-                if (this.event.getChannelListenerSize('onload') === 1) {
+                if (this.event.getEventListenerSize('onload') === 1) {
                     this.params
                         .handler()
                         .then(item => {

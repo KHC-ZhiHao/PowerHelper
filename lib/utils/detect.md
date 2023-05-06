@@ -1,5 +1,7 @@
 # Detect
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.ts)
+
 驗證當下的執行環境。
 
 ```ts

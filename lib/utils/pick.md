@@ -1,5 +1,7 @@
 # Pick
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.ts)
+
 精準地提取目標相關資源。
 
 ```ts

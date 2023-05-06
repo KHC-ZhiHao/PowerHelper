@@ -1,5 +1,7 @@
 # QueryCollection
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/query-collection.ts)
+
 可以蒐集資料並統一發出請求。
 
 ## 如何使用

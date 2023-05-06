@@ -87,13 +87,13 @@ describe('Hook', () => {
     it('after', async function() {
         let hook = new Hook()
         let flow: any[] = []
-        hook.attachAfter('test', async(data, context) => {
+        hook.attachAfter('test', async(_data, _context) => {
             flow.push(1)
         })
-        hook.attach('test', async(data, context) => {
+        hook.attach('test', async(_data, _context) => {
             flow.push(2)
         })
-        hook.attach('test', async(data, context) => {
+        hook.attach('test', async(_data, _context) => {
             flow.push(3)
         })
         await hook.notify('test', {})

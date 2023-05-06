@@ -1,5 +1,7 @@
 # Exception
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception.ts)
+
 高階的錯誤訊息處理工具。
 
 ## 如何使用

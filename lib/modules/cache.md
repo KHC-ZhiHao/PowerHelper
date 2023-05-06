@@ -1,5 +1,7 @@
 # Cache
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache.ts)
+
 可以將指定參數請求進行有期限的固定資料存取。
 
 ## 如何使用
@@ -121,7 +123,7 @@ type PickContext = {
 }
 ```
 
-### Event
+### Events
 
 #### remove
 

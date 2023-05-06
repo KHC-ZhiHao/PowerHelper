@@ -1,19 +1,21 @@
 # Hook
 
-基礎的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/hook.ts)
+
+為非同步而生的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。
 
 ## 如何使用
 
 ```ts
 import { Hook } from 'power-helper'
 
-type Channels = {
+type Events = {
     update: {
         name: string
     }
 }
 
-const hook = new Hook<Channels>()
+const hook = new Hook<Events>()
 
 // 掛載非同步事件
 hook.attach('update', async(data) => {
@@ -46,7 +48,7 @@ function detach(channel: string, id: string): void
 /** 掛勾指定頻道 */
 function attach(channel: string, callback: (data: any, context: ListenerCallback) => void): Listener
 
-/** 掛勾指定頻道，並將執行順序安排到最後 */
+/** 掛勾指定頻道，且無論註冊時間如何，永遠會在最後執行 */
 function attachAfter(channel: string, callback: (data: any, context: ListenerCallback) => void): Listener
 ```
 

@@ -1,5 +1,7 @@
 # LocalStorage
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/local-storage.ts)
+
 協助你在複雜的網頁應用程式中更安全的操作 LocalStorage。
 
 ## 如何使用

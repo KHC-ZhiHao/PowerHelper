@@ -8,7 +8,7 @@ type FailError = {
     loaderName: string
 }
 
-type Channels = {
+type Events = {
     call: Record<string, unknown>
     done: Record<string, unknown>
     fail: {
@@ -26,7 +26,7 @@ type LoaderItem<T> = {
     handler: (_data: T) => Promise<any>
 }
 
-export class Loader<T> extends Event<Channels> {
+export class Loader<T> extends Event<Events> {
     private name: string
     private items: LoaderItem<T>[] = []
     private status = {

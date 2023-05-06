@@ -5,14 +5,14 @@ declare type ResourceParams<I extends Items> = {
     def: (_path: string) => string;
     items?: I;
 };
-declare type Channels = {
+declare type Events = {
     fetch: {
         url: string;
         source: ResourceSupport;
         isObjectUrl: boolean;
     };
 };
-export declare class Resource<I extends Items> extends Event<Channels> {
+export declare class Resource<I extends Items> extends Event<Events> {
     private objectUrls;
     private params;
     constructor(params: ResourceParams<I>);

@@ -4,7 +4,7 @@ type Pub = Record<string, any>
 
 type FailTypes = 'unknown' | 'send' | 'message'
 
-type Channels = {
+type Events = {
     /** 成功連接伺服器時觸發。 */
     $open: any
     /** 連接失敗等狀態等觸發。 */
@@ -31,8 +31,12 @@ type WebSocketParams<P extends Pub> = {
     sendHandler: <K extends keyof P>(_channel: K, _data: P[K]) => Promise<any>
 }
 
-export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
-    _websocket!: WebSocket
+/**
+ * 具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+ */
+
+export class WebSocketClient<P extends Pub, S> extends Event<S & Events> {
+    _websocket?: WebSocket
     private params: WebSocketParams<P>
     private isManuallyClosed = false
 
@@ -83,9 +87,7 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
                 let data: any = {
                     isManuallyClosed: this.isManuallyClosed
                 }
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                this._websocket = null
+                this._websocket = undefined
                 this.emit('$close', data)
                 this.isManuallyClosed = false
             }
@@ -97,16 +99,16 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
         if (this.connected === false) {
             return 'wait'
         }
-        if (this._websocket.readyState === 0) {
+        if (this._websocket?.readyState === 0) {
             return 'connecting'
         }
-        if (this._websocket.readyState === 1) {
+        if (this._websocket?.readyState === 1) {
             return 'open'
         }
-        if (this._websocket.readyState === 2) {
+        if (this._websocket?.readyState === 2) {
             return 'closeing'
         }
-        if (this._websocket.readyState === 3) {
+        if (this._websocket?.readyState === 3) {
             return 'closed'
         }
     }
@@ -116,7 +118,7 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
         try {
             let record = await this.params.sendHandler(channel, data)
             if (this.connected) {
-                this._websocket.send(record)
+                this._websocket?.send(record)
             } else {
                 console.warn(`Socket not connected, from send ${channel as string}.`)
             }
@@ -136,7 +138,7 @@ export class WebSocketClient<P extends Pub, S> extends Event<S & Channels> {
     disconnect() {
         if (this.connected) {
             this.isManuallyClosed = true
-            this._websocket.close()
+            this._websocket?.close()
         } else {
             console.warn('Socket not connected, from disconnect.')
         }

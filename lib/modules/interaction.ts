@@ -21,7 +21,7 @@ type PushParams = {
     checkoutAt: string
 }
 
-type Channels = {
+type Events = {
     action: Step
 }
 
@@ -31,7 +31,7 @@ type Params = {
     interceptorMessage?: (_data: any) => string
 }
 
-export class Interaction extends Event<Channels> {
+export class Interaction extends Event<Events> {
     protected name: string
     protected steps: Step[] = []
     protected parent?: Interaction

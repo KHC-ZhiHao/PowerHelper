@@ -11,7 +11,7 @@ type ResourceParams<I extends Items> = {
     items?: I
 }
 
-type Channels = {
+type Events = {
     fetch: {
         url: string
         source: ResourceSupport
@@ -24,7 +24,7 @@ type Channels = {
 // private alias: Map<string, string> = new Map()
 // private redirects: Map<string, string> = new Map()
 
-export class Resource<I extends Items> extends Event<Channels> {
+export class Resource<I extends Items> extends Event<Events> {
     private objectUrls: string[] = []
     private params: ResourceParams<I>
     constructor(params: ResourceParams<I>) {

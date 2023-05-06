@@ -9,7 +9,7 @@ declare type Step = {
     createdAt: number;
     checkoutAt: string;
 };
-declare type Channels = {
+declare type Events = {
     action: Step;
 };
 declare type Params = {
@@ -17,7 +17,7 @@ declare type Params = {
     stepMaxSize?: number;
     interceptorMessage?: (_data: any) => string;
 };
-export declare class Interaction extends Event<Channels> {
+export declare class Interaction extends Event<Events> {
     protected name: string;
     protected steps: Step[];
     protected parent?: Interaction;

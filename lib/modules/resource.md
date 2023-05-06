@@ -1,5 +1,7 @@
 # Resource
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.ts)
+
 優雅的實現獲取檔案路徑。
 
 ## 如何使用
