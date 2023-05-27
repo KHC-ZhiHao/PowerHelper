@@ -1,6 +1,6 @@
 # Jobs Queue
 
-[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/job-queues.ts)
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/jobs-queue.ts)
 
 有限的批次執行作業。
 
@@ -53,6 +53,8 @@ Extends: [Event](./event.md)
 const size: number
 /** 增加一個階段訊息 */
 function push(name: string, job: () => Promise<any>): void
+/** 將一組 job 新增至 queue 末端，同時回應一組 promise 可以等待直到該任務完成為止。 */
+function pushAndWait(name: string, job: () => Promise<any>): Promise<null>
 /** 將一組 job 新增至最優先級 */
 function unshift(name: string, job: () => Promise<any>): void
 /** 清空現有的 jobs */

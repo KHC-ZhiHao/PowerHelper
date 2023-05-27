@@ -21,6 +21,60 @@ describe('JobsQueue', () => {
             done()
         })
     })
+    it('base and wait', async function() {
+        let flag = ''
+        let jq = new JobsQueue({
+            concurrentExecutions: 1
+        })
+        jq.push('123', async() => {
+            await sleep(10)
+            flag += '1'
+        })
+        jq.push('1234', async() => {
+            await sleep(10)
+            flag += '2'
+        })
+        await jq.pushAndWait('1235', async() => {
+            await sleep(20)
+            flag += '3'
+        })
+        expect(flag).equal('123')
+    })
+    it('base and wait close', async function() {
+        let flag = ''
+        let jq = new JobsQueue({
+            concurrentExecutions: 1
+        })
+        jq.push('123', async() => {
+            await sleep(10)
+            flag += '1'
+        })
+        jq.push('1234', async() => {
+            await sleep(10)
+            flag += '2'
+        })
+        jq.close()
+        await jq.pushAndWait('1235', async() => {
+            await sleep(20)
+            flag += '3'
+        })
+        expect(flag).equal('')
+    })
+    it('base and wait error', async function() {
+        let flag = ''
+        let jq = new JobsQueue({
+            concurrentExecutions: 1
+        })
+        try {
+            await jq.pushAndWait('1235', async() => {
+                flag = 'success'
+                throw '123'
+            })
+        } catch (error) {
+            flag = 'error'
+        }
+        expect(flag).equal('error')
+    })
     it('unshift', function(done) {
         let flag = ''
         let jq = new JobsQueue({

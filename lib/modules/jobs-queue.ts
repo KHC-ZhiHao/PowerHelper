@@ -76,6 +76,28 @@ export class JobsQueue extends Event<Events> {
         }
     }
 
+    /** 將一組 job 新增至 queue 末端，同時回應一組 promise 可以等待直到該任務完成為止。 */
+
+    pushAndWait(name: string, handler: Job['handler']): Promise<null> {
+        return new Promise((resolve, reject) => {
+            if (this.closed) {
+                return resolve(null)
+            }
+            this.jobs.push({
+                name,
+                handler: async () => {
+                    try {
+                        await handler()
+                        resolve(null)
+                    } catch (e) {
+                        reject(e)
+                    }
+                }
+            })
+            this.run()
+        })
+    }
+
     /** 將一組 job 新增至最優先級 */
 
     unshift(name: string, handler: Job['handler']) {

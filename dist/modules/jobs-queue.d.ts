@@ -25,6 +25,8 @@ export declare class JobsQueue extends Event<Events> {
     private less;
     /** 將一組 job 新增至 queue 末端 */
     push(name: string, handler: Job['handler']): void;
+    /** 將一組 job 新增至 queue 末端，同時回應一組 promise 可以等待直到該任務完成為止。 */
+    pushAndWait(name: string, handler: Job['handler']): Promise<null>;
     /** 將一組 job 新增至最優先級 */
     unshift(name: string, handler: Job['handler']): void;
     /** 清空現有的 jobs */
