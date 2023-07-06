@@ -24,23 +24,23 @@ class Listener<T> {
      * @en Unique and random Listener ID
      */
 
-    readonly id = Date.now().toString() + Math.floor(Math.random() * 1000000)
+    id = Date.now().toString() + Math.floor(Math.random() * 1000000)
 
     /**
      * @zh 一組可供當下 Listener 儲存的空白物件
      * @en A set of blank objects that can be stored by the current Listener
      */
 
-    readonly state: Record<string, any> = {}
+    state: Record<string, any> = {}
 
     /**
      * @zh 監聽的事件
      * @en Listened event
      */
 
-    readonly event: string
-    private callback: ListenerCallback<T>
-    private manager: Event<any>
+    event: string
+    callback: ListenerCallback<T>
+    manager: Event<any>
 
     constructor(manager: Event<any>, event: string, callback: ListenerCallback<any>) {
         this.manager = manager
@@ -72,7 +72,7 @@ class Listener<T> {
 }
 
 export class Event<T extends Record<string, Record<string, any>>> {
-    private listeners: Map<string, Listener<any>[]> = new Map()
+    listeners: Map<string, Listener<any>[]> = new Map()
 
     /**
      * @zh 獲取指定事件的監聽數量

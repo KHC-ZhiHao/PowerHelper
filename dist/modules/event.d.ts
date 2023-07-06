@@ -21,19 +21,19 @@ declare class Listener<T> {
      * @zh 唯一並隨機的 Listener ID
      * @en Unique and random Listener ID
      */
-    readonly id: string;
+    id: string;
     /**
      * @zh 一組可供當下 Listener 儲存的空白物件
      * @en A set of blank objects that can be stored by the current Listener
      */
-    readonly state: Record<string, any>;
+    state: Record<string, any>;
     /**
      * @zh 監聽的事件
      * @en Listened event
      */
-    readonly event: string;
-    private callback;
-    private manager;
+    event: string;
+    callback: ListenerCallback<T>;
+    manager: Event<any>;
     constructor(manager: Event<any>, event: string, callback: ListenerCallback<any>);
     /**
      * @zh 觸發這個監聽對象
@@ -47,7 +47,7 @@ declare class Listener<T> {
     off(): void;
 }
 export declare class Event<T extends Record<string, Record<string, any>>> {
-    private listeners;
+    listeners: Map<string, Listener<any>[]>;
     /**
      * @zh 獲取指定事件的監聽數量
      * @en Get the number of listeners for the specified event

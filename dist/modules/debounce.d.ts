@@ -8,6 +8,9 @@ declare type Params = {
     maxValueLength?: number;
 };
 declare type Channels<T> = {
+    input: {
+        value: T;
+    };
     trigger: {
         values: T[];
     };

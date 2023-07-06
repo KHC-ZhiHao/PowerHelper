@@ -98,6 +98,36 @@ describe('Pool', () => {
         expect(data3.createdAt > data.createdAt).eq(true)
     })
 
+    it('set', async function() {
+        type Res = {
+            name: string
+            createdAt: number
+        }
+        let pool = new Pool<Params, Res>({
+            find: (data, params) => {
+                return data.name === params.name
+            },
+            fetch: async(params) => {
+                return params.map(e => {
+                    return {
+                        name: e.name,
+                        createdAt: Date.now()
+                    }
+                })
+            }
+        })
+        pool.set({
+            name: 'dave'
+        }, {
+            name: 'dave',
+            createdAt: 1234
+        })
+        let data = await pool.pick({
+            name: 'dave'
+        })
+        expect(data.createdAt).eq(1234)
+    })
+
     it('remove', async function() {
         type Res = {
             name: string

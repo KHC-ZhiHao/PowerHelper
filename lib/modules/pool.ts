@@ -55,6 +55,12 @@ export class Pool<P, D> {
         this.dataCache.remove(params)
     }
 
+    /** 寫入資料 */
+
+    set(params: P, data: D) {
+        this.dataCache.set(params, data)
+    }
+
     /** 清空 cache */
 
     clear() {

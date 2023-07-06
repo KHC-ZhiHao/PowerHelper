@@ -94,4 +94,16 @@ describe('Debounce', () => {
         debounce.trigger()
         debounce.close()
     })
+    it('cover', async function() {
+        let flag = 0
+        let debounce = new Debounce<string>({
+            delay: 10
+        })
+        debounce.on('input', () => {
+            flag++
+        })
+        debounce.input('')
+        debounce.close()
+        expect(flag).to.equal(1)
+    })
 })

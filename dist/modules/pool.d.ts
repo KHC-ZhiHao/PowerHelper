@@ -19,6 +19,8 @@ export declare class Pool<P, D> {
     list(paramsItems: P[]): Promise<Awaited<D>[]>;
     /** 清除指定 cache */
     remove(params: P): void;
+    /** 寫入資料 */
+    set(params: P, data: D): void;
     /** 清空 cache */
     clear(): void;
 }

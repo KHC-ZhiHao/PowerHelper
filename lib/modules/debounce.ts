@@ -10,6 +10,9 @@ type Params = {
 }
 
 type Channels<T> = {
+    input: {
+        value: T
+    }
     trigger: {
         values: T[]
     }
@@ -87,6 +90,7 @@ export class Debounce<T> extends Event<Channels<T>> {
             this.unit.on('close', () => this.close())
         }
         this.unit.input(value)
+        this.emit('input', { value })
     }
 
     /** 不須等待直接觸發事件 */
