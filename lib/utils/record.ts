@@ -125,3 +125,21 @@ export const omit = <D extends object, T extends (keyof D)[]>(data: D, keys: T):
     }
     return output
 }
+
+/**
+ * Promise.all 的鍵值對版本。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys
+ */
+
+export const promiseAllWithKeys = <T extends Record<string, Promise<any>>>(obj: T): Promise<{
+    [K in keyof T]: T[K] extends Promise<infer U> ? U : never
+}> => {
+    const keys = Object.keys(obj)
+    const values = Object.values(obj)
+    return Promise.all(values).then((res) => {
+        return res.reduce((acc, cur, index) => {
+            acc[keys[index]] = cur
+            return acc
+        }, {})
+    })
+}

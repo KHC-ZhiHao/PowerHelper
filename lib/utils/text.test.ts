@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { byteLength, replaceVar, headMatch, lastMatch, format } from './text'
+import { byteLength, replaceVar, headMatch, lastMatch, format, findMatchOrLast } from './text'
 
 describe('String', () => {
     it('headMatch', async function() {
@@ -31,6 +31,12 @@ describe('String', () => {
     it('format', async function() {
         expect(format('vvvv-vvv-***', '0900123456')).to.equal('0900-123-***')
         expect(format('vvvv-vvv-***', '09001', 'a')).to.equal('0900-1aa-***')
+    })
+    it('findMatchOrLast', async function() {
+        expect(findMatchOrLast('hello', ['hello', 'world', 'dave'])).to.equal('hello')
+        expect(findMatchOrLast('helloo', ['hello', 'world', 'dave'])).to.equal('dave')
+        expect(findMatchOrLast('world', ['hello', 'world', 'dave'])).to.equal('world')
+        expect(findMatchOrLast('helloo', [])).to.equal(null)
     })
     it('replaceVar', async function() {
         let result = replaceVar({

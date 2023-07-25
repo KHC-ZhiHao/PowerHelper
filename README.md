@@ -102,6 +102,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - 獲取指定 Text 的 Byte 長度。
 * [replaceVar](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar) - 複寫 Text 的指定變數。
 * [format](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format) - 轉換 Text 轉換成指定格式，填入 v 代表映射的值。
+* [findMatchOrLast](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast) - 將指定文字限縮指定字組中，如果都不符合則返回最後一個字組。。
 
 [pick](./lib/utils/pick.md) - 精準地提取目標相關資源。
 
@@ -123,6 +124,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [omit](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit) - 淺拷貝同一份 Object，但忽略掉指定對象。
 * [setMapValue](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue) - 複製指定物件的值到目標 Object 上，並產生一份新的 Object。
 * [createStrictObject](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#createstrictobject) - 建立一組嚴格檢查、轉譯並實質不能變動的 Object，通常應用在環境變數。
+* [promiseAllWithKeys](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys) - Promise.all 的鍵值對版本。
 
 ### Modules
 
@@ -139,6 +141,8 @@ PowerHelper 分成三個區塊，相關敘述如下：
 [Pool](./lib/modules/pool.md) - 輕鬆發出請求與快取請求資料的資料池。
 
 [Cache](./lib/modules/cache.md) - 可以將指定參數請求進行有期限的固定資料存取。
+
+[Asset](./lib/modules/asset.md) - 資源載入工具，目的是初始化必要的靜態資源。
 
 [Event](./lib/modules/event.md) - 簡單的事件監聽器，可以用來監聽和觸發事件。
 

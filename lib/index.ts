@@ -14,6 +14,7 @@ import { Log as _Log } from './modules/log'
 import { I18n as _I18n } from './modules/i18n'
 import { Hook as _Hook } from './modules/hook'
 import { Once as _Once } from './modules/once'
+import { Asset as _Asset, AssetParams } from './modules/asset'
 import { Event as _Event } from './modules/event'
 import { Cache as _Cache } from './modules/cache'
 import { Timer as _Timer } from './modules/timer'
@@ -123,6 +124,7 @@ export type JobsQueue = _JobsQueue
 export type Exception = _Exception
 export type Breakpoint = _Breakpoint
 export type Interaction = _Interaction
+export type Asset<T extends AssetParams> = _Asset<T>
 export type Resource<Items extends Record<string, (data: any) => string>> = _Resource<Items>
 
 /**
@@ -275,6 +277,12 @@ export const JobsQueue = _JobsQueue
 
 export const Once = _Once
 
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/asset.md
+ */
+
+export const Asset = _Asset
+
 export const PowerHelper = {
     flow,
     json,
@@ -290,6 +298,7 @@ export const PowerHelper = {
     Hook,
     Pool,
     Once,
+    Asset,
     Event,
     Cache,
     Timer,

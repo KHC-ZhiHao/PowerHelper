@@ -129,3 +129,28 @@ console.log(result)
     outputs: '0900-123-***'
 */
 ```
+
+---
+
+### findMatchOrLast
+
+將指定文字限縮指定字組中，如果都不符合則返回最後一個字組，取代 `name === 'dave' ? 'dave' : name === 'james' ? 'james' : 'sam'` 這種場合。
+
+```ts
+function<T extends string[]>(target: string, keys: T[]): T
+```
+
+#### example
+
+```ts
+const result = text.findMatchOrLast('dave', ['dave', 'james', 'sam']))
+console.log(result)
+/*
+    outputs: 'dave'
+*/
+const result = text.findMatchOrLast('hello', ['dave', 'james', 'sam']))
+console.log(result)
+/*
+    outputs: 'sam'
+*/
+```

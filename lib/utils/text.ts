@@ -120,3 +120,17 @@ export const format = (format: string, text: string, def = '-') => {
     }
     return output
 }
+
+/**
+ * 將指定文字限縮指定字組中，如果都不符合則返回最後一個字組。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast
+ */
+
+export const findMatchOrLast = <T extends string>(target: string, keys: T[]): T => {
+    for (let key of keys) {
+        if (target === key) {
+            return key
+        }
+    }
+    return keys[keys.length - 1] || null as any
+}

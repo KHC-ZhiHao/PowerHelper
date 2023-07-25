@@ -24,4 +24,9 @@ export declare const createStrictObject: <T extends StrictObjectParams>(envs: T)
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit
  */
 export declare const omit: <D extends object, T extends (keyof D)[]>(data: D, keys: T) => Omit<D, T[0]>;
+/**
+ * Promise.all 的鍵值對版本。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys
+ */
+export declare const promiseAllWithKeys: <T extends Record<string, Promise<any>>>(obj: T) => Promise<{ [K in keyof T]: T[K] extends Promise<infer U> ? U : never; }>;
 export {};

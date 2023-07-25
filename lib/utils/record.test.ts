@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { setMapValue, createStrictObject, omit } from './record'
+import { setMapValue, createStrictObject, omit, promiseAllWithKeys } from './record'
 
 describe('Record', () => {
     it('basic', async function() {
@@ -203,5 +203,15 @@ describe('Record', () => {
             flag += 1
         }
         expect(flag).to.equal(7)
+    })
+    it('promiseAllWithKeys', async function() {
+        let result = await promiseAllWithKeys({
+            a: Promise.resolve(1),
+            b: Promise.resolve(2),
+            c: Promise.resolve(3)
+        })
+        expect(result.a).to.equal(1)
+        expect(result.b).to.equal(2)
+        expect(result.c).to.equal(3)
     })
 })

@@ -11,6 +11,7 @@ import { Log as _Log } from './modules/log';
 import { I18n as _I18n } from './modules/i18n';
 import { Hook as _Hook } from './modules/hook';
 import { Once as _Once } from './modules/once';
+import { Asset as _Asset, AssetParams } from './modules/asset';
 import { Event as _Event } from './modules/event';
 import { Cache as _Cache } from './modules/cache';
 import { Timer as _Timer } from './modules/timer';
@@ -101,6 +102,7 @@ export declare type JobsQueue = _JobsQueue;
 export declare type Exception = _Exception;
 export declare type Breakpoint = _Breakpoint;
 export declare type Interaction = _Interaction;
+export declare type Asset<T extends AssetParams> = _Asset<T>;
 export declare type Resource<Items extends Record<string, (data: any) => string>> = _Resource<Items>;
 /**
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/log.md
@@ -202,6 +204,10 @@ export declare const JobsQueue: typeof _JobsQueue;
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
  */
 export declare const Once: typeof _Once;
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/asset.md
+ */
+export declare const Asset: typeof _Asset;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -217,6 +223,7 @@ export declare const PowerHelper: {
     Hook: typeof _Hook;
     Pool: typeof _Pool;
     Once: typeof _Once;
+    Asset: typeof _Asset;
     Event: typeof _Event;
     Cache: typeof _Cache;
     Timer: typeof _Timer;

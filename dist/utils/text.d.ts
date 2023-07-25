@@ -35,3 +35,8 @@ export declare function replaceVar<S extends string, E extends string, T extends
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format
  */
 export declare const format: (format: string, text: string, def?: string) => string;
+/**
+ * 將指定文字限縮指定字組中，如果都不符合則返回最後一個字組。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast
+ */
+export declare const findMatchOrLast: <T extends string>(target: string, keys: T[]) => T;

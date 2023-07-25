@@ -153,3 +153,31 @@ console.log(data)
     }
 */
 ```
+
+### promiseAllWithKeys
+
+獲取文字裡面的變數列表。
+
+```ts
+function<T extends Record<string, Promise<any>>>(obj: T): Promise<{
+    [K in keyof T]: T[K] extends Promise<infer U> ? U : never
+}>
+```
+
+#### example
+
+```ts
+const result = await pick.promiseAllWithKeys({
+    a: Promise.resolve(1),
+    b: Promise.resolve(2),
+    c: Promise.resolve(3)
+})
+console.log(result)
+/*
+    outputs: {
+        a: 1,
+        b: 2,
+        c: 3
+    }
+*/
+```
