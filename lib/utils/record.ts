@@ -1,14 +1,13 @@
 import { jpjs } from './json'
 import { getType } from './pick'
-import { PeelPath } from '../types/pick'
 import { DeepReadonly } from '../types/record'
 
 type JsonObject = string | number | boolean | unknown | unknown[] | null | JsonObject[] | {
     [key: string]: JsonObject
 }
 
-type SetMapValueOptions<T> = {
-    directReplacePeels?: PeelPath<'', T>[]
+type SetMapValueOptions = {
+    directReplacePeels?: string[]
 }
 
 /**
@@ -19,7 +18,7 @@ type SetMapValueOptions<T> = {
 export const setMapValue = <T extends JsonObject>(
     template: T,
     target: JsonObject,
-    options?: SetMapValueOptions<T>
+    options?: SetMapValueOptions
 ): T => {
     let handler = (template: T, target: JsonObject, nowPeel = '') => {
         const output: any = {}
@@ -34,7 +33,7 @@ export const setMapValue = <T extends JsonObject>(
                     continue
                 }
             }
-            if (t[key] == null) {
+            if (t[key] === undefined) {
                 output[key] = s[key]
             } else {
                 output[key] = t[key]
@@ -142,4 +141,41 @@ export const promiseAllWithKeys = <T extends Record<string, Promise<any>>>(obj: 
             return acc
         }, {})
     })
+}
+
+/**
+ * 簡易比對兩個 Object 是否有差異，有差異回傳 true，僅支援 JSON 的所有型態。
+ */
+
+export const simpleCheckDeepDiff = <T extends Record<string, any>>(a: T, b: T): boolean => {
+    let aType = getType(a)
+    let bType = getType(b)
+    if (aType !== bType) {
+        return true
+    }
+    if (aType === 'object') {
+        let aKeys = Object.keys(a)
+        let bKeys = Object.keys(b)
+        if (aKeys.length !== bKeys.length) {
+            return true
+        }
+        for (let key of aKeys) {
+            if (simpleCheckDeepDiff(a[key], b[key])) {
+                return true
+            }
+        }
+        return false
+    }
+    if (aType === 'array') {
+        if (a.length !== b.length) {
+            return true
+        }
+        for (let i = 0; i < a.length; i++) {
+            if (simpleCheckDeepDiff(a[i], b[i])) {
+                return true
+            }
+        }
+        return false
+    }
+    return a !== b
 }

@@ -46,7 +46,7 @@ export class Asset<T extends AssetParams> {
             image.src = src
         })
     }
-    
+
     static async loadAudio(src: string) {
         return new Promise<HTMLAudioElement>((resolve, reject) => {
             let audio = new Audio()
@@ -55,7 +55,7 @@ export class Asset<T extends AssetParams> {
             audio.src = src
         })
     }
-    
+
     async load() {
         await this._onecLoad.run()
     }
@@ -65,6 +65,16 @@ export class Asset<T extends AssetParams> {
     }
 
     getAudio<K extends keyof T['audios']>(key: K) {
+        return this._audios[key] as any as HTMLAudioElement
+    }
+
+    async getImagePromise<K extends keyof T['images']>(key: K) {
+        await this.load()
+        return this._images[key] as any as HTMLImageElement
+    }
+
+    async getAudioPromise<K extends keyof T['audios']>(key: K) {
+        await this.load()
         return this._audios[key] as any as HTMLAudioElement
     }
 }

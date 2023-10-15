@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { setMapValue, createStrictObject, omit, promiseAllWithKeys } from './record'
+import { setMapValue, createStrictObject, omit, promiseAllWithKeys, simpleCheckDeepDiff } from './record'
 
 describe('Record', () => {
     it('basic', async function() {
@@ -213,5 +213,68 @@ describe('Record', () => {
         expect(result.a).to.equal(1)
         expect(result.b).to.equal(2)
         expect(result.c).to.equal(3)
+    })
+    it('simpleCheckDeepDiff is true', function() {
+        let result = simpleCheckDeepDiff({
+            a: 1,
+            b: 3
+        }, {
+            a: 1,
+            b: 2
+        })
+        expect(result).to.eql(true)
+    })
+    it('simpleCheckDeepDiff is true2', function() {
+        let result = simpleCheckDeepDiff({
+            c: false
+        }, {
+            c: null
+        })
+        expect(result).to.eql(true)
+    })
+    it('simpleCheckDeepDiff is true3', function() {
+        let result = simpleCheckDeepDiff({
+            c: false,
+            d: null
+        }, {
+            c: false
+        })
+        expect(result).to.eql(true)
+    })
+    it('simpleCheckDeepDiff is true4', function() {
+        let result = simpleCheckDeepDiff({
+            c: ['123']
+        }, {
+            c: ['123', '456']
+        })
+        expect(result).to.eql(true)
+    })
+    it('simpleCheckDeepDiff is true5', function() {
+        let result = simpleCheckDeepDiff({
+            c: ['123']
+        }, {
+            c: ['1234']
+        })
+        expect(result).to.eql(true)
+    })
+    it('simpleCheckDeepDiff is false', function() {
+        let result = simpleCheckDeepDiff({
+            a: 1,
+            b: 2,
+            c: {
+                d: 3,
+                e: 4
+            },
+            e: ['123', '456']
+        }, {
+            a: 1,
+            b: 2,
+            c: {
+                d: 3,
+                e: 4
+            },
+            e: ['123', '456']
+        })
+        expect(result).to.eql(false)
     })
 })

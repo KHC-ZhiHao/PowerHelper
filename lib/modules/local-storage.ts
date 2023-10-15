@@ -10,22 +10,30 @@ type Intercept = {
     }) => any
 }
 
+type CusStorage = {
+    readonly length: number
+    keys?: () => string[]
+    getItem(key: string): string | null
+    setItem(key: string, value: string): void
+    removeItem(key: string): void
+}
+
 export class LocalStorage<T extends Record<string, any>> {
     private options?: {
-        storageSystem?: Storage
+        storageSystem?: CusStorage
         defaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
         intercept?: {
             get?: Intercept['Get']
             set?: Intercept['Set']
         }
     }
-    private storage: Storage
+    private storage: CusStorage
     private namespaces: string
     private interceptGet: Intercept['Get'] | null = null
     private interceptSet: Intercept['Set'] | null = null
     constructor(namespaces: string, options?: {
-        /** 指定運行的 LocalStorage 環境，假如你想應用在 NodeJs 上必須設定此參數 */
-        storageSystem?: Storage
+        /** 指定運行的 LocalStorage 環境，假如你想應用在 SessionStorage 上必須設定此參數 */
+        storageSystem?: CusStorage
         /** 假如該欄位尚未寫入時給予預設值 */
         defaultColumns?: Partial<{ [K in keyof T]: () => T[K] }>
         /** 攔截相關 get set 設定 */
@@ -98,7 +106,7 @@ export class LocalStorage<T extends Record<string, any>> {
 
     clear() {
         let name = `_power_${this.namespaces}/`
-        let items = Object.keys(this.storage)
+        let items = this.storage.keys ? this.storage.keys() : Object.keys(this.storage)
         for (let key of items) {
             if (key.length >= name.length && key.slice(0, name.length) === name) {
                 this.remove(key.slice(name.length))

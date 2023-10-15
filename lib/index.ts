@@ -36,6 +36,7 @@ import { Breakpoint as _Breakpoint } from './modules/breakpoint'
 import { Exception as _Exception } from './modules/exception'
 import { Interaction as _Interaction } from './modules/interaction'
 import { Pool as _Pool } from './modules/pool'
+import { AsyncLocalStorage as _AsyncLocalStorage } from './modules/async-local-storage'
 
 /**
  * 負責計算的單元。
@@ -283,6 +284,12 @@ export const Once = _Once
 
 export const Asset = _Asset
 
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/async-local-storage.md
+ */
+
+export const AsyncLocalStorage = _AsyncLocalStorage
+
 export const PowerHelper = {
     flow,
     json,
@@ -318,6 +325,7 @@ export const PowerHelper = {
     PromiseOverlap,
     QueryCollection,
     WebSocketClient,
+    AsyncLocalStorage,
     ElementListenerGroup
 }
 

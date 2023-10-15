@@ -181,3 +181,34 @@ console.log(result)
     }
 */
 ```
+
+### simpleCheckDeepDiff
+
+簡易比對兩個 Object 是否有差異，有差異回傳 true，僅支援 JSON 的所有型態。
+
+```ts
+function<T extends Record<string, any>>(a: T, b: T): boolean
+```
+
+#### example
+
+```ts
+let result = simpleCheckDeepDiff({
+    a: 1,
+    b: 2,
+    c: {
+        d: 3,
+        e: 4
+    },
+    e: ['123', '456']
+}, {
+    a: 1,
+    b: 2,
+    c: {
+        d: 3,
+        e: 4
+    },
+    e: ['123', '4567']
+})
+expect(result).to.eql(true)
+```

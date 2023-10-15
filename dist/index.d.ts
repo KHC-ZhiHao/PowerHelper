@@ -33,6 +33,7 @@ import { Breakpoint as _Breakpoint } from './modules/breakpoint';
 import { Exception as _Exception } from './modules/exception';
 import { Interaction as _Interaction } from './modules/interaction';
 import { Pool as _Pool } from './modules/pool';
+import { AsyncLocalStorage as _AsyncLocalStorage } from './modules/async-local-storage';
 /**
  * 負責計算的單元。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.md
@@ -208,6 +209,10 @@ export declare const Once: typeof _Once;
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/asset.md
  */
 export declare const Asset: typeof _Asset;
+/**
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/async-local-storage.md
+ */
+export declare const AsyncLocalStorage: typeof _AsyncLocalStorage;
 export declare const PowerHelper: {
     flow: typeof _flow;
     json: typeof _json;
@@ -243,6 +248,7 @@ export declare const PowerHelper: {
     PromiseOverlap: typeof _PromiseOverlap;
     QueryCollection: typeof _QueryCollection;
     WebSocketClient: typeof _WebSocketClient;
+    AsyncLocalStorage: typeof _AsyncLocalStorage;
     ElementListenerGroup: typeof _ElementListenerGroup;
 };
 export default PowerHelper;

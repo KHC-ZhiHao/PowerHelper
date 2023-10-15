@@ -19,4 +19,6 @@ export declare class Asset<T extends AssetParams> {
     load(): Promise<void>;
     getImage<K extends keyof T['images']>(key: K): HTMLImageElement;
     getAudio<K extends keyof T['audios']>(key: K): HTMLAudioElement;
+    getImagePromise<K extends keyof T['images']>(key: K): Promise<HTMLImageElement>;
+    getAudioPromise<K extends keyof T['audios']>(key: K): Promise<HTMLAudioElement>;
 }

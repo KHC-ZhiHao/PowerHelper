@@ -1,16 +1,15 @@
-import { PeelPath } from '../types/pick';
 import { DeepReadonly } from '../types/record';
 declare type JsonObject = string | number | boolean | unknown | unknown[] | null | JsonObject[] | {
     [key: string]: JsonObject;
 };
-declare type SetMapValueOptions<T> = {
-    directReplacePeels?: PeelPath<'', T>[];
+declare type SetMapValueOptions = {
+    directReplacePeels?: string[];
 };
 /**
  * 複製指定物件的值到目標 Object 上，並產生一份新的 Object，細部規則可詳見 example。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue
  */
-export declare const setMapValue: <T extends unknown>(template: T, target: JsonObject, options?: SetMapValueOptions<T> | undefined) => T;
+export declare const setMapValue: <T extends unknown>(template: T, target: JsonObject, options?: SetMapValueOptions) => T;
 declare type StrictObjectParams = {
     [key: string]: [typeof String | typeof Boolean | typeof Number, boolean, unknown, any?];
 };
@@ -29,4 +28,8 @@ export declare const omit: <D extends object, T extends (keyof D)[]>(data: D, ke
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys
  */
 export declare const promiseAllWithKeys: <T extends Record<string, Promise<any>>>(obj: T) => Promise<{ [K in keyof T]: T[K] extends Promise<infer U> ? U : never; }>;
+/**
+ * 簡易比對兩個 Object 是否有差異，有差異回傳 true，僅支援 JSON 的所有型態。
+ */
+export declare const simpleCheckDeepDiff: <T extends Record<string, any>>(a: T, b: T) => boolean;
 export {};

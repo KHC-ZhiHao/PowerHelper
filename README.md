@@ -122,6 +122,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 [record](./lib/utils/record.md) - 優雅的 Object 操作。
 
 * [omit](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit) - 淺拷貝同一份 Object，但忽略掉指定對象。
+* [simpleCheckDeepDiff](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#simplecheckdeepdiff) - 簡易比對兩個 Object 是否有差異，有差異回傳 true，僅支援 JSON 的所有型態。
 * [setMapValue](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue) - 複製指定物件的值到目標 Object 上，並產生一份新的 Object。
 * [createStrictObject](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#createstrictobject) - 建立一組嚴格檢查、轉譯並實質不能變動的 Object，通常應用在環境變數。
 * [promiseAllWithKeys](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys) - Promise.all 的鍵值對版本。
@@ -173,6 +174,8 @@ PowerHelper 分成三個區塊，相關敘述如下：
 [StyleString](./lib/modules/style-string.md) - 方便組合出 HTML Element Style 的工具。
 
 [LocalStorage](./lib/modules/local-storage.md) - 協助你在複雜的網頁應用程式中更安全的操作 LocalStorage。
+
+[AsyncLocalStorage](./lib/modules/async-local-storage.md) - 非同步的操作 LocalStorage，有助於擴展更多應用模式。
 
 [PromiseOverlap](./lib/modules/promise-overlap.md) - 控制多次發出相同 Promise 時只獲取第一次或是最後一次的結果。
 
