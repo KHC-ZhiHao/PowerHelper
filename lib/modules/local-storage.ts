@@ -62,7 +62,9 @@ export class LocalStorage<T extends Record<string, any>> {
         }
     }
 
-    private _genName(name: string | number | symbol) {
+    /** 獲得名稱完整的鍵值 */
+
+    toKey(name: string | number | symbol) {
         return `_power_${this.namespaces}/${name.toString()}`
     }
 
@@ -73,7 +75,7 @@ export class LocalStorage<T extends Record<string, any>> {
         if (this.interceptSet) {
             saveData = this.interceptSet(name as any, saveData as any)
         }
-        this.storage.setItem(this._genName(name), JSON.stringify(saveData))
+        this.storage.setItem(this.toKey(name), JSON.stringify(saveData))
     }
 
     /** 獲取指定名稱的資料 */
@@ -86,7 +88,7 @@ export class LocalStorage<T extends Record<string, any>> {
         if (options && options.defaultColumns && options.defaultColumns[name]) {
             defaultValue = options.defaultColumns[name] as any
         }
-        let data = this.storage.getItem(this._genName(name))
+        let data = this.storage.getItem(this.toKey(name))
         if (data == null) {
             data = defaultValue()
             isDefault = true
@@ -117,6 +119,6 @@ export class LocalStorage<T extends Record<string, any>> {
     /** 刪除指定名稱的資料 */
 
     remove<K extends keyof T>(name: K) {
-        this.storage.removeItem(this._genName(name))
+        this.storage.removeItem(this.toKey(name))
     }
 }

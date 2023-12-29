@@ -23,6 +23,7 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         'prefer-const': 'off',
+        'no-undef': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         'space-before-function-paren': 'off',
         'no-use-before-define': 'off'

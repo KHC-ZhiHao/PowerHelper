@@ -139,6 +139,9 @@ function remove(name: string): Promise<void>
 
 /** 刪除整個 namespaces 的資料 */
 function clear(): Promise<void>
+
+/** 獲得名稱完整的鍵值 */
+function toKey(): string
 ```
 
 ## Types

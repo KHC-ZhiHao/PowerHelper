@@ -37,7 +37,8 @@ export declare class AsyncLocalStorage<T extends Record<string, any>> {
         };
     });
     static storageToAsyncStorage(storage: Storage): CusStorage;
-    private _genName;
+    /** 獲得名稱完整的鍵值 */
+    toKey(name: string | number | symbol): string;
     /** 設定指定名稱的資料 */
     set<K extends keyof T>(name: K, data: T[K] | ((_value: T[K]) => Promise<T[K]>)): Promise<void>;
     /** 獲取指定名稱的資料 */

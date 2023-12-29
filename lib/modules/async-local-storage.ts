@@ -74,7 +74,9 @@ export class AsyncLocalStorage<T extends Record<string, any>> {
         }
     }
 
-    private _genName(name: string | number | symbol) {
+    /** 獲得名稱完整的鍵值 */
+
+    toKey(name: string | number | symbol) {
         return `_power_a_${this.namespaces}/${name.toString()}`
     }
 
@@ -89,7 +91,7 @@ export class AsyncLocalStorage<T extends Record<string, any>> {
         if (this.interceptSet) {
             saveData = await this.interceptSet(name as any, saveData as any)
         }
-        await this.storage.setItem(this._genName(name), JSON.stringify(saveData))
+        await this.storage.setItem(this.toKey(name), JSON.stringify(saveData))
     }
 
     /** 獲取指定名稱的資料 */
@@ -102,7 +104,7 @@ export class AsyncLocalStorage<T extends Record<string, any>> {
         if (options && options.defaultColumns && options.defaultColumns[name]) {
             defaultValue = options.defaultColumns[name] as any
         }
-        let data = await this.storage.getItem(this._genName(name))
+        let data = await this.storage.getItem(this.toKey(name))
         if (data == null) {
             data = await defaultValue()
             isDefault = true
@@ -133,6 +135,6 @@ export class AsyncLocalStorage<T extends Record<string, any>> {
     /** 刪除指定名稱的資料 */
 
     async remove<K extends keyof T>(name: K) {
-        await this.storage.removeItem(this._genName(name))
+        await this.storage.removeItem(this.toKey(name))
     }
 }

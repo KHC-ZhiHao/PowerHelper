@@ -1,20 +1,21 @@
 /* eslint-disable no-undef */
 import { createUuid } from '../utils/flow'
 
-type EventMap<T extends Element | Document | Window> =
+type EventMap<T extends Element | Document | Window | Worker> =
     T extends Window ? WindowEventMap :
     T extends Document ? DocumentEventMap :
     T extends SVGAElement ? SVGElementEventMap :
     T extends HTMLMediaElement ? HTMLMediaElementEventMap :
     T extends HTMLBodyElement ? HTMLBodyElementEventMap :
-    T extends HTMLElement ? HTMLElementEventMap : ElementEventMap
+    T extends HTMLElement ? HTMLElementEventMap :
+    T extends Worker ? WorkerEventMap : ElementEventMap
 
 /**
  * 將 element 的 addEventListener 昇華到更好操作的階段。
  * @BrowserOnly
  */
 
-export class ElementListenerGroup<T extends Element | Document | Window> {
+export class ElementListenerGroup<T extends Element | Document | Window | Worker> {
     private elements: T[] = []
     private listeners = new Map<string, {
         name: string

@@ -115,6 +115,9 @@ function remove(name: string): void
 
 /** 刪除整個 namespaces 的資料 */
 function clear(): void
+
+/** 獲得名稱完整的鍵值 */
+function toKey(): string
 ```
 
 ## Types
