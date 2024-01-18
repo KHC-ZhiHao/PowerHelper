@@ -157,4 +157,27 @@ describe('JobsQueue', () => {
             flag += '2'
         })
     })
+    it('stop and play' , async function() {
+        let flag = ''
+        let jq = new JobsQueue({
+            autoPlay: false,
+            concurrentExecutions: 1
+        })
+        jq.push('123', async() => {
+            flag += '1'
+            jq.stop()
+        })
+        jq.push('123', async() => {
+            await sleep(50)
+            flag += '2'
+        })
+        jq.play()
+        await sleep(100)
+        expect(flag).equal('1')
+        expect(jq.isStoped).equal(true)
+        jq.play()
+        expect(jq.isStoped).equal(false)
+        await sleep(100)
+        expect(flag).equal('12')
+    })
 })

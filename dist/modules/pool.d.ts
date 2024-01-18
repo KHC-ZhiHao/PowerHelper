@@ -1,5 +1,5 @@
 declare type PoolParams<P, D> = {
-    find: (_data: D, _params: P) => boolean;
+    find: (_data: D, _params: P, _index: number) => boolean;
     fetch: (_params: P[]) => Promise<D[]>;
     cache?: {
         keepAlive?: number;

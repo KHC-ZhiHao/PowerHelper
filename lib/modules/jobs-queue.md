@@ -11,6 +11,7 @@ import { JobsQueue, flow } from 'power-helper'
 
 let flag = ''
 let jq = new JobsQueue({
+    autoPlay: true, // default: true
     concurrentExecutions: 1
 })
 jq.push('123', async() => {
@@ -33,11 +34,37 @@ jq.on('allDone', () => {
 })
 ```
 
+### 搭配 Loader 進行批量控制
+
+由於 Loader 是基於 Promise.all 設計，會一口氣併發所有函數，因此無法控制同時執行的數量，與中斷流程，這時候可以搭配 JobsQueue 來達成。
+
+```ts
+import { Loader, JobsQueue, flow } from 'power-helper'
+
+const loader = new Loader()
+const job = new JobsQueue({
+    concurrentExecutions: 1
+})
+loader.on('clear', () => job.clear())
+loader.push('process 1', async() => job.pushAndWait('process 1', async() => {
+    // do something
+}))
+loader.push('process 2', async() => job.pushAndWait('process 2', async() => {
+    // do something
+}))
+loader.push('process 3', async() => job.pushAndWait('process 3', async() => {
+    // do something
+}))
+loader.clear()
+```
+
 ### Constructor
 
 ```ts
-class Interaction {
+class JobsQueue {
     constructor(params: {
+        // 是否自動開始執行
+        autoPlay: boolean
         // 同時可運行的 job 數量
         concurrentExecutions: number
     })
@@ -61,6 +88,10 @@ function unshift(name: string, job: () => Promise<any>): void
 function clear(): Error
 /** 關閉這組 queue ，將無效化 push, unshift，且清空現有的 jobs */
 function close(): void
+/** 開始執行 jobs */
+function play(): void
+/** 暫停執行 jobs */
+function stop(): void
 ```
 
 ### Events

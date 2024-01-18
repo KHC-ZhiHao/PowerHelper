@@ -2,7 +2,7 @@ import { Cache } from './cache'
 import { QueryCollection } from './query-collection'
 
 type PoolParams<P, D> = {
-    find: (_data: D, _params: P) => boolean
+    find: (_data: D, _params: P, _index: number) => boolean
     fetch: (_params: P[]) => Promise<D[]>
     cache?: {
         keepAlive?: number
@@ -30,7 +30,7 @@ export class Pool<P, D> {
             key: params => JSON.stringify(params),
             pick: async(params) => {
                 let items = await this.dataCollection.push(params)
-                return items.find(item => find(item, params))!
+                return items.find((item, index) => find(item, params, index))!
             }
         })
     }

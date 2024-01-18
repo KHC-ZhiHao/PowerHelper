@@ -11,6 +11,7 @@ type FailError = {
 type Events = {
     call: Record<string, unknown>
     done: Record<string, unknown>
+    clear: Record<string, unknown>
     fail: {
         error: FailError
     }
@@ -65,6 +66,7 @@ export class Loader<T> extends Event<Events> {
 
     clear() {
         this.items = []
+        this.emit('clear', {})
     }
 
     /** 加入一個非同步事件 */

@@ -14,17 +14,22 @@ type Events = {
 }
 
 type Params = {
+    autoPlay?: boolean
     concurrentExecutions: number
 }
 
 export class JobsQueue extends Event<Events> {
     private jobs: Job[] = []
     private closed = false
-    private runningCount = 0
     private params: Params
+    private isStop = false
+    private runningCount = 0
     constructor(params: Params) {
         super()
         this.params = params
+        if (this.params.autoPlay === false) {
+            this.isStop = true
+        }
     }
 
     /** 現有的 jobs 長度 */
@@ -34,6 +39,9 @@ export class JobsQueue extends Event<Events> {
     }
 
     private run() {
+        if (this.isStop) {
+            return null
+        }
         if (this.closed) {
             return null
         }
@@ -67,11 +75,30 @@ export class JobsQueue extends Event<Events> {
         }
     }
 
+    get isStoped() {
+        return this.isStop
+    }
+
     /** 將一組 job 新增至 queue 末端 */
 
     push(name: string, handler: Job['handler']) {
         if (this.closed === false) {
             this.jobs.push({ name, handler })
+            this.run()
+        }
+    }
+
+    /** 暫停 queue */
+
+    stop() {
+        this.isStop = true
+    }
+
+    /** 恢復 queue */
+
+    play() {
+        if (this.isStop) {
+            this.isStop = false
             this.run()
         }
     }

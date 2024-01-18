@@ -8,6 +8,7 @@ declare type FailError = {
 declare type Events = {
     call: Record<string, unknown>;
     done: Record<string, unknown>;
+    clear: Record<string, unknown>;
     fail: {
         error: FailError;
     };

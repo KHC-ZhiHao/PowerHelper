@@ -41,7 +41,7 @@ console.log(user.name)
 ```ts
 class Pool<Params, Data> {
     constructor(params: {
-        find: (data: Data, _params: Params) => boolean
+        find: (data: Data, params: Params, index: number) => boolean
         fetch: (params: Params[]) => Promise<Data[]>
         cache?: {
             maxSize?: number
