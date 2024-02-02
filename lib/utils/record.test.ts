@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { setMapValue, createStrictObject, omit, promiseAllWithKeys, simpleCheckDeepDiff } from './record'
+import { record } from './record'
+
+const { setMapValue, createStrictObject, omit, promiseAllWithKeys, simpleCheckDeepDiff } = record
 
 describe('Record', () => {
     it('basic', async function() {

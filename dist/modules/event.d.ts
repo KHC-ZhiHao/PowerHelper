@@ -1,4 +1,4 @@
-declare type ListenerContext = {
+type ListenerContext = {
     /**
      * @zh 唯一並隨機的 Listener ID
      * @en Unique and random Listener ID
@@ -15,7 +15,7 @@ declare type ListenerContext = {
      */
     state: Record<string, any>;
 };
-declare type ListenerCallback<T> = (_data: T, _context: ListenerContext) => void;
+type ListenerCallback<T> = (_data: T, _context: ListenerContext) => void;
 declare class Listener<T> {
     /**
      * @zh 唯一並隨機的 Listener ID
@@ -46,6 +46,10 @@ declare class Listener<T> {
      */
     off(): void;
 }
+/**
+ * 事件監聽器。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/event.md
+ */
 export declare class Event<T extends Record<string, Record<string, any>>> {
     listeners: Map<string, Listener<any>[]>;
     /**

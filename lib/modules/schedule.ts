@@ -26,6 +26,11 @@ type Events = {
     }
 }
 
+/**
+ * 可以建立多個定時執行系統，且能保證不重複執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/schedule.md
+ */
+
 export class Schedule extends Event<Events> {
     private int = setInterval(() => this.run(), 100)
     private isStop = false

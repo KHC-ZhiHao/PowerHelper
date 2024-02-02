@@ -113,6 +113,10 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [vars](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars) - 獲取文字裡面的變數列表。
 
 
+[checker](./lib/utils/checker.md) - 資料檢查器。
+
+* [inputAccept](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/checker.md#inputaccept) - 負責檢查檔案是否符合 input tag accept 指定的格式。
+
 [element](./lib/utils/element.md) - 優雅的 Dom 操作。
 
 * [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
@@ -167,7 +171,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [CacheLite](./lib/modules/cache-lite.md) - 指定鍵值並同步的存取，非常近似 Map，但是有 TTL。
 
-[Breakpoint](./lib/modules/breakpoint.md) - 斷點驗證工具。
+[Breakpoint](./lib/modules/breakpoint.md) - 畫面斷點驗證工具。
 
 [Interaction](./lib/modules/interaction.md) - 建立可監聽、追蹤、可搭配視圖化的訊息整合工具。
 
@@ -189,13 +193,18 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 將複雜的型態方案進行封裝，提高開發的安全性與效率。
 
-[date](./types/date.md)
+[date](./lib/types/date.md)
 
-[pick](./types/pick.md)
+[pick](./lib/types/pick.md)
 
-[string](./types/string.md)
+[string](./lib/types/string.md)
 
-[record](./types/record.md)
+[record](./lib/types/record.md)
+
+```js
+// 在 0.7.0 之後的版本，你可以透過以下方式引入 Types
+import { TDate, TPick, TRecord, TString } from 'power-helper'
+```
 
 Types 只是一種開發 module 時順手的包裝，想要更強大的表達式可以使用以下套件：
 
@@ -211,3 +220,12 @@ Types 只是一種開發 module 時順手的包裝，想要更強大的表達式
 * [修正] - 標準化 Event 相關的 Channel 命名。
 * [修正] - job-queues -> jobs-queue。
 * [優化] - 優化文件。
+
+#### 0.7.0
+
+我們對打包形態和文件進行了調整，可以讓整個開發體驗獲得最佳化。
+
+##### Breaking Changes
+
+* CacheLite - expTime 參數改為 ttl。
+* Cache - keepAlive 參數改為 ttl。

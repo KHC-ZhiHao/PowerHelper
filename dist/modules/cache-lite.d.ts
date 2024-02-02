@@ -1,14 +1,18 @@
-declare type Context<T> = {
+type Context<T> = {
     key: string;
     value: T;
 };
-declare type Params<T> = {
-    expTime: number;
+type Params<T> = {
+    ttl: number;
     maxSize?: number;
     intercept?: {
         set?: (_context: Context<T>) => Context<T>;
     };
 };
+/**
+ * 指定鍵值並同步的存取，非常近似 Map 物件，但是有 TTL(Time To Live)。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache-lite.md
+ */
 export declare class CacheLite<T> {
     private params;
     private lastUpdate;

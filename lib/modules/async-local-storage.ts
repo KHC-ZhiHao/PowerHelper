@@ -17,6 +17,11 @@ type CusStorage = {
     removeItem(key: string): Promise<void>
 }
 
+/**
+ * 非同步的操作 LocalStorage，有助於擴展更多應用模式。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/async-local-storage.md
+ */
+
 export class AsyncLocalStorage<T extends Record<string, any>> {
     private options?: {
         storageSystem: CusStorage

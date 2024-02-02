@@ -1,5 +1,5 @@
 import { Event } from './event';
-declare type Params = {
+type Params = {
     /** 等待超時時間，單位:毫秒 */
     delay?: number;
     /** 如果超過這個時間則無論如何都觸發 trigger，單位:毫秒 */
@@ -7,7 +7,7 @@ declare type Params = {
     /** 存取資料超過指定長度時觸發 */
     maxValueLength?: number;
 };
-declare type Channels<T> = {
+type Channels<T> = {
     input: {
         value: T;
     };

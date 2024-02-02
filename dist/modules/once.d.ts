@@ -1,7 +1,10 @@
-declare type Params<T> = {
+type Params<T> = {
     handler: () => Promise<T>;
 };
-/** 限制只執行一次的非同步程式 */
+/**
+ * 限制只執行一次的非同步程式
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
+ */
 export declare class Once<T> {
     private isDone;
     private isError;

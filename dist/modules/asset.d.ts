@@ -1,5 +1,5 @@
 import { Once } from './once';
-export declare type AssetParams = {
+export type AssetParams = {
     images: {
         [key: string]: string | (() => Promise<HTMLImageElement>);
     };
@@ -7,6 +7,10 @@ export declare type AssetParams = {
         [key: string]: string | (() => Promise<HTMLAudioElement>);
     };
 };
+/**
+ * 資源載入工具，目的是初始化必要的靜態資源。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/asset.md
+ */
 export declare class Asset<T extends AssetParams> {
     _images: any;
     _audios: any;

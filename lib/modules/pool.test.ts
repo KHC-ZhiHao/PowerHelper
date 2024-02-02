@@ -1,6 +1,8 @@
 import { expect } from 'chai'
 import { Pool } from './pool'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
+
+const { sleep } = flow
 
 type Params = {
     name: string
@@ -30,7 +32,7 @@ describe('Pool', () => {
                 return params
             },
             cache: {
-                keepAlive: 100,
+                ttl: 100,
                 maxSize: 2
             },
             collection: {

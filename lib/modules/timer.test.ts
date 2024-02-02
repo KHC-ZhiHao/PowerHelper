@@ -1,6 +1,8 @@
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { expect } from 'chai'
 import { Timer } from './timer'
+
+const { sleep } = flow
 
 describe('Time', () => {
     it('base', async function() {

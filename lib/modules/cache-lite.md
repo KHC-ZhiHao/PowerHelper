@@ -10,7 +10,7 @@
 import { CacheLite, flow } from 'power-helper'
 
 let cacheLite = new CacheLite({
-    expTime: 100
+    ttl: 100
 })
 
 cacheLite.set('a', 'b')
@@ -25,7 +25,7 @@ console.log(cacheLite.get('a')) // undefined
 
 ```ts
 /**
- * @param {number} params.expTime 每筆資料的存活時間，超過則重取，單位:毫秒
+ * @param {number} params.ttl 每筆資料的存活時間，超過則重取，單位:毫秒
  * @param {number} params.maxSize 最大 cache 數量，超過則先行移除舊的資料
  * @param {{
  *  set: (context: { key: string, value: any }) => { key: string, value: any }
@@ -33,7 +33,7 @@ console.log(cacheLite.get('a')) // undefined
  */
 class CacheLite<T> {
     constructor(params: {
-        expTime: number
+        ttl: number
         maxSize?: number
         intercept?: {
             set?: (_context: {

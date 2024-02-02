@@ -1,6 +1,8 @@
 import { expect } from 'chai'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { Debounce } from './debounce'
+
+const { sleep } = flow
 
 describe('Debounce', () => {
     it('base', function(done) {

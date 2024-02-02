@@ -1,17 +1,21 @@
 import { Event } from './event';
-declare type Items = Record<string, (data: any) => string>;
-declare type ResourceSupport = string | File | Blob | MediaSource;
-declare type ResourceParams<I extends Items> = {
+type Items = Record<string, (data: any) => string>;
+type ResourceSupport = string | File | Blob | MediaSource;
+type ResourceParams<I extends Items> = {
     def: (_path: string) => string;
     items?: I;
 };
-declare type Events = {
+type Events = {
     fetch: {
         url: string;
         source: ResourceSupport;
         isObjectUrl: boolean;
     };
 };
+/**
+ * 優雅的實現獲取檔案路徑。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.md
+ */
 export declare class Resource<I extends Items> extends Event<Events> {
     private objectUrls;
     private params;

@@ -4,6 +4,11 @@ function toStyleCase(key: string) {
     return key.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)
 }
 
+/**
+ * 方便組合出 HTML Element Style 的工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/style-string.md
+ */
+
 export class StyleString {
     private styles: Record<string, string> = {}
 

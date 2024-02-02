@@ -12,7 +12,10 @@ type Options = {
     parseMessage: (error: any) => string | null
 }
 
-/** 高階的錯誤訊息處理工具。 */
+/**
+ * 高階的錯誤訊息處理工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception.md
+ */
 
 export class Exception extends Event<Events> {
     private serviceName: string

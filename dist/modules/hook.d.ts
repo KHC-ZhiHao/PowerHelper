@@ -1,4 +1,4 @@
-declare type ListenerContext = {
+type ListenerContext = {
     /** 唯一並隨機的 Listener ID */
     id: string;
     /** 關閉這個 Listener  */
@@ -6,7 +6,7 @@ declare type ListenerContext = {
     /** 一組可供當下 Listener 儲存的空白物件 */
     state: Record<string, any>;
 };
-declare type ListenerCallback<T> = (data: T, context: ListenerContext) => Promise<void>;
+type ListenerCallback<T> = (data: T, context: ListenerContext) => Promise<void>;
 declare class Listener<T> {
     /** 唯一並隨機的 Listener ID */
     readonly id: string;
@@ -23,7 +23,10 @@ declare class Listener<T> {
     /** 關閉這個 Listener */
     off(): void;
 }
-/** 為非同步而生的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。 */
+/**
+ * 為非同步而生的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/hook.md
+ */
 export declare class Hook<T extends Record<string, Record<string, any>>> {
     private listeners;
     /** 發送資料至指定頻道 */

@@ -1,7 +1,7 @@
 import { Event } from './event';
-declare type Pub = Record<string, any>;
-declare type FailTypes = 'unknown' | 'send' | 'message';
-declare type Events = {
+type Pub = Record<string, any>;
+type FailTypes = 'unknown' | 'send' | 'message';
+type Events = {
     /** 成功連接伺服器時觸發。 */
     $open: any;
     /** 連接失敗等狀態等觸發。 */
@@ -14,7 +14,7 @@ declare type Events = {
         isManuallyClosed: boolean;
     };
 };
-declare type WebSocketParams<P extends Pub> = {
+type WebSocketParams<P extends Pub> = {
     /** 連線網址 */
     url: () => string | Promise<string>;
     /** 指定運行的 WebSocket 環境，假如你想應用在 NodeJs 上必須設定此參數 */
@@ -28,6 +28,7 @@ declare type WebSocketParams<P extends Pub> = {
 };
 /**
  * 具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/websocket.md
  */
 export declare class WebSocketClient<P extends Pub, S> extends Event<S & Events> {
     _websocket?: WebSocket;

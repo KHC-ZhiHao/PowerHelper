@@ -1,6 +1,8 @@
 import { expect } from 'chai'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { LocalStorage } from './local-storage'
+
+const { sleep } = flow
 
 const getStorage = () => {
     const items: any = {

@@ -1,5 +1,10 @@
 import { Ticker } from './ticker'
 
+/**
+ * 一組計時器，可以正向也可以反向計時。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/timer.md
+ */
+
 export class Timer extends Ticker {
     private nowTime = 0
     private minTime = 0

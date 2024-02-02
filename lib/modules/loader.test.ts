@@ -1,6 +1,8 @@
 import { Loader } from './loader'
 import { expect } from 'chai'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
+
+const { sleep } = flow
 
 describe('Loader', () => {
     it('base', async function() {

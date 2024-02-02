@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { peel, ifEmpty, ifBad, getType, vars } from './pick'
+import { pick } from './pick'
+
+const { peel, ifEmpty, ifBad, getType, vars } = pick
 
 describe('Pick', () => {
     it('ifBad', async function() {

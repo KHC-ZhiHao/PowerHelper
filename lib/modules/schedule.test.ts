@@ -1,6 +1,8 @@
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { expect } from 'chai'
 import { Schedule } from './schedule'
+
+const { sleep } = flow
 
 describe('Schedule', () => {
     it('base', function(done) {
@@ -39,8 +41,8 @@ describe('Schedule', () => {
     })
     it('info', async function() {
         let schedule = new Schedule()
-        schedule.add('test', 100, async() => {})
-        schedule.add('test2', 200, async() => {})
+        schedule.add('test', 100, async() => null)
+        schedule.add('test2', 200, async() => null)
         await sleep(150)
         let result = schedule.info()
         expect(result[0].name).to.equal('test')
@@ -64,8 +66,8 @@ describe('Schedule', () => {
         let flag = false
         let schedule = new Schedule()
         try {
-            schedule.add('test', 100, async() => {})
-            schedule.add('test', 100, async() => {})
+            schedule.add('test', 100, async() => null)
+            schedule.add('test', 100, async() => null)
         } catch (error) {
             flag = true
         }

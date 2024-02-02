@@ -1,7 +1,7 @@
 import { Event } from './event';
-declare type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white';
-declare type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo';
-declare type Events = {
+type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white';
+type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo';
+type Events = {
     print: {
         time: string;
         name: string;
@@ -13,6 +13,10 @@ declare type Events = {
         logType: LogType;
     };
 };
+/**
+ * 一種更高階打印出 Log 的模組，不只是你可以控制他是否要在指定環境中顯示，甚至可以建立監聽打印事件。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/log.md
+ */
 export declare class Log extends Event<Events> {
     private step;
     private name;

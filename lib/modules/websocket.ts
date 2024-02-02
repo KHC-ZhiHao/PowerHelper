@@ -33,6 +33,7 @@ type WebSocketParams<P extends Pub> = {
 
 /**
  * 具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/websocket.md
  */
 
 export class WebSocketClient<P extends Pub, S> extends Event<S & Events> {

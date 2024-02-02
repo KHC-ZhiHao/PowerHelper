@@ -1,19 +1,23 @@
 import { Event } from './event';
-declare type Job = {
+type Job = {
     name: string;
     handler: () => Promise<any>;
 };
-declare type Events = {
+type Events = {
     allDone: Record<string, unknown>;
     error: {
         name: string;
         error: any;
     };
 };
-declare type Params = {
+type Params = {
     autoPlay?: boolean;
     concurrentExecutions: number;
 };
+/**
+ * 有限的批次執行作業。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/jobs-queue.md
+ */
 export declare class JobsQueue extends Event<Events> {
     private jobs;
     private closed;

@@ -1,15 +1,15 @@
 import { Event } from './event';
-declare type Events<S> = {
+type Events<S> = {
     actionBefore: ActionContext<S>;
     actionAfter: ActionContext<S>;
 };
-declare type ActionContext<S> = {
+type ActionContext<S> = {
     state: S;
     newKey: string;
     oldKey: string | null;
 };
-declare type NextTickCallback<S> = (_state: S) => void;
-declare type ReactiveParams<S> = {
+type NextTickCallback<S> = (_state: S) => void;
+type ReactiveParams<S> = {
     /** 每次輪詢時間(毫秒)，預設 100 ms */
     schedule?: number;
     /** 透過長輪詢回傳指定的 key */
@@ -19,6 +19,10 @@ declare type ReactiveParams<S> = {
     /** 如果 observable 回傳的 key 有改動則觸發 */
     observable: (_state: S) => Promise<string>;
 };
+/**
+ * 透過輪詢的方法監聽物件有沒有發生變動。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/reactive.md
+ */
 export declare class Reactive<S extends Record<string, any>> extends Event<Events<S>> {
     private state;
     private oldKey;

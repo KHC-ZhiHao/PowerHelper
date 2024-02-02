@@ -1,7 +1,7 @@
 import { Event } from './event';
-declare type StepTypes = 'step' | 'wrong' | 'notify' | 'fail';
-declare type StepLevel = 'info' | 'warning' | 'danger' | 'success';
-declare type Step = {
+type StepTypes = 'step' | 'wrong' | 'notify' | 'fail';
+type StepLevel = 'info' | 'warning' | 'danger' | 'success';
+type Step = {
     type: StepTypes;
     meta?: any;
     level: StepLevel;
@@ -9,14 +9,18 @@ declare type Step = {
     createdAt: number;
     checkoutAt: string;
 };
-declare type Events = {
+type Events = {
     action: Step;
 };
-declare type Params = {
+type Params = {
     name: string;
     stepMaxSize?: number;
     interceptorMessage?: (_data: any) => string;
 };
+/**
+ * 建立可監聽、追蹤、可搭配視圖化的訊息整合工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction.md
+ */
 export declare class Interaction extends Event<Events> {
     protected name: string;
     protected steps: Step[];

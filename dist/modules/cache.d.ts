@@ -1,20 +1,24 @@
 import { Event } from './event';
-declare type PickContext = {
+type PickContext = {
     key: string;
 };
-declare type Pick<P, R> = (params: P, context: PickContext) => Promise<R>;
-declare type Events<T> = {
+type Pick<P, R> = (params: P, context: PickContext) => Promise<R>;
+type Events<T> = {
     remove: {
         data: T;
     };
 };
+/**
+ * 可以將指定參數請求進行有期限的固定資料存取。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache.md
+ */
 export declare class Cache<P, R> extends Event<Events<R>> {
     private event;
     private key;
     private index;
     private maxSize;
     private pick;
-    private keepAlive;
+    private ttl;
     private items;
     constructor(params: {
         /** 將參數轉換成唯一鍵 */
@@ -22,7 +26,7 @@ export declare class Cache<P, R> extends Event<Events<R>> {
         /** 如果鍵值不存在則如何獲取資料 */
         pick: Pick<P, R>;
         /** 每筆資料的存活時間，超過則重取，單位:毫秒 */
-        keepAlive?: number;
+        ttl?: number;
         /** 最多存取幾筆資料，超過則會刪除最舊的資料 */
         maxSize?: number;
     });

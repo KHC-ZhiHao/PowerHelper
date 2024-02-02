@@ -1,11 +1,13 @@
 # Date Type
 
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/lib/types/date.ts)
+
 時間格式相關的 Type。
 
 ## 如何使用
 
 ```ts
-import {
+type TDate = {
     /**
      * 表達 YYYY 的格式
      * @example '2021'
@@ -48,5 +50,5 @@ import {
      * @example '2011-11-11T00:00:00' | '2011-11-11T00:00:00Z' | '2011-11-11T00:00:00+08:00'
      */
     IosDateFormat
-} from 'power-helper/types/date'
+}
 ```

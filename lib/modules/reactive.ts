@@ -23,6 +23,11 @@ type ReactiveParams<S> = {
     observable: (_state: S) => Promise<string>
 }
 
+/**
+ * 透過輪詢的方法監聽物件有沒有發生變動。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/reactive.md
+ */
+
 export class Reactive<S extends Record<string, any>> extends Event<Events<S>> {
     private state!: S
     private oldKey: string | null = null

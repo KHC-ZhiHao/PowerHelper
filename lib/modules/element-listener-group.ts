@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { createUuid } from '../utils/flow'
+import { flow } from '../utils/flow'
 
 type EventMap<T extends Element | Document | Window | Worker> =
     T extends Window ? WindowEventMap :
@@ -13,6 +13,7 @@ type EventMap<T extends Element | Document | Window | Worker> =
 /**
  * 將 element 的 addEventListener 昇華到更好操作的階段。
  * @BrowserOnly
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/element-listener-group.md
  */
 
 export class ElementListenerGroup<T extends Element | Document | Window | Worker> {
@@ -53,7 +54,7 @@ export class ElementListenerGroup<T extends Element | Document | Window | Worker
     /** 加入一個監聽的項目 */
 
     add<K extends keyof EventMap<T>>(name: K, callback: (event: EventMap<T>[K]) => void, options?: any) {
-        const id = createUuid()
+        const id = flow.createUuid()
         const data = {
             name: name as string,
             options,

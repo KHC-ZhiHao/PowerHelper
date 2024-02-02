@@ -1,6 +1,8 @@
 import { expect } from 'chai'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { JobsQueue } from './jobs-queue'
+
+const { sleep } = flow
 
 describe('JobsQueue', () => {
     it('base', function(done) {

@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { jpjs, nonStrictJSONParse, nonStrictJSONStringify } from './json'
+import { json } from './json'
+
+const { jpjs, nonStrictJSONParse, nonStrictJSONStringify } = json
 
 describe('Json', () => {
     it('jpjs', async function() {

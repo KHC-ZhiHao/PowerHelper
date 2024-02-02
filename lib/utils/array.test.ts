@@ -1,6 +1,9 @@
 import { expect } from 'chai'
-import { sleep } from './flow'
-import { groups, randomPick, randomPicks, unique, asyncMap, check } from './array'
+import { flow } from './flow'
+import { array } from './array'
+
+const { sleep } = flow
+const { groups, randomPick, randomPicks, unique, asyncMap, check } = array
 
 describe('Array', () => {
     it('group', function() {

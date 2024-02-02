@@ -27,6 +27,11 @@ type LoaderItem<T> = {
     handler: (_data: T) => Promise<any>
 }
 
+/**
+ * 可以搜集並發出多個 Promise 的加載元件，且擁有多種狀態。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/loader.md
+ */
+
 export class Loader<T> extends Event<Events> {
     private name: string
     private items: LoaderItem<T>[] = []

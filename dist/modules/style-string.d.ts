@@ -1,4 +1,8 @@
-declare type StyleKeys = keyof CSSStyleDeclaration;
+type StyleKeys = keyof CSSStyleDeclaration;
+/**
+ * 方便組合出 HTML Element Style 的工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/style-string.md
+ */
 export declare class StyleString {
     private styles;
     /** 寫入 key */

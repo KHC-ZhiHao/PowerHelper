@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { importScript, importCss, createAndAppend } from './element'
+import { element } from './element'
+
+const { importScript, importCss, createAndAppend } = element
 
 describe('Element', () => {
     beforeEach(() => {

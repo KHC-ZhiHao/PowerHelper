@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { run, randomInt, sleep, retry, asyncWhile, createUuid, createWithTsUuid } from './flow'
+import { flow } from './flow'
+
+const { run, randomInt, sleep, retry, asyncWhile, createUuid, createWithTsUuid } = flow
 
 describe('Flow', () => {
     it('run', async function() {
@@ -96,7 +98,7 @@ describe('Flow', () => {
         if (typeof crypto === 'undefined') {
             // @ts-ignore
             global.crypto = {
-                randomUUID: () => 'ouo'
+                randomUUID: () => 'ouo' as any
             }
         }
         expect(createUuid()).to.equal('ouo')

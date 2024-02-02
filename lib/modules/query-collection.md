@@ -61,7 +61,7 @@ const collection = new QueryCollection({
 })
 
 const usersCache = new Cache({
-    keepAlive: 1000 * 60 * 5,
+    ttl: 1000 * 60 * 5,
     key: ({ name }) => name,
     pick: async({ name }) => {
         let users = await collection.push({ name })

@@ -71,6 +71,11 @@ class Listener<T> {
     }
 }
 
+/**
+ * 事件監聽器。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/event.md
+ */
+
 export class Event<T extends Record<string, Record<string, any>>> {
     listeners: Map<string, Listener<any>[]> = new Map()
 

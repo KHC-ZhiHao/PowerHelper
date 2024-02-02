@@ -1,11 +1,11 @@
 import { Event } from './event';
-declare type FailError = {
+type FailError = {
     isPowerHelperLoader: true;
     name: string;
     error: any;
     loaderName: string;
 };
-declare type Events = {
+type Events = {
     call: Record<string, unknown>;
     done: Record<string, unknown>;
     clear: Record<string, unknown>;
@@ -18,6 +18,10 @@ declare type Events = {
         loaderName: string;
     };
 };
+/**
+ * 可以搜集並發出多個 Promise 的加載元件，且擁有多種狀態。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/loader.md
+ */
 export declare class Loader<T> extends Event<Events> {
     private name;
     private items;

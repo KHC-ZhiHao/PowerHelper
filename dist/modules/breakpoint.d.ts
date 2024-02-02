@@ -1,13 +1,17 @@
-declare type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-declare type BreakpointsRange = `${Breakpoints}-${'only' | 'and-up' | 'and-down'}`;
-declare type BreakpointsRecord = Record<Breakpoints, {
+type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type BreakpointsRange = `${Breakpoints}-${'only' | 'and-up' | 'and-down'}`;
+type BreakpointsRecord = Record<Breakpoints, {
     min: number;
     max: number;
 }>;
-declare type Params = {
+type Params = {
     points: BreakpointsRecord;
     defCheckValue: () => number;
 };
+/**
+ * 畫面斷點驗證工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpoint.md
+ */
 export declare class Breakpoint {
     private params;
     constructor(params: Params);

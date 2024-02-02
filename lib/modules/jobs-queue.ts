@@ -18,6 +18,11 @@ type Params = {
     concurrentExecutions: number
 }
 
+/**
+ * 有限的批次執行作業。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/jobs-queue.md
+ */
+
 export class JobsQueue extends Event<Events> {
     private jobs: Job[] = []
     private closed = false

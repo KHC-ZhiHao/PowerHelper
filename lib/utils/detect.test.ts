@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { inAndroid, inAppBrowser, inIOS, inMobile, inSafari } from './detect'
+import { detect } from './detect'
+
+const { inAndroid, inAppBrowser, inIOS, inMobile, inSafari } = detect
 
 const writeUserAgent = (text: string) => {
     global.window = {

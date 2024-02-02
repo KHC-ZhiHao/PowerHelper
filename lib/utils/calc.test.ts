@@ -1,7 +1,9 @@
 import { expect } from 'chai'
-import { toMs } from './calc'
+import { calc } from './calc'
 
-describe('Detect', () => {
+const { toMs } = calc
+
+describe('Calc', () => {
     it('to ms', function() {
         expect(toMs('s', 2)).eq(2000)
         expect(toMs('m', 2)).eq(120000)

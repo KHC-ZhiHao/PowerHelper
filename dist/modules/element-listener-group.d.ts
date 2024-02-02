@@ -1,7 +1,8 @@
-declare type EventMap<T extends Element | Document | Window | Worker> = T extends Window ? WindowEventMap : T extends Document ? DocumentEventMap : T extends SVGAElement ? SVGElementEventMap : T extends HTMLMediaElement ? HTMLMediaElementEventMap : T extends HTMLBodyElement ? HTMLBodyElementEventMap : T extends HTMLElement ? HTMLElementEventMap : T extends Worker ? WorkerEventMap : ElementEventMap;
+type EventMap<T extends Element | Document | Window | Worker> = T extends Window ? WindowEventMap : T extends Document ? DocumentEventMap : T extends SVGAElement ? SVGElementEventMap : T extends HTMLMediaElement ? HTMLMediaElementEventMap : T extends HTMLBodyElement ? HTMLBodyElementEventMap : T extends HTMLElement ? HTMLElementEventMap : T extends Worker ? WorkerEventMap : ElementEventMap;
 /**
  * 將 element 的 addEventListener 昇華到更好操作的階段。
  * @BrowserOnly
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/element-listener-group.md
  */
 export declare class ElementListenerGroup<T extends Element | Document | Window | Worker> {
     private elements;

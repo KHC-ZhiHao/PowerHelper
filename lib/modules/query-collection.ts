@@ -5,6 +5,11 @@ type QueryCollectionParams<T, R> = {
     query: (_collection: T[]) => Promise<R[]>
 }
 
+/**
+ * 可以蒐集資料並統一發出請求。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/query-collection.md
+ */
+
 export class QueryCollection<T, R> {
     private params: QueryCollectionParams<T, R>
     private timeout: ReturnType<typeof setTimeout> | null = null

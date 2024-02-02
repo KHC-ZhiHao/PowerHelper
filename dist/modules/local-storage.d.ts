@@ -1,4 +1,4 @@
-declare type Intercept = {
+type Intercept = {
     Set: (_name: string, _data: any) => any;
     Get: (_name: string, _data: any, _context: {
         /** Storage */
@@ -9,13 +9,17 @@ declare type Intercept = {
         defaultValue: () => any;
     }) => any;
 };
-declare type CusStorage = {
+type CusStorage = {
     readonly length: number;
     keys?: () => string[];
     getItem(key: string): string | null;
     setItem(key: string, value: string): void;
     removeItem(key: string): void;
 };
+/**
+ * 協助你在複雜的網頁應用程式中更安全的操作 LocalStorage。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/local-storage.md
+ */
 export declare class LocalStorage<T extends Record<string, any>> {
     private options?;
     private storage;

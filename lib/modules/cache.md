@@ -80,7 +80,7 @@ console.log(r1 === r2) // true
  * @param {object} params
  * @param {(params: Params) => string} params.key 將參數轉換成唯一鍵
  * @param {(params: Params, context: PickContext) => Response} params.pick 如果鍵值不存在則如何獲取資料
- * @param {number} [params.keepAlive = Infinity] 每筆資料的存活時間，超過則重取，單位:毫秒
+ * @param {number} [params.ttl = Infinity] 每筆資料的存活時間，超過則重取，單位:毫秒
  * @param {number} [params.maxSize = Infinity] 最多存取幾筆資料，超過則會刪除最舊的資料
  */
 class Cache<Params, Response> {

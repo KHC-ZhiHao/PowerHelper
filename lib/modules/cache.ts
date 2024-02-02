@@ -9,16 +9,16 @@ type Pick<P, R> = (params: P, context: PickContext) => Promise<R>
 class CacheItem<T> {
     readonly data: T
     index: number
-    keepAlive: number
+    ttl: number
     createdAt: number = Date.now()
-    constructor(data: T, index: number, keepAlive: number) {
+    constructor(data: T, index: number, ttl: number) {
         this.data = data
         this.index = index
-        this.keepAlive = keepAlive
+        this.ttl = ttl
     }
 
     isExpired() {
-        return (this.createdAt + this.keepAlive) < Date.now()
+        return (this.createdAt + this.ttl) < Date.now()
     }
 }
 
@@ -28,13 +28,18 @@ type Events<T> = {
     }
 }
 
+/**
+ * 可以將指定參數請求進行有期限的固定資料存取。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache.md
+ */
+
 export class Cache<P, R> extends Event<Events<R>> {
     private event = new Event()
     private key: (params: P) => string
     private index = 0
     private maxSize: number
     private pick: Pick<P, R>
-    private keepAlive: number
+    private ttl: number
     private items: Map<string, CacheItem<R>> = new Map()
     constructor(params: {
         /** 將參數轉換成唯一鍵 */
@@ -42,7 +47,7 @@ export class Cache<P, R> extends Event<Events<R>> {
         /** 如果鍵值不存在則如何獲取資料 */
         pick: Pick<P, R>
         /** 每筆資料的存活時間，超過則重取，單位:毫秒 */
-        keepAlive?: number
+        ttl?: number
         /** 最多存取幾筆資料，超過則會刪除最舊的資料 */
         maxSize?: number
     }) {
@@ -50,11 +55,11 @@ export class Cache<P, R> extends Event<Events<R>> {
         this.key = params.key
         this.pick = params.pick
         this.maxSize = params.maxSize || Infinity
-        this.keepAlive = params.keepAlive == null ? Infinity : params.keepAlive
+        this.ttl = params.ttl == null ? Infinity : params.ttl
     }
 
     private refresh() {
-        if (this.keepAlive !== Infinity) {
+        if (this.ttl !== Infinity) {
             this.removeExpired()
         }
         if (this.maxSize !== Infinity) {
@@ -126,7 +131,7 @@ export class Cache<P, R> extends Event<Events<R>> {
     private setByKey(key: string, data: R) {
         this.removeByKey(key)
         this.index += 1
-        this.items.set(key, new CacheItem(data, this.index, this.keepAlive))
+        this.items.set(key, new CacheItem(data, this.index, this.ttl))
         this.refresh()
     }
 

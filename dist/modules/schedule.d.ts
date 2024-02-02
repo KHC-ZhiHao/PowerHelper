@@ -1,5 +1,5 @@
 import { Event } from './event';
-declare type Info = {
+type Info = {
     /** 程序名稱 */
     name: string;
     /** 運行當下時間，如果為 null 則尚未運行 */
@@ -7,12 +7,16 @@ declare type Info = {
     /** 執行次數 */
     executedCount: number;
 };
-declare type Events = {
+type Events = {
     'processFail': {
         processName: string;
         error: any;
     };
 };
+/**
+ * 可以建立多個定時執行系統，且能保證不重複執行。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/schedule.md
+ */
 export declare class Schedule extends Event<Events> {
     private int;
     private isStop;

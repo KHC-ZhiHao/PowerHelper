@@ -1,6 +1,6 @@
 import { Event } from './event';
 import { VarParameters } from '../types/string';
-declare type Params<L extends string, K extends string> = {
+type Params<L extends string, K extends string> = {
     def: L;
     locales: {
         [key in L]: {
@@ -8,7 +8,7 @@ declare type Params<L extends string, K extends string> = {
         };
     };
 };
-declare type Events = {
+type Events = {
     get: {
         key: string;
         text: string;
@@ -16,6 +16,10 @@ declare type Events = {
         output: string;
     };
 };
+/**
+ * 多語系操作系統。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/i18n.md
+ */
 export declare class I18n<L extends string, K extends string> extends Event<Events> {
     private params;
     private nowLocale;

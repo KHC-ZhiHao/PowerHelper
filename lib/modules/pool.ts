@@ -5,13 +5,18 @@ type PoolParams<P, D> = {
     find: (_data: D, _params: P, _index: number) => boolean
     fetch: (_params: P[]) => Promise<D[]>
     cache?: {
-        keepAlive?: number
+        ttl?: number
         maxSize?: number
     }
     collection?: {
         waitTime?: number
     }
 }
+
+/**
+ * 輕鬆發出請求與快取請求資料的資料池。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/pool.md
+ */
 
 export class Pool<P, D> {
     private dataCache: Cache<P, D>
@@ -25,7 +30,7 @@ export class Pool<P, D> {
             }
         })
         this.dataCache = new Cache<P, D>({
-            keepAlive: cache?.keepAlive || 1000 * 60 * 5,
+            ttl: cache?.ttl || 1000 * 60 * 5,
             maxSize: cache?.maxSize || 100,
             key: params => JSON.stringify(params),
             pick: async(params) => {

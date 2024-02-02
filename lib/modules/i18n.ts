@@ -1,6 +1,8 @@
 import { Event } from './event'
-import { replaceVar } from '../utils/text'
+import { text } from '../utils/text'
 import { VarParameters } from '../types/string'
+
+const { replaceVar } = text
 
 type Params<L extends string, K extends string> = {
     def: L
@@ -19,6 +21,11 @@ type Events = {
         output: string
     }
 }
+
+/**
+ * 多語系操作系統。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/i18n.md
+ */
 
 export class I18n<L extends string, K extends string> extends Event<Events> {
     private params: Params<L, K>

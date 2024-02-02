@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { AsyncLocalStorage } from './async-local-storage'
 
 const getStorage = () => {
@@ -95,7 +95,7 @@ describe('AsyncLocalStorage', () => {
         })
         await localStorage.set('name', 'dave')
         expect(await localStorage.get('name')).to.equal('dave')
-        await sleep(150)
+        await flow.sleep(150)
         expect(await localStorage.get('name')).to.equal(null)
     })
     it('set with callback', async function() {

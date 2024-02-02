@@ -1,5 +1,5 @@
 import { Once } from './once'
-import { promiseAllWithKeys } from '../utils/record'
+import { record } from '../utils/record'
 
 export type AssetParams = {
     images: {
@@ -9,6 +9,11 @@ export type AssetParams = {
         [key: string]: string | (() => Promise<HTMLAudioElement>)
     }
 }
+
+/**
+ * 資源載入工具，目的是初始化必要的靜態資源。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/asset.md
+ */
 
 export class Asset<T extends AssetParams> {
     _images: any = {}
@@ -27,8 +32,8 @@ export class Asset<T extends AssetParams> {
                 let result = typeof value === 'string' ? Asset.loadAudio(value) : value()
                 audios[key] = result
             }
-            this._images = await promiseAllWithKeys(images)
-            this._audios = await promiseAllWithKeys(audios)
+            this._images = await record.promiseAllWithKeys(images)
+            this._audios = await record.promiseAllWithKeys(audios)
             this.loaded = true
         }
     })

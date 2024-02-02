@@ -45,10 +45,10 @@ class Pool<Params, Data> {
         fetch: (params: Params[]) => Promise<Data[]>
         cache?: {
             maxSize?: number
-            keepAlive?: number
+            ttl?: number
         }
         collection?: {
-            keepAlive?: number
+            waitTime?: number
         }
     })
 }

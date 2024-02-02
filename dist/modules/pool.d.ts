@@ -1,14 +1,18 @@
-declare type PoolParams<P, D> = {
+type PoolParams<P, D> = {
     find: (_data: D, _params: P, _index: number) => boolean;
     fetch: (_params: P[]) => Promise<D[]>;
     cache?: {
-        keepAlive?: number;
+        ttl?: number;
         maxSize?: number;
     };
     collection?: {
         waitTime?: number;
     };
 };
+/**
+ * 輕鬆發出請求與快取請求資料的資料池。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/pool.md
+ */
 export declare class Pool<P, D> {
     private dataCache;
     private dataCollection;

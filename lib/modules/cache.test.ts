@@ -1,6 +1,8 @@
 import { expect } from 'chai'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
 import { Cache } from './cache'
+
+const { sleep } = flow
 
 function getCache() {
     return new Cache<{ name: string, value: string }, string>({
@@ -32,7 +34,7 @@ describe('Cache', () => {
     })
     it('get by expired', async function() {
         let cache = new Cache<{ name: string }, string>({
-            keepAlive: 1,
+            ttl: 1,
             key: params => params.name,
             pick: async (params, { key }) => {
                 return key + '/' + Date.now()
@@ -107,7 +109,7 @@ describe('Cache', () => {
     it('remove event', async function() {
         let count = 0
         let cache = new Cache<{ name: string }, number>({
-            keepAlive: 50,
+            ttl: 50,
             key: params => params.name,
             pick: async () => {
                 return 10

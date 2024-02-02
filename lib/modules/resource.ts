@@ -1,5 +1,5 @@
 import { Event } from './event'
-import { headMatch } from '../utils/text'
+import { text } from '../utils/text'
 import { StyleString } from './style-string'
 
 type Items = Record<string, (data: any) => string>
@@ -23,6 +23,11 @@ type Events = {
 // private base
 // private alias: Map<string, string> = new Map()
 // private redirects: Map<string, string> = new Map()
+
+/**
+ * 優雅的實現獲取檔案路徑。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.md
+ */
 
 export class Resource<I extends Items> extends Event<Events> {
     private objectUrls: string[] = []
@@ -51,7 +56,7 @@ export class Resource<I extends Items> extends Event<Events> {
             let p = source.trim()
             let ori = ['http', 'file', 'data:', '//']
             for (let o of ori) {
-                if (headMatch(p, o)) {
+                if (text.headMatch(p, o)) {
                     url = p
                     break
                 }

@@ -1,333 +1,52 @@
 /* eslint-disable no-redeclare */
 
-import * as _flow from './utils/flow'
-import * as _json from './utils/json'
-import * as _pick from './utils/pick'
-import * as _text from './utils/text'
-import * as _array from './utils/array'
-import * as _detect from './utils/detect'
-import * as _record from './utils/record'
-import * as _element from './utils/element'
-import * as _calc from './utils/calc'
-
-import { Log as _Log } from './modules/log'
-import { I18n as _I18n } from './modules/i18n'
-import { Hook as _Hook } from './modules/hook'
-import { Once as _Once } from './modules/once'
-import { Asset as _Asset, AssetParams } from './modules/asset'
-import { Event as _Event } from './modules/event'
-import { Cache as _Cache } from './modules/cache'
-import { Timer as _Timer } from './modules/timer'
-import { Loader as _Loader } from './modules/loader'
-import { Ticker as _Ticker } from './modules/ticker'
-import { Resource as _Resource } from './modules/resource'
-import { Reactive as _Reactive } from './modules/reactive'
-import { Schedule as _Schedule } from './modules/schedule'
-import { Debounce as _Debounce } from './modules/debounce'
-import { JobsQueue as _JobsQueue } from './modules/jobs-queue'
-import { StyleString as _StyleString } from './modules/style-string'
-import { LocalStorage as _LocalStorage } from './modules/local-storage'
-import { QueryCollection as _QueryCollection } from './modules/query-collection'
-import { ElementListenerGroup as _ElementListenerGroup } from './modules/element-listener-group'
-import { WebSocketClient as _WebSocketClient } from './modules/websocket'
-import { PromiseOverlap as _PromiseOverlap } from './modules/promise-overlap'
-import { CacheLite as _CacheLite } from './modules/cache-lite'
-import { Breakpoint as _Breakpoint } from './modules/breakpoint'
-import { Exception as _Exception } from './modules/exception'
-import { Interaction as _Interaction } from './modules/interaction'
-import { Pool as _Pool } from './modules/pool'
-import { AsyncLocalStorage as _AsyncLocalStorage } from './modules/async-local-storage'
-
-/**
- * 負責計算的單元。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.md
- */
-
-export const calc = _calc
-
-/**
- * 精準地提取目標相關資源。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md
- */
-
-export const pick = _pick
-
-/**
- * 流程控制的工具。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md
- */
-
-export const flow = _flow
-
-/**
- * 優雅的 JSON 格式相關處理。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md
- */
-
-export const json = _json
-
-/**
- * 字串相關的處理。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md
- */
-
-export const text = _text
-
-/**
- * 優雅的 Array 操作。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md
- */
-
-export const array = _array
-
-/**
- * 優雅的 Object 操作。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md
- */
-
-export const record = _record
-
-/**
- * 驗證當下的執行環境。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md
- */
-
-export const detect = _detect
-
-/**
- * 優雅的 Dom 操作。
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md
- */
-
-export const element = _element
-
-export type Log = _Log
-export type I18n<L extends string, K extends string> = _I18n<L, K>
-export type Pool<Params, Data> = _Pool<Params, Data>
-export type Hook<Events extends Record<string, Record<string, any>>> = _Hook<Events>
-export type Event<Events extends Record<string, Record<string, any>>> = _Event<Events>
-export type Cache<Params, Response> = _Cache<Params, Response>
-export type Timer = _Timer
-export type Once<T> = _Once<T>
-export type Ticker = _Ticker
-export type Loader<Data> = _Loader<Data>
-export type Schedule = _Schedule
-export type Debounce<InputValue> = _Debounce<InputValue>
-export type StyleString = _StyleString
-export type LocalStorage<Columns extends Record<string, any>> = _LocalStorage<Columns>
-export type ElementListenerGroup<El extends Element | Document | Window> = _ElementListenerGroup<El>
-export type QueryCollection<Params, Response> = _QueryCollection<Params, Response>
-export type WebSocketClient<Pub extends Record<string, any>, Sub> = _WebSocketClient<Pub, Sub>
-export type Reactive<Target extends Record<string, any>> = _Reactive<Target>
-export type PromiseOverlap<PickType> = _PromiseOverlap<PickType>
-export type CacheLite<Handler extends (key: string) => any> = _CacheLite<Handler>
-export type JobsQueue = _JobsQueue
-export type Exception = _Exception
-export type Breakpoint = _Breakpoint
-export type Interaction = _Interaction
-export type Asset<T extends AssetParams> = _Asset<T>
-export type Resource<Items extends Record<string, (data: any) => string>> = _Resource<Items>
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/log.md
- */
-
-export const Log = _Log
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/i18n.md
- */
-
-export const I18n = _I18n
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/hook.md
- */
-
-export const Hook = _Hook
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/pool.md
- */
-
-export const Pool = _Pool
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/event.md
- */
-
-export const Event = _Event
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache.md
- */
-
-export const Cache = _Cache
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/timer.md
- */
-
-export const Timer = _Timer
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/ticker.md
- */
-
-export const Ticker = _Ticker
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/loader.md
- */
-
-export const Loader = _Loader
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/schedule.md
- */
-
-export const Schedule = _Schedule
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/debounce.md
- */
-
-export const Debounce = _Debounce
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/style-string.md
- */
-
-export const StyleString = _StyleString
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/local-storage.md
- */
-
-export const LocalStorage = _LocalStorage
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/element-listener-group.md
- */
-
-export const ElementListenerGroup = _ElementListenerGroup
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/query-collection.md
- */
-
-export const QueryCollection = _QueryCollection
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/websocket.md
- */
-
-export const WebSocketClient = _WebSocketClient
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/reactive.md
- */
-
-export const Reactive = _Reactive
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/promise-overlap.md
- */
-
-export const PromiseOverlap = _PromiseOverlap
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache-lite.md
- */
-
-export const CacheLite = _CacheLite
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpoint.md
- */
-
-export const Breakpoint = _Breakpoint
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception.md
- */
-
-export const Exception = _Exception
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction.md
- */
-
-export const Interaction = _Interaction
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/resource.md
- */
-
-export const Resource = _Resource
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/jobs-queue.md
- */
-
-export const JobsQueue = _JobsQueue
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.md
- */
-
-export const Once = _Once
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/asset.md
- */
-
-export const Asset = _Asset
-
-/**
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/async-local-storage.md
- */
-
-export const AsyncLocalStorage = _AsyncLocalStorage
-
-export const PowerHelper = {
-    flow,
-    json,
-    text,
-    pick,
-    calc,
-    array,
-    record,
-    detect,
-    element,
-    Log,
-    I18n,
-    Hook,
-    Pool,
-    Once,
-    Asset,
-    Event,
-    Cache,
-    Timer,
-    Ticker,
-    Loader,
-    Schedule,
-    Debounce,
-    Reactive,
-    Resource,
-    Exception,
-    CacheLite,
-    JobsQueue,
-    Breakpoint,
-    StyleString,
-    Interaction,
-    LocalStorage,
-    PromiseOverlap,
-    QueryCollection,
-    WebSocketClient,
-    AsyncLocalStorage,
-    ElementListenerGroup
-}
+export { text } from './utils/text'
+export { json } from './utils/json'
+export { flow } from './utils/flow'
+export { pick } from './utils/pick'
+export { calc } from './utils/calc'
+export { array } from './utils/array'
+export { record } from './utils/record'
+export { detect } from './utils/detect'
+export { checker } from './utils/checker'
+export { element } from './utils/element'
+
+export { Log } from './modules/log'
+export { I18n } from './modules/i18n'
+export { Hook } from './modules/hook'
+export { Event } from './modules/event'
+export { Cache } from './modules/cache'
+export { Timer } from './modules/timer'
+export { Loader } from './modules/loader'
+export { Ticker } from './modules/ticker'
+export { Resource } from './modules/resource'
+export { Reactive } from './modules/reactive'
+export { Schedule } from './modules/schedule'
+export { Debounce } from './modules/debounce'
+export { JobsQueue } from './modules/jobs-queue'
+export { StyleString } from './modules/style-string'
+export { LocalStorage } from './modules/local-storage'
+export { QueryCollection } from './modules/query-collection'
+export { ElementListenerGroup } from './modules/element-listener-group'
+export { WebSocketClient } from './modules/websocket'
+export { PromiseOverlap } from './modules/promise-overlap'
+export { CacheLite } from './modules/cache-lite'
+export { Breakpoint } from './modules/breakpoint'
+export { Exception } from './modules/exception'
+export { Interaction } from './modules/interaction'
+export { Pool } from './modules/pool'
+export { Once } from './modules/once'
+export { Asset } from './modules/asset'
+export type * as AssetTypes from './modules/asset'
+export { AsyncLocalStorage } from './modules/async-local-storage'
+
+export type * as TDate from './types/date'
+export type * as TPick from './types/pick'
+export type * as TRecord from './types/record'
+export type * as TString from './types/string'
+
+export { PowerHelper } from './powerhelper'
+import { PowerHelper } from './powerhelper'
 
 module.exports = PowerHelper
 module.exports.PowerHelper = PowerHelper

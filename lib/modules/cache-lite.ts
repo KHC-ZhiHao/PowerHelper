@@ -4,12 +4,17 @@ type Context<T> = {
 }
 
 type Params<T> = {
-    expTime: number
+    ttl: number
     maxSize?: number
     intercept?: {
         set?: (_context: Context<T>) => Context<T>
     }
 }
+
+/**
+ * 指定鍵值並同步的存取，非常近似 Map 物件，但是有 TTL(Time To Live)。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/cache-lite.md
+ */
 
 export class CacheLite<T> {
     private params: Params<T>
@@ -25,9 +30,9 @@ export class CacheLite<T> {
 
     private gc() {
         let now = Date.now()
-        if (now > this.lastUpdate + this.params.expTime) {
+        if (now > this.lastUpdate + this.params.ttl) {
             for (let [key, value] of this.keyMap.entries()) {
-                if ((value.time + this.params.expTime) < now) {
+                if ((value.time + this.params.ttl) < now) {
                     this.keyMap.delete(key)
                 }
             }

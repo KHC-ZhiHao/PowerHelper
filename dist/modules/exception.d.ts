@@ -1,15 +1,18 @@
 import { Event } from './event';
-declare type Events = {
+type Events = {
     fail: {
         error: any;
         message: string;
     };
 };
-declare type Options = {
+type Options = {
     defaultError: () => string;
     parseMessage: (error: any) => string | null;
 };
-/** 高階的錯誤訊息處理工具。 */
+/**
+ * 高階的錯誤訊息處理工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/exception.md
+ */
 export declare class Exception extends Event<Events> {
     private serviceName;
     private parent;

@@ -1,6 +1,8 @@
 import { expect } from 'chai'
 import { Reactive } from './reactive'
-import { sleep } from '../utils/flow'
+import { flow } from '../utils/flow'
+
+const { sleep } = flow
 
 describe('Reactive', () => {
     it('base', function(done) {
@@ -34,7 +36,7 @@ describe('Reactive', () => {
         }
         let reactive = new Reactive<S>({
             schedule: 1,
-            action: async({ state, close, newKey, oldKey }) => {
+            action: async() => {
                 count += 1
             },
             observable: async(state) => {

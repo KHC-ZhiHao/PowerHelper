@@ -1,5 +1,7 @@
 import { expect } from 'chai'
-import { byteLength, replaceVar, headMatch, lastMatch, format, findMatchOrLast } from './text'
+import { text } from './text'
+
+const { byteLength, replaceVar, headMatch, lastMatch, format, findMatchOrLast } = text
 
 describe('String', () => {
     it('headMatch', async function() {

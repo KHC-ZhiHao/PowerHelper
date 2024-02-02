@@ -2,6 +2,8 @@
 
 [[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/event.ts)
 
+事件監聽器。
+
 ## 如何使用
 
 ```ts

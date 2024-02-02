@@ -31,6 +31,11 @@ type Params = {
     interceptorMessage?: (_data: any) => string
 }
 
+/**
+ * 建立可監聽、追蹤、可搭配視圖化的訊息整合工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/interaction.md
+ */
+
 export class Interaction extends Event<Events> {
     protected name: string
     protected steps: Step[] = []

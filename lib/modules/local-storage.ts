@@ -18,6 +18,11 @@ type CusStorage = {
     removeItem(key: string): void
 }
 
+/**
+ * 協助你在複雜的網頁應用程式中更安全的操作 LocalStorage。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/local-storage.md
+ */
+
 export class LocalStorage<T extends Record<string, any>> {
     private options?: {
         storageSystem?: CusStorage

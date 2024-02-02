@@ -26,6 +26,11 @@ const nodeColors: Record<Color, string> = {
     yellow: '\x1b[33m'
 }
 
+/**
+ * 一種更高階打印出 Log 的模組，不只是你可以控制他是否要在指定環境中顯示，甚至可以建立監聽打印事件。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/log.md
+ */
+
 export class Log extends Event<Events> {
     private step = 0
     private name

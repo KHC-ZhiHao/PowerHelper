@@ -12,6 +12,11 @@ type Params = {
     defCheckValue: () => number
 }
 
+/**
+ * 畫面斷點驗證工具。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/breakpoint.md
+ */
+
 export class Breakpoint {
     private params: Params
 

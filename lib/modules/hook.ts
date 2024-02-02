@@ -43,7 +43,10 @@ class Listener<T> {
     }
 }
 
-/** 為非同步而生的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。 */
+/**
+ * 為非同步而生的 Pub/Sub 的架構模塊，使用方法跟 Event 非常相似，僅存的差別在於 Hook 只接受並依照順序執行非同步函式。
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/hook.md
+ */
 
 export class Hook<T extends Record<string, Record<string, any>>> {
     private listeners: Map<string, Listener<any>[]> = new Map()
