@@ -38,6 +38,7 @@ import { Exception } from './modules/exception'
 import { Interaction } from './modules/interaction'
 import { Pool } from './modules/pool'
 import { AsyncLocalStorage } from './modules/async-local-storage'
+import { PreloadPort } from './modules/preload-port'
 
 export const PowerHelper = {
     flow,
@@ -70,6 +71,7 @@ export const PowerHelper = {
     JobsQueue,
     Breakpoint,
     StyleString,
+    PreloadPort,
     Interaction,
     LocalStorage,
     PromiseOverlap,

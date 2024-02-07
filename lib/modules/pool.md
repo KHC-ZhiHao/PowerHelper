@@ -32,8 +32,10 @@ const user = await userPool.pick({
     name: 'dave'
 })
 
-// dave
 console.log(user.name)
+/*
+    outputs: dave
+*/
 ```
 
 ### Constructor

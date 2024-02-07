@@ -189,6 +189,8 @@ PowerHelper 分成三個區塊，相關敘述如下：
 
 [ElementListenerGroup](./lib/modules/element-listener-group.md) - 將 element 的 addEventListener 昇華到更好操作的階段。
 
+[PreloadPort](./lib/modules/preload-port.md) - 可以預先載入資料並透過 id 傳遞給需要的對象。
+
 ### Types
 
 將複雜的型態方案進行封裝，提高開發的安全性與效率。

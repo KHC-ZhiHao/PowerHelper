@@ -36,6 +36,7 @@ export { Once } from './modules/once';
 export { Asset } from './modules/asset';
 export type * as AssetTypes from './modules/asset';
 export { AsyncLocalStorage } from './modules/async-local-storage';
+export { PreloadPort } from './modules/preload-port';
 export type * as TDate from './types/date';
 export type * as TPick from './types/pick';
 export type * as TRecord from './types/record';

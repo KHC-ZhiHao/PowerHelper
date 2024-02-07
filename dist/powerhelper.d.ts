@@ -25,6 +25,7 @@ import { Exception } from './modules/exception';
 import { Interaction } from './modules/interaction';
 import { Pool } from './modules/pool';
 import { AsyncLocalStorage } from './modules/async-local-storage';
+import { PreloadPort } from './modules/preload-port';
 export declare const PowerHelper: {
     flow: {
         run: <T extends () => any>(cb: T) => ReturnType<T>;
@@ -134,6 +135,7 @@ export declare const PowerHelper: {
     JobsQueue: typeof JobsQueue;
     Breakpoint: typeof Breakpoint;
     StyleString: typeof StyleString;
+    PreloadPort: typeof PreloadPort;
     Interaction: typeof Interaction;
     LocalStorage: typeof LocalStorage;
     PromiseOverlap: typeof PromiseOverlap;

@@ -1,6 +1,6 @@
 {
   "name": "power-helper",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "This is javascript tool collection, is your super power helper.",
   "main": "./dist/index.js",
   "scripts": {
