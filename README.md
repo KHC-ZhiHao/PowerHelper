@@ -204,7 +204,6 @@ PowerHelper 分成三個區塊，相關敘述如下：
 [record](./lib/types/record.md)
 
 ```js
-// 在 0.7.0 之後的版本，你可以透過以下方式引入 Types
 import { TDate, TPick, TRecord, TString } from 'power-helper'
 ```
 

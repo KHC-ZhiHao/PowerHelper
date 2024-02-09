@@ -1,11 +1,5 @@
+type EmptyObject = Record<never, never>
 type RemoveTail<S extends string, Tail extends string> = S extends `${infer P}${Tail}` ? P : S
-type Spaces =
-    | "      "
-    | "     "
-    | "    "
-    | "   "
-    | "  "
-    | " "
 
 /**
  * 只有空白的字串組，不包含空字串
@@ -13,11 +7,21 @@ type Spaces =
  * const text: Whitespace = ' '
  */
 
-export type Whitespace = Spaces | "\n" | "\t"
+export type Whitespace = ' ' | '  ' | '    ' | '     ' | '      ' | '\n' | '\t'
 
-type TrimStart<T extends string> = T extends `${Whitespace}${infer Rest}`? TrimStart<Rest> : T
+type TrimStart<T extends string> = T extends `${infer rest}${
+    | ' '
+    | '\n'
+    | '\t'}`
+    ? TrimStart<rest>
+    : T;
 
-type TrimEnd<T extends string> = T extends `${infer Rest}${Whitespace}` ? TrimEnd<Rest> : T
+type TrimEnd<T extends string> = T extends `${
+    | ' '
+    | '\n'
+    | '\t'}${infer rest}`
+    ? TrimEnd<rest>
+    : T;
 
 /**
  * 移除前後的空白字組
@@ -55,7 +59,7 @@ export type RouteParameters<Route extends string, ST = string> = Route extends `
     ) &
     (Rest extends `${GetRouteParameter<Rest>}${infer Next}`
         ? RouteParameters<Next> : unknown)
-    : {}
+    : EmptyObject
 
 type GetSqlParameter<S extends string> = RemoveTail<
     RemoveTail<
@@ -83,7 +87,7 @@ export type SqlParameters<Sql extends string> = Sql extends `${string}:${infer R
     [P in GetSqlParameter<Rest>]: string | number | string[] | number[] | null
 } & (
         Rest extends `${GetSqlParameter<Rest>}${infer Next}` ? SqlParameters<Next> : unknown
-    ) : {}
+    ) : EmptyObject
 
 type GetVarParameter<S extends string, E extends string> = RemoveTail<S, `${E}${string}`>
 
@@ -103,4 +107,4 @@ export type VarParameters<
         [P in Trim<GetVarParameter<Rest, E>>]: string | number
     } & (
         Rest extends `${GetVarParameter<Rest, E>}${infer Next}` ? VarParameters<F, E, Next> : unknown
-    ) : {}
+    ) : EmptyObject

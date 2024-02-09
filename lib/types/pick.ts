@@ -31,6 +31,15 @@ export type PromiseResponseType<
 > =  R extends (value: infer P) => any ? P : never
 
 /**
+ * 獲取 Promise 成功的值
+ * @example
+ * const foo = Promise.resolve(3)
+ * const bar: PromiseType<typeof foo> = 3
+ */
+
+export type PromiseType<T extends Promise<any>> = T extends Promise<infer P> ? P : never
+
+/**
  * 回傳物件鏈
  * @example
  * const foo = {
