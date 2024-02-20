@@ -1,6 +1,6 @@
 # Once
 
-[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/code.ts)
+[[Source Code]](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/once.ts)
 
 只會執行一次的非同步事件。
 
