@@ -38,13 +38,13 @@ export const array = {
         let outputs: T[] = []
         let loop = items.length * 100
         while (loop > 0) {
+            if (outputs.length >= take) {
+                break
+            }
             loop -= 1
             let item = array.randomPick(items)
             if (outputs.includes(item) === false) {
                 outputs.push(item)
-            }
-            if (outputs.length >= take) {
-                break
             }
         }
         return outputs

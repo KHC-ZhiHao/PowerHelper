@@ -27,6 +27,10 @@ describe('Array', () => {
         expect(randomPicks(2, [1, 2, 3, 4]).length).to.equal(2)
         expect(randomPicks(5, [1, 2, 3, 4]).length).to.equal(4)
     })
+    it('randomPicks by no good number', () => {
+        expect(randomPicks(0, [1, 2, 3, 4]).length).to.equal(0)
+        expect(randomPicks(-1, [1, 2, 3, 4]).length).to.equal(0)
+    })
     it('unique', () => {
         expect(unique([1, 2, 3, 4, 4]).join()).eq([1, 2, 3, 4].join())
     })
