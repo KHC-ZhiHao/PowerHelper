@@ -9,8 +9,8 @@ export const json = {
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#jpjs
      */
 
-    jpjs: <T>(data: T): T => {
-        return JSON.parse(JSON.stringify(data))
+    jpjs: <T>(data: T, replacer?: (key: string, value: any) => any): T => {
+        return JSON.parse(JSON.stringify(data, replacer))
     },
 
     /**

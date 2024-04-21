@@ -45,7 +45,7 @@ export declare const PowerHelper: {
         }) => Promise<any>) => Promise<void>;
     };
     json: {
-        jpjs: <T_2>(data: T_2) => T_2;
+        jpjs: <T_2>(data: T_2, replacer?: ((key: string, value: any) => any) | undefined) => T_2;
         nonStrictJSONParse: (data: string) => any;
         nonStrictJSONStringify: (data: Record<string, any>) => string;
     };
