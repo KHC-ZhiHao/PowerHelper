@@ -146,10 +146,19 @@ export class Cache<P, R> extends Event<Events<R>> {
                 return resolve(item.data)
             }
             let event = `${key}-onload`
-            let listener = this.event.on(event, (data, context) => {
-                context.off()
-                resolve(data as any)
-            })
+            let errorEvent = `${key}-error`
+            let [listener, errorListener] = [
+                this.event.on(event, (data) => {
+                    listener.off()
+                    errorListener.off()
+                    resolve(data as any)
+                }),
+                this.event.on(errorEvent, (erroe) => {
+                    listener.off()
+                    errorListener.off()
+                    reject(erroe)
+                })
+            ]
             if (this.event.getEventListenerSize(event) === 1) {
                 this.pick(params, { key })
                     .then(item => {
@@ -157,8 +166,7 @@ export class Cache<P, R> extends Event<Events<R>> {
                         this.setByKey(key, item)
                     })
                     .catch(error => {
-                        listener.off()
-                        reject(error)
+                        this.event.emit(errorEvent, error)
                     })
             }
         })

@@ -23,7 +23,10 @@ export class QueryCollection<T, R> {
         this.params = params
     }
 
-    /** 推送一筆資料進搜集器 */
+    /**
+     * 推送一筆資料進搜集器
+     */
+
     push(data: T): Promise<R[]> {
         return new Promise((resolve, reject) => {
             this.collection.push({

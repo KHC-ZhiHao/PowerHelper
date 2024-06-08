@@ -1,3 +1,4 @@
+import { flow } from '../utils/flow'
 import { expect } from 'chai'
 import { QueryCollection } from './query-collection'
 
@@ -20,7 +21,7 @@ describe('Log', () => {
     it('fail', async function() {
         let collection = new QueryCollection({
             waitTime: 10,
-            query: async(data) => {
+            query: async(_data) => {
                 throw '123'
             }
         })
@@ -31,5 +32,24 @@ describe('Log', () => {
             e = error
         }
         expect(e).to.equal('123')
+    })
+    it('keep input', async function() {
+        let flag = 0
+        let collection = new QueryCollection({
+            waitTime: 50,
+            query: async(data) => {
+                flag += data.length
+                await flow.sleep(100)
+                return data
+            }
+        })
+        let promises: Promise<any>[] = []
+        promises.push(collection.push(1))
+        promises.push(collection.push(1))
+        await flow.sleep(80)
+        promises.push(collection.push(1))
+        await Promise.all(promises)
+        await flow.sleep(100)
+        expect(flag).to.equal(3)
     })
 })

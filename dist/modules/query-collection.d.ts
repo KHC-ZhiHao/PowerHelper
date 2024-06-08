@@ -13,7 +13,9 @@ export declare class QueryCollection<T, R> {
     private timeout;
     private collection;
     constructor(params: QueryCollectionParams<T, R>);
-    /** 推送一筆資料進搜集器 */
+    /**
+     * 推送一筆資料進搜集器
+     */
     push(data: T): Promise<R[]>;
 }
 export {};

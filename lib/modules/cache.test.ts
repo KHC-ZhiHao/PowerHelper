@@ -195,4 +195,47 @@ describe('Cache', () => {
         expect(cache.size()).to.equal(3)
         expect(cache.keys().join()).to.equal('3,4,5')
     })
+    it('fail', async function() {
+        let flag = 0
+        let cache = new Cache<{ name: string }, string>({
+            key: params => params.name,
+            maxSize: 3,
+            pick: async () => {
+                flag += 1
+                await flow.sleep(10)
+                if (flag === 1) {
+                    throw '123'
+                }
+                return '1234'
+            }
+        })
+        try {
+            await Promise.all([
+                cache.get({ name: '1' }),
+                cache.get({ name: '1' }),
+                cache.get({ name: '1' })
+            ])
+        } catch (error) {
+            // ignore
+        }
+        try {
+            await Promise.all([
+                cache.get({ name: '1' }),
+                cache.get({ name: '1' }),
+                cache.get({ name: '1' })
+            ])
+        } catch (error) {
+            // ignore
+        }
+        try {
+            await Promise.all([
+                cache.get({ name: '1' }),
+                cache.get({ name: '1' }),
+                cache.get({ name: '1' })
+            ])
+        } catch (error) {
+            // ignore
+        }
+        expect(flag).to.equal(2)
+    })
 })

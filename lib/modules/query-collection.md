@@ -18,7 +18,7 @@ type Response = {
     age: number
 }
 
-let getUsers = async(names: string[]) => {
+const getUsers = async(names: string[]) => {
     return names.map(e => {
         return {
             name: e,
@@ -28,17 +28,17 @@ let getUsers = async(names: string[]) => {
 }
 
 /* 從第一個 push 請求發出時計時 100 毫秒，這段期間所有的 push 事件都會被蒐集起來至第一個參數  */
-let queryCollection = new QueryCollection<Params, Response>({
+const queryCollection = new QueryCollection<Params, Response>({
     waitTime: 100,
     query: async(items) => {
-        let names = items.map(e => e.name)
-        let response = await getUsers(names)
+        const names = items.map(e => e.name)
+        const response = await getUsers(names)
         return response
     }
 })
 
 /* 以下兩個 push 會統一收到同一個 query 後的資料  */
-let [users1, users2] = await Promise.all([
+const [users1, users2] = await Promise.all([
     queryCollection.push({ name: 'dave' }),
     queryCollection.push({ name: 'jasme' })
 ])
