@@ -46,7 +46,7 @@ export class I18n<L extends string, K extends string> extends Event<Events> {
         } else {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            text = (this.params.locales[locale][key] || key)
+            text = (this.params.locales?.[locale]?.[key] || key)
         }
         let output = replaceVar({
             start: '{',

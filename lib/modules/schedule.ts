@@ -32,11 +32,11 @@ type Events = {
  */
 
 export class Schedule extends Event<Events> {
-    private int = setInterval(() => this.run(), 100)
+    private int = setInterval(() => this._run(), 100)
     private isStop = false
     private lastTime = Date.now()
     private processes: Process[] = []
-    private run() {
+    private _run() {
         if (this.isStop) {
             return null
         }
@@ -65,6 +65,15 @@ export class Schedule extends Event<Events> {
                         })
                     })
             }
+        }
+    }
+
+    /** 直接執行指定的程序，如果該程序正在運行中，則跳過 */
+
+    run(name: string) {
+        let process = this.processes.find(e => e.name === name)
+        if (process != null && process.runningTime != null) {
+            process.now = process.sec
         }
     }
 

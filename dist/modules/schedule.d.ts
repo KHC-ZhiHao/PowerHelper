@@ -22,7 +22,9 @@ export declare class Schedule extends Event<Events> {
     private isStop;
     private lastTime;
     private processes;
-    private run;
+    private _run;
+    /** 直接執行指定的程序，如果該程序正在運行中，則跳過 */
+    run(name: string): void;
     /** 加入一個程序，不能重複已存在的命名 */
     add(name: string, intervalMs: number, callback: () => Promise<any>): void;
     /** 驗證程序是否存在 */

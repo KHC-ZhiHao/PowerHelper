@@ -51,6 +51,17 @@ describe('Schedule', () => {
         expect(result[1].executedCount).to.equal(0)
         schedule.close()
     })
+    it('run test', async function() {
+        let flag = false
+        let schedule = new Schedule()
+        schedule.add('test', 200, async() => {
+            flag = true
+        })
+        schedule.run('test')
+        await sleep(50)
+        schedule.close()
+        expect(flag).to.equal(false)
+    })
     it('wait', async function() {
         let count = 0
         let schedule = new Schedule()

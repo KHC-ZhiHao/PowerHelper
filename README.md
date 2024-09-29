@@ -4,7 +4,7 @@
 <h1 align="center">Power Helper</h1>
 <h3 align="center">優雅的 Javascript 工具組</h3>
 
-<p align="center">
+<h6 align="center">
     <a href="https://www.npmjs.com/package/power-helper">
         <img src="https://img.shields.io/npm/v/power-helper.svg">
     </a>
@@ -21,7 +21,7 @@
         <img src="https://img.shields.io/github/stars/KHC-ZhiHao/PowerHelper.svg?style=social">
     </a>
     <br>
-</p>
+</h6>
 
 <br>
 

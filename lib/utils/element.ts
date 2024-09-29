@@ -5,7 +5,7 @@
 
 export const element = {
     /**
-     * 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+     * 透過執行階段注入 Script Tag，這個方法只允許在 Browser 中執行。
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript
      */
 
@@ -30,12 +30,17 @@ export const element = {
     }),
 
     /**
-     * 新增並將 Tag Append 至指定 Element，這個方法只允許在 Browser 中執行。
+     * 建立一個 Element 並 Append 至 Body 或指定位置，這個方法只允許在 Browser 中執行。
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#createandappend
+     * @param {HTMLElement} [target=document.body] 指定位置
      */
 
     // eslint-disable-next-line no-undef
-    createAndAppend: <T extends keyof HTMLElementTagNameMap>(tag: T, cb: (el: HTMLElementTagNameMap[T]) => any, target?: HTMLElement) => {
+    createAndAppend: <T extends keyof HTMLElementTagNameMap>(
+        tag: T,
+        cb: (el: HTMLElementTagNameMap[T]) => any,
+        target?: HTMLElement
+    ) => {
         let element = window.document.createElement(tag)
         cb(element)
         if (target) {
@@ -47,7 +52,7 @@ export const element = {
     },
 
     /**
-     * 透過執行階段注入帶 stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
+     * 透過執行階段注入帶 Stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importcss
      */
 

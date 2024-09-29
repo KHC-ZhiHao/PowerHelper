@@ -14,7 +14,7 @@ import { element } from 'power-helper'
 
 ### importScript
 
-透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
+透過執行階段注入 Script Tag，這個方法只允許在 Browser 中執行。
 
 ```ts
 function(url: string, options?: {
@@ -30,7 +30,7 @@ element.importScript('https://code.jquery.com/jquery-3.6.1.min.js')
 
 ### importCss
 
-透過執行階段注入帶 stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
+透過執行階段注入帶 Stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
 
 ```ts
 function(href: string, options?: {
@@ -51,7 +51,7 @@ element.importCss('https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstr
 
 ### createAndAppend
 
-新增並將 Tag Append 至指定 Element，這個方法只允許在 Browser 中執行。
+建立一個 Element 並 Append 至 Body 或指定位置，這個方法只允許在 Browser 中執行。
 
 ```ts
 function<T extends keyof HTMLElementTagNameMap>(tag: T, cb: (el: HTMLElementTagNameMap[T]) => any, target?: HTMLElement): HTMLElementTagNameMap[T]
