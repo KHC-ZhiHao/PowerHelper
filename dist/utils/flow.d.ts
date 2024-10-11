@@ -65,5 +65,5 @@ export declare const flow: {
     waitFor: <T_2>(params: {
         interval: number;
         handler: (_resolve: (_value: T_2) => void, _reject: (_error: any) => void) => Promise<void>;
-    }) => Promise<unknown>;
+    }) => Promise<T_2>;
 };

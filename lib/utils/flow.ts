@@ -144,7 +144,7 @@ export const flow = {
     waitFor: <T>(params: {
         interval: number
         handler: (_resolve: (_value: T) => void, _reject: (_error: any) => void) => Promise<void>
-    }) => {
+    }): Promise<T> => {
         return new Promise((resolve, reject) => {
             const state = {
                 done: false

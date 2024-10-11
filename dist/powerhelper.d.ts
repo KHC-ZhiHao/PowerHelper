@@ -46,7 +46,7 @@ export declare const PowerHelper: {
         waitFor: <T_2>(params: {
             interval: number;
             handler: (_resolve: (_value: T_2) => void, _reject: (_error: any) => void) => Promise<void>;
-        }) => Promise<unknown>;
+        }) => Promise<T_2>;
     };
     json: {
         jpjs: <T_3>(data: T_3, replacer?: ((key: string, value: any) => any) | undefined) => T_3;
