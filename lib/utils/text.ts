@@ -54,7 +54,7 @@ export const text = {
         S extends string,
         E extends string,
         T extends string
-    >({ start, end, text, vars, dafaultVar }: {
+    >({ start, end, text, vars, defaultVar }: {
         /** 變數起始符號 */
         start: S extends '' ? never : S extends Whitespace ? never : S,
         /** 變數終止符號 */
@@ -64,7 +64,7 @@ export const text = {
         /** 複寫變數 */
         vars: Partial<VarParameters<S, E, T>>
         /** 如果找不到對應資料的預設值 */
-        dafaultVar?: string
+        defaultVar?: string
     }) => {
         let isStart = false
         let output = ''
@@ -83,8 +83,8 @@ export const text = {
                         let data = vars ? vars[varKey.trim()]?.toString() : null
                         if (data) {
                             output += data
-                        } else if (dafaultVar) {
-                            output += dafaultVar
+                        } else if (defaultVar) {
+                            output += defaultVar
                         }
                         varKey = ''
                         isStart = false

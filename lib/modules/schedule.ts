@@ -72,8 +72,9 @@ export class Schedule extends Event<Events> {
 
     run(name: string) {
         let process = this.processes.find(e => e.name === name)
-        if (process != null && process.runningTime != null) {
+        if (process != null && process.runningTime == null) {
             process.now = process.sec
+            this._run()
         }
     }
 

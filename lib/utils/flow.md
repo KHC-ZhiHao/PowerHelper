@@ -181,3 +181,37 @@ console.log(result)
     outputs: 'success'
 */
 ```
+
+---
+
+### waitFor
+
+等待直到條件成立，如果都沒有完成任何條件，就等待間隔時間。
+
+```ts
+function<T>(params: {
+    /**
+     * 每次檢查的間隔時間(毫秒)
+     */
+    ms: number
+    /**
+     * 檢查是否完成的方法
+     */
+    fn: (_resolve: (_value: T) => void, _reject: (_error: any) => void) => Promise<void>
+}): Promise<T>
+```
+
+#### example
+
+```ts
+const result = await flow.waitFor({
+    ms: 1000,
+    fn: (resolve, reject) => {
+        if (true) {
+            resolve('success')
+        } else {
+            reject('fail')
+        }
+    }
+})
+```

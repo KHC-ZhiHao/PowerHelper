@@ -134,5 +134,40 @@ export const flow = {
             }
             context.count += 1
         }
+    },
+
+    /**
+     * 等待直到條件成立。
+     * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#waitfor
+     */
+
+    waitFor: <T>(params: {
+        interval: number
+        handler: (_resolve: (_value: T) => void, _reject: (_error: any) => void) => Promise<void>
+    }) => {
+        return new Promise((resolve, reject) => {
+            const state = {
+                done: false
+            }
+            const success = (value: T) => {
+                state.done = true
+                resolve(value)
+            }
+            const fail = (error: any) => {
+                state.done = true
+                reject(error)
+            }
+            const load = async() => {
+                try {
+                    await params.handler(success, fail)
+                } catch (error) {
+                    fail(error)
+                }
+                if (!state.done) {
+                    setTimeout(load, params.interval)
+                }
+            }
+            load()
+        })
     }
 }

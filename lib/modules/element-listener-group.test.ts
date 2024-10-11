@@ -109,4 +109,42 @@ describe('Element Listener Group', () => {
         newEl.click()
         expect(count).to.equal(3)
     })
+    it('unobserve', function() {
+        let count = 0
+        let dom = new JSDOM()
+        let body = dom.window.document.body
+        let group = new ElementListenerGroup<HTMLElement>()
+        group.add('click', () => {
+            count += 1
+        })
+        group.observe(body)
+        body.click()
+        group.unObserve(body)
+        body.click()
+        expect(count).to.equal(1)
+    })
+    it('unobserve2', function() {
+        let dom = new JSDOM()
+        let body = dom.window.document.body
+        let group = new ElementListenerGroup<HTMLElement>()
+        group.unObserve(body)
+    })
+    it('clearElements', function() {
+        let count = 0
+        let dom = new JSDOM()
+        let body = dom.window.document.body
+        let newEl = dom.window.document.createElement('div')
+        let group = new ElementListenerGroup<HTMLElement>()
+        group.add('click', () => {
+            count += 1
+        })
+        group.observe(body)
+        group.observe(newEl)
+        body.click()
+        newEl.click()
+        group.clearElements()
+        body.click()
+        newEl.click()
+        expect(count).to.equal(2)
+    })
 })

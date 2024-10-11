@@ -65,6 +65,12 @@ function add(channel: string, callback: (event: Event) => void, options: any): L
 
 /** 清空現在監聽的項目 */
 function clear(): void
+
+/** 移除一個監聽元素 */
+function unObserve(el: Element): void
+
+/** 清空所有監聽元素 */
+function clearElements(): void
 ```
 
 ## Types

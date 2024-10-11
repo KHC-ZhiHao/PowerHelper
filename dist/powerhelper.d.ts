@@ -43,9 +43,13 @@ export declare const PowerHelper: {
             count: number;
             doBreak: () => void;
         }) => Promise<any>) => Promise<void>;
+        waitFor: <T_2>(params: {
+            interval: number;
+            handler: (_resolve: (_value: T_2) => void, _reject: (_error: any) => void) => Promise<void>;
+        }) => Promise<unknown>;
     };
     json: {
-        jpjs: <T_2>(data: T_2, replacer?: ((key: string, value: any) => any) | undefined) => T_2;
+        jpjs: <T_3>(data: T_3, replacer?: ((key: string, value: any) => any) | undefined) => T_3;
         nonStrictJSONParse: (data: string) => any;
         nonStrictJSONStringify: (data: Record<string, any>) => string;
     };
@@ -53,48 +57,48 @@ export declare const PowerHelper: {
         headMatch: (text: string, match: string) => boolean;
         lastMatch: (text: string, match: string) => boolean;
         byteLength: (text: string) => number;
-        replaceVar: <S extends string, E extends string, T_3 extends string>({ start, end, text, vars, dafaultVar }: {
+        replaceVar: <S extends string, E extends string, T_4 extends string>({ start, end, text, vars, defaultVar }: {
             start: S extends "" ? never : S extends import("./types/string").Whitespace ? never : S;
             end: E extends "" ? never : E extends import("./types/string").Whitespace ? never : E;
-            text: T_3;
-            vars: Partial<import("./types/string").VarParameters<S, E, T_3>>;
-            dafaultVar?: string | undefined;
+            text: T_4;
+            vars: Partial<import("./types/string").VarParameters<S, E, T_4>>;
+            defaultVar?: string | undefined;
         }) => string;
         format: (format: string, text: string, def?: string) => string;
-        findMatchOrLast: <T_4 extends string>(target: string, keys: T_4[]) => T_4;
+        findMatchOrLast: <T_5 extends string>(target: string, keys: T_5[]) => T_5;
     };
     pick: {
-        ifBad: <T_5>(data: T_5 | Error | null | undefined, def: T_5) => T_5 | Error | null | undefined;
-        ifEmpty: <T_6>(data: T_6 | null | undefined, def: T_6) => T_6;
+        ifBad: <T_6>(data: T_6 | Error | null | undefined, def: T_6) => T_6 | Error | null | undefined;
+        ifEmpty: <T_7>(data: T_7 | null | undefined, def: T_7) => T_7;
         getType: (target: any) => "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "empty" | "array" | "NaN" | "regexp" | "promise" | "buffer" | "error";
-        peel: <T_7 extends Record<string, any> = Record<"", any>, C extends string = "", R = import("./types/pick").PeelType<C, T_7>>(target: T_7, path: C) => C extends "" ? T_7 : R | null;
-        vars: <S_1 extends string, E_1 extends string, T_8 extends string>({ start, end, text }: {
+        peel: <T_8 extends Record<string, any> = Record<"", any>, C extends string = "", R = import("./types/pick").PeelType<C, T_8>>(target: T_8, path: C) => C extends "" ? T_8 : R | null;
+        vars: <S_1 extends string, E_1 extends string, T_9 extends string>({ start, end, text }: {
             start: S_1 extends "" ? never : S_1 extends import("./types/string").Whitespace ? never : S_1;
             end: E_1 extends "" ? never : E_1 extends import("./types/string").Whitespace ? never : E_1;
-            text: T_8;
-        }) => (keyof import("./types/string").VarParameters<S_1, E_1, T_8> extends never ? string : keyof import("./types/string").VarParameters<S_1, E_1, T_8>)[];
+            text: T_9;
+        }) => (keyof import("./types/string").VarParameters<S_1, E_1, T_9> extends never ? string : keyof import("./types/string").VarParameters<S_1, E_1, T_9>)[];
     };
     calc: {
         toMs: (unit: "y" | "d" | "h" | "m" | "s", value: number) => number;
     };
     array: {
-        groups: <T_9>(size: number, items: T_9[]) => T_9[][];
-        randomPick: <T_10>(items: T_10[]) => T_10;
-        randomPicks: <T_11>(take: number, items: T_11[]) => T_11[];
-        unique: <T_12 extends any[]>(items: T_12) => T_12;
-        asyncMap: <T_13, R_1>(items: T_13[], cb: (_item: T_13) => Promise<R_1>) => Promise<R_1[]>;
-        check: <T_14>(items: T_14[], value: T_14) => T_14[];
+        groups: <T_10>(size: number, items: T_10[]) => T_10[][];
+        randomPick: <T_11>(items: T_11[]) => T_11;
+        randomPicks: <T_12>(take: number, items: T_12[]) => T_12[];
+        unique: <T_13 extends any[]>(items: T_13) => T_13;
+        asyncMap: <T_14, R_1>(items: T_14[], cb: (_item: T_14) => Promise<R_1>) => Promise<R_1[]>;
+        check: <T_15>(items: T_15[], value: T_15) => T_15[];
     };
     record: {
-        setMapValue: <T_15 extends unknown>(template: T_15, target: unknown, options?: {
+        setMapValue: <T_16 extends unknown>(template: T_16, target: unknown, options?: {
             directReplacePeels?: string[] | undefined;
-        } | undefined) => T_15;
-        createStrictObject: <T_16 extends {
+        } | undefined) => T_16;
+        createStrictObject: <T_17 extends {
             [key: string]: [StringConstructor | BooleanConstructor | NumberConstructor, boolean, unknown, any?];
-        }>(envs: T_16) => import("./types/record").DeepReadonly<{ [key in keyof T_16]: T_16[key][0] extends StringConstructor ? string : T_16[key][0] extends NumberConstructor ? number : T_16[key][0] extends BooleanConstructor ? boolean : unknown; }>;
-        omit: <D extends object, T_17 extends (keyof D)[]>(data: D, keys: T_17) => Omit<D, T_17[0]>;
-        promiseAllWithKeys: <T_18 extends Record<string, Promise<any>>>(obj: T_18) => Promise<{ [K in keyof T_18]: T_18[K] extends Promise<infer U> ? U : never; }>;
-        simpleCheckDeepDiff: <T_19 extends Record<string, any>>(a: T_19, b: T_19) => boolean;
+        }>(envs: T_17) => import("./types/record").DeepReadonly<{ [key in keyof T_17]: T_17[key][0] extends StringConstructor ? string : T_17[key][0] extends NumberConstructor ? number : T_17[key][0] extends BooleanConstructor ? boolean : unknown; }>;
+        omit: <D extends object, T_18 extends (keyof D)[]>(data: D, keys: T_18) => Omit<D, T_18[0]>;
+        promiseAllWithKeys: <T_19 extends Record<string, Promise<any>>>(obj: T_19) => Promise<{ [K in keyof T_19]: T_19[K] extends Promise<infer U> ? U : never; }>;
+        simpleCheckDeepDiff: <T_20 extends Record<string, any>>(a: T_20, b: T_20) => boolean;
     };
     detect: {
         inAppBrowser: () => boolean;
@@ -110,7 +114,7 @@ export declare const PowerHelper: {
         importScript: (url: string, options?: {
             appendBefore?: ((_el: HTMLScriptElement) => void) | undefined;
         } | undefined) => Promise<unknown>;
-        createAndAppend: <T_20 extends keyof HTMLElementTagNameMap>(tag: T_20, cb: (el: HTMLElementTagNameMap[T_20]) => any, target?: HTMLElement | undefined) => HTMLElementTagNameMap[T_20];
+        createAndAppend: <T_21 extends keyof HTMLElementTagNameMap>(tag: T_21, cb: (el: HTMLElementTagNameMap[T_21]) => any, target?: HTMLElement | undefined) => HTMLElementTagNameMap[T_21];
         importCss: (url: string, options?: {
             appendBefore?: ((_el: HTMLLinkElement) => void) | undefined;
         } | undefined) => Promise<unknown>;

@@ -110,4 +110,58 @@ describe('Flow', () => {
         expect(typeof createWithTsUuid()).to.equal('string')
         expect(createWithTsUuid() === createWithTsUuid()).to.equal(false)
     })
+
+    it('wait for base', async() => {
+        let flag = false
+        setTimeout(() => {
+            flag = true
+        }, 300)
+        await flow.waitFor<boolean>({
+            interval: 100,
+            handler: async(resolve) => {
+                if (flag) {
+                    resolve(true)
+                }
+            }
+        })
+        expect(flag).to.equal(true)
+    })
+
+    it('wait for success', async() => {
+        let result = await flow.waitFor<boolean>({
+            interval: 100,
+            handler: async(resolve) => {
+                resolve(true)
+            }
+        })
+        expect(result).to.equal(true)
+    })
+
+    it('wait for fail', async() => {
+        try {
+            await flow.waitFor<boolean>({
+                interval: 100,
+                handler: async(resolve, reject) => {
+                    reject(false)
+                }
+            })
+            throw true
+        } catch (error) {
+            expect(error).to.equal(false)
+        }
+    })
+
+    it('wait for def fail', async() => {
+        try {
+            await flow.waitFor<boolean>({
+                interval: 100,
+                handler: async() => {
+                    throw false
+                }
+            })
+            throw true
+        } catch (error) {
+            expect(error).to.equal(false)
+        }
+    })
 })

@@ -23,7 +23,7 @@ export declare const text: {
      * 複寫 Text 的指定變數。
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar
      */
-    replaceVar: <S extends string, E extends string, T extends string>({ start, end, text, vars, dafaultVar }: {
+    replaceVar: <S extends string, E extends string, T extends string>({ start, end, text, vars, defaultVar }: {
         /** 變數起始符號 */
         start: S extends "" ? never : S extends Whitespace ? never : S;
         /** 變數終止符號 */
@@ -33,7 +33,7 @@ export declare const text: {
         /** 複寫變數 */
         vars: Partial<VarParameters<S, E, T>>;
         /** 如果找不到對應資料的預設值 */
-        dafaultVar?: string | undefined;
+        defaultVar?: string | undefined;
     }) => string;
     /**
      * 轉換 Text 轉換成指定格式，填入 v 代表映射的值。

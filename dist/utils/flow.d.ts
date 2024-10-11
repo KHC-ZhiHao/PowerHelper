@@ -58,4 +58,12 @@ export declare const flow: {
         count: number;
         doBreak: () => void;
     }) => Promise<any>) => Promise<void>;
+    /**
+     * 等待直到條件成立。
+     * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#waitfor
+     */
+    waitFor: <T_2>(params: {
+        interval: number;
+        handler: (_resolve: (_value: T_2) => void, _reject: (_error: any) => void) => Promise<void>;
+    }) => Promise<unknown>;
 };

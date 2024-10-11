@@ -88,6 +88,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [createWithTsUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createwithtsuuid) - 建立一組隨機的 v4 uuid，但在前面加上當下的 timestamp(ms)。
 * [retry](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry) - 優雅的設計有限的重複執行直到成功為止。
 * [asyncWhile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile) - 結合非同步與計數的迴圈操作。
+* [waitFor](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#waitfor) - 流程控制的工具。
 
 [json](./lib/utils/json.md) - 優雅的 JSON 格式相關處理。
 
@@ -111,7 +112,6 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [getType](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype) - 比 typeof 回傳更精準的類型。
 * [peel](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel) - 獲取指定路徑的值，如果值不存在回傳 `null`。
 * [vars](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars) - 獲取文字裡面的變數列表。
-
 
 [checker](./lib/utils/checker.md) - 資料檢查器。
 

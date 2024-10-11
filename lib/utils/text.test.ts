@@ -95,7 +95,7 @@ describe('String', () => {
             start: '{{',
             end: '}}',
             text: '我是{{ 狗 }}，是一種 {{  哺乳 }} 動物',
-            dafaultVar: '-',
+            defaultVar: '-',
             vars: {
                 豬: '123'
             }
@@ -105,7 +105,7 @@ describe('String', () => {
             start: '{{',
             end: '}}',
             text: '我是{{ 狗動物',
-            dafaultVar: '-',
+            defaultVar: '-',
             vars: {}
         })
         expect(result7).to.equal('我是{{ 狗動物')

@@ -48,4 +48,10 @@ const data: TString.SqlParameters<typeof sql> = {
     user: '123',
     card: '123'
 }
+
+/**
+ * 出現字串提示，但不會強制規範文字類型
+ */
+
+const hello: TString.LooseString<'hello'> = 'hello' | 'HELLO'
 ```

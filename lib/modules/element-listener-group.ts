@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
 import { flow } from '../utils/flow'
 
-type EventMap<T extends Element | Document | Window | Worker> =
+type EventMap<T extends MediaDevices | Element | Document | Window | Worker> =
     T extends Window ? WindowEventMap :
     T extends Document ? DocumentEventMap :
     T extends SVGAElement ? SVGElementEventMap :
     T extends HTMLMediaElement ? HTMLMediaElementEventMap :
     T extends HTMLBodyElement ? HTMLBodyElementEventMap :
     T extends HTMLElement ? HTMLElementEventMap :
+    T extends MediaDevices ? MediaDevicesEventMap :
     T extends Worker ? WorkerEventMap : ElementEventMap
 
 /**
@@ -16,7 +17,7 @@ type EventMap<T extends Element | Document | Window | Worker> =
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/element-listener-group.md
  */
 
-export class ElementListenerGroup<T extends Element | Document | Window | Worker> {
+export class ElementListenerGroup<T extends Element | Document | Window | Worker | MediaDevices> {
     private elements: T[] = []
     private listeners = new Map<string, {
         name: string
@@ -36,6 +37,18 @@ export class ElementListenerGroup<T extends Element | Document | Window | Worker
         this.elements.push(element)
         for (let listener of this.listeners.values()) {
             element.addEventListener(listener.name, listener.callback, listener.options)
+        }
+    }
+
+    /** 移除一個監聽元素 */
+
+    unObserve(element: T) {
+        if (this.elements.find(e => e === element) == null) {
+            return
+        }
+        this.elements = this.elements.filter(e => e !== element)
+        for (let listener of this.listeners.values()) {
+            element.removeEventListener(listener.name, listener.callback)
         }
     }
 
@@ -74,5 +87,16 @@ export class ElementListenerGroup<T extends Element | Document | Window | Worker
         for (let id of this.listeners.keys()) {
             this.off(id)
         }
+    }
+
+    /** 清空所有監聽元素 */
+
+    clearElements() {
+        for (let listener of this.listeners.values()) {
+            for (let element of this.elements) {
+                element.removeEventListener(listener.name, listener.callback)
+            }
+        }
+        this.elements = []
     }
 }

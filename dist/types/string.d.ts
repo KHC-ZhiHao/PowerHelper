@@ -53,4 +53,11 @@ type GetVarParameter<S extends string, E extends string> = RemoveTail<S, `${E}${
 export type VarParameters<F extends string, E extends string, T extends string> = T extends `${string}${F}${infer Rest}` ? {
     [P in Trim<GetVarParameter<Rest, E>>]: string | number;
 } & (Rest extends `${GetVarParameter<Rest, E>}${infer Next}` ? VarParameters<F, E, Next> : unknown) : EmptyObject;
+/**
+ * 出現字串提示，但不會強制規範文字類型
+ * @example
+ * const text: WeakString<'hello'> = 'hello'
+ * const text2: WeakString<'hello'> = 'hello2'
+ */
+export type LooseString<T extends string> = T | (string & NonNullable<unknown>);
 export {};

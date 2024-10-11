@@ -54,13 +54,13 @@ describe('Schedule', () => {
     it('run test', async function() {
         let flag = false
         let schedule = new Schedule()
-        schedule.add('test', 200, async() => {
+        schedule.add('test', 500, async() => {
             flag = true
         })
         schedule.run('test')
-        await sleep(50)
+        await sleep(200)
         schedule.close()
-        expect(flag).to.equal(false)
+        expect(flag).to.equal(true)
     })
     it('wait', async function() {
         let count = 0
