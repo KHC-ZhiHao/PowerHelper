@@ -24,6 +24,7 @@ export class Exception extends Event<Events> {
         defaultError: () => 'Error!',
         parseMessage: (error) => error
     }
+
     constructor(serviceName: string, options?: Partial<Options>) {
         super()
         this.serviceName = serviceName

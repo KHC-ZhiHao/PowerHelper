@@ -56,9 +56,9 @@ export const text = {
         T extends string
     >({ start, end, text, vars, defaultVar }: {
         /** 變數起始符號 */
-        start: S extends '' ? never : S extends Whitespace ? never : S,
+        start: S extends '' ? never : S extends Whitespace ? never : S
         /** 變數終止符號 */
-        end: E extends '' ? never : E extends Whitespace ? never : E,
+        end: E extends '' ? never : E extends Whitespace ? never : E
         /** 複寫文本 */
         text: T
         /** 複寫變數 */
@@ -78,7 +78,7 @@ export const text = {
                     let isEnd = text.slice(i, i + end.length) === end
                     if (isEnd) {
                         i += end.length - 1
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
                         // @ts-ignore
                         let data = vars ? vars[varKey.trim()]?.toString() : null
                         if (data) {

@@ -1,5 +1,3 @@
-/* eslint-disable no-redeclare */
-
 export { text } from './utils/text'
 export { json } from './utils/json'
 export { flow } from './utils/flow'
@@ -47,9 +45,3 @@ export type * as TRecord from './types/record'
 export type * as TString from './types/string'
 
 export { PowerHelper } from './powerhelper'
-import { PowerHelper } from './powerhelper'
-
-module.exports = PowerHelper
-module.exports.PowerHelper = PowerHelper
-
-export default PowerHelper

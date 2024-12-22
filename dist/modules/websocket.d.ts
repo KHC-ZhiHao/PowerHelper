@@ -38,7 +38,7 @@ export declare class WebSocketClient<P extends Pub, S> extends Event<S & Events>
     private fail;
     private get connected();
     private createWebsocket;
-    getStatus(): "wait" | "connecting" | "open" | "closeing" | "closed" | undefined;
+    getStatus(): "closed" | "connecting" | "open" | "wait" | "closeing" | undefined;
     send<K extends keyof P>(channel: K, data: P[K]): Promise<void>;
     connect(): Promise<unknown>;
     disconnect(): void;

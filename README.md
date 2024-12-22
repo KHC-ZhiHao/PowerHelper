@@ -230,3 +230,7 @@ Types 只是一種開發 module 時順手的包裝，想要更強大的表達式
 
 * CacheLite - expTime 參數改為 ttl。
 * Cache - keepAlive 參數改為 ttl。
+
+#### 0.8.0
+
+改用 Es Module 的引入方式。

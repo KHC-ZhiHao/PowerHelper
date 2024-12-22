@@ -37,6 +37,7 @@ export class Asset<T extends AssetParams> {
             this.loaded = true
         }
     })
+
     loaded = false
     params: T
     constructor(params: T) {

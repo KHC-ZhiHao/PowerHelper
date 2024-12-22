@@ -68,9 +68,9 @@ export declare const PowerHelper: {
         findMatchOrLast: <T_5 extends string>(target: string, keys: T_5[]) => T_5;
     };
     pick: {
-        ifBad: <T_6>(data: T_6 | Error | null | undefined, def: T_6) => T_6 | Error | null | undefined;
+        ifBad: <T_6>(data: Error | T_6 | null | undefined, def: T_6) => Error | T_6 | null | undefined;
         ifEmpty: <T_7>(data: T_7 | null | undefined, def: T_7) => T_7;
-        getType: (target: any) => "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "empty" | "array" | "NaN" | "regexp" | "promise" | "buffer" | "error";
+        getType: (target: any) => "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "buffer" | "error" | "promise" | "empty" | "array" | "NaN" | "regexp";
         peel: <T_8 extends Record<string, any> = Record<"", any>, C extends string = "", R = import("./types/pick").PeelType<C, T_8>>(target: T_8, path: C) => C extends "" ? T_8 : R | null;
         vars: <S_1 extends string, E_1 extends string, T_9 extends string>({ start, end, text }: {
             start: S_1 extends "" ? never : S_1 extends import("./types/string").Whitespace ? never : S_1;
@@ -79,7 +79,7 @@ export declare const PowerHelper: {
         }) => (keyof import("./types/string").VarParameters<S_1, E_1, T_9> extends never ? string : keyof import("./types/string").VarParameters<S_1, E_1, T_9>)[];
     };
     calc: {
-        toMs: (unit: "y" | "d" | "h" | "m" | "s", value: number) => number;
+        toMs: (unit: "s" | "y" | "d" | "h" | "m", value: number) => number;
     };
     array: {
         groups: <T_10>(size: number, items: T_10[]) => T_10[][];

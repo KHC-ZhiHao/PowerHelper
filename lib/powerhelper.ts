@@ -1,5 +1,3 @@
-/* eslint-disable no-redeclare */
-
 import { flow } from './utils/flow'
 import { json } from './utils/json'
 import { pick } from './utils/pick'

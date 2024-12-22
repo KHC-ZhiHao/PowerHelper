@@ -9,7 +9,7 @@ export declare const pick: {
      * 值如果是 null | undefined | Error | NaN，則回傳預設值。
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifbad
      */
-    ifBad: <T>(data: T | Error | null | undefined, def: T) => T | Error | null | undefined;
+    ifBad: <T>(data: Error | T | null | undefined, def: T) => Error | T | null | undefined;
     /**
      * 值如果是 null | undefined，則回傳預設值。
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty

@@ -17,6 +17,7 @@ export class PreloadPort<I, O> {
             ttl: params.ttl || Infinity
         })
     }
+
     create(data: I) {
         const id = flow.createUuid()
         this._cache.set(id, this._handler(data))

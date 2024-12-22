@@ -1,15 +1,14 @@
-/* eslint-disable no-undef */
 import { flow } from '../utils/flow'
 
 type EventMap<T extends MediaDevices | Element | Document | Window | Worker> =
     T extends Window ? WindowEventMap :
-    T extends Document ? DocumentEventMap :
-    T extends SVGAElement ? SVGElementEventMap :
-    T extends HTMLMediaElement ? HTMLMediaElementEventMap :
-    T extends HTMLBodyElement ? HTMLBodyElementEventMap :
-    T extends HTMLElement ? HTMLElementEventMap :
-    T extends MediaDevices ? MediaDevicesEventMap :
-    T extends Worker ? WorkerEventMap : ElementEventMap
+        T extends Document ? DocumentEventMap :
+            T extends SVGAElement ? SVGElementEventMap :
+                T extends HTMLMediaElement ? HTMLMediaElementEventMap :
+                    T extends HTMLBodyElement ? HTMLBodyElementEventMap :
+                        T extends HTMLElement ? HTMLElementEventMap :
+                            T extends MediaDevices ? MediaDevicesEventMap :
+                                T extends Worker ? WorkerEventMap : ElementEventMap
 
 /**
  * 將 element 的 addEventListener 昇華到更好操作的階段。

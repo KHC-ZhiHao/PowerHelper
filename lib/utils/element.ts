@@ -35,7 +35,6 @@ export const element = {
      * @param {HTMLElement} [target=document.body] 指定位置
      */
 
-    // eslint-disable-next-line no-undef
     createAndAppend: <T extends keyof HTMLElementTagNameMap>(
         tag: T,
         cb: (el: HTMLElementTagNameMap[T]) => any,

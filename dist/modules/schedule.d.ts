@@ -8,7 +8,7 @@ type Info = {
     executedCount: number;
 };
 type Events = {
-    'processFail': {
+    processFail: {
         processName: string;
         error: any;
     };

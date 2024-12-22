@@ -20,7 +20,7 @@ type Process = {
 }
 
 type Events = {
-    'processFail': {
+    processFail: {
         processName: string
         error: any
     }

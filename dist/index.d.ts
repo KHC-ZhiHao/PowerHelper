@@ -42,5 +42,3 @@ export type * as TPick from './types/pick';
 export type * as TRecord from './types/record';
 export type * as TString from './types/string';
 export { PowerHelper } from './powerhelper';
-import { PowerHelper } from './powerhelper';
-export default PowerHelper;

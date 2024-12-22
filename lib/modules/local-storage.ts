@@ -32,6 +32,7 @@ export class LocalStorage<T extends Record<string, any>> {
             set?: Intercept['Set']
         }
     }
+
     private storage: CusStorage
     private namespaces: string
     private interceptGet: Intercept['Get'] | null = null

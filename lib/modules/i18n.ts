@@ -44,7 +44,6 @@ export class I18n<L extends string, K extends string> extends Event<Events> {
         if (text.slice(0, 2) === '##') {
             text = text.slice(2).trim()
         } else {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             text = (this.params.locales?.[locale]?.[key] || key)
         }
@@ -94,7 +93,7 @@ export class I18n<L extends string, K extends string> extends Event<Events> {
     }
 
     /**
-     * 獲取鍵值來協助延後獲取語系 
+     * 獲取鍵值來協助延後獲取語系
      * @example
      * i18n.key('user').get('zh')
      * // output: 使用者

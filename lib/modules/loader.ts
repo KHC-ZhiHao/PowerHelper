@@ -51,18 +51,23 @@ export class Loader<T> extends Event<Events> {
     get size() {
         return this.items.length
     }
+
     get complete() {
         return this.status.complete
     }
+
     get done() {
         return this.status.isDone
     }
+
     get fail() {
         return this.status.fail as null | FailError
     }
+
     get called() {
         return this.status.isCalled
     }
+
     get loading() {
         return this.status.isLoading
     }

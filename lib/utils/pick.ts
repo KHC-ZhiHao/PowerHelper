@@ -29,19 +29,19 @@ export const pick = {
      */
     getType: (target: any):
       'string'
-    | 'number'
-    | 'bigint'
-    | 'boolean'
-    | 'symbol'
-    | 'object'
-    | 'function'
-    | 'empty'
-    | 'array'
-    | 'NaN'
-    | 'regexp'
-    | 'promise'
-    | 'buffer'
-    | 'error' => {
+      | 'number'
+      | 'bigint'
+      | 'boolean'
+      | 'symbol'
+      | 'object'
+      | 'function'
+      | 'empty'
+      | 'array'
+      | 'NaN'
+      | 'regexp'
+      | 'promise'
+      | 'buffer'
+      | 'error' => {
         let type = typeof target
         if (target == null) {
             return 'empty'
@@ -77,7 +77,7 @@ export const pick = {
     >(target: T, path: C): C extends '' ? T : (R | null) => {
         let units = (path as unknown as string).split(/[.[\]'"]/g).filter(s => s.trim() !== '')
         let output = target as any
-        // eslint-disable-next-line no-constant-condition
+
         while (true) {
             if (units.length === 0) {
                 return output
@@ -101,9 +101,9 @@ export const pick = {
         T extends string
     >({ start, end, text }: {
         /** 複寫起始符號 */
-        start: S extends '' ? never : S extends Whitespace ? never : S,
+        start: S extends '' ? never : S extends Whitespace ? never : S
         /** 複寫終止符號 */
-        end: E extends '' ? never : E extends Whitespace ? never : E,
+        end: E extends '' ? never : E extends Whitespace ? never : E
         /** 複寫文本 */
         text: T
     }): (keyof VarParameters<S, E, T> extends never ? string : keyof VarParameters<S, E, T>)[] => {
