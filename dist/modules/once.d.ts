@@ -13,7 +13,7 @@ export declare class Once<T> {
     private params;
     constructor(params: Params<T>);
     /** 執行程式 */
-    run(): Promise<unknown>;
+    run(): Promise<T>;
     /** 重置狀態 */
     reset(): void;
 }

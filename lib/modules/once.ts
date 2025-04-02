@@ -21,13 +21,13 @@ export class Once<T> {
 
     /** 執行程式 */
 
-    async run() {
+    async run(): Promise<T> {
         return new Promise((resolve, reject) => {
             const action = () => {
                 if (this.isError) {
                     reject(this.response)
                 } else {
-                    resolve(this.response)
+                    resolve(this.response!)
                 }
             }
             if (this.isDone) {
