@@ -45,4 +45,22 @@ export declare const text: {
      * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast
      */
     findMatchOrLast: <T_1 extends string>(target: string, keys: T_1[]) => T_1;
+    /**
+     * 只提取指定標籤中的內容。
+     * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#pickintagcontents
+     */
+    pickInTagContents: (params: {
+        text: string;
+        start: string;
+        end: string;
+    }) => string[];
+    /**
+     * 只刪除指定標籤中的內容。
+     * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#removeintagcontents
+     */
+    removeInTagContents(params: {
+        text: string;
+        start: string;
+        end: string;
+    }): string;
 };

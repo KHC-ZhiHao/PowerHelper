@@ -1,7 +1,16 @@
 import { expect } from 'chai'
 import { text } from './text'
 
-const { byteLength, replaceVar, headMatch, lastMatch, format, findMatchOrLast } = text
+const {
+    byteLength,
+    replaceVar,
+    headMatch,
+    lastMatch,
+    format,
+    findMatchOrLast,
+    pickInTagContents,
+    removeInTagContents
+} = text
 
 describe('String', () => {
     it('headMatch', async function() {
@@ -39,6 +48,37 @@ describe('String', () => {
         expect(findMatchOrLast('helloo', ['hello', 'world', 'dave'])).to.equal('dave')
         expect(findMatchOrLast('world', ['hello', 'world', 'dave'])).to.equal('world')
         expect(findMatchOrLast('helloo', [])).to.equal(null)
+    })
+    it('pickInTagContents', async function() {
+        const targetContent = '這是[測試]的[內容]，這是[測試]的[內容]'
+        pickInTagContents({
+            text: targetContent,
+            start: '[',
+            end: ']'
+        }).forEach((item, index) => {
+            expect(item).to.equal(targetContent.split('[')[index + 1].split(']')[0])
+        })
+        const result = pickInTagContents({
+            text: targetContent,
+            start: '',
+            end: ''
+        })
+        expect(result).to.deep.equal([])
+    })
+    it('removeInTagContents', async function() {
+        const targetContent = '這是[測試]的[內容]，這是[測試]的[內容]'
+        const result = removeInTagContents({
+            text: targetContent,
+            start: '[',
+            end: ']'
+        })
+        expect(result).to.equal('這是的，這是的')
+        const result2 = removeInTagContents({
+            text: targetContent,
+            start: '',
+            end: ''
+        })
+        expect(result2).to.equal(targetContent)
     })
     it('replaceVar', async function() {
         let result = replaceVar({
@@ -123,7 +163,7 @@ describe('String', () => {
             text: '我是{狗}',
             // @ts-ignore
             vars: {
-                '狗': 0
+                狗: 0
             }
         })
         expect(result9).to.equal('我是0')

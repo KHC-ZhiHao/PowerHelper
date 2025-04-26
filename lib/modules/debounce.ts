@@ -18,11 +18,6 @@ type Channels<T> = {
     }
 }
 
-/**
- * 去抖動功能，當觸發事件後會搜集結果並延遲事件發生，避免頻繁發出請求
- * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/debounce.md
- */
-
 class DebounceUnit extends Event<Channels<any> & { close: Record<string, unknown> }> {
     isDone = false
     params: Params
@@ -76,6 +71,11 @@ class DebounceUnit extends Event<Channels<any> & { close: Record<string, unknown
         }
     }
 }
+
+/**
+ * 去抖動功能，當觸發事件後會搜集結果並延遲事件發生，避免頻繁發出請求
+ * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/debounce.md
+ */
 
 export class Debounce<T> extends Event<Channels<T>> {
     private unit: DebounceUnit | null = null

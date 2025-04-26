@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "downlevelIteration": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
@@ -14,6 +14,6 @@
     ]
   },
   "include": [
-    "lib/*.ts"
+    "lib/**/*.ts"
   ]
 }

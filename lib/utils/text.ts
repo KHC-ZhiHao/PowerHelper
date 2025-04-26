@@ -139,5 +139,114 @@ export const text = {
             }
         }
         return keys[keys.length - 1] || null as any
+    },
+
+    /**
+     * 只提取指定標籤中的內容。
+     * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#pickintagcontents
+     */
+
+    pickInTagContents: (params: {
+        text: string
+        start: string
+        end: string
+    }): string[] => {
+        const result: string[] = []
+        const { text, start, end } = params
+        if (!start || !end) {
+            return result
+        }
+
+        const contentLength = text.length
+        const startLength = start.length
+        const endLength = end.length
+        const matchAt = (str: string, index: number, pattern: string): boolean => {
+            if (index + pattern.length > str.length) {
+                return false
+            }
+            for (let j = 0; j < pattern.length; j++) {
+                if (str[index + j] !== pattern[j]) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        let i = 0
+        let buffer = ''
+        let capturing = false
+
+        while (i < contentLength) {
+            if (!capturing) {
+                if (matchAt(text, i, start)) {
+                    i += startLength
+                    capturing = true
+                    buffer = ''
+                    continue
+                }
+                i++
+            } else {
+                if (matchAt(text, i, end)) {
+                    result.push(buffer)
+                    i += endLength
+                    capturing = false
+                    continue
+                }
+                buffer += text[i]
+                i++
+            }
+        }
+        return result
+    },
+
+    /**
+     * 只刪除指定標籤中的內容。
+     * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#removeintagcontents
+     */
+
+    removeInTagContents(params: {
+        text: string
+        start: string
+        end: string
+    }): string {
+        const { text, start, end } = params
+        if (!start || !end) return text
+
+        const contentLength = text.length
+        const startLength = start.length
+        const endLength = end.length
+        const matchAt = (str: string, index: number, pattern: string): boolean => {
+            if (index + pattern.length > str.length) return false
+            for (let j = 0; j < pattern.length; j++) {
+                if (str[index + j] !== pattern[j]) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        let result = ''
+        let i = 0
+        let skipping = false
+
+        while (i < contentLength) {
+            if (!skipping) {
+                if (matchAt(text, i, start)) {
+                    skipping = true
+                    i += startLength
+                    continue
+                }
+                result += text[i]
+                i++
+            } else {
+                if (matchAt(text, i, end)) {
+                    skipping = false
+                    i += endLength
+                    continue
+                }
+                i++
+            }
+        }
+        return result
     }
 }

@@ -103,7 +103,9 @@ PowerHelper 分成三個區塊，相關敘述如下：
 * [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - 獲取指定 Text 的 Byte 長度。
 * [replaceVar](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar) - 複寫 Text 的指定變數。
 * [format](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format) - 轉換 Text 轉換成指定格式，填入 v 代表映射的值。
-* [findMatchOrLast](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast) - 將指定文字限縮指定字組中，如果都不符合則返回最後一個字組。。
+* [findMatchOrLast](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast) - 將指定文字限縮指定字組中，如果都不符合則返回最後一個字組。
+* [pickInTagContents](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#pickintagcontents) - 只提取文本中指定 Tag 的內容。
+* [removeInTagContents](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#removeintagcontents) - 只刪除文本中指定 Tag 的內容。
 
 [pick](./lib/utils/pick.md) - 精準地提取目標相關資源。
 
@@ -213,7 +215,7 @@ Types 只是一種開發 module 時順手的包裝，想要更強大的表達式
 
 [ts-essentials](https://github.com/krzkaczor/ts-essentials)
 
-### Veriosns
+### Versions
 
 #### 0.6.0
 

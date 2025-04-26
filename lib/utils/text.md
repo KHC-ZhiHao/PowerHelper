@@ -87,7 +87,7 @@ function(params: {
     /** 複寫變數 */
     vars: Record<string, string | number>
     /** 如果找不到對應資料的預設值 */
-    dafaultVar?: string
+    defaultVar?: string
 }): string
 ```
 
@@ -102,7 +102,7 @@ const result = text.replaceVar({
         name: 'dave',
         job: 'rd'
     },
-    dafaultVar: '-'
+    defaultVar: '-'
 })
 console.log(result)
 /*
@@ -152,5 +152,71 @@ const result = text.findMatchOrLast('hello', ['dave', 'james', 'sam']))
 console.log(result)
 /*
     outputs: 'sam'
+*/
+```
+
+---
+
+### pickInTagContents
+
+只提取文本中指定 Tag 的內容。
+
+```ts
+function(params: {
+    /** 目標文本 */
+    text: string
+    /** 開始 Tag */
+    start: string
+    /** 結束 Tag */
+    end: string
+}): string[]
+```
+
+#### example
+
+```ts
+const result = text.pickInTagContents({
+    text: '<think>Hello</think> I am PowerHelper <think>World</think>',
+    start: '<test>',
+    end: '</test>'
+})
+console.log(result)
+/*
+    outputs:
+    [
+        'Hello',
+        'World'
+    ]
+*/
+```
+
+---
+
+### removeInTagContents
+
+只刪除文本中指定 Tag 的內容。
+
+```ts
+function(params: {
+    /** 目標文本 */
+    text: string
+    /** 開始 Tag */
+    start: string
+    /** 結束 Tag */
+    end: string
+}): string
+```
+
+#### example
+
+```ts
+const result = text.removeInTagContents({
+    text: '<think>Hello</think> I am PowerHelper <think>World</think>',
+    start: '<test>',
+    end: '</test>'
+})
+console.log(result)
+/*
+    outputs: ' I am PowerHelper '
 */
 ```

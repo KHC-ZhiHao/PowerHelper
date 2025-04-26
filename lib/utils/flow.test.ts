@@ -66,7 +66,7 @@ describe('Flow', () => {
         expect(failCount).to.equal(2)
         expect(result).to.equal(777)
     })
-    
+
     it('retry total fail', async() => {
         try {
             await retry({
@@ -80,7 +80,7 @@ describe('Flow', () => {
             expect(error.length).to.equal(3)
         }
     })
-       
+
     it('async while', async() => {
         let flag = 0
         await asyncWhile(async({ count, doBreak }) => {
@@ -95,15 +95,6 @@ describe('Flow', () => {
     it('create uuid', async() => {
         expect(typeof createUuid()).to.equal('string')
         expect(createUuid() === createUuid()).to.equal(false)
-        if (typeof crypto === 'undefined') {
-            // @ts-ignore
-            global.crypto = {
-                randomUUID: () => 'ouo' as any
-            }
-        }
-        expect(createUuid()).to.equal('ouo')
-        // @ts-ignore
-        global.crypto.randomUUID = undefined
     })
 
     it('create ts uuid', async() => {

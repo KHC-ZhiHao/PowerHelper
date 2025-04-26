@@ -66,6 +66,16 @@ export declare const PowerHelper: {
         }) => string;
         format: (format: string, text: string, def?: string) => string;
         findMatchOrLast: <T_5 extends string>(target: string, keys: T_5[]) => T_5;
+        pickInTagContents: (params: {
+            text: string;
+            start: string;
+            end: string;
+        }) => string[];
+        removeInTagContents(params: {
+            text: string;
+            start: string;
+            end: string;
+        }): string;
     };
     pick: {
         ifBad: <T_6>(data: Error | T_6 | null | undefined, def: T_6) => Error | T_6 | null | undefined;

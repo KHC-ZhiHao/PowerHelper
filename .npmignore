@@ -5,3 +5,6 @@ todo
 *.md
 logo.ai
 logo.png
+coverage
+.github
+node_modules
