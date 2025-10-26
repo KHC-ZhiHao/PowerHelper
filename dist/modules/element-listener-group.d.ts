@@ -1,10 +1,10 @@
-type EventMap<T extends MediaDevices | Element | Document | Window | Worker> = T extends Window ? WindowEventMap : T extends Document ? DocumentEventMap : T extends SVGAElement ? SVGElementEventMap : T extends HTMLMediaElement ? HTMLMediaElementEventMap : T extends HTMLBodyElement ? HTMLBodyElementEventMap : T extends HTMLElement ? HTMLElementEventMap : T extends MediaDevices ? MediaDevicesEventMap : T extends Worker ? WorkerEventMap : ElementEventMap;
+type EventMap<T extends MediaDevices | Element | Document | Window | Worker | MessagePort> = T extends Window ? WindowEventMap : T extends Document ? DocumentEventMap : T extends SVGAElement ? SVGElementEventMap : T extends HTMLMediaElement ? HTMLMediaElementEventMap : T extends HTMLBodyElement ? HTMLBodyElementEventMap : T extends HTMLElement ? HTMLElementEventMap : T extends MediaDevices ? MediaDevicesEventMap : T extends Worker ? WorkerEventMap : T extends MessagePort ? MessagePortEventMap : ElementEventMap;
 /**
  * 將 element 的 addEventListener 昇華到更好操作的階段。
  * @BrowserOnly
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/element-listener-group.md
  */
-export declare class ElementListenerGroup<T extends Element | Document | Window | Worker | MediaDevices> {
+export declare class ElementListenerGroup<T extends Element | Document | Window | Worker | MediaDevices | MessagePort> {
     private elements;
     private listeners;
     constructor(element?: T);
