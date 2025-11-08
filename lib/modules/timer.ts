@@ -1,4 +1,4 @@
-import { Ticker } from './ticker'
+import { Ticker } from './ticker.js'
 
 /**
  * 一組計時器，可以正向也可以反向計時。

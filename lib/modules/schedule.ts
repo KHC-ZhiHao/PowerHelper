@@ -1,5 +1,5 @@
-import { Event } from './event'
-import { devError } from '../base'
+import { Event } from './event.js'
+import { devError } from '../base.js'
 
 type Info = {
     /** 程序名稱 */

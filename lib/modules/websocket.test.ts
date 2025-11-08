@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { WebSocketClient } from './websocket'
+import { WebSocketClient } from './websocket.js'
 
 class FakeSocket {
     state = 1
@@ -8,24 +8,31 @@ class FakeSocket {
             this.onopen()
         }, 10)
     }
+
     get readyState() {
         return this.state
     }
+
     send() {
         return null
     }
+
     close() {
         this.onclose()
     }
+
     onmessage() {
         return null
     }
+
     onerror() {
         return null
     }
+
     onopen() {
         return null
     }
+
     onclose() {
         return null
     }
@@ -38,6 +45,7 @@ class FakeSocketError {
             this.onerror('123')
         }, 10)
     }
+
     onerror() {
         return null
     }
@@ -78,7 +86,7 @@ describe('Time', () => {
         ws._websocket.state = 3
         expect(ws.getStatus()).to.equal('closed')
     })
-    
+
     it('fail', function(done) {
         let ws = new WebSocketClient({
             url: () => '123',
@@ -95,7 +103,7 @@ describe('Time', () => {
         })
         ws.send('123', {})
     })
-    
+
     it('close', async function() {
         let flag = false
         let ws = new WebSocketClient({
@@ -114,7 +122,7 @@ describe('Time', () => {
         ws.disconnect()
         expect(flag).to.equal(true)
     })
-        
+
     it('onmessage', function(done) {
         let ws = new WebSocketClient({
             url: () => '123',
@@ -132,7 +140,7 @@ describe('Time', () => {
             ws._websocket.onmessage('123' as any)
         })
     })
-     
+
     it('onmessage error', function(done) {
         let ws = new WebSocketClient({
             url: () => '123',
@@ -155,7 +163,7 @@ describe('Time', () => {
             ws._websocket.onmessage('123' as any)
         })
     })
-      
+
     it('onmessage error', function(done) {
         let ws = new WebSocketClient({
             url: () => '123',
@@ -173,7 +181,7 @@ describe('Time', () => {
             ws._websocket.onerror('123' as any)
         })
     })
-          
+
     it('onmessage error2', function(done) {
         let ws = new WebSocketClient({
             url: () => '123',

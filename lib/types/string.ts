@@ -10,18 +10,18 @@ type RemoveTail<S extends string, Tail extends string> = S extends `${infer P}${
 export type Whitespace = ' ' | '  ' | '    ' | '     ' | '      ' | '\n' | '\t'
 
 type TrimStart<T extends string> = T extends `${infer rest}${
-    | ' '
-    | '\n'
-    | '\t'}`
+| ' '
+| '\n'
+| '\t'}`
     ? TrimStart<rest>
-    : T;
+    : T
 
 type TrimEnd<T extends string> = T extends `${
-    | ' '
-    | '\n'
-    | '\t'}${infer rest}`
+| ' '
+| '\n'
+| '\t'}${infer rest}`
     ? TrimEnd<rest>
-    : T;
+    : T
 
 /**
  * 移除前後的空白字組
@@ -52,10 +52,10 @@ type GetRouteParameter<S extends string> = RemoveTail<
 export type RouteParameters<Route extends string, ST = string> = Route extends `${string}:${infer Rest}`
     ? (
         GetRouteParameter<Rest> extends never
-        ? null
-        : GetRouteParameter<Rest> extends `${infer ParamName}?`
-        ? { [P in ParamName]?: ST }
-        : { [P in GetRouteParameter<Rest>]: ST }
+            ? null
+            : GetRouteParameter<Rest> extends `${infer ParamName}?`
+                ? { [P in ParamName]?: ST }
+                : { [P in GetRouteParameter<Rest>]: ST }
     ) &
     (Rest extends `${GetRouteParameter<Rest>}${infer Next}`
         ? RouteParameters<Next> : unknown)
@@ -103,9 +103,9 @@ export type VarParameters<
     F extends string,
     E extends string,
     T extends string
-    > = T extends `${string}${F}${infer Rest}` ? {
-        [P in Trim<GetVarParameter<Rest, E>>]: string | number
-    } & (
+> = T extends `${string}${F}${infer Rest}` ? {
+    [P in Trim<GetVarParameter<Rest, E>>]: string | number
+} & (
         Rest extends `${GetVarParameter<Rest, E>}${infer Next}` ? VarParameters<F, E, Next> : unknown
     ) : EmptyObject
 

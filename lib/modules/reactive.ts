@@ -1,5 +1,5 @@
-import { Event } from './event'
-import { Schedule } from './schedule'
+import { Event } from './event.js'
+import { Schedule } from './schedule.js'
 
 type Events<S> = {
     actionBefore: ActionContext<S>

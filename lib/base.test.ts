@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { devError } from './base'
+import { devError } from './base.js'
 
 describe('Base', () => {
     it('base', function(done) {
         try {
             devError('123', '456')
-        } catch(e) {
+        } catch (e) {
             let meg = (e as any).message as string
             expect(!!meg.match('456')).to.equal(true)
             done()

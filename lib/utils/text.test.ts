@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { text } from './text'
+import { text } from './text.js'
 
 const {
     byteLength,

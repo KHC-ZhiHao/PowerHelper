@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { Event } from './event.js';
 type Params = {
     /** 等待超時時間，單位:毫秒 */
     delay?: number;

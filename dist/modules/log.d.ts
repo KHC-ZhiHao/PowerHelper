@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { Event } from './event.js';
 type Color = 'default' | 'black' | 'red' | 'green' | 'yellow' | 'blue' | 'cyan' | 'white';
 type LogType = 'normal' | 'dev' | 'super-error' | 'error' | 'warning' | 'fixme' | 'todo';
 type Events = {

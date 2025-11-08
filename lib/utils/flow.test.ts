@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { flow } from './flow'
+import { flow } from './flow.js'
 
 const { run, randomInt, sleep, retry, asyncWhile, createUuid, createWithTsUuid } = flow
 

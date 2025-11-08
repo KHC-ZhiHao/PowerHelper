@@ -28,7 +28,7 @@ export type PickByTypeStrict<U, T> = Pick<T, KeysOfTypeStrict<T, U>>
 export type PromiseResponseType<
     T extends (...args: any) => Promise<any>,
     R = Parameters<ReturnType<T>['then']>[0]
-> =  R extends (value: infer P) => any ? P : never
+> = R extends (value: infer P) => any ? P : never
 
 /**
  * 獲取 Promise 成功的值
@@ -56,8 +56,8 @@ export type ObjectPath<
     K = keyof T
 > = K extends string ? (
     T[K] extends Record<string, any> ?
-    ObjectPath<T[K], N extends '' ? K : `${N}.${K}`> :
-    N extends '' ? K : `${N}.${K}`
+        ObjectPath<T[K], N extends '' ? K : `${N}.${K}`> :
+        N extends '' ? K : `${N}.${K}`
 ) | (N extends '' ? '' : N) : string
 
 /**

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { PromiseOverlap } from './promise-overlap'
+import { PromiseOverlap } from './promise-overlap.js'
 
 describe('PromiseOverlap', () => {
     it('first', async function() {

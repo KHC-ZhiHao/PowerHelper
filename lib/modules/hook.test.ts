@@ -1,4 +1,4 @@
-import { Hook } from './hook'
+import { Hook } from './hook.js'
 import { expect } from 'chai'
 
 describe('Hook', () => {

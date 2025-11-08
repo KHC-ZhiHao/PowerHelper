@@ -1,5 +1,5 @@
-import { flow } from '../utils/flow'
-import { CacheLite } from './cache-lite'
+import { flow } from '../utils/flow.js'
+import { CacheLite } from './cache-lite.js'
 /**
  * 可以預先載入資料並透過 id 傳遞給需要的對象。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/modules/preload-port.md

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Breakpoint } from './breakpoint'
+import { Breakpoint } from './breakpoint.js'
 
 describe('Breakpoint', () => {
     it('basic', function() {

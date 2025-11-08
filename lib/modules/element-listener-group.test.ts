@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { JSDOM } from 'jsdom'
-import { ElementListenerGroup } from './element-listener-group'
+import { ElementListenerGroup } from './element-listener-group.js'
 
 describe('Element Listener Group', () => {
     it('base', function() {

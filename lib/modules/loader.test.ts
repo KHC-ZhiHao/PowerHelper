@@ -1,6 +1,6 @@
-import { Loader } from './loader'
+import { Loader } from './loader.js'
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
+import { flow } from '../utils/flow.js'
 
 const { sleep } = flow
 

@@ -1,4 +1,4 @@
-import { DeepReadonly } from '../types/record';
+import { DeepReadonly } from '../types/record.js';
 type JsonObject = string | number | boolean | unknown | unknown[] | null | JsonObject[] | {
     [key: string]: JsonObject;
 };

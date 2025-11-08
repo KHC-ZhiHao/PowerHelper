@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { Event } from './event.js';
 type Events<S> = {
     actionBefore: ActionContext<S>;
     actionAfter: ActionContext<S>;

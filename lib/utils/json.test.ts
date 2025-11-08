@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { json } from './json'
+import { json } from './json.js'
 
 const { jpjs, nonStrictJSONParse, nonStrictJSONStringify } = json
 

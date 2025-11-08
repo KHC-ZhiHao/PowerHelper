@@ -1,4 +1,4 @@
-import { I18n } from './i18n'
+import { I18n } from './i18n.js'
 import { expect } from 'chai'
 
 type Locales = 'zh' | 'en'
@@ -11,9 +11,9 @@ const getI18n = () => {
     return new I18n<Locales, keyof typeof keys>({
         def: 'zh',
         locales: {
-            'zh': keys,
-            'en': {
-                name: 'Name',
+            zh: keys,
+            en: {
+                'name': 'Name',
                 'hello {Name}': 'Hello {Name}'
             }
         }

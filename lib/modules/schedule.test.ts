@@ -1,6 +1,6 @@
-import { flow } from '../utils/flow'
+import { flow } from '../utils/flow.js'
 import { expect } from 'chai'
-import { Schedule } from './schedule'
+import { Schedule } from './schedule.js'
 
 const { sleep } = flow
 

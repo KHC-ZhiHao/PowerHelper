@@ -1,5 +1,5 @@
-import { Once } from './once'
-import { record } from '../utils/record'
+import { Once } from './once.js'
+import { record } from '../utils/record.js'
 
 export type AssetParams = {
     images: {

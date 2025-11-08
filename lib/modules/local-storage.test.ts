@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
-import { LocalStorage } from './local-storage'
+import { flow } from '../utils/flow.js'
+import { LocalStorage } from './local-storage.js'
 
 const { sleep } = flow
 
@@ -40,9 +40,9 @@ describe('LocalStorage', () => {
     })
     it('default already exists', function() {
         const items: any = {
-            setItem: (key: string, value: any) => items[key] = value,
-            getItem: (key: string) => items[key],
-            removeItem: (key: string) => delete items[key],
+            'setItem': (key: string, value: any) => items[key] = value,
+            'getItem': (key: string) => items[key],
+            'removeItem': (key: string) => delete items[key],
             '_power_test/name': JSON.stringify('dev')
         }
         let localStorage = new LocalStorage('test', {

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { PreloadPort } from './preload-port'
+import { PreloadPort } from './preload-port.js'
 
 describe('PreloadPort', () => {
     it('base', async function() {

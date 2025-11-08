@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Resource } from './resource'
+import { Resource } from './resource.js'
 
 const mock = (cb: (resource: Resource<any>) => void) => {
     let bk = global.URL

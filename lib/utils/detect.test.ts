@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { detect } from './detect'
+import { detect } from './detect.js'
 
 const { inAndroid, inAppBrowser, inIOS, inMobile, inSafari } = detect
 

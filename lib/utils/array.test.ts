@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from './flow'
-import { array } from './array'
+import { flow } from './flow.js'
+import { array } from './array.js'
 
 const { sleep } = flow
 const { groups, randomPick, randomPicks, unique, asyncMap, check } = array

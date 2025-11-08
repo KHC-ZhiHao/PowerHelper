@@ -1,4 +1,4 @@
-import { DeepReadonly, Assign } from './record'
+import { DeepReadonly, Assign } from './record.js'
 
 () => {
     const deepReadonly = <T>(data: T) => data as DeepReadonly<T>

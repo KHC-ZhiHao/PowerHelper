@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { checker } from './checker'
+import { checker } from './checker.js'
 
 const { inputAccept } = checker
 

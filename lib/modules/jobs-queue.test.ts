@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
-import { JobsQueue } from './jobs-queue'
+import { flow } from '../utils/flow.js'
+import { JobsQueue } from './jobs-queue.js'
 
 const { sleep } = flow
 
@@ -159,7 +159,7 @@ describe('JobsQueue', () => {
             flag += '2'
         })
     })
-    it('stop and play' , async function() {
+    it('stop and play', async function() {
         let flag = ''
         let jq = new JobsQueue({
             autoPlay: false,

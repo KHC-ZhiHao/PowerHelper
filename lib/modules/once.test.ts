@@ -1,4 +1,4 @@
-import { Once } from './once'
+import { Once } from './once.js'
 import { expect } from 'chai'
 
 describe('Once', () => {

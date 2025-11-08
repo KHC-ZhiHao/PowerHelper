@@ -1,31 +1,31 @@
-import { Log } from './modules/log';
-import { I18n } from './modules/i18n';
-import { Hook } from './modules/hook';
-import { Once } from './modules/once';
-import { Asset } from './modules/asset';
-import { Event } from './modules/event';
-import { Cache } from './modules/cache';
-import { Timer } from './modules/timer';
-import { Loader } from './modules/loader';
-import { Ticker } from './modules/ticker';
-import { Resource } from './modules/resource';
-import { Reactive } from './modules/reactive';
-import { Schedule } from './modules/schedule';
-import { Debounce } from './modules/debounce';
-import { JobsQueue } from './modules/jobs-queue';
-import { StyleString } from './modules/style-string';
-import { LocalStorage } from './modules/local-storage';
-import { QueryCollection } from './modules/query-collection';
-import { ElementListenerGroup } from './modules/element-listener-group';
-import { WebSocketClient } from './modules/websocket';
-import { PromiseOverlap } from './modules/promise-overlap';
-import { CacheLite } from './modules/cache-lite';
-import { Breakpoint } from './modules/breakpoint';
-import { Exception } from './modules/exception';
-import { Interaction } from './modules/interaction';
-import { Pool } from './modules/pool';
-import { AsyncLocalStorage } from './modules/async-local-storage';
-import { PreloadPort } from './modules/preload-port';
+import { Log } from './modules/log.js';
+import { I18n } from './modules/i18n.js';
+import { Hook } from './modules/hook.js';
+import { Once } from './modules/once.js';
+import { Asset } from './modules/asset.js';
+import { Event } from './modules/event.js';
+import { Cache } from './modules/cache.js';
+import { Timer } from './modules/timer.js';
+import { Loader } from './modules/loader.js';
+import { Ticker } from './modules/ticker.js';
+import { Resource } from './modules/resource.js';
+import { Reactive } from './modules/reactive.js';
+import { Schedule } from './modules/schedule.js';
+import { Debounce } from './modules/debounce.js';
+import { JobsQueue } from './modules/jobs-queue.js';
+import { StyleString } from './modules/style-string.js';
+import { LocalStorage } from './modules/local-storage.js';
+import { QueryCollection } from './modules/query-collection.js';
+import { ElementListenerGroup } from './modules/element-listener-group.js';
+import { WebSocketClient } from './modules/websocket.js';
+import { PromiseOverlap } from './modules/promise-overlap.js';
+import { CacheLite } from './modules/cache-lite.js';
+import { Breakpoint } from './modules/breakpoint.js';
+import { Exception } from './modules/exception.js';
+import { Interaction } from './modules/interaction.js';
+import { Pool } from './modules/pool.js';
+import { AsyncLocalStorage } from './modules/async-local-storage.js';
+import { PreloadPort } from './modules/preload-port.js';
 export declare const PowerHelper: {
     flow: {
         run: <T extends () => any>(cb: T) => ReturnType<T>;
@@ -58,10 +58,10 @@ export declare const PowerHelper: {
         lastMatch: (text: string, match: string) => boolean;
         byteLength: (text: string) => number;
         replaceVar: <S extends string, E extends string, T_4 extends string>({ start, end, text, vars, defaultVar }: {
-            start: S extends "" ? never : S extends import("./types/string").Whitespace ? never : S;
-            end: E extends "" ? never : E extends import("./types/string").Whitespace ? never : E;
+            start: S extends "" ? never : S extends import("./types/string.js").Whitespace ? never : S;
+            end: E extends "" ? never : E extends import("./types/string.js").Whitespace ? never : E;
             text: T_4;
-            vars: Partial<import("./types/string").VarParameters<S, E, T_4>>;
+            vars: Partial<import("./types/string.js").VarParameters<S, E, T_4>>;
             defaultVar?: string | undefined;
         }) => string;
         format: (format: string, text: string, def?: string) => string;
@@ -81,12 +81,12 @@ export declare const PowerHelper: {
         ifBad: <T_6>(data: Error | T_6 | null | undefined, def: T_6) => Error | T_6 | null | undefined;
         ifEmpty: <T_7>(data: T_7 | null | undefined, def: T_7) => T_7;
         getType: (target: any) => "string" | "number" | "bigint" | "boolean" | "symbol" | "object" | "function" | "buffer" | "error" | "promise" | "empty" | "array" | "NaN" | "regexp";
-        peel: <T_8 extends Record<string, any> = Record<"", any>, C extends string = "", R = import("./types/pick").PeelType<C, T_8>>(target: T_8, path: C) => C extends "" ? T_8 : R | null;
+        peel: <T_8 extends Record<string, any> = Record<"", any>, C extends string = "", R = import("./types/pick.js").PeelType<C, T_8>>(target: T_8, path: C) => C extends "" ? T_8 : R | null;
         vars: <S_1 extends string, E_1 extends string, T_9 extends string>({ start, end, text }: {
-            start: S_1 extends "" ? never : S_1 extends import("./types/string").Whitespace ? never : S_1;
-            end: E_1 extends "" ? never : E_1 extends import("./types/string").Whitespace ? never : E_1;
+            start: S_1 extends "" ? never : S_1 extends import("./types/string.js").Whitespace ? never : S_1;
+            end: E_1 extends "" ? never : E_1 extends import("./types/string.js").Whitespace ? never : E_1;
             text: T_9;
-        }) => (keyof import("./types/string").VarParameters<S_1, E_1, T_9> extends never ? string : keyof import("./types/string").VarParameters<S_1, E_1, T_9>)[];
+        }) => (keyof import("./types/string.js").VarParameters<S_1, E_1, T_9> extends never ? string : keyof import("./types/string.js").VarParameters<S_1, E_1, T_9>)[];
     };
     calc: {
         toMs: (unit: "s" | "y" | "d" | "h" | "m", value: number) => number;
@@ -105,7 +105,7 @@ export declare const PowerHelper: {
         } | undefined) => T_16;
         createStrictObject: <T_17 extends {
             [key: string]: [StringConstructor | BooleanConstructor | NumberConstructor, boolean, unknown, any?];
-        }>(envs: T_17) => import("./types/record").DeepReadonly<{ [key in keyof T_17]: T_17[key][0] extends StringConstructor ? string : T_17[key][0] extends NumberConstructor ? number : T_17[key][0] extends BooleanConstructor ? boolean : unknown; }>;
+        }>(envs: T_17) => import("./types/record.js").DeepReadonly<{ [key in keyof T_17]: T_17[key][0] extends StringConstructor ? string : T_17[key][0] extends NumberConstructor ? number : T_17[key][0] extends BooleanConstructor ? boolean : unknown; }>;
         omit: <D extends object, T_18 extends (keyof D)[]>(data: D, keys: T_18) => Omit<D, T_18[0]>;
         promiseAllWithKeys: <T_19 extends Record<string, Promise<any>>>(obj: T_19) => Promise<{ [K in keyof T_19]: T_19[K] extends Promise<infer U> ? U : never; }>;
         simpleCheckDeepDiff: <T_20 extends Record<string, any>>(a: T_20, b: T_20) => boolean;

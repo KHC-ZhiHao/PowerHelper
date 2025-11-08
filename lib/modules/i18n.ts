@@ -1,6 +1,6 @@
-import { Event } from './event'
-import { text } from '../utils/text'
-import { VarParameters } from '../types/string'
+import { Event } from './event.js'
+import { text } from '../utils/text.js'
+import { VarParameters } from '../types/string.js'
 
 const { replaceVar } = text
 

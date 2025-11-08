@@ -1,4 +1,4 @@
-import { Once } from './once';
+import { Once } from './once.js';
 export type AssetParams = {
     images: {
         [key: string]: string | (() => Promise<HTMLImageElement>);

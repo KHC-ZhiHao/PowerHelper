@@ -1,6 +1,6 @@
-import { flow } from '../utils/flow'
+import { flow } from '../utils/flow.js'
 import { expect } from 'chai'
-import { QueryCollection } from './query-collection'
+import { QueryCollection } from './query-collection.js'
 
 describe('Log', () => {
     it('base', async function() {

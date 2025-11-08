@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { element } from './element'
+import { element } from './element.js'
 
 const { importScript, importCss, createAndAppend } = element
 

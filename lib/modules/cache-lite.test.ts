@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
-import { CacheLite } from './cache-lite'
+import { flow } from '../utils/flow.js'
+import { CacheLite } from './cache-lite.js'
 
 describe('CacheLite', () => {
     it('basic', async function() {

@@ -1,4 +1,4 @@
-import { DateFormat, HHMMSSFormat, HourFormat, IosDateFormat, MonthFormat, MsFormat, YYYYMMDDFormat, YearFormat } from './date'
+import { DateFormat, HHMMSSFormat, HourFormat, IosDateFormat, MonthFormat, MsFormat, YYYYMMDDFormat, YearFormat } from './date.js'
 
 (): DateFormat => '01';
 (): HHMMSSFormat => '01:00:00';
@@ -7,4 +7,4 @@ import { DateFormat, HHMMSSFormat, HourFormat, IosDateFormat, MonthFormat, MsFor
 (): MonthFormat => '11';
 (): MsFormat => '11';
 (): YYYYMMDDFormat => '2021-11-11';
-(): YearFormat => '2021';
+(): YearFormat => '2021'

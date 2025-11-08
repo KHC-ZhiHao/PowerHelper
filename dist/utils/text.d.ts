@@ -1,4 +1,4 @@
-import { Whitespace, VarParameters } from '../types/string';
+import { Whitespace, VarParameters } from '../types/string.js';
 /**
  * 字串相關的處理。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md

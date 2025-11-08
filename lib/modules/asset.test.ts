@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Asset } from './asset'
+import { Asset } from './asset.js'
 
 // @ts-ignore
 global.Image = class Image {

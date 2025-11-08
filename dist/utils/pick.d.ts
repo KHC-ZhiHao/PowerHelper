@@ -1,5 +1,5 @@
-import { Whitespace, VarParameters } from '../types/string';
-import { PeelType } from '../types/pick';
+import { Whitespace, VarParameters } from '../types/string.js';
+import { PeelType } from '../types/pick.js';
 /**
  * 精準地提取目標相關資源。
  * @see https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md

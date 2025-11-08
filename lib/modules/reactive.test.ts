@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { Reactive } from './reactive'
-import { flow } from '../utils/flow'
+import { Reactive } from './reactive.js'
+import { flow } from '../utils/flow.js'
 
 const { sleep } = flow
 
@@ -89,7 +89,6 @@ describe('Reactive', () => {
                 expect(newKey).to.equal('123ouo')
                 expect(oldKey).to.equal(null)
                 close()
-                
             },
             observable: async(state) => {
                 return state.name + 'ouo'

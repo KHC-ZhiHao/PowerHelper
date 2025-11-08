@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { pick } from './pick'
+import { pick } from './pick.js'
 
 const { peel, ifEmpty, ifBad, getType, vars } = pick
 
@@ -56,7 +56,7 @@ describe('Pick', () => {
             start: '{',
             end: '}',
             text: '你好我是 {name}，目前是 {job}。'
-        })        
+        })
         expect(result[0]).to.equal('name')
         expect(result[1]).to.equal('job')
     })
@@ -65,7 +65,7 @@ describe('Pick', () => {
             start: '{',
             end: '}',
             text: '你好我是。'
-        })        
+        })
         expect(result[0]).to.equal(undefined)
     })
 })

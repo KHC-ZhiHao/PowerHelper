@@ -1,4 +1,4 @@
-import { flow } from '../utils/flow'
+import { flow } from '../utils/flow.js'
 
 type EventMap<T extends MediaDevices | Element | Document | Window | Worker | MessagePort> =
     T extends Window ? WindowEventMap :

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
-import { Debounce } from './debounce'
+import { flow } from '../utils/flow.js'
+import { Debounce } from './debounce.js'
 
 const { sleep } = flow
 

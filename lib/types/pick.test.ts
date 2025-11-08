@@ -1,4 +1,4 @@
-import { PickByTypeStrict, PromiseResponseType, PromiseType } from './pick'
+import { PickByTypeStrict, PromiseResponseType, PromiseType } from './pick.js'
 
 () => {
     const data = {

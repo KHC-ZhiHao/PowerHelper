@@ -1,4 +1,3 @@
-
 type DeepReadonlyArray<T> = ReadonlyArray<DeepReadonly<T>>
 
 type DeepReadonlyObject<T> = {
@@ -7,9 +6,8 @@ type DeepReadonlyObject<T> = {
 
 export type DeepReadonly<T> =
     T extends (infer R)[] ? DeepReadonlyArray<R> :
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    T extends Function ? T :
-    T extends object ? DeepReadonlyObject<T> :
-    T
+        T extends Function ? T :
+            T extends object ? DeepReadonlyObject<T> :
+                T
 
 export type Assign<T, R> = Omit<(T & R), keyof R> & R

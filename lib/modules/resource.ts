@@ -1,6 +1,6 @@
-import { Event } from './event'
-import { text } from '../utils/text'
-import { StyleString } from './style-string'
+import { Event } from './event.js'
+import { text } from '../utils/text.js'
+import { StyleString } from './style-string.js'
 
 type Items = Record<string, (data: any) => string>
 

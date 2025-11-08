@@ -1,5 +1,5 @@
-import { Event } from './event';
-import { VarParameters } from '../types/string';
+import { Event } from './event.js';
+import { VarParameters } from '../types/string.js';
 type Params<L extends string, K extends string> = {
     def: L;
     locales: {

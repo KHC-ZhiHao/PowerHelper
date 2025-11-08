@@ -1,5 +1,5 @@
-import { Event } from './event'
-import { DeepReadonly } from '../types/record'
+import { Event } from './event.js'
+import { DeepReadonly } from '../types/record.js'
 
 type StepTypes = 'step' | 'wrong' | 'notify' | 'fail'
 type StepLevel = 'info' | 'warning' | 'danger' | 'success'

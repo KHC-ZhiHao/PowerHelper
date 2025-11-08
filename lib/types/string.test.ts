@@ -1,4 +1,4 @@
-import { SqlParameters, RouteParameters, VarParameters, LooseString } from './string'
+import { SqlParameters, RouteParameters, VarParameters, LooseString } from './string.js'
 
 () => {
     const route = 'users/:user/cards/:card'

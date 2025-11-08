@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { Event } from './event.js';
 type Items = Record<string, (data: any) => string>;
 type ResourceSupport = string | File | Blob | MediaSource;
 type ResourceParams<I extends Items> = {

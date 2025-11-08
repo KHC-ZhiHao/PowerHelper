@@ -1,5 +1,5 @@
-import { Cache } from './cache'
-import { QueryCollection } from './query-collection'
+import { Cache } from './cache.js'
+import { QueryCollection } from './query-collection.js'
 
 type PoolParams<P, D> = {
     find: (_data: D, _params: P, _index: number) => boolean

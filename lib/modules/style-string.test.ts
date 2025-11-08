@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { StyleString } from './style-string'
+import { StyleString } from './style-string.js'
 
 describe('Style String', () => {
     it('base', function() {
@@ -9,8 +9,8 @@ describe('Style String', () => {
         ss.set('fontSize', '3px')
         ss.set('width', undefined, '6px')
         ss.set('height', undefined)
-        expect(ss.join()).to.equal(`text-align:left;font-size:3px;width:6px`)
-        expect(ss.join(',')).to.equal(`text-align:left,font-size:3px,width:6px`)
+        expect(ss.join()).to.equal('text-align:left;font-size:3px;width:6px')
+        expect(ss.join(',')).to.equal('text-align:left,font-size:3px,width:6px')
     })
     it('active', function() {
         let ss = new StyleString()

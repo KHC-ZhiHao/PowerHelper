@@ -1,4 +1,4 @@
-import { Event } from './event';
+import { Event } from './event.js';
 type StepTypes = 'step' | 'wrong' | 'notify' | 'fail';
 type StepLevel = 'info' | 'warning' | 'danger' | 'success';
 type Step = {

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
-import { Cache } from './cache'
+import { flow } from '../utils/flow.js'
+import { Cache } from './cache.js'
 
 const { sleep } = flow
 

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Event } from './event'
+import { Event } from './event.js'
 
 describe('Event', () => {
     it('base', function(done) {

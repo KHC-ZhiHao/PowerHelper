@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Ticker } from './ticker'
+import { Ticker } from './ticker.js'
 
 describe('Ticker', () => {
     it('base', function(done) {

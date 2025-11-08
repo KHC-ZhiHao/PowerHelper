@@ -1,6 +1,6 @@
-import { json } from './json'
-import { pick } from './pick'
-import { DeepReadonly } from '../types/record'
+import { json } from './json.js'
+import { pick } from './pick.js'
+import { DeepReadonly } from '../types/record.js'
 
 type JsonObject = string | number | boolean | unknown | unknown[] | null | JsonObject[] | {
     [key: string]: JsonObject

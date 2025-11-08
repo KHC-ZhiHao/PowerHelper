@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { Interaction } from './interaction'
+import { Interaction } from './interaction.js'
 
 describe('Interaction', () => {
     it('base', function() {

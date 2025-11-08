@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { calc } from './calc'
+import { calc } from './calc.js'
 
 const { toMs } = calc
 

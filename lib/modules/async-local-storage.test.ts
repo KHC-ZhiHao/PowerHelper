@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { flow } from '../utils/flow'
-import { AsyncLocalStorage } from './async-local-storage'
+import { flow } from '../utils/flow.js'
+import { AsyncLocalStorage } from './async-local-storage.js'
 
 const getStorage = () => {
     const state: any = {}

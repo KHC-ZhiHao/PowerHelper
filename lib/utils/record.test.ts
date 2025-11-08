@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { record } from './record'
+import { record } from './record.js'
 
 const { setMapValue, createStrictObject, omit, promiseAllWithKeys, simpleCheckDeepDiff } = record
 
@@ -88,7 +88,7 @@ describe('Record', () => {
                 }
             }
         }
-        
+
         const data = {
             name: 'james',
             sex: 'M',
