@@ -2,7 +2,7 @@
 <p align="center"><img style="max-width: 300px" src="./logo.png"></p>
 
 <h1 align="center">Power Helper</h1>
-<h3 align="center">優雅的 Javascript 工具組</h3>
+<h3 align="center">An Elegant JavaScript Utility Toolkit</h3>
 
 <h6 align="center">
     <a href="https://www.npmjs.com/package/power-helper">
@@ -25,17 +25,19 @@
 
 <br>
 
-Power Helper 是一套整合了多種 JavaScript 工具的輕量化集成工具，它非常簡潔，並且不需要任何依賴項目。這套工具可以被視為一種較為複雜的 Lodash，它可以支援幾乎所有的 JavaScript 環境。
+[繁體中文說明](./README_ZH.md)
 
-在開發過程中，我們遵照以下幾點讓開發者能夠獲得最佳的開發體驗：
+Power Helper is a lightweight JavaScript utility toolkit that integrates a wide variety of tools. It is clean, requires no dependencies, and can be seen as a more feature-rich alternative to Lodash. It supports virtually all JavaScript environments.
 
-* 對產品進行了完整的測試覆蓋，確保產品的可靠性。
-* 提供了完善的中文文件支援，以幫助使用者快速上手。
-* 持續改善程式碼品質，確保產品的可維護性和可擴展性。
-* 為編輯器提供了完整的提示，以幫助使用者更高效地進行開發。
-* 提供了完整的 TypeScript 支援，以幫助使用者更好地進行開發。
+During development, we follow these principles to provide the best developer experience:
 
-## 安裝
+* Full test coverage to ensure product reliability.
+* Comprehensive documentation to help users get started quickly.
+* Continuous improvement of code quality for maintainability and extensibility.
+* Complete editor hints for a more efficient development workflow.
+* Full TypeScript support for a better development experience.
+
+## Installation
 
 ### npm
 
@@ -49,153 +51,152 @@ npm install power-helper
 yarn add power-helper
 ```
 
-## 如何使用？
+## How to Use
 
-PowerHelper 分成三個區塊，相關敘述如下：
+PowerHelper is divided into three sections:
 
 ### Utils
 
-大多由單純的 Function 組成。
+Mostly composed of pure functions.
 
-[calc](./lib/utils/calc.md) - 負責計算的單元。
+[calc](./lib/utils/calc.md) - A utility for calculations.
 
-* [toMs](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.md#toms) - 將指定時間格式的數值轉換成毫秒。
+* [toMs](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/calc.md#toms) - Converts a time value in a specified format to milliseconds.
 
-[array](./lib/utils/array.md) - 優雅的 Array 操作。
+[array](./lib/utils/array.md) - Elegant array operations.
 
-* [check](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#check) - 如果 Array 沒有指定的值，加入該值，如果有則移除。
-* [unique](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique) - 移除 Array 中相同的元素。
-* [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - 將 Array 依照指定數量集成一組。
-* [asyncMap](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#asyncmap) - 允許非同步進行的 map。
-* [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompick) - 從 Array 中隨機獲取一個值。
-* [randomPicks](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompicks) - 
-從 Array 中隨機獲取指定數量且不重複的值，如果指定數量大於 Array 長度時會傳整組 Array。
+* [check](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#check) - Adds a value to an array if it doesn't exist, or removes it if it does.
+* [unique](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#unique) - Removes duplicate elements from an array.
+* [groups](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#groups) - Groups array elements into chunks of a specified size.
+* [asyncMap](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#asyncmap) - An async-compatible map function.
+* [randomPick](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompick) - Picks a random value from an array.
+* [randomPicks](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/array.md#randompicks) - Picks a specified number of unique random values from an array. Returns the entire array if the count exceeds its length.
 
-[detect](./lib/utils/detect.md) - 驗證當下的執行環境。
+[detect](./lib/utils/detect.md) - Detects the current runtime environment.
 
-* [inAppBrowser](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inappbrowser) - 是否正在 in app browser 裡面執行，很難覆蓋所有應用範圍，僅供參考使用。
-* [inMobile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inmobile) - 是否正在 iOS 或是 Android 系統裡面執行。
-* [inIOS](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inios) - 是否正在 iOS 系統裡面執行。
-* [inAndroid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inandroid) - 是否正在 Android 系統裡面執行。
-* [inSafari](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#insafari) - 是否正在 Safari 瀏覽器裡面執行。
+* [inAppBrowser](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inappbrowser) - Checks if running inside an in-app browser. Coverage is limited; for reference only.
+* [inMobile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inmobile) - Checks if running on iOS or Android.
+* [inIOS](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inios) - Checks if running on iOS.
+* [inAndroid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#inandroid) - Checks if running on Android.
+* [inSafari](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/detect.md#insafari) - Checks if running in the Safari browser.
 
-[flow](./lib/utils/flow.md) - 流程控制的工具。
+[flow](./lib/utils/flow.md) - Flow control utilities.
 
-* [run](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#run) - 直接運行方法並返回結果。
-* [sleep](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep) - 停止執行指定時間(毫秒)。
-* [randomInt](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#randomint) - 求整數範圍內的隨機值。
-* [createUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createuuid) - 建立一組隨機的 v4 uuid。
-* [createWithTsUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createwithtsuuid) - 建立一組隨機的 v4 uuid，但在前面加上當下的 timestamp(ms)。
-* [retry](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry) - 優雅的設計有限的重複執行直到成功為止。
-* [asyncWhile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile) - 結合非同步與計數的迴圈操作。
-* [waitFor](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#waitfor) - 流程控制的工具。
+* [run](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#run) - Immediately invokes a function and returns its result.
+* [sleep](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#sleep) - Pauses execution for a specified duration (in milliseconds).
+* [randomInt](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#randomint) - Returns a random integer within a specified range.
+* [createUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createuuid) - Generates a random v4 UUID.
+* [createWithTsUuid](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#createwithtsuuid) - Generates a random v4 UUID prefixed with the current timestamp (ms).
+* [retry](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#retry) - Elegantly retries an operation a limited number of times until it succeeds.
+* [asyncWhile](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#asyncwhile) - An async loop combining asynchronous execution with a counter.
+* [waitFor](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/flow.md#waitfor) - A flow control utility for waiting on a condition.
 
-[json](./lib/utils/json.md) - 優雅的 JSON 格式相關處理。
+[json](./lib/utils/json.md) - Elegant JSON format handling.
 
-* [jpjs](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#jpjs) - 經典的深拷貝方案 JSON.parse(JSON.stringify(data))。
-* [nonStrictJSONParse](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#nonstrictjsonparse) - 執行 JSON Parse，如果失敗回傳空白物件 `{}`。
-* [nonStrictJSONStringify](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#nonstrictjsonstringify) - 執行 JSON Stringify，如果失敗回傳字串 `'{}'`。
+* [jpjs](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#jpjs) - The classic deep clone: `JSON.parse(JSON.stringify(data))`.
+* [nonStrictJSONParse](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#nonstrictjsonparse) - Runs JSON.parse; returns `{}` on failure.
+* [nonStrictJSONStringify](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/json.md#nonstrictjsonstringify) - Runs JSON.stringify; returns `'{}'` on failure.
 
-[text](./lib/utils/text.md) - 字串相關的處理。
+[text](./lib/utils/text.md) - String-related utilities.
 
-* [headMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#headmatch) - Text 開頭是否符合目標。
-* [lastMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#lastmatch) - Text 結尾是否符合目標。
-* [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - 獲取指定 Text 的 Byte 長度。
-* [replaceVar](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar) - 複寫 Text 的指定變數。
-* [format](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format) - 轉換 Text 轉換成指定格式，填入 v 代表映射的值。
-* [findMatchOrLast](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast) - 將指定文字限縮指定字組中，如果都不符合則返回最後一個字組。
-* [pickInTagContents](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#pickintagcontents) - 只提取文本中指定 Tag 的內容。
-* [removeInTagContents](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#removeintagcontents) - 只刪除文本中指定 Tag 的內容。
+* [headMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#headmatch) - Checks if text starts with the target.
+* [lastMatch](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#lastmatch) - Checks if text ends with the target.
+* [byteLength](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#bytelength) - Gets the byte length of the specified text.
+* [replaceVar](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#replacevar) - Replaces named variables in a text string.
+* [format](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#format) - Formats text into a specified pattern, using `v` as the mapped value placeholder.
+* [findMatchOrLast](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#findmatchorlast) - Constrains text to a set of options; returns the last option if none match.
+* [pickInTagContents](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#pickintagcontents) - Extracts only the content within specified tags from text.
+* [removeInTagContents](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/text.md#removeintagcontents) - Removes only the content within specified tags from text.
 
-[pick](./lib/utils/pick.md) - 精準地提取目標相關資源。
+[pick](./lib/utils/pick.md) - Precisely extract target values.
 
-* [ifBad](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifbad) - 值如果是 null | undefined | Error | NaN，則回傳預設值。
-* [ifEmpty](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty) - 值如果是 null | undefined，則回傳預設值。
-* [getType](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype) - 比 typeof 回傳更精準的類型。
-* [peel](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel) - 獲取指定路徑的值，如果值不存在回傳 `null`。
-* [vars](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars) - 獲取文字裡面的變數列表。
+* [ifBad](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifbad) - Returns a default value if the value is `null | undefined | Error | NaN`.
+* [ifEmpty](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#ifempty) - Returns a default value if the value is `null | undefined`.
+* [getType](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#gettype) - Returns a more precise type than `typeof`.
+* [peel](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#peel) - Gets the value at a specified path; returns `null` if not found.
+* [vars](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/pick.md#vars) - Gets the list of variables found within a string.
 
-[checker](./lib/utils/checker.md) - 資料檢查器。
+[checker](./lib/utils/checker.md) - Data validators.
 
-* [inputAccept](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/checker.md#inputaccept) - 負責檢查檔案是否符合 input tag accept 指定的格式。
+* [inputAccept](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/checker.md#inputaccept) - Checks whether a file matches the format specified by an input tag's `accept` attribute.
 
-[element](./lib/utils/element.md) - 優雅的 Dom 操作。
+[element](./lib/utils/element.md) - Elegant DOM operations.
 
-* [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - 透過執行階段注入 Javascript Tag，這個方法只允許在 Browser 中執行。
-* [importCss](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importcss) - 透過執行階段注入帶 stylesheet 的 Link Tag，這個方法只允許在 Browser 中執行。
-* [createAndAppend](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#createandappend) - 新增並將 Tag Append 至指定 Element，這個方法只允許在 Browser 中執行。
+* [importScript](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importscript) - Injects a JavaScript tag at runtime. Browser only.
+* [importCss](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#importcss) - Injects a stylesheet link tag at runtime. Browser only.
+* [createAndAppend](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/element.md#createandappend) - Creates a tag and appends it to the specified element. Browser only.
 
-[record](./lib/utils/record.md) - 優雅的 Object 操作。
+[record](./lib/utils/record.md) - Elegant object operations.
 
-* [omit](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit) - 淺拷貝同一份 Object，但忽略掉指定對象。
-* [simpleCheckDeepDiff](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#simplecheckdeepdiff) - 簡易比對兩個 Object 是否有差異，有差異回傳 true，僅支援 JSON 的所有型態。
-* [setMapValue](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue) - 複製指定物件的值到目標 Object 上，並產生一份新的 Object。
-* [createStrictObject](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#createstrictobject) - 建立一組嚴格檢查、轉譯並實質不能變動的 Object，通常應用在環境變數。
-* [promiseAllWithKeys](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys) - Promise.all 的鍵值對版本。
+* [omit](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#omit) - Shallow-copies an object while omitting specified keys.
+* [simpleCheckDeepDiff](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#simplecheckdeepdiff) - Simply checks if two objects differ; returns `true` if they do. Supports all JSON-compatible types.
+* [setMapValue](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#setmapvalue) - Copies values from a source object onto a target object and returns a new object.
+* [createStrictObject](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#createstrictobject) - Creates a strictly validated, translated, and immutable object. Typically used for environment variables.
+* [promiseAllWithKeys](https://github.com/KHC-ZhiHao/PowerHelper/blob/master/lib/utils/record.md#promiseallwithkeys) - A key-value pair version of `Promise.all`.
 
 ### Modules
 
-更強大的複合工具。
+More powerful composite tools.
 
-[Log](./lib/modules/log.md) - 可以更多變化的 Log。
+[Log](./lib/modules/log.md) - A more flexible logging utility.
 
-[Hook](./lib/modules/hook.md) - 基於非同步架構的事件。
+[Hook](./lib/modules/hook.md) - Async-based event system.
 
-[I18n](./lib/modules/i18n.md) - 多語系操作系統。
+[I18n](./lib/modules/i18n.md) - Multi-language operation system.
 
-[Once](./lib/modules/once.md) - 只會執行一次的非同步事件。
+[Once](./lib/modules/once.md) - An async event that executes only once.
 
-[Pool](./lib/modules/pool.md) - 輕鬆發出請求與快取請求資料的資料池。
+[Pool](./lib/modules/pool.md) - A data pool for easily making requests and caching response data.
 
-[Cache](./lib/modules/cache.md) - 可以將指定參數請求進行有期限的固定資料存取。
+[Cache](./lib/modules/cache.md) - Caches request results for specified parameters with an expiration time.
 
-[Asset](./lib/modules/asset.md) - 資源載入工具，目的是初始化必要的靜態資源。
+[Asset](./lib/modules/asset.md) - A resource loading tool for initializing required static assets.
 
-[Event](./lib/modules/event.md) - 簡單的事件監聽器，可以用來監聽和觸發事件。
+[Event](./lib/modules/event.md) - A simple event emitter for listening to and triggering events.
 
-[Timer](./lib/modules/timer.md) - 一組計時器，可以正向也可以反向計時。
+[Timer](./lib/modules/timer.md) - A timer that can count up or count down.
 
-[Ticker](./lib/modules/ticker.md) - 就如同 setInterval (實際上也是) 一樣運作，只是你可以監聽好幾組事件。
+[Ticker](./lib/modules/ticker.md) - Works like `setInterval` (and actually is), but allows multiple event listeners.
 
-[Loader](./lib/modules/loader.md) - 可以搜集並發出多個 Promise 的加載元件。
+[Loader](./lib/modules/loader.md) - A loading component that collects and dispatches multiple promises.
 
-[Debounce](./lib/modules/debounce.md) - 去抖動功能，當觸發事件後會搜集結果並延遲事件發生，避免頻繁發出請求。
+[Debounce](./lib/modules/debounce.md) - Debounce functionality that collects results and delays execution after an event fires, preventing frequent requests.
 
-[Resource](./lib/modules/resource.md) - 更優雅的實現獲取各類靜態資源。
+[Resource](./lib/modules/resource.md) - A more elegant way to fetch various static resources.
 
-[Schedule](./lib/modules/schedule.md) - 可以建立多個定時執行系統，且能保證不重複執行。
+[Schedule](./lib/modules/schedule.md) - Creates multiple scheduled execution systems with guaranteed non-overlapping runs.
 
-[Reactive](./lib/modules/reactive.md) - 透過輪詢的方法監聽物件有沒有發生變動。
+[Reactive](./lib/modules/reactive.md) - Listens for object changes via polling.
 
-[JobsQueue](./lib/modules/jobs-queue.md) - 有限的批次執行作業。
+[JobsQueue](./lib/modules/jobs-queue.md) - Limited batch job execution.
 
-[Exception](./lib/modules/exception.md) - 高階的錯誤訊息處理工具。
+[Exception](./lib/modules/exception.md) - An advanced error message handling tool.
 
-[CacheLite](./lib/modules/cache-lite.md) - 指定鍵值並同步的存取，非常近似 Map，但是有 TTL。
+[CacheLite](./lib/modules/cache-lite.md) - Synchronous key-value access, similar to Map but with TTL support.
 
-[Breakpoint](./lib/modules/breakpoint.md) - 畫面斷點驗證工具。
+[Breakpoint](./lib/modules/breakpoint.md) - A viewport breakpoint detection tool.
 
-[Interaction](./lib/modules/interaction.md) - 建立可監聽、追蹤、可搭配視圖化的訊息整合工具。
+[Interaction](./lib/modules/interaction.md) - Builds listenable, trackable, and visualizable message integration tools.
 
-[StyleString](./lib/modules/style-string.md) - 方便組合出 HTML Element Style 的工具。
+[StyleString](./lib/modules/style-string.md) - A tool for conveniently composing HTML element style strings.
 
-[LocalStorage](./lib/modules/local-storage.md) - 協助你在複雜的網頁應用程式中更安全的操作 LocalStorage。
+[LocalStorage](./lib/modules/local-storage.md) - Helps you operate LocalStorage more safely in complex web applications.
 
-[AsyncLocalStorage](./lib/modules/async-local-storage.md) - 非同步的操作 LocalStorage，有助於擴展更多應用模式。
+[AsyncLocalStorage](./lib/modules/async-local-storage.md) - Async LocalStorage operations to support more usage patterns.
 
-[PromiseOverlap](./lib/modules/promise-overlap.md) - 控制多次發出相同 Promise 時只獲取第一次或是最後一次的結果。
+[PromiseOverlap](./lib/modules/promise-overlap.md) - Controls multiple identical promise calls to return only the first or the last result.
 
-[QueryCollection](./lib/modules/query-collection.md) - 一定時間內蒐集資料並統一發出。
+[QueryCollection](./lib/modules/query-collection.md) - Collects data within a time window and dispatches it all at once.
 
-[WebSocketClient](./lib/modules/websocket.md) - 具有重新連線與頻道模式的 WebSocket 模塊，你可以透過 onMessage 監聽伺服器方的訊息，並透過 event system 發送給其他監聽對象。
+[WebSocketClient](./lib/modules/websocket.md) - A WebSocket module with reconnection and channel support. Listen to server messages via `onMessage` and broadcast to other listeners via the event system.
 
-[ElementListenerGroup](./lib/modules/element-listener-group.md) - 將 element 的 addEventListener 昇華到更好操作的階段。
+[ElementListenerGroup](./lib/modules/element-listener-group.md) - Elevates element `addEventListener` to a more manageable level.
 
-[PreloadPort](./lib/modules/preload-port.md) - 可以預先載入資料並透過 id 傳遞給需要的對象。
+[PreloadPort](./lib/modules/preload-port.md) - Preloads data and passes it to consumers by ID.
 
 ### Types
 
-將複雜的型態方案進行封裝，提高開發的安全性與效率。
+Encapsulates complex type patterns to improve development safety and efficiency.
 
 [date](./lib/types/date.md)
 
@@ -209,7 +210,7 @@ PowerHelper 分成三個區塊，相關敘述如下：
 import { TDate, TPick, TRecord, TString } from 'power-helper'
 ```
 
-Types 只是一種開發 module 時順手的包裝，想要更強大的表達式可以使用以下套件：
+Types are a convenient wrapper for module development. For more powerful type expressions, consider the following packages:
 
 [utility-types](https://www.npmjs.com/package/utility-types)
 
@@ -219,20 +220,20 @@ Types 只是一種開發 module 時順手的包裝，想要更強大的表達式
 
 #### 0.6.0
 
-* [新增] - Websocket 新增 keepAlive 保持連線功能。
-* [修正] - 標準化 Event 相關的 Channel 命名。
-* [修正] - job-queues -> jobs-queue。
-* [優化] - 優化文件。
+* [Added] - WebSocket adds `keepAlive` connection persistence.
+* [Fixed] - Standardized Event channel naming.
+* [Fixed] - `job-queues` renamed to `jobs-queue`.
+* [Improved] - Documentation improvements.
 
 #### 0.7.0
 
-我們對打包形態和文件進行了調整，可以讓整個開發體驗獲得最佳化。
+We adjusted the build format and documentation to optimize the overall developer experience.
 
 ##### Breaking Changes
 
-* CacheLite - expTime 參數改為 ttl。
-* Cache - keepAlive 參數改為 ttl。
+* CacheLite - `expTime` parameter renamed to `ttl`.
+* Cache - `keepAlive` parameter renamed to `ttl`.
 
 #### 0.8.0
 
-改用 Es Module 的引入方式。
+Switched to ES Module import style.

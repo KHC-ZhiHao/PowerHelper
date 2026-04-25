@@ -48,7 +48,7 @@ export class ElementListenerGroup<T extends Element | Document | Window | Worker
         }
         this.elements = this.elements.filter(e => e !== element)
         for (let listener of this.listeners.values()) {
-            element.removeEventListener(listener.name, listener.callback)
+            element.removeEventListener(listener.name, listener.callback, listener.options)
         }
     }
 
@@ -59,7 +59,7 @@ export class ElementListenerGroup<T extends Element | Document | Window | Worker
         if (listener) {
             this.listeners.delete(listenerId)
             for (let element of this.elements) {
-                element.removeEventListener(listener.name, listener.callback)
+                element.removeEventListener(listener.name, listener.callback, listener.options)
             }
         }
     }
@@ -94,7 +94,7 @@ export class ElementListenerGroup<T extends Element | Document | Window | Worker
     clearElements() {
         for (let listener of this.listeners.values()) {
             for (let element of this.elements) {
-                element.removeEventListener(listener.name, listener.callback)
+                element.removeEventListener(listener.name, listener.callback, listener.options)
             }
         }
         this.elements = []
