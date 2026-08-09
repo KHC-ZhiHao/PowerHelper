@@ -1,19 +1,25 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "downlevelIteration": true,
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "strict": true,
     "declaration": true,
     "outDir": "dist",
+    "rootDir": ".",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "lib": [
       "dom",
-      "ES2015"
+      "ESNext"
+    ],
+    "types": [
+      "node"
     ]
   },
+  "exclude": ["node_modules", "./**/*.test.ts"],
   "include": [
-    "lib/**/*.ts"
+    "./lib/**/*.ts"
   ]
 }

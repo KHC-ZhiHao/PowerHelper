@@ -1,15 +1,15 @@
 import { flow } from '../utils/flow.js'
 
-type EventMap<T extends MediaDevices | Element | Document | Window | Worker | MessagePort> =
-    T extends Window ? WindowEventMap :
-        T extends Document ? DocumentEventMap :
-            T extends SVGAElement ? SVGElementEventMap :
-                T extends HTMLMediaElement ? HTMLMediaElementEventMap :
-                    T extends HTMLBodyElement ? HTMLBodyElementEventMap :
-                        T extends HTMLElement ? HTMLElementEventMap :
-                            T extends MediaDevices ? MediaDevicesEventMap :
-                                T extends Worker ? WorkerEventMap :
-                                    T extends MessagePort ? MessagePortEventMap : ElementEventMap
+type EventMap<T extends MediaDevices | Element | Document | Window | Worker | MessagePort>
+    = T extends Window ? WindowEventMap
+        : T extends Document ? DocumentEventMap
+            : T extends SVGAElement ? SVGElementEventMap
+                : T extends HTMLMediaElement ? HTMLMediaElementEventMap
+                    : T extends HTMLBodyElement ? HTMLBodyElementEventMap
+                        : T extends HTMLElement ? HTMLElementEventMap
+                            : T extends MediaDevices ? MediaDevicesEventMap
+                                : T extends Worker ? WorkerEventMap
+                                    : T extends MessagePort ? MessagePortEventMap : ElementEventMap
 
 /**
  * 將 element 的 addEventListener 昇華到更好操作的階段。
